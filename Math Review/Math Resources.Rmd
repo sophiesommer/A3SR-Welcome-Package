@@ -1,0 +1,44 @@
+---
+title: "A3SR Math Review Resources/Links"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Properties of Logarithms   
+  
+  
+# Matrix Algebra  
+https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab  
+
+
+# Derivatives    
+  
+
+# Integrals    
+  
+
+# Summary Statistics    
+  
+
+# P-Values and T-Tests    
+  
+
+# Correlation and Covariance    
+  
+
+# Ordinary Least Squares Regression    
+  
+
+# Probability Density/Mass Functions   
+  
+
+# Expectation   
+  
+
+
+

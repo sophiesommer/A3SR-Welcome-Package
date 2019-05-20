@@ -1,0 +1,91 @@
+---
+title: "A3SR Math Review"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Properties of Logarithms   
+### Relevant Courses:  
+
+  -Quantitative Methods  
+  -Generalized Linear Models
+\pagebreak  
+  
+# Matrix Algebra  
+### Relevant Courses:  
+
+  -Quantitative Methods    
+  
+\pagebreak  
+
+# Derivatives   
+### Relevant Courses:  
+
+  -Probability  
+  -Quantitative Methods  
+  
+\pagebreak    
+
+# Integrals   
+### Relevant Courses:  
+
+  -Probability  
+  -Quantitative Methods  
+  
+\pagebreak  
+
+# Summary Statistics   
+### Relevant Courses:  
+
+  -Probability  
+  -Quantitative Methods  
+  -Statistical Computing  
+  
+\pagebreak  
+  
+# P-Values and T-Tests   
+### Relevant Courses:  
+
+  -Quantitative Methods    
+  -Statistical Computing  
+  -Causal Inference  
+  
+\pagebreak  
+  
+# Correlation and Covariance   
+### Relevant Courses:  
+
+  -Quantitative Methods   
+  -Probability  
+  
+\pagebreak  
+  
+# Ordinary Least Squares Regression   
+### Relevant Courses:  
+
+  -Quantitative Methods   
+\pagebreak  
+
+# Probability Density/Mass Functions  
+### Relevant Courses:  
+
+  -Quantitative Methods   
+  -Probability  
+  -Causal Inference  
+\pagebreak  
+  
+# Expectation  
+### Relevant Courses:  
+
+  -Probability   
+
+  
+
+
+
+
