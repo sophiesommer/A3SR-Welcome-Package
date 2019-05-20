@@ -10,21 +10,64 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Properties of Logarithms   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Quantitative Methods  
   -Generalized Linear Models
+  
+## Notes    
+
+### Definition  
+Logarithms are defined such that $log_b(A)=X$ is equivalent to $b^X=A$  
+   
+### Properties  
+Using properties of exponents and the definition above, we can derive the following:  
+
+  a. The Product Rule: $log_b(MN)=log_b(M)+log_b(N)$  
+  b. The Quotient Rule: $log_b(\frac{M}{N})=log_b(M)-log_b(N)$  
+  c. The Power Rule: $log_b(M^p)=plog_b(M)$  
+  d. $log_b(b^X)=X$  
+  e. $b^{log_b(X)}=X$  
+  f. $log_bb=1$   
+  g. $log_b1=0$  
+     
+### Example 1: Expanding logarithms   
+$log_e(\frac{2x^3}{y})$  
+$=log_e(2x^3)-log_e(y)$  
+$=log_e(2)+log_e(x^3)-log_e(y)$  
+$=log_e(2)+3log_e(x)-log_e(y)$   
+   
+### Example 2: Condensing logarithms   
+$2log_3(x)+log_3(5)-log_3(2)$   
+$=log_3(x^2)+log_3(5)-log_3(2)$  
+$=log_3(5x^2)-log_3(2)$     
+$=log_3(\frac{5x^2}{2})$   
+
+\pagebreak   
+  
+## Practice Problems   
+  
+  1. Solve the following:  
+    a. $log_e(e^x)$  
+    b. $log_{10}(100)$  
+    c. $log_{10}(\frac{1}{10})$  
+    d. $log_{10}(0)$   
+   
+  2. Expand the following:  
+    a. $log_{10}(\frac{5y^3}{x})$    
+    b. 
+  
 \pagebreak  
   
 # Matrix Algebra  
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Quantitative Methods    
   
 \pagebreak  
 
 # Derivatives   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Probability  
   -Quantitative Methods  
@@ -32,7 +75,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \pagebreak    
 
 # Integrals   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Probability  
   -Quantitative Methods  
@@ -40,7 +83,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \pagebreak  
 
 # Summary Statistics   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Probability  
   -Quantitative Methods  
@@ -49,7 +92,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \pagebreak  
   
 # P-Values and T-Tests   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Quantitative Methods    
   -Statistical Computing  
@@ -58,7 +101,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \pagebreak  
   
 # Correlation and Covariance   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Quantitative Methods   
   -Probability  
@@ -66,13 +109,13 @@ knitr::opts_chunk$set(echo = TRUE)
 \pagebreak  
   
 # Ordinary Least Squares Regression   
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Quantitative Methods   
 \pagebreak  
 
 # Probability Density/Mass Functions  
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Quantitative Methods   
   -Probability  
@@ -80,7 +123,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \pagebreak  
   
 # Expectation  
-### Relevant Courses:  
+## Relevant Courses:  
 
   -Probability   
 
