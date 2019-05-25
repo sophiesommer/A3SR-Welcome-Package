@@ -15,22 +15,39 @@ if(!requireNamespace("here"))
 require("here")
 ```
 
+# Installing R
+#### All versions of RStudio requires users to have R downloaded on before running RStudio. 
+  * It can be downloaded here: https://cran.rstudio.com/
+  * Choose the appropriate opperating system: 
+    + For Mac Users: Choose the R-3.6.0.pkg and follow installation directions 
+      - The following installation screen should appear. Press continue until the every end of the installation process. 
+      
+      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Installation Images/R_Installation_Mac_1.png){width=75%}
+      - Installation is complete when you see this image You can remove installation files to the trash after this step. 
+      
+      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Installation Images/R_Installation_Mac_2.png){width=75%}
+    + For PC Users:
+    
+
+\newpage
 # Installing RStudio
-1. All versions of RStudio requires users to have R downloaded on before running RStudio. 
-  a. It can be downloaded here: https://cran.rstudio.com/
-  b. Choose the appropriate opperating system: 
-    i. For Mac Users: Choose the R-3.6.0.pkg and follow installation directions 
-      1. The following installation screen should appear. Press continue until the every end of the installation process. 
-
-```{r pressure, echo=FALSE, fig.cap="Mac Installation ", out.width = '100%'}
-knitr::include_graphics(here::here("Installation Images", "R_Installation_Mac_1.png"))
-```  
-      2. The following image will tell you when R is finished install. You can remove installation files to the trash after this step.
+#### Go to this link https://www.rstudio.com/products/rstudio/download/#download
+  * Scroll down to the Installers for Supported Platforms  and choose the appropriate opperating system: 
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Installation Images/RStudio_Installation_1.png){width=75%}
+  
+    + For Mac Users: Choose **RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)**
+      - Move RStudio to Applications folder 
+    + For PC Users: Choose **RStudio 1.2.1335 - Windows 7+ (64-bit)**
     
     
-```{r pressure, echo=FALSE, fig.cap="Mac Installation ", out.width = '100%'}
-knitr::include_graphics(here::here("Installation Images", "R_Installation_Mac_2.png"))
-```  
+\newpage
+# Installing LaTeX 
+#### For Mac Users:
+* Download MacTeX from this link (it is recommended to download with Safari) :  http://www.tug.org/mactex/mactex-download.html
+  + This package is rather larger (3.9 Gb)  and will take some time to download, install, and get set up. 
+  + Do not download smaller BasicTeX package (Inster note here)
+  
 
-2. Go to this link https://www.rstudio.com/products/rstudio/download/#download
-  a. Choose the appropriate 
+#### For PC Users:
+
+
