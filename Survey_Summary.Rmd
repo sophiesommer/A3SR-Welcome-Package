@@ -9,3 +9,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Of the 18 responses: 
+
+Part-time: (4/18)
+
+
+Full-time: (14/18)
+- 50% of the reponses came from full-time students that did not work
+- 
