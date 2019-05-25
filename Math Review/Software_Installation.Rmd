@@ -1,0 +1,36 @@
+---
+title: "Software Installation"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results = "hide"}
+if(!requireNamespace("here"))
+  install.packages("here", repos = "https://cloud.r-project.org")
+require("here")
+```
+
+# Installing RStudio
+1. All versions of RStudio requires users to have R downloaded on before running RStudio. 
+  a. It can be downloaded here: https://cran.rstudio.com/
+  b. Choose the appropriate opperating system: 
+    i. For Mac Users: Choose the R-3.6.0.pkg and follow installation directions 
+      1. The following installation screen should appear. Press continue until the every end of the installation process. 
+
+```{r pressure, echo=FALSE, fig.cap="Mac Installation ", out.width = '100%'}
+knitr::include_graphics(here::here("Installation Images", "R_Installation_Mac_1.png"))
+```  
+      2. The following image will tell you when R is finished install. You can remove installation files to the trash after this step.
+    
+    
+```{r pressure, echo=FALSE, fig.cap="Mac Installation ", out.width = '100%'}
+knitr::include_graphics(here::here("Installation Images", "R_Installation_Mac_2.png"))
+```  
+
+2. Go to this link https://www.rstudio.com/products/rstudio/download/#download
+  a. Choose the appropriate 
