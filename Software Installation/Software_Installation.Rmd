@@ -22,10 +22,10 @@ require("here")
     + For Mac Users: Choose the R-3.6.0.pkg and follow installation directions 
       - The following installation screen should appear. Press continue until the every end of the installation process. 
       
-      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Installation Images/R_Installation_Mac_1.png){width=75%}
+      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_1.png){width=75%}
       - Installation is complete when you see this image You can remove installation files to the trash after this step. 
       
-      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Installation Images/R_Installation_Mac_2.png){width=75%}
+      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_2.png){width=75%}
     + For PC Users:
     
 
@@ -33,7 +33,7 @@ require("here")
 # Installing RStudio
 #### Go to this link https://www.rstudio.com/products/rstudio/download/#download
   * Scroll down to the Installers for Supported Platforms  and choose the appropriate opperating system: 
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Installation Images/RStudio_Installation_1.png){width=75%}
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_1.png){width=75%}
   
     + For Mac Users: Choose **RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)**
       - Move RStudio to Applications folder 
