@@ -9,11 +9,19 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Of the 18 responses: 
-
-Part-time: (4/18)
-
+Who responded: 18 students
+Part-time: (N = 4)
+- 50% of part-time students worked full-time
+- 25% of part-time students worked 30 hours a week
+- 25% of part-time students worked 17 hours a week
 
 Full-time: (14/18)
-- 50% of the reponses came from full-time students that did not work
-- 
+- 50% of full-time students did not work outside of school
+- Approximately 14% of full-time students worked less than 10 hours a week
+- Approximately 14% of full-time students worked 10-19 hours a week
+- Approximately 21% of full-time students worked 20-24 hours a week
+
+Summary: A majority of students had outside commitements (ie. working part-time, working full-time, and etc.) Most students (78%) thought that the workload was manageable but intense with a few students (16.7%) feeling comfortable with workload. Also 
+
+### Data Camp
+
