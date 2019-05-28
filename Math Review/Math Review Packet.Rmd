@@ -2,7 +2,6 @@
 title: "A3SR Math Review"
 output:
   pdf_document: default
-  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -55,10 +54,35 @@ $=log_3(\frac{5x^2}{2})$
    
   2. Expand the following:  
     a. $log_{10}(\frac{5y^3}{x})$    
-    b. 
+    b. $log_{2}(\frac{4y^2}{3x})$  
+    c. $log_e(2x^2y^3)$  
+    
+  3. Condense the following:  
+    a. $4log_3(x)-2log_3(y)$  
+    b. $log_2(x)+5log_2(y)-log_2(5)$  
+    c. $log_{10}(5)+log_{10}(2)$   
+   
+## Answers    
   
-\pagebreak  
+  1. Solve:    
+    a.  $x$  
+    b.  $2$  
+    c.  $-1$  
+    d.  There is no solution because there is no power of $10$ that would equal $0$    
+       
+  2. Expand:    
+    a.  $log_{10}(5) +3log_{10}(y)-log_{10}(x)$    
+    b.  $2+2log_{2}(y)-log_{2}(3)-log_{2}(x)$   
+    c. $log_e(2)+2log_e(x)+3log_e(y)$   
+    
+  3. Condense  
+    a.  $log_3(\frac{x^4}{y^2})$   
+    b.  $log_2(\frac{xy^5}{5})$  
+    c.  $1$   
   
+    
+\pagebreak   
+   
 # Matrix Algebra  
 ## Relevant Courses:  
 
