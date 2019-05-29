@@ -225,30 +225,102 @@ $$
 ## Practice Problems   
   
   1. Solve the following:  
-    a. Prob1   
-    b. Prob2    
-    c. Prob3   
-    d. Prob4     
+    a. $\begin{bmatrix}
+2&4&2\\
+1&3&0\\
+1&6&2\\
+\end{bmatrix}+
+\begin{bmatrix}
+1&5&0\\
+-2&-3&0\\
+1&9&5\\
+\end{bmatrix}$     
+    b. $\begin{bmatrix}
+2&1\\
+-2&2\\
+4&2\\
+\end{bmatrix}
+\begin{bmatrix}
+5&2&-1\\
+3&4&2\\
+\end{bmatrix}$      
+    c. Let A=$\begin{bmatrix}
+1&2\\
+3&5\\
+4&0\\
+\end{bmatrix}$ and 
+$B=\begin{bmatrix}
+4&4\\
+1&2\\
+7&0\\
+\end{bmatrix}$ Calculate $A^TB$   
+    d. Using the same matrices as in part c, calculate $B^TA$         
    
-  2. Show that $A$ and $B$ are inverses:  
-    a. Prob1      
-    b. Prob2   
-    c. Prob3   
+  2. Show that $A$ and $B$ are inverses:   
+     $A=\begin{bmatrix}
+1&2&1\\
+2&2&0\\
+1&1&1\\
+\end{bmatrix}$    
+$B=\begin{bmatrix}
+-1&0.5&1\\
+1&0&-1\\
+0&-0.5&1\\
+\end{bmatrix}$   
+
+  3. Suppose that $A$ is a 4x3 matrix and $B$ is a $3x8$ matrix.  
+    a. Does $AB$ exist? If so, what are the dimensions of $AB$?  
+    b. Does $BA$ exist? If so, what are the dimensions of $BA$?  
     
+  4. What is the determinant of $\begin{bmatrix}
+1&-2\\
+4&3\\
+\end{bmatrix}$?   
+
    
 ## Answers    
   
   1. Solve:    
-    a.  Ans1   
-    b.  Ans2   
-    c.  Ans3   
-    d.  Ans4      
+    a.  $\begin{bmatrix}
+3&9&2\\
+-1&0&0\\
+2&15&7\\
+\end{bmatrix}$    
+    b.  $\begin{bmatrix}
+13&8&0\\
+-4&4&6\\
+26&16&0\\
+\end{bmatrix}$   
+    c.  $\begin{bmatrix}
+35&10\\
+13&18\\
+\end{bmatrix}$   
+    d.  $\begin{bmatrix}
+35&13\\
+10&18\\
+\end{bmatrix}$      
        
-  2. Show that $A$ and $B$ are inverses:      
-    a. Ans1    
-    b. Ans2     
-    c. Ans3    
-   
+  2. Show that $A$ and $B$ are inverses:    
+  $\begin{bmatrix}
+1&2&1\\
+2&2&0\\
+1&1&1\\
+\end{bmatrix}  
+\begin{bmatrix}
+-1&0.5&1\\
+1&0&-1\\
+0&-0.5&1\\
+\end{bmatrix}=\begin{bmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1\\
+\end{bmatrix}$
+  
+  3. Suppose that $A$ is a 4x3 matrix and $B$ is a $3x8$ matrix.  
+    a. $AB$ exists and is 4x8   
+    b. $BA$ does not exist    
+    
+  4. The determinant is $(1*3)-(-2*4)=(3)-(-8)=11$   
   
 \pagebreak  
 
