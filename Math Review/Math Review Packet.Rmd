@@ -328,7 +328,42 @@ $B=\begin{bmatrix}
 ## Relevant Courses:  
 
   -Probability  
-  -Quantitative Methods  
+  -Quantitative Methods   
+  
+## Notes   
+
+### Definition  
+The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
+$$f'(x)=y'=\frac{df}{dx}=\frac{d}{dx}(f(x))=\frac{dy}{dx}=\frac{d}{dx}(y)$$
+  
+### Using derivatives to find local minima and maxima of a function  
+To find all local minima or maxima of a function $y=f(x)$:    
+  1) Take the first derivative of $f(x)$ with respect to x ($f'(x)$).  
+  2) Set this expression equal to zero and solve for x. These values of x are local maxima and minima.   
+  3) Calculate the second derivative of $f(x)$ with respect to x ($f''(x)$)  
+  4) Plug in the values of x calculated in part 2. If the second derivative is positive, this value of x represents a local minimum; if the second derivative is negative, it is a local maximum    
+  
+## Properties   
+
+Properties of derivatives:  
+  1) $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
+  2) $(cf(x))'=cf'(x)$ where $c$ is a constant  
+  3) 
+  
+
+\pagebreak
+  
+## Practice Problems   
+  
+  1. Solve the following:  
+    a. 
+
+   
+## Answers    
+  
+  1. Solve:    
+    a.  
+
   
 \pagebreak    
 
@@ -337,7 +372,22 @@ $B=\begin{bmatrix}
 
   -Probability  
   -Quantitative Methods  
+
+## Notes  
+
+\pagebreak
   
+## Practice Problems   
+  
+  1. Solve the following:  
+    a. 
+
+   
+## Answers    
+  
+  1. Solve:    
+    a.  
+
 \pagebreak  
 
 # Summary Statistics   
@@ -362,7 +412,11 @@ $B=\begin{bmatrix}
 ## Relevant Courses:  
 
   -Quantitative Methods   
-  -Probability  
+  -Probability   
+  
+## Notes  
+
+
   
 \pagebreak  
   
