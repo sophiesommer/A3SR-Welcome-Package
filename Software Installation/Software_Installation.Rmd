@@ -2,7 +2,6 @@
 title: "Software Installation"
 output:
   pdf_document: default
-  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -45,7 +44,7 @@ require("here")
 #### For Mac Users:
 * Download MacTeX from this link (it is recommended to download with Safari) :  http://www.tug.org/mactex/mactex-download.html
   + This package is rather larger (3.9 Gb)  and will take some time to download, install, and get set up. 
-  + Do not download smaller BasicTeX package (Inster note here)
+  + Do **not** download smaller BasicTeX package 
   
 
 #### For PC Users:
