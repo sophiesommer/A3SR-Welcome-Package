@@ -25,7 +25,7 @@ require("here")
       - Installation is complete when you see this image You can remove installation files to the trash after this step. 
       
       ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_2.png){width=75%}
-    + For PC Users:
+    + For PC Users: Click on **Download R for Windows**, then base (to download R for this first time), and finally **Download R 3.6.0 for Windows**
     
 
 \newpage
@@ -48,5 +48,19 @@ require("here")
   
 
 #### For PC Users:
+* Download MiKTeX from this link : https://miktex.org/download
+  + Choose the **Howto: Install MikTeX on your Windows computer**
+  + Press the Download icon at the bottom and the file will immediately begin downloading
+    ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC.png){width=75%}
+  + Click on the file at the bottom of your web browser and start the installation by pressing **Run**
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_2.png){width=75%}
+  + After following the on screen instructions, you will need to choose your settings. **Make sure to set Install missing packages on-the-fly to Yes** 
+![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_3.png){width=75%}
+  + You will be redirected to this screen and make sure to continue to press **Next** and follow the on-screen directions until the installation procress finishes. 
+![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_4.png){width=75%}
+
+* If you need to uninstall MiKTeX, restart your computer, 
+
+A helpful link: https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9
 
 
