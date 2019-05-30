@@ -9,19 +9,53 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Who responded: 18 students
-Part-time: (N = 4)
-- 50% of part-time students worked full-time
-- 25% of part-time students worked 30 hours a week
-- 25% of part-time students worked 17 hours a week
+##### Part-time: (4/18)
+* 50% of part-time students worked full-time
+* 25% of part-time students worked 30 hours a week
+* 25% of part-time students worked 17 hours a week
 
-Full-time: (14/18)
-- 50% of full-time students did not work outside of school
-- Approximately 14% of full-time students worked less than 10 hours a week
-- Approximately 14% of full-time students worked 10-19 hours a week
-- Approximately 21% of full-time students worked 20-24 hours a week
+##### Full-time: (14/18)
+* 50% of full-time students did not work outside of school
+* Approximately 14% of full-time students worked less than 10 hours a week
+* Approximately 14% of full-time students worked 10-19 hours a week
+* Approximately 21% of full-time students worked 20-24 hours a week
 
-Summary: A majority of students had outside commitements (ie. working part-time, working full-time, and etc.) Most students (78%) thought that the workload was manageable but intense with a few students (16.7%) feeling comfortable with workload. Also 
+###### Summary: 
+A majority of students had outside commitements (ie. working part-time, working full-time, and etc.) Most students (78%) thought that the workload was manageable but intense with a few students (16.7%) feeling comfortable with workload. 
+
+### Programming Experience:
+Most students had little to no experience with R with 16.7% (3/18) of students having imtermediate skills in R. This includes running models, programming functions, simulating data, and cleaning data in R
+
+Incoming students had a wide range of programming knowledge. The most popular languages were Python, Stata, and SPSS. 
+
+### Math Knowledge:
+Most students (15/18) used the suggested material to prepare for the first semester and were comfortable with basis statistics, derivatives, matrix algebra, and properities of logs. Data Camp and Kahn Academy were the most helpful resources for the first semester, but a majority of students did not think the materials were sufficient to properly prepare for the first semester. 
+
+#### Some comments
+  * Data Camp was helpful but there needed to be more practice using R, not in Data Camp.
+  * More material practicing coding would be helpful because Data Camp was not comprehensive enough. 
+  * There was a lot of material but not all of it was important. In terms of the math material students would like more calculus content and statistics. 
 
 ### Data Camp
+Most students found that intro to R, writing functions in R, and intermediate R were helpful. While Data Camp was a good introduction, most students would have liked to have more practice coding, reading code, and having the software ready before starting. 
 
+### Classes during the first semester
+Most students took **2003 (Quantitative Methods)**, **2351 (Probability)**, and **2352 (Statistical Comupting)**, and **2331 (Data Science of Social Impact)**. Some students also took higher level classes within the program, such as, Causal Inference, Messy Data and Machine Learning, Spatial Statistics, and Large Databases in Education, but most students took electives outside the program. 
+
+### Comments to rely to program directors:
+  * The first semester courses were in a good order, but would have liked to add up to 12 credits, instead of 11 (which required students to find electives outside the program)
+  * Possible APSTA elective during the first semester to allow for more flexibility later in the program. 
+  * Part-time students felt that probability was a good class to form the foundation for future classes but because Data Camp was not required for class and found in-class coding problems difficult. 
+  * Part-time students were encouraged to take an elective outside the program but wish to have taken 2351 (Probability), 2352 (Statistical Computing), and 2003 (Quantitative Methods), or taking probability later to have a better computing foundation. 
+  
+### 2352 (Statistical Computing)
+The homework assignments were the most helpful. 
+
+### 2351 (Probability)
+The in-class simulation exercises, computing homework, lectures, and slide deck were most helpful. 
+
+### 2003 (Quantitative Methods)
+The lab was most helful
+
+### Other comments:
+  * Office hours on non-class days and spreading out assignments 
