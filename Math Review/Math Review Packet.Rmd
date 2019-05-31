@@ -346,9 +346,13 @@ To find all local minima or maxima of a function $y=f(x)$:
 ## Properties   
 
 Properties of derivatives:  
-  1) $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
-  2) $(cf(x))'=cf'(x)$ where $c$ is a constant  
-  3) 
+  1) Sum/Difference rule: $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
+  2) Constant multiple rule: $(cf(x))'=cf'(x)$ where $c$ is a constant  
+  3) Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$
+  \newline
+  4) Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$
+  \newline
+  5) Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$
   
 
 \pagebreak
