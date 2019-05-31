@@ -7,8 +7,13 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+The following instructions will guide you through installing **R**, **RStudio**, and **LaTeX**. Throughout the program you will be asked to turn in assignments in a pdf format. Using R Markdown (.rmd) files in RStudio will allow you to compile files into a pdf. In an R Markdown file you will be able to show written code, outputs from code (including plots), and write like you would in a word processing document. Once you have installed **R**, **RStudio**, and **LaTeX** open the *RStudio_tutorial.rmd* to test if you can knit the file from .rmd to .pdf. 
+
+It is important to download R, before installing RStudio as all versions of RStudio requires users to have downloaded prior to running RStudio. 
+
+Note: Instructions were written for Windows 7
+
 # Installing R
-#### All versions of RStudio requires users to have R downloaded on before running RStudio. 
   * It can be downloaded here: https://cran.rstudio.com/
   * Click on **Download R for Windows**
   * Choose the *base* (to download R for this first time), and finally **Download R 3.6.0 for Windows**
