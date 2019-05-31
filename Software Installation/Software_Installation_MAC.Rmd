@@ -13,7 +13,12 @@ The following instructions will guide you through installing **R**, **RStudio**,
 
 It is important to download R, before installing RStudio as all versions of RStudio requires users to have downloaded prior to running RStudio. 
 
-Note: Instructions were written for macOS Mojave. A helpful link for other versions of macOS: https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd
+Note: Instructions were written for macOS Mojave. The new version of R is for macOS El Capitan or higher. Please make sure your computer is up to date before installing software. 
+
+A helpful link for other versions of macOS:
+\newline
+https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-macos-high-sierra-e7b5705c9fd 
+
 
 # 1. Download and Install R
 #### If you have R installed please move on to the next step.  
@@ -30,13 +35,15 @@ Note: Instructions were written for macOS Mojave. A helpful link for other versi
 # 2. Download and Install RStudio
   * Go to https://www.rstudio.com/products/rstudio/download/#download in your web browser
   * Scroll past the comparison chart to the Installers for Supported Platforms section and choose **RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)**
-
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_MAC.png){width=75%}
+  \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_MAC.png){width=75%}
 \newline
 
 * After choosing this, you will see a .dmg file (disk image) download. Double click the .dmg file (likely named RStudio-1.2.1335.dmg)
 \newline
 * Drag the RStudio icon to your Applications folder 
+\newline
+![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_mac.png){width=75%}
 \newline
 * Now you are ready to use RStudio! It is in your Applications folder. 
 \newline
@@ -48,13 +55,16 @@ Note: Instructions were written for macOS Mojave. A helpful link for other versi
 * Download MacTeX from this link (it is recommended to download with Safari) :
 \newline
 http://www.tug.org/mactex/mactex-download.html
-  + Click on **MacTeX.pkg** 
+  + Click on **MacTeX.pkg**
+  \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_mac.png){width=75%}
+    \newline
     - This package is rather larger (~3.9 Gb) and will approximately 15 minutes (possibly longer) to download. 
     - It is recommended to have your computer charging when downloading large files from the internet. 
     - Do **not** download smaller *BasicTeX* package. You need the entire package for knitr to work properly in RStudio. *BasicTeX* does not install all LaTeX packages which is necessary for knitr to work properly. 
   + Click on the **mactex-20190508.pkg** file to begin the installation process. (Note: this assumes you have macOS Sierra or higher)
     - The installation will require you to have at least 10 Gbs of space on your hard drive. You will also need to enter your password for the installation.
-    - When the program finishes install, click Close and the installer package can be moved to the Trash.
+    - When the program finishes installing, click Close and the installer package can be moved to the Trash.
 
     
   
