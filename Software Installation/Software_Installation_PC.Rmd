@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Installing RStudio
 #### Go to this link https://www.rstudio.com/products/rstudio/download/#download
   * Scroll down to the Installers for Supported Platforms and choose the appropriate opperating system: 
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_1.png){width=75%}
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_PC.png){width=75%}
   
     + For PC Users: Choose **RStudio 1.2.1335 - Windows 7+ (64-bit)**
     

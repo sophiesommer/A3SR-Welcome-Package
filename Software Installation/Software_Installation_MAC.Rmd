@@ -17,27 +17,21 @@ require("here")
 # Installing R
 #### All versions of RStudio requires users to have R downloaded on before running RStudio. 
   * It can be downloaded here: https://cran.rstudio.com/
-  * Choose the appropriate opperating system: 
-    + For Mac Users: Choose the R-3.6.0.pkg and follow installation directions 
+  * Choose the **R-3.6.0.pkg** and follow installation directions 
       - The following installation screen should appear. Press continue until the every end of the installation process. 
       
-      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_1.png){width=75%}
+      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_MAC.png){width=75%}
       - Installation is complete when you see this image You can remove installation files to the trash after this step. 
       
       ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_2.png){width=75%}
-    + For PC Users: Click on **Download R for Windows**, then base (to download R for this first time), and finally **Download R 3.6.0 for Windows**
-    
 
 \newpage
 # Installing RStudio
 #### Go to this link https://www.rstudio.com/products/rstudio/download/#download
-  * Scroll down to the Installers for Supported Platforms  and choose the appropriate opperating system: 
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_1.png){width=75%}
+  * Scroll down to the Installers for Supported Platforms and choose **RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)**
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_MAC.png){width=75%}
   
-    + For Mac Users: Choose **RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)**
-      - Move RStudio to Applications folder 
-    + For PC Users: Choose **RStudio 1.2.1335 - Windows 7+ (64-bit)**
-    
+  
     
 \newpage
 # Installing LaTeX 
@@ -47,20 +41,4 @@ require("here")
   + Do **not** download smaller BasicTeX package 
   
 
-#### For PC Users:
-* Download MiKTeX from this link : https://miktex.org/download
-  + Choose the **Howto: Install MikTeX on your Windows computer**
-  + Press the Download icon at the bottom and the file will immediately begin downloading
-    ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC.png){width=75%}
-  + Click on the file at the bottom of your web browser and start the installation by pressing **Run**
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_2.png){width=75%}
-  + After following the on screen instructions, you will need to choose your settings. **Make sure to set Install missing packages on-the-fly to Yes** 
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_3.png){width=75%}
-  + You will be redirected to this screen and make sure to continue to press **Next** and follow the on-screen directions until the installation procress finishes. 
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_4.png){width=75%}
 
-* If you need to uninstall MiKTeX, restart your computer, 
-
-A helpful link: https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9
-
-After installing R, RStudio, and your version of LaTeX, please proceed to the RStudio video. 
