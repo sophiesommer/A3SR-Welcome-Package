@@ -7,45 +7,59 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-The following instructions will guide you through installing **R**, **RStudio**, and **LaTeX**. Throughout the program you will be asked to turn in assignments in a pdf format. Using R Markdown (.rmd) files in RStudio will allow you to compile files into a pdf. In an R Markdown file you will be able to show written code, outputs from code (including plots), and write like you would in a word processing document. Once you have installed **R**, **RStudio**, and **LaTeX** open the *RStudio_tutorial.rmd* to test if you can knit the file from .rmd to .pdf. 
+The following instructions will guide you through installing **R**, **RStudio**, and **LaTeX** (MiKTex for PC). Throughout the program you will be asked to turn in assignments in a pdf format. Using R Markdown (.rmd) files in RStudio will allow you to compile files into a pdf. In an R Markdown file you will be able to show written code, outputs from code (including plots), and write like you would in a word processing document. Once you have installed **R**, **RStudio**, and **LaTeX** (MiKTex for PC) open the *RStudio_tutorial.rmd* to test if you can knit the file from .rmd to .pdf. 
 
 It is important to download R, before installing RStudio as all versions of RStudio requires users to have downloaded prior to running RStudio. 
 
-Note: Instructions were written for Windows 7
+Note: Instructions were written for Windows 7.
 
-# Installing R
+A helpful link for other operating versions of Windows:
+\newline
+https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9
+
+# 1. Download and Install R
   * It can be downloaded here: https://cran.rstudio.com/
   * Click on **Download R for Windows**
-  * Choose the *base* (to download R for this first time), and finally **Download R 3.6.0 for Windows**
-    
+  * Choose the **base** (to download R for this first time), and finally **Download R 3.6.0 for Windows**
+  * Click on Run
+  \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Install_PC.png){width=75%}
+  \newline
+  * Installation is complete when you see the following image.
+    \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Install_PC_Complete.png){width=75%}
+  \newline
+  
 \newpage
-# Installing RStudio
+
+# 2. Download and Install RStudio
 #### Go to this link https://www.rstudio.com/products/rstudio/download/#download
-  * Scroll down to the Installers for Supported Platforms and choose the appropriate opperating system: 
+  * Scroll down to the Installers for Supported Platforms and choose **RStudio 1.2.1335 - Windows 7+ (64-bit)**
+  \newline
   ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_PC.png){width=75%}
   
-    + For PC Users: Choose **RStudio 1.2.1335 - Windows 7+ (64-bit)**
     
     
 \newpage
-# Installing LaTeX 
+# 3. Download and Install MiKTeX
 * Download MiKTeX from this link : https://miktex.org/download
   + Choose the **Howto: Install MikTeX on your Windows computer**
   + Press the Download icon at the bottom and the file will immediately begin downloading
-
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC.png){width=75%}
+    \newline
+    ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC.png){width=75%}
+  \newline
   + Click on the file at the bottom of your web browser and start the installation by pressing **Run**
-
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_2.png){width=75%}
+  \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_2.png){width=75%}
+  \newline
   + After following the on screen instructions, you will need to choose your settings. **Make sure to set Install missing packages on-the-fly to Yes** 
+  \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_3.png){width=75%}
+  \newline
+  + You will be redirected to this screen and make sure to continue to press **Next** and follow the on-screen directions until the installation procress finishes.
+  \newline
+  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_4.png){width=75%}
+  \newline
 
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_3.png){width=75%}
-  + You will be redirected to this screen and make sure to continue to press **Next** and follow the on-screen directions until the installation procress finishes. 
+* If you need to uninstall MiKTeX, restart your compute, and go to uninstall programs
 
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_4.png){width=75%}
-
-* If you need to uninstall MiKTeX, restart your computer, 
-
-A helpful link: https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9
-
-After installing R, RStudio, and your version of LaTeX, please proceed to the RStudio video. 

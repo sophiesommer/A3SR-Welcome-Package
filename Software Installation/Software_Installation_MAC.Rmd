@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
-The following instructions will guide you through installing **R**, **RStudio**, and **LaTeX**. Throughout the program you will be asked to turn in assignments in a pdf format. Using R Markdown (.rmd) files in RStudio will allow you to compile files into a pdf. In an R Markdown file you will be able to show written code, outputs from code (including plots), and write like you would in a word processing document. Once you have installed **R**, **RStudio**, and **LaTeX** open the *RStudio_tutorial.rmd* to test if you can knit the file from .rmd to .pdf. 
+The following instructions will guide you through installing **R**, **RStudio**, and **LaTeX** (MacTex for Mac). Throughout the program you will be asked to turn in assignments in a pdf format. Using R Markdown (.rmd) files in RStudio will allow you to compile files into a pdf. In an R Markdown file you will be able to show written code, outputs from code (including plots), and write like you would in a word processing document. Once you have installed **R**, **RStudio**, and **LaTeX** (MacTex for Mac)open the *RStudio_tutorial.rmd* to test if you can knit the file from .rmd to .pdf. 
 
 It is important to download R, before installing RStudio as all versions of RStudio requires users to have downloaded prior to running RStudio. 
 
@@ -27,7 +27,7 @@ https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-kn
       - The following installation screen should appear. Press continue until the every end of the installation process. 
       
       ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_1.png){width=75%}
-      - Installation is complete when you see the following image You can remove installation files to Trash after this step. 
+      - Installation is complete when you see the following image. You can remove installation files to Trash after this step. 
       
       ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_2.png){width=75%}
 
