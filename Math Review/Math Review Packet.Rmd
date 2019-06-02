@@ -335,6 +335,9 @@ $B=\begin{bmatrix}
 ### Definition  
 The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
 $$f'(x)=y'=\frac{df}{dx}=\frac{d}{dx}(f(x))=\frac{dy}{dx}=\frac{d}{dx}(y)$$
+   
+The second derivative of $y=f(x)$ with respect to $x$ is a function giving the rate of change of the instantaneous slope of $f(x)$. Notationally, it can be represented in any of the following ways (note: 3rd, 4th, etc. derivatives are notated in a similar way, with increasing exponents or $'$s):   
+$$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^2}{dx^2}(y)$$
   
 ### Using derivatives to find local minima and maxima of a function  
 To find all local minima or maxima of a function $y=f(x)$:    
@@ -348,25 +351,51 @@ To find all local minima or maxima of a function $y=f(x)$:
 Properties of derivatives:  
   1) Sum/Difference rule: $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
   2) Constant multiple rule: $(cf(x))'=cf'(x)$ where $c$ is a constant  
-  3) Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$
-  \newline
-  4) Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$
-  \newline
-  5) Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$
+  3) Power rule: If $f(x)=x^n$, then $f'(x)=nx^{n-1}$  
+  4) Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$  
+  5) Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
+  6) Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$  
+  
+## Partial derivatives  
+
+For a function of more than one variable (i.e., $f(x,y)$), we can take partial derivatives with respect to each variable. The partial derivative of $f(x,y)$ with respect to $x$ is often denoted by either $\frac{\partial f}{\partial x}=f_x$. The partial derivative with respect to $y$ would be denoted by $\frac{\partial f}{\partial y}=f_y$. The partial derivative with respect to $x$ would be calculated by treating any non-$x$ variables as constants when applying the above properties.  
   
 
 \pagebreak
   
-## Practice Problems   
+## Practice Problems     
   
-  1. Solve the following:  
-    a. 
+  1. Find $f'(x)$ for each of the following. Then compute $f''(x)$ for a-d:   
+    a. $f(x)=5x^2+3x+1$   
+    b. $f(x)=\frac{5}{x^3}+2x^4$    
+    c. $f(x)=(3x+1)^5$   
+    d. $f(x)=2x^{3}(x^2+1)$  
+    e. $f(x)=\frac{2x+1}{x^2-5}$   
+    
+  2. Find the partial derivative with respect to x for each of the following:  
+    a. $f(x,y)=3xy^2+2x$  
+    b. $f(x,y)=(xy^4+2y)^3$   
+    c. $f(x,y)=4x^3+xy+x^2y^2+4x+2$   
+    
+  3. Find all local minima and maxima for the following function (and note whether they are minima or maxima): $\frac{2}{3}x^3-x^2-12x$  
 
-   
-## Answers    
+ 
+## Solutions    
+
+  1. $f'(x)$ and $f''(x)$   
+    a. $f'(x)=10x+3$ and $f''(x)=10$      
+    b. $f'(x)=\frac{-15}{x^4}+8x^3$ and $f''(x)= \frac{-60}{x^5}+24x^2$    
+    c. $f'(x)=15(3x+1)^4$ and $f''(x)=180(3x+1)^3$    
+    d. $f'(x)=10x^4+6x^2$ and $f''(x)=40x^3+12x$    
+    e. $f'(x)=\frac{2(x^2-5)-2x(2x+1)}{(x^2-5)^2}$ and $f''(x)$    
   
-  1. Solve:    
-    a.  
+  2. $f_x(x,y)=$    
+    a. $3y^2+2$  
+    b. $3y^4(xy^4+2y)^2$  
+    c. $12x^2+y+2xy^2+4$  
+  
+  3. Local minima and maxima  
+    a. $f'(x)=2x^2-2x-12=(2x+4)(x-3)$, so setting the first derivative equal to $0$, we get $0=(2x+4)(x-3)$, with solutions $x=3$ and $x=-2$. $f''(x)=4x-2$. $f''(3)=10$ and $f''(x)=-10$. So, $x=3$ is a local minimum and $x=-2$ is a local maximum. $f(3)=18-9-36=-27$ and $f(-2)=\frac{-16}{3}-4+24=\frac{44}{3}\approx 14.67$    
 
   
 \pagebreak    
