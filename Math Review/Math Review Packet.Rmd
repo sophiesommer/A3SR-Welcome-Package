@@ -412,26 +412,31 @@ For a function of more than one variable (i.e., $f(x,y)$), we can take partial d
 
 ##### Indefinite integrals
 In the previous section, we calculated the derivative of a function, $f(x)$. Finding an indefinite integral (also called an anti-derivative) involves a simple reversal of this process. The indefinite integral, $F(x)$, of a function, $f(x)$, is defined such that $F'(x)=f(x)$ and is written as follows:  
-$$\int f(x) dx = F(x) +c$$ where c is a constant.  
+$$\int f(x) dx = F(x) +C$$ where $C$ is a constant.  
 
 ##### Definite integrals   
 The definite integral of $f(x)$ from $a$ to $b$ gives the area under the curve of $f(x)$ on the interval between $a$ and $b$ and is calculated/notated as follows:  
 $$\int_a^b f(x) dx = F(b) - F(a)$$  
 
 ### Basic properties   
-  1. $\int cf(x) dx=c\int f(x) dx$ where c is a constant   
+  1. $\int cf(x) dx=c\int f(x) dx$ where c is a constant  
   2. $\int f(x)\pm g(x) dx=\int f(x) dx\pm \int g(x) dx$   
-  3. $\int_a^b c$ $dx=0$ where c is a constant    
-
-
-
+  3. $\int\frac{1}{x}dx=ln|x|+C$  
 
 \pagebreak
   
 ## Practice Problems   
   
-  1. Solve the following:  
-    a. 
+  1. Evaluate the following indefinite integrals:    
+    a. $\int 5x^2 dx$  
+    b. $\int 2x^3-\frac{3}{x^2} dx$   
+    c. $\int(2x-2)(x+3)dx$  
+    d. $\int \frac{2}{x} dx$
+  2. Evaluate the following definite integrals:  
+    a. $\int_0^1 4x^3 dx$  
+    b. $\int_{-2}^2 8x^3+3x^2-5x+2 dx$  
+    c. $\int_1^\infty \frac{2}{x^2} dx$    
+    d. $\int_1^2\int_{0}^{2}2x^3+3y^4x^2$ $dxdy$
 
    
 ## Answers    
