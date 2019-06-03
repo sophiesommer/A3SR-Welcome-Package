@@ -22,13 +22,13 @@ Logarithms are defined such that $log_b(A)=X$ is equivalent to $b^X=A$
 ### Properties  
 Using properties of exponents and the definition above, we can derive the following:  
 
-  a. The Product Rule: $log_b(MN)=log_b(M)+log_b(N)$  
-  b. The Quotient Rule: $log_b(\frac{M}{N})=log_b(M)-log_b(N)$  
-  c. The Power Rule: $log_b(M^p)=plog_b(M)$  
-  d. $log_b(b^X)=X$  
-  e. $b^{log_b(X)}=X$  
-  f. $log_bb=1$   
-  g. $log_b1=0$  
+  1. The Product Rule: $log_b(MN)=log_b(M)+log_b(N)$  
+  2. The Quotient Rule: $log_b(\frac{M}{N})=log_b(M)-log_b(N)$  
+  3. The Power Rule: $log_b(M^p)=plog_b(M)$  
+  4. $log_b(b^X)=X$  
+  5. $b^{log_b(X)}=X$  
+  6. $log_bb=1$   
+  7. $log_b1=0$  
      
 ### Example 1: Expanding logarithms   
 $log_e(\frac{2x^3}{y})$  
@@ -176,11 +176,11 @@ $$\begin{bmatrix}
 \end{bmatrix}$$
 
 ### Properties of matrix operations  
-  a. $A+B=B+A$  
-  b. $(A+B)+C=A+(B+C)$   
-  c. $(AB)C=A(BC)$   
-  d. $(A+B)C=AC + BC$  
-  e. If $A$ is an $m\times n$ matrix, then $I_mA=A$ and $AI_n=A$
+  1. $A+B=B+A$  
+  2. $(A+B)+C=A+(B+C)$   
+  3. $(AB)C=A(BC)$   
+  4. $(A+B)C=AC + BC$  
+  5. If $A$ is an $m\times n$ matrix, then $I_mA=A$ and $AI_n=A$
   
 Note that, in general $AB \ne BA$   
 \pagebreak  
@@ -341,20 +341,20 @@ $$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^
   
 ### Using derivatives to find local minima and maxima of a function  
 To find all local minima or maxima of a function $y=f(x)$:    
-  1) Take the first derivative of $f(x)$ with respect to x ($f'(x)$).  
-  2) Set this expression equal to zero and solve for x. These values of x are local maxima and minima.   
-  3) Calculate the second derivative of $f(x)$ with respect to x ($f''(x)$)  
-  4) Plug in the values of x calculated in part 2. If the second derivative is positive, this value of x represents a local minimum; if the second derivative is negative, it is a local maximum    
+  1. Take the first derivative of $f(x)$ with respect to x ($f'(x)$).  
+  2. Set this expression equal to zero and solve for x. These values of x are local maxima and minima.   
+  3. Calculate the second derivative of $f(x)$ with respect to x ($f''(x)$)  
+  4. Plug in the values of x calculated in part 2. If the second derivative is positive, this value of x represents a local minimum; if the second derivative is negative, it is a local maximum    
   
 ### Properties   
 
 Properties of derivatives:  
-  1) Sum/Difference rule: $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
-  2) Constant multiple rule: $(cf(x))'=cf'(x)$ where $c$ is a constant  
-  3) Power rule: If $f(x)=x^n$, then $f'(x)=nx^{n-1}$  
-  4) Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$  
-  5) Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
-  6) Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$  
+  1. Sum/Difference rule: $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
+  2. Constant multiple rule: $(cf(x))'=cf'(x)$ where $c$ is a constant  
+  3. Power rule: If $f(x)=x^n$, then $f'(x)=nx^{n-1}$  
+  4. Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$  
+  5. Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
+  6. Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$  
   
 ### Partial derivatives  
 
@@ -422,7 +422,7 @@ $$\int_a^b f(x) dx = F(b) - F(a)$$
 Note: There are many other properties of integrals, which may be useful once or twice throughout this program. The following are what you will see most commonly, but you should feel comfortable looking up and using additional properties as needed.  
   1. $\int cf(x) dx=c\int f(x) dx$ where c is a constant  
   2. $\int f(x)\pm g(x) dx=\int f(x) dx\pm \int g(x) dx$   
-  3. $\int\frac{1}{x}dx=ln|x|+C$
+  3. $\int\frac{1}{x}dx=ln|x|+C$  
   4. $\int x^ndx=\frac{1}{n+1}x^{n+1}+C$
 
 \pagebreak
