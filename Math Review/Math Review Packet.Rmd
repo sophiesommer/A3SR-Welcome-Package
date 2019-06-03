@@ -346,7 +346,7 @@ To find all local minima or maxima of a function $y=f(x)$:
   3) Calculate the second derivative of $f(x)$ with respect to x ($f''(x)$)  
   4) Plug in the values of x calculated in part 2. If the second derivative is positive, this value of x represents a local minimum; if the second derivative is negative, it is a local maximum    
   
-## Properties   
+### Properties   
 
 Properties of derivatives:  
   1) Sum/Difference rule: $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
@@ -356,7 +356,7 @@ Properties of derivatives:
   5) Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
   6) Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$  
   
-## Partial derivatives  
+### Partial derivatives  
 
 For a function of more than one variable (i.e., $f(x,y)$), we can take partial derivatives with respect to each variable. The partial derivative of $f(x,y)$ with respect to $x$ is often denoted by either $\frac{\partial f}{\partial x}=f_x$. The partial derivative with respect to $y$ would be denoted by $\frac{\partial f}{\partial y}=f_y$. The partial derivative with respect to $x$ would be calculated by treating any non-$x$ variables as constants when applying the above properties.  
   
@@ -406,7 +406,19 @@ For a function of more than one variable (i.e., $f(x,y)$), we can take partial d
   -Probability  
   -Quantitative Methods  
 
-## Notes  
+## Notes    
+
+### Definition  
+
+##### Indefinite integrals
+In the previous section, we calculated the derivative of a function, $f(x)$. Finding an indefinite integral (also called an anti-derivative) involves a simple reversal of this process. The indefinite integral, $F(x)$, of a function, $f(x)$, is defined such that $F'(x)=f(x)$ and is written as follows:  
+$$\int f(x) dx = F(x) +c$$ where c is a constant.  
+
+##### Definite integrals  
+
+### Properties  
+
+
 
 \pagebreak
   
