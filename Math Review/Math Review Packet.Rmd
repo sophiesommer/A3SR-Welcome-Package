@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Fall 2019  
   
 ### A Note: 
-The notes in this packet are not meant to be comprehensive in any way, nor should they be used for learning this material for the first time. Instead, the resources provided here are meant to accomplish two main goals: 1) to give you a sense of the skills/topics that professors will expect you to have learned prior to the start of this program and 2) to jog your memory/refresh your working knowledge of these concepts if you need a quick re-cap. For anything that you haven't learned before or have not seen in many years, the notes provided here may not be sufficient. Suggested outside resources are provided in a separate document, including links to additional practice problems. In designing these materials, we have tried to be concise, and have only included topics that are directly related to concepts covered in your first semester courses. We have also tried to find a balance between things you are expected to understand versus things that you will be expected to calculate. In this program, a lot of complex calculations can be done in R (or using other online tools, like Wolfram Alpha). Most of the time, you will not be asked to do this work by hand (at least not more than once). However, you will find it much easier to understand results in R (and potential errors) if you have a sense of what is going on "under the hood". More in-depth familiarity and experience with these topics is always helpful (if you have additional time for review), and we hope that this packet provides guidance on where to focus your attention.   
+The notes in this packet are not meant to be comprehensive in any way, nor should they be used for learning this material for the first time. Instead, the resources provided here are meant to accomplish two main goals: 1) to give you a sense of the skills/topics that professors will expect you to have learned prior to the start of this program and 2) to jog your memory/refresh your working knowledge of these concepts if you need a quick re-cap. For anything that you haven't learned before or have not seen in many years, the notes provided here may not be sufficient. Suggested outside resources are provided in a separate document, including links to additional practice problems. In designing these materials, we have tried to be concise, and have only included topics that are directly related to concepts covered in your first semester courses. We have also tried to find a balance between things you are expected to understand versus things that you will be expected to calculate. In this program, a lot of complex calculations can be done in R (or using other online tools, like Wolfram Alpha). Most of the time, you will not be asked to do this work by hand (at least not more than once). However, you will find it much easier to understand results in R (and potential errors) if you have a sense of what is going on "under the hood". More in-depth familiarity and experience with these topics is always helpful (if you have additional time for review), and we hope that this packet provides guidance on where to focus your attention.     
 
 \ecenter
 \pagebreak
@@ -472,13 +472,61 @@ Note: There are many other properties of integrals, which may be useful once or 
 
 \pagebreak  
 
-# Summary Statistics   
+# Variables: Types and Summaries    
 ## Relevant Courses:  
 
   -Probability  
   -Quantitative Methods  
-  -Statistical Computing  
+  -Statistical Computing    
+     
+## Notes    
+### Types of variables:  
+  1. Numerical  
+    a. continuous (example: height)  
+    b. discrete (example: population)   
+  2. Categorical  
+    a. nominal (unordered) (example: responses to: "who are you planning to vote for in the upcoming election?" )  
+    b. ordinal (ordered) (example: responses to: "On a scale from 1-10, how happy are you right now?")  
+
+### Summarizing variables:  
+Note: without going into too much detail, it is important that summary statistics be chosen and evaluated with the variable type in mind. For example, if I calculate the mean of a variable which is categorical (nominal) with responses coded as 0s and 1s, the mean will give me the percentage of 1s in my dataset. However, this is no longer the case if the same categorical variable is coded with 1s and 2s.   
+
+#### Summary statistics for central tendency  
+1. Mean: For a variable $x$ and sample size $n$, the mean is given by $\frac{\Sigma_{i=1}^{n}x_i}{n}$  
+2. Median: For a variable $x$, the median is defined as the central value at which 50% of $x$-values are smaller and 50% are larger   
+3. Mode: For a variable $x$, the mode is the most common value of $x$. A variable can have multiple modes       
+
+#### Summary statistics for spread  
+1. Range: For a variable $x$, the range is given by max($x$)-min($x$)   
+2. Population Variance: For a variable $x$ and population size $n$, the population variance is given by $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ where $\mu$ is the mean (i.e., average squared difference between each value of $x$ and the mean).  
+3. When using a sample to estimate the variance of $x$ in a larger population, sample variance is calculated (every so slightly differently) as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.   
+4. Standard deviation: $\sigma = \sqrt(\sigma^2)$  
+
+A note about population variance vs. sample variance: In many applications of statistics, we examine a sample of data from a larger population of interest, and try to make inference about the larger population. For example, if we wanted to estimate the mean height of adult women, we might find a sample of 1000 adult women, calculate the mean and variance of their heights and say that these estimates (approximately) also apply to the larger population (we can be more confident about this for larger sample sizes). However, (and this may sound strange), suppose we knew the heights of all adult women and could calculate the variance in their heights. Then suppose we took a bunch of random samples of 1000 women from this population and calculated the variance in heights for each of these samples, using the same formula as we did for population variance. It turns out that these sample variances would, on average, be slightly off from the true population variance, even as the number of samples goes to infinity. Thus, the formula for population variance is actually a "biased" estimator of population variance when applied to a sample. Therefore, we use a slightly different formula for sample variance to "fix" this issue.   
+
+Another note: You might see the term "standard error" thrown around and wonder how this is different from standard deviation. This may be worth a quick Google search if it is unfamiliar (and will be briefly addressed in a later introduction to the central limit theorem).     
+
+#### Summarizing variables visually   
+A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are worth looking up if they are not immediately familiar.  
+
+```{r, echo=FALSE,fig.align="center",fig.keep='all'}
+set.seed(101)
+x <- rnorm(1000,5,2)
+par(mfrow=c(2,2))
+hist(x, main="Histogram of x", xlab="x")
+plot(density(x),main="Density of x", xlab="x")
+boxplot(x, main="Box Plot of x")
+```
+
+
+\pagebreak  
   
+# Probability Density/Mass Functions  
+## Relevant Courses:  
+
+  -Quantitative Methods   
+  -Probability  
+  -Causal Inference  
 \pagebreak  
   
 # P-Values and T-Tests   
