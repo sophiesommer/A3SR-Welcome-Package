@@ -9,36 +9,48 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Properties of Logarithms   
-  
+# Properties of Logarithms
+Basics: https://www.youtube.com/watch?v=9c6-aQGfY_E
+Natural Log: https://www.youtube.com/watch?v=fZdWSlXkKzY
+
   
 # Matrix Algebra  
 https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab  
 
 
 # Derivatives    
-  
+Chain Rule: https://www.youtube.com/watch?v=gt22FmU3bv4&list=PLDE077A2EC488104D&index=16
+Quotient Rule: https://www.youtube.com/watch?v=K3MxofAF-9o&list=PLDE077A2EC488104D&index=22
+
 
 # Integrals    
-  
+U-Substitution: https://www.youtube.com/watch?v=nLKcIKbNK3Q
+More U-Substitution: https://www.youtube.com/watch?v=QNMErMqnnqY
+Integration by Parts: https://www.youtube.com/watch?v=dqaDSlYdRcs
 
 # Summary Statistics    
   
 
 # P-Values and T-Tests    
-  
+P-value: https://www.youtube.com/watch?v=UsU-O2Z1rAs
+
+T-Distribution (more technical): https://www.youtube.com/watch?v=T0xRanwAIiI
+T-Distribution (less technical): https://www.youtube.com/watch?v=Uv6nGIgZMVw
+T-Tests: https://www.youtube.com/watch?v=T9nI6vhTU1Y
 
 # Correlation and Covariance    
-  
+https://www.youtube.com/watch?v=KDw3hC2YNFc
+
 
 # Ordinary Least Squares Regression    
-  
+https://www.youtube.com/watch?v=coQAAN4eY5s  
 
 # Probability Density/Mass Functions   
-  
+https://www.youtube.com/watch?v=oHcrna8Fk18&list=PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN
 
 # Expectation   
-  
+Expected Value: https://www.youtube.com/watch?v=Vyk8HQOckIE
+
 
 
 
