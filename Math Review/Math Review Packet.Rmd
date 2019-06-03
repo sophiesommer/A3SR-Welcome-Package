@@ -414,9 +414,15 @@ For a function of more than one variable (i.e., $f(x,y)$), we can take partial d
 In the previous section, we calculated the derivative of a function, $f(x)$. Finding an indefinite integral (also called an anti-derivative) involves a simple reversal of this process. The indefinite integral, $F(x)$, of a function, $f(x)$, is defined such that $F'(x)=f(x)$ and is written as follows:  
 $$\int f(x) dx = F(x) +c$$ where c is a constant.  
 
-##### Definite integrals  
+##### Definite integrals   
+The definite integral of $f(x)$ from $a$ to $b$ gives the area under the curve of $f(x)$ on the interval between $a$ and $b$ and is calculated/notated as follows:  
+$$\int_a^b f(x) dx = F(b) - F(a)$$  
 
-### Properties  
+### Basic properties   
+  1. $\int cf(x) dx=c\int f(x) dx$ where c is a constant   
+  2. $\int f(x)\pm g(x) dx=\int f(x) dx\pm \int g(x) dx$   
+  3. $\int_a^b c$ $dx=0$ where c is a constant    
+
 
 
 
