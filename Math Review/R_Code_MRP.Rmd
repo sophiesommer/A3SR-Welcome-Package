@@ -1,0 +1,97 @@
+---
+title: "R Code to Complement Math Review Packet"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Properties of Logarithms
+
+## Practice Problems.
+1. Solve the following:
+a. $log_e(e^x) = x$
+```{r}
+# If x = 3
+
+log(exp(3))
+```
+
+b. $log_{10}(100) = 2$
+```{r}
+log10(100)
+```
+
+c. b. $log_{10}(\frac{1}{10}) = -1$
+```{r}
+log10(1/10)
+```
+
+d. b. $log_{10}(0) = \mbox{ No solution} $
+
+3c. $log_{10}(5) + log_{10}(2) = 1$
+```{r}
+log10(5) + log10(2)
+```
+
+# Matrix Algebra
+
+Type ?matrix in the **Condole** or matrix in **Help** to look at the inputs of the matrix function.
+
+If we want to store the matrix we need to call it "A", for example and store the matrix. 
+
+For example $\textbf{Z} = \begin{bmatrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ \end{bmatrix}$ $\textbf{Y} = \begin{bmatrix} 1&4&7\\ 2&5&8\\ 3&6&9\\ \end{bmatrix}$
+
+```{r}
+#Sorting by row
+Z <- matrix(data = c(1,2,3,4,5,6,7,8,9), 
+             nrow = 3, ncol = 3,  
+             byrow = TRUE)
+
+print(Z)
+
+#Sorting by column
+Y <- matrix(data = (1:9), 
+             nrow = 3, ncol = 3,
+             byrow = FALSE)
+
+print(Y)
+```
+
+## Practice Problems
+1. Solve the following:
+  a. $\begin{bmatrix} 2&4&2\\ 1&3&0\\1&6&2\\ \end{bmatrix} +
+      \begin{bmatrix} 1&5&0\\ -2&-3&0\\ 1&9&5\\ \end{bmatrix} = 
+      \begin{bmatrix} 3&9&2\\ -1&0&0\\ 2&15&7\\ \end{bmatrix}$  
+    
+```{r}
+M1 <- matrix(data = c(2,4,2,1,3,0,1,6,2),
+             nrow = 3, ncol = 3, byrow = TRUE)
+
+M2 <- matrix(data = c(1,5,0,-2,-3,0,1,9,5),
+             nrow = 3, ncol = 3, byrow = TRUE)
+
+M1 + M2
+```
+
+  b. $\begin{bmatrix} 2&1\\ -2&2\\ 4&2\\ \end{bmatrix}
+      \begin{bmatrix} 5&2&-1\\ 3&4&2\\ \end{bmatrix} =
+      \begin{bmatrix} 13&8&0\\ -4&4&6\\ 26&16&0\\ \end{bmatrix}$  
+      
+```{r}
+M3 <- matrix(data = c(2,-2,4,1,2,2), 
+             nrow = 3, ncol = 2,
+             byrow = FALSE)
+
+M4 <- matrix(data = c(5,3,2,4,-1,2), 
+             nrow = 2, ncol = 3,
+             byrow = FALSE)
+
+M3 %*% M4
+```
+
+c. Let $\textbf{A} =\begin{bmatrix} 1&2\\ 3&5\\ 4&0\\ \end{bmatrix} and 
+       \textbf{B} =\begin{bmatrix} 4&4\\ 1&2\\ 7&0\\ \end{bmatrix}$ Calculate $A^TB$         
+      
+      
