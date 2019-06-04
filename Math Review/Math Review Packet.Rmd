@@ -354,6 +354,7 @@ $$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^
   
 ### Using derivatives to find local minima and maxima of a function  
 To find all local minima or maxima of a function $y=f(x)$:    
+  
   1. Take the first derivative of $f(x)$ with respect to x ($f'(x)$).  
   2. Set this expression equal to zero and solve for x. These values of x are local maxima and minima.   
   3. Calculate the second derivative of $f(x)$ with respect to x ($f''(x)$)  
@@ -361,7 +362,8 @@ To find all local minima or maxima of a function $y=f(x)$:
   
 ### Properties   
 
-Properties of derivatives:  
+Properties of derivatives:   
+  
   1. Sum/Difference rule: $(f(x)\pm g(x))'=f'(x)\pm g'(x)$  
   2. Constant multiple rule: $(cf(x))'=cf'(x)$ where $c$ is a constant  
   3. Power rule: If $f(x)=x^n$, then $f'(x)=nx^{n-1}$  
@@ -371,10 +373,8 @@ Properties of derivatives:
   
 ### Partial derivatives  
 
-For a function of more than one variable (i.e., $f(x,y)$), we can take partial derivatives with respect to each variable. The partial derivative of $f(x,y)$ with respect to $x$ is often denoted by either $\frac{\partial f}{\partial x}=f_x$. The partial derivative with respect to $y$ would be denoted by $\frac{\partial f}{\partial y}=f_y$. The partial derivative with respect to $x$ would be calculated by treating any non-$x$ variables as constants when applying the above properties.  
+For a function of more than one variable (i.e., $f(x,y)$), we can take partial derivatives with respect to each variable. The partial derivative of $f(x,y)$ with respect to $x$ is often denoted by either $\frac{\partial f}{\partial x}=f_x$. The partial derivative with respect to $y$ would be denoted by $\frac{\partial f}{\partial y}=f_y$. The partial derivative with respect to $x$ would be calculated by treating any non-$x$ variables as constants when applying the above properties.   
   
-
-\pagebreak
   
 ## Practice Problems     
   
@@ -432,11 +432,14 @@ The definite integral of $f(x)$ from $a$ to $b$ gives the area under the curve o
 $$\int_a^b f(x) dx = F(b) - F(a)$$  
 
 ### Basic properties  
-Note: There are many other properties of integrals, which may be useful once or twice throughout this program. The following are what you will see most commonly, but you should feel comfortable looking up and using additional properties as needed.  
+Note: There are many other properties of integrals, which may be useful once or twice throughout this program. The following are what you will see most commonly, but you should feel comfortable looking up and using additional properties as needed.   
+  
   1. $\int cf(x) dx=c\int f(x) dx$ where c is a constant  
   2. $\int f(x)\pm g(x) dx=\int f(x) dx\pm \int g(x) dx$   
   3. $\int\frac{1}{x}dx=ln|x|+C$  
   4. $\int x^ndx=\frac{1}{n+1}x^{n+1}+C$
+  
+### U substitution  
 
 \pagebreak
   
@@ -499,8 +502,8 @@ Note: without going into too much detail, it is important that summary statistic
 #### Summary statistics for spread  
 1. Range: For a variable $x$, the range is given by max($x$)-min($x$)   
 2. Population Variance: For a variable $x$ and population size $n$, the population variance is given by $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ where $\mu$ is the mean (i.e., average squared difference between each value of $x$ and the mean).  
-3. When using a sample to estimate the variance of $x$ in a larger population, sample variance is calculated (every so slightly differently) as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.   
-4. Standard deviation: $\sigma = \sqrt(\sigma^2)$  
+3. When using a sample to estimate the variance of $x$ in a larger population, sample variance is calculated (ever so slightly differently) as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.   
+4. Standard deviation: $\sigma = \sqrt{\sigma^2}$  
 
 A note about population variance vs. sample variance: In many applications of statistics, we examine a sample of data from a larger population of interest, and try to make inference about the larger population. For example, if we wanted to estimate the mean height of adult women, we might find a sample of 1000 adult women, calculate the mean and variance of their heights and say that these estimates (approximately) also apply to the larger population (we can be more confident about this for larger sample sizes). However, (and this may sound strange), suppose we knew the heights of all adult women and could calculate the variance in their heights. Then suppose we took a bunch of random samples of 1000 women from this population and calculated the variance in heights for each of these samples, using the same formula as we did for population variance. It turns out that these sample variances would, on average, be slightly off from the true population variance, even as the number of samples goes to infinity. Thus, the formula for population variance is actually a "biased" estimator of population variance when applied to a sample. Therefore, we use a slightly different formula for sample variance to "fix" this issue.   
 
@@ -519,21 +522,72 @@ boxplot(x, main="Box Plot of x")
 ```
 
 
-\pagebreak  
+\pagebreak    
+
+# Basic Probability  
+## Relevant Courses:  
+
+  -Probability   
+  
+## Notes    
+
+Random process: Something that produces observation(s) with some level of uncertainty.  
+Sample point: A single possible outcome of a random process.  
+Sample space: All possible sample points for an random process.    
+  
+Here are some examples of random processes, sample points, and sample spaces:     
+  
+  a) Random process: Roll a standard 6-sided die and record the result (the number that is face up)    
+example of a sample point: 2     
+sample space: {1,2,3,4,5,6}     
+       
+  b) Random process: Roll a die, then flip a coin (with probability .6 of landing on heads) and record the die roll and whether heads or tails is facing upward on the coin.  
+example of a sample point: (2,Heads)   
+sample space: {(1,Heads),(2,Heads),(3,Heads),(4,Heads),(5,Heads),(6,Heads),(1,Tails),(2,Tails),(3,Tails),  
+(4,Tails),(5,Tails),(6,Tails)}  
+       
+#### Probability Definition  
+Suppose that a random process is repeated infinitely many times; Then the probability of a particular outcome is the proportion of times that the outcome is observed.  
+
+#### Law of Large Numbers   
+As a random process is repeated more times, the observed proportion of any particular outcome will converge to the true empirical probability of that outcome   
+
+#### Addition Rule  
+$P(A$ or $B) = P(A) + P(B) - P(A$ and $B)$  
+Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=0$   
+
+#### Complements  
+For a particular outcome, $A$, of a random process, the complement of that outcome, $A^c$ is made up of all sample points *not* in $A$.   
+$A+A^c=1$   
+
+#### Multiplication Rule (for independent events)   
+If $A$ and $B$ are independent:   
+$P(A$ and $B) = P(A) \times P(B)$    
+
+
   
 # Probability Density/Mass Functions  
 ## Relevant Courses:  
 
   -Quantitative Methods   
-  -Probability  
+  -Probability   
+  -Statistical Computing
   -Causal Inference   
   
-## Notes  
-Random variables are functions with *numerical* outcomes that occur with some level of uncertainty. For example, flipping a fair coin one time could be considered a random variable with two possible outcomes: 0 (corresponding to tails) or 1 (corresponding to heads). Random variables can be discrete or continuous. Discrete random variables have a finite number of potential outcomes. Continuous random variables have infinitely (countably or uncountably) many possible outcomes.  
+## Notes   
+Random variables are functions with *numerical* outcomes that occur with some level of uncertainty. Often, experiments with non-numerical outcomes are represented by random variables. For example, flipping a fair coin one time could be considered a random variable with two possible outcomes: 0 (corresponding to tails) or 1 (corresponding to heads).   
 
-A probability distribution of a random variable determines the relative likelihood of each potential outcome of that random variable. For discrete random variables, the probability distribution can be defined by a function called a "probability mass function (PMF)", which maps possible values of a random variable to their probabilities. For continuous random variables, probability distributions are defined by an analagous function called the "probability density function (PDF)". If you graph a PDF, then the area under the curve between any two values gives the probability of the random variable's outcome being between those two values.   
-
-There are many common probability distributions that you will need to know (these are mostly covered in Probability), but two particularly common ones are given as examples below. (Note: the major distributions covered in Probability are Bernoulli, Binomial, Normal, Uniform, Geometric, Negative Binomial, Hypergeometric, Poisson, Exponential, Gamma, Beta, Chi-Square, and Student-t. These are important to review if you are not taking Probability, and are worth looking up if you have never seen them before).  
+Random variables can be discrete or continuous:    
+  
+  1. Discrete random variables have a finite number of potential outcomes     
+  2. Continuous random variables have infinitely (countably or uncountably) many possible outcomes        
+  
+A probability distribution of a random variable determines the relative likelihood of each potential outcome of that random variable.   
+  
+  1. Probability Mass Function (PMF): (for discrete random variables) maps possible values of a random variable to their probabilities.   
+  2. Probability Density Function (PDF): (for continuous random variables) area under the curve between any two values gives the probability of the random variable's outcome being between those two values.      
+    
+There are many common probability distributions that you will need to know (these are mostly covered in Probability), but two particularly common ones are given as examples below. (Note: the major distributions covered in Probability are Bernoulli, Binomial, Normal, Uniform, Geometric, Negative Binomial, Hypergeometric, Poisson, Exponential, Gamma, Beta, Chi-Square, and Student-t. These are important to review if you are not taking Probability, and are worth looking up if you have never seen them before).    
 
 #### PMF Example    
 Binomial(n=10,p=.5) distribution: Can be thought of as the probability of x tails among 10 flips of a fair coin   
@@ -553,7 +607,7 @@ Another common probability distribution is the normal distribution. Suppose that
 coord.x <- c(70,seq(70,80,0.01),80)
 coord.y <- c(0,dnorm(seq(70,80,0.01),70,7),0)
 curve(dnorm(x,70,7), xlim=c(0,100), main='PDF of Normal Distribution With Mean=70, SD=7',
-      ylab="f(x)")
+      ylab="f(x)", xlab="x=Score")
 polygon(coord.x,coord.y,col='skyblue')
 ```  
   
