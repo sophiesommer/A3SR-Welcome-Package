@@ -12,26 +12,29 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Practice Problems.
 1. Solve the following:
 a. $log_e(e^x) = x$
-```{r}
+```{r Logs 1a}
 # If x = 3
-
 log(exp(3))
 ```
 
 b. $log_{10}(100) = 2$
-```{r}
+```{r Logs 1b}
 log10(100)
 ```
 
-c. b. $log_{10}(\frac{1}{10}) = -1$
-```{r}
+c. $log_{10}(\frac{1}{10}) = -1$
+```{r Logs 1c}
 log10(1/10)
 ```
 
-d. b. $log_{10}(0) = \mbox{ No solution} $
+d. $log_{10}(0) =$ No solution
+```{r Logs 1d}
+log10(0)
+```
+
 
 3c. $log_{10}(5) + log_{10}(2) = 1$
-```{r}
+```{r Log 3c}
 log10(5) + log10(2)
 ```
 
@@ -43,7 +46,7 @@ If we want to store the matrix we need to call it "A", for example and store the
 
 For example $\textbf{Z} = \begin{bmatrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ \end{bmatrix}$ $\textbf{Y} = \begin{bmatrix} 1&4&7\\ 2&5&8\\ 3&6&9\\ \end{bmatrix}$
 
-```{r}
+```{r Matrix Example}
 #Sorting by row
 Z <- matrix(data = c(1,2,3,4,5,6,7,8,9), 
              nrow = 3, ncol = 3,  
@@ -65,7 +68,7 @@ print(Y)
       \begin{bmatrix} 1&5&0\\ -2&-3&0\\ 1&9&5\\ \end{bmatrix} = 
       \begin{bmatrix} 3&9&2\\ -1&0&0\\ 2&15&7\\ \end{bmatrix}$  
     
-```{r}
+```{r Matrix 1a}
 M1 <- matrix(data = c(2,4,2,1,3,0,1,6,2),
              nrow = 3, ncol = 3, byrow = TRUE)
 
@@ -79,7 +82,7 @@ M1 + M2
       \begin{bmatrix} 5&2&-1\\ 3&4&2\\ \end{bmatrix} =
       \begin{bmatrix} 13&8&0\\ -4&4&6\\ 26&16&0\\ \end{bmatrix}$  
       
-```{r}
+```{r Matrix 1b}
 M3 <- matrix(data = c(2,-2,4,1,2,2), 
              nrow = 3, ncol = 2,
              byrow = FALSE)
@@ -91,7 +94,78 @@ M4 <- matrix(data = c(5,3,2,4,-1,2),
 M3 %*% M4
 ```
 
-c. Let $\textbf{A} =\begin{bmatrix} 1&2\\ 3&5\\ 4&0\\ \end{bmatrix} and 
-       \textbf{B} =\begin{bmatrix} 4&4\\ 1&2\\ 7&0\\ \end{bmatrix}$ Calculate $A^TB$         
-      
+c. Let $\textbf{A} =\begin{bmatrix} 1&2\\ 3&5\\ 4&0\\ \end{bmatrix} \mbox{and } 
+       \textbf{B} =\begin{bmatrix} 4&4\\ 1&2\\ 7&0\\ \end{bmatrix}  
+       \textbf{A}^T \textbf{B} = \begin{bmatrix} 35&10\\ 13&18\\ \end{bmatrix}$ 
+       
+```{r Matrix 1c}
+A <- matrix(data = c(1,2,3,5,4,0),
+            nrow = 3, ncol = 2, byrow = TRUE)
+
+B <- matrix(data = c(4,1,7,4,2,0),
+            nrow = 3, ncol=2, byrow = FALSE)
+
+# Finding A transpose
+tA <- t(A)
+print(tA)
+
+tA %*% B
+            
+```
+d. Using the same matrices as in part c, $\textbf{B}^T\textbf{A} = 
+\begin{bmatrix} 35&13\\ 10&18\\ \end{bmatrix}$
+
+```{r 1d}
+tB <- t(B)
+
+tB %*% A
+```
+
+Show that **A** and **B** are inverses:
+$\begin{bmatrix} 1&2&1\\ 2&2&0\\ 1&1&1\\ \end{bmatrix}  
+  \begin{bmatrix} -1&0.5&1\\ 1&0&-1\\ 0&-0.5&1\\ \end{bmatrix}=
+  \begin{bmatrix} 1&0&0\\ 0&1&0\\ 0&0&1\\ \end{bmatrix}$
+       
+       
+```{r Matrix 2}
+A <- matrix(data = c(1,2,1,2,2,0,1,1,1),
+            nrow = 3, ncol = 3, byrow = TRUE)
+
+#Use the solve() to find the inverse of a matrix
+solve(A)
+
+B <- matrix(data = c(-1, 0.5, 1, 1, 0, -1, 0, -0.5, 1),
+             nrow = 3, ncol = 3, byrow = TRUE)
+
+solve(B)
+
+A %*% B
+```
+
+3. Suppose that $A$ is a 4x3 matrix and $B$ is a $3x8$ matrix.  
+```{r Matrix 3}
+A <- matrix (data= (1:12), nrow = 4, ncol = 3, byrow = FALSE)
+B <- matrix (data = (1:24), nrow = 3, ncol = 8, byrow = TRUE)
+```
+  a. $\textbf{AB}$ exists and is 4x8 matrix. 
+```{r Matrix 3a}
+A %*% B
+
+dim(A%*%B)
+```
+  b. $\textbf{BA}$ does not exist. 
+```{r}
+# The following produce errors
+# B %*% A
+# dim(B %*% A)
+```
+
+4. The determinant of $det\begin{bmatrix} 1&-2\\ 4&3\\ \end {bmatrix} = 11$
+```{r Matrix 4}
+M5 <- matrix(data = c(1, -2, 4, 3), nrow = 2, ncol = 2, byrow = TRUE)
+
+det(M5)
+```
+
+
       
