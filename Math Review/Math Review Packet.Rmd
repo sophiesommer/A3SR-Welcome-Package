@@ -526,7 +526,37 @@ boxplot(x, main="Box Plot of x")
 
   -Quantitative Methods   
   -Probability  
-  -Causal Inference  
+  -Causal Inference   
+  
+## Notes  
+Random variables are functions with *numerical* outcomes that occur with some level of uncertainty. For example, flipping a fair coin one time could be considered a random variable with two possible outcomes: 0 (corresponding to tails) or 1 (corresponding to heads). Random variables can be discrete or continuous. Discrete random variables have a finite number of potential outcomes. Continuous random variables have infinitely (countably or uncountably) many possible outcomes.  
+
+A probability distribution of a random variable determines the relative likelihood of each potential outcome of that random variable. For discrete random variables, the probability distribution can be defined by a function called a "probability mass function (PMF)", which maps possible values of a random variable to their probabilities. For continuous random variables, probability distributions are defined by an analagous function called the "probability density function (PDF)". If you graph a PDF, then the area under the curve between any two values gives the probability of the random variable's outcome being between those two values.   
+
+There are many common probability distributions that you will need to know (these are mostly covered in Probability), but two particularly common ones are given as examples below. (Note: the major distributions covered in Probability are Bernoulli, Binomial, Normal, Uniform, Geometric, Negative Binomial, Hypergeometric, Poisson, Exponential, Gamma, Beta, Chi-Square, and Student-t. These are important to review if you are not taking Probability, and are worth looking up if you have never seen them before).  
+
+#### PMF Example    
+Binomial(n=10,p=.5) distribution: Can be thought of as the probability of x tails among 10 flips of a fair coin   
+
+```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "275px"}
+binom <- rbinom(10000,10,.5)
+plot(table(binom)/length(binom), ylab="Probability", xlab="Number of Tails", 
+       main="PMF of binomial distribution with n=10, p=.5")
+```
+    
+\pagebreak  
+  
+#### PDF Example 
+Another common probability distribution is the normal distribution. Suppose that you are told that scores on a particular test are (approximately) normally distributed with mean 70 and standard deviation 7 (for the purposes of this thought experiment, suppose that test scores are continuous, not discrete). Then, the area of the blue shaded area in the distribution below would give the approximate probability of any particular student earning between a 70% and 80%.      
+  
+```{r, echo=FALSE,fig.align="center", out.width = "275px"}
+coord.x <- c(70,seq(70,80,0.01),80)
+coord.y <- c(0,dnorm(seq(70,80,0.01),70,7),0)
+curve(dnorm(x,70,7), xlim=c(0,100), main='PDF of Normal Distribution With Mean=70, SD=7',
+      ylab="f(x)")
+polygon(coord.x,coord.y,col='skyblue')
+```  
+  
 \pagebreak  
   
 # P-Values and T-Tests   
@@ -554,20 +584,10 @@ boxplot(x, main="Box Plot of x")
 ## Relevant Courses:  
 
   -Quantitative Methods   
-\pagebreak  
 
-# Probability Density/Mass Functions  
-## Relevant Courses:  
 
-  -Quantitative Methods   
-  -Probability  
-  -Causal Inference  
-\pagebreak  
   
-# Expectation  
-## Relevant Courses:  
-
-  -Probability   
+ 
 
   
 
