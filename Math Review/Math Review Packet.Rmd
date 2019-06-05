@@ -507,7 +507,7 @@ Note: without going into too much detail, it is important that summary statistic
 
 A note about population variance vs. sample variance: In many applications of statistics, we examine a sample of data from a larger population of interest, and try to make inference about the larger population. For example, if we wanted to estimate the mean height of adult women, we might find a sample of 1000 adult women, calculate the mean and variance of their heights and say that these estimates (approximately) also apply to the larger population (we can be more confident about this for larger sample sizes). However, (and this may sound strange), suppose we knew the heights of all adult women and could calculate the variance in their heights. Then suppose we took a bunch of random samples of 1000 women from this population and calculated the variance in heights for each of these samples, using the same formula as we did for population variance. It turns out that these sample variances would, on average, be slightly off from the true population variance, even as the number of samples goes to infinity. Thus, the formula for population variance is actually a "biased" estimator of population variance when applied to a sample. Therefore, we use a slightly different formula for sample variance to "fix" this issue.   
 
-Another note: You might see the term "standard error" thrown around and wonder how this is different from standard deviation. This may be worth a quick Google search if it is unfamiliar (and will be briefly addressed in a later introduction to the central limit theorem).     
+Another note: You might see the term "standard error" thrown around and wonder how this is different from standard deviation. This may be worth a quick Google search if it is unfamiliar (and will be briefly addressed in a later section introducing the central limit theorem).     
 
 #### Summarizing variables visually   
 A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are worth looking up if they are not immediately familiar.  
@@ -610,15 +610,36 @@ curve(dnorm(x,70,7), xlim=c(0,100), main='PDF of Normal Distribution With Mean=7
       ylab="f(x)", xlab="x=Score")
 polygon(coord.x,coord.y,col='skyblue')
 ```  
-  
+    
+Note:  
+It is helpful to remember the following for any data that follows a normal distribution:  
+  -Approximately 68% of the data falls within 1 standard deviation of the mean  
+  -Approximately 95.5% of the data falls within 2 standard deviations of the mean  
+  -More than 99% of the data falls within 3 standard deviations of the mean  
 \pagebreak  
   
-# P-Values and T-Tests   
+# Z-Scores, T-Tests, and P-Values   
 ## Relevant Courses:  
 
   -Quantitative Methods    
   -Statistical Computing  
-  -Causal Inference  
+  -Causal Inference   
+
+## Notes  
+Often, we want to compare two numbers and understand the extent to which they are different. 
+  
+\pagebreak    
+
+# Central Limit Theorem Introduction   
+## Relevant Courses:  
+
+  -Quantitative Methods    
+  -Statistical Computing  
+  -Probability
+  -Causal Inference   
+
+## Notes  
+Often, we want to compare two numbers and understand the extent to which they are different. 
   
 \pagebreak  
   
