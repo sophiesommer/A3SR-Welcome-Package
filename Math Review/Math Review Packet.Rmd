@@ -102,7 +102,6 @@ $=log_3(\frac{5x^2}{2})$
   -Quantitative Methods    
 
 ## Notes    
-Note that these notes are a summary of relevant information from  https://www.math.psu.edu/bressan/PSPDF/M441-linalgebra_review.pdf   
 
 ### Definitions  
 An $m\times n$ matrix $A$ has $m$ rows, $n$ columns, and can be written as:     
@@ -566,7 +565,7 @@ $P(A$ and $B) = P(A) \times P(B)$
 
 
   
-# Probability Density/Mass Functions  
+# Random Variables and Probability Density/Mass Functions  
 ## Relevant Courses:  
 
   -Quantitative Methods   
@@ -615,7 +614,13 @@ Note:
 It is helpful to remember the following for any data that follows a normal distribution:  
   -Approximately 68% of the data falls within 1 standard deviation of the mean  
   -Approximately 95.5% of the data falls within 2 standard deviations of the mean  
-  -More than 99% of the data falls within 3 standard deviations of the mean  
+  -More than 99% of the data falls within 3 standard deviations of the mean   
+  
+#### Z-Scores    
+Often, we want to compare two numbers and understand the extent to which they are different. One way to do this is by using Z-scores. Z-scores are generally used for observations that follow an approximately normal distribution. The Z-score for a particular observation $x$ from a distribution with mean $\mu$ and standard deviation $\sigma$ is given by $Z=\frac{x-\mu}{\sigma}$. The Z-score for any observation tells you how far (in standard deviations) that observation is from the mean, $\mu$. If the observation came from a normal distribution, then Z-scores follow a standard ($\mu=1,\sigma=1$) normal distribution and a Z-table can be used to convert the Z-Score to a percentile (or vice versa). You will learn to use a Z-table in probability, but you might want to look this up if you have never seen it before.  
+
+#### Example    
+Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90. Then Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile. Meanwhile, Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile
 \pagebreak    
 
 # Central Limit Theorem Introduction   
@@ -637,7 +642,7 @@ If we take repeated samples of size $n$ from a population of interest and use th
   
 \pagebreak    
   
-# Z-Scores, T-Tests, and P-Values   
+# Z-Tests, T-Tests, and P-Values   
 ## Relevant Courses:  
 
   -Quantitative Methods    
@@ -646,12 +651,9 @@ If we take repeated samples of size $n$ from a population of interest and use th
 
 ## Notes  
 
-#### Z-Scores    
-Often, we want to compare two numbers and understand the extent to which they are different. 
-
 #### Confidence Intervals  
 
-#### T-Tests
+#### Z-Tests, T-Tests and P-Values
 
   
 \pagebreak    
@@ -668,7 +670,7 @@ Often, we want to compare two numbers and understand the extent to which they ar
   
 \pagebreak  
   
-# Ordinary Least Squares Regression   
+# Simple Ordinary Least Squares Regression   
 ## Relevant Courses:  
 
   -Quantitative Methods   

@@ -15,7 +15,8 @@ Natural Log: https://www.youtube.com/watch?v=fZdWSlXkKzY
 
   
 # Matrix Algebra  
-https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab  
+https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab   
+https://www.math.psu.edu/bressan/PSPDF/M441-linalgebra_review.pdf  
 
 
 # Derivatives    
