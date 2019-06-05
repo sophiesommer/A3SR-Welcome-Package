@@ -616,18 +616,6 @@ It is helpful to remember the following for any data that follows a normal distr
   -Approximately 68% of the data falls within 1 standard deviation of the mean  
   -Approximately 95.5% of the data falls within 2 standard deviations of the mean  
   -More than 99% of the data falls within 3 standard deviations of the mean  
-\pagebreak  
-  
-# Z-Scores, T-Tests, and P-Values   
-## Relevant Courses:  
-
-  -Quantitative Methods    
-  -Statistical Computing  
-  -Causal Inference   
-
-## Notes  
-Often, we want to compare two numbers and understand the extent to which they are different. 
-  
 \pagebreak    
 
 # Central Limit Theorem Introduction   
@@ -639,9 +627,34 @@ Often, we want to compare two numbers and understand the extent to which they ar
   -Causal Inference   
 
 ## Notes  
-Often, we want to compare two numbers and understand the extent to which they are different. 
+Much of statistics is based on taking a sample from a population and using that sample to make inference about the larger population.  
+
+Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 1000 people whose title is "Data Scientist" and we ask them to report their salary. Then, we take the mean of the resulting salaries and we want to know how confident we are that this mean is representative of the larger population. To do that, we can leverage the central limit theorem, which says (essentially; I am leaving out a few caveats):  
+
+If we take repeated samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is small) normally distributed with mean $\mu$ and standard deviation (which we actually call the *standard error* of $\bar{x}$) $\frac{\sigma}{\sqrt{n}}$ where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it).   
+
+
   
-\pagebreak  
+\pagebreak    
+  
+# Z-Scores, T-Tests, and P-Values   
+## Relevant Courses:  
+
+  -Quantitative Methods    
+  -Statistical Computing  
+  -Causal Inference   
+
+## Notes  
+
+#### Z-Scores    
+Often, we want to compare two numbers and understand the extent to which they are different. 
+
+#### Confidence Intervals  
+
+#### T-Tests
+
+  
+\pagebreak    
   
 # Correlation and Covariance   
 ## Relevant Courses:  
