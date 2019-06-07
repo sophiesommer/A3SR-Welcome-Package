@@ -368,7 +368,6 @@ Properties of derivatives:
   3. Power rule: If $f(x)=x^n$, then $f'(x)=nx^{n-1}$  
   4. Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$  
   5. Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
-  6. Chain rule: $(f(g(x)))' = f'(g(x)) * g'(x)$  
   
 ### Partial derivatives  
 
@@ -439,6 +438,17 @@ Note: There are many other properties of integrals, which may be useful once or 
   4. $\int x^ndx=\frac{1}{n+1}x^{n+1}+C$
   
 ### U substitution  
+Let $g$ be a function whose range is an interval $I$, and let $f$ be a function that is continuous on $I$. If g is differentiable on its domain and $F$ is an antiderivative of $f$ on I, then 
+
+  $$\int f(g(x))g'(x)dx = F(g(x)) + C$$
+
+If $u = g(x)$, then $du = g'(x)dx$ and 
+  $$\int f(u)du = F(u) + C$$
+
+### Example: 
+1. $\int 2x(x^2 + 1)^4 dx$ \newline
+$u = x^2 + 1 , du = 2xdx$ \newline
+$\int u^4 du = \frac{u^5}{5} + C = \frac{(x^2 + 1)^5}{5} + C$
 
 \pagebreak
   

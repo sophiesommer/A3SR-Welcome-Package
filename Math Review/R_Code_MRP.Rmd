@@ -326,7 +326,7 @@ mean(dat)
 # Median 
 median(dat)
 
-# Mode -- R does not have a built in function for mode but you can use the table function to see what is the most common value
+# Mode -- R does not have a built in function for mode but you can use the table function to see what the most common value is
 table(dat)
 ```
 
