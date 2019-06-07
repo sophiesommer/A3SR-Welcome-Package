@@ -40,6 +40,7 @@ log10(5) + log10(2)
 
 # Matrix Algebra
 
+### Creating a Matrix in R 
 Type ?matrix in the **Condole** or matrix in **Help** to look at the inputs of the matrix function.
 
 If we want to store the matrix we need to call it "A", for example and store the matrix. 
@@ -56,18 +57,11 @@ Y <- matrix(data = (1:9), nrow = 3, ncol = 3, byrow = FALSE)
 print(Y)
 ```
 
-## Definitions 
+### Definitions 
 The transpose of an $m\times n$ matrix, $A$ is the $n\times m$ matrix (denoted $A^T$) such that every element $a_{ij}$ in matrix A is moved to row $j$ and column $i$. For example, if:  
-$$A=\begin{bmatrix}
-1&2&5\\
-3&4&7\\
-\end{bmatrix}$$  
+$$\textbf{A}=\begin{bmatrix} 1&2&5\\ 3&4&7\\ \end{bmatrix}$$  
 then,  
-$$A^T=\begin{bmatrix}
-1&3\\
-2&4\\
-5&7\\
-\end{bmatrix}$$  
+$$\textbf{A}^T=\begin{bmatrix} 1&3\\ 2&4\\ 5&7\\ \end{bmatrix}$$  
 
 ```{r}
 # Matrix A
@@ -79,7 +73,7 @@ print(A)
 print(t(A))
 ```
 
-### Identity Matrix 
+#### Identity Matrix 
 ```{r}
 # Identity Matrix: use diag() to create an identity matrix
 # I = 4x4 identity matrix
@@ -88,7 +82,7 @@ print(I)
 class(I)
 ```
 
-### Diagonal 
+#### Diagonal 
 ```{r}
 X <- matrix(data = c(1,0,0,0,4,0,0,0,5), nrow = 3, byrow = TRUE)
 print(X)
@@ -97,7 +91,7 @@ print(X)
 diag(X)
 ```
 
-### Upper and Lower Triangular Matrices 
+#### Upper and Lower Triangular Matrices 
 ```{r, tidy=TRUE}
 # Create an empty matrix
 V <- W <- matrix(data = 0, nrow = 3, ncol = 3, byrow = TRUE)
@@ -114,7 +108,7 @@ V[lower.tri(V, diag = TRUE)] <- c(1:6)
 print(V)
 ```
 
-### Inverse of a matrix
+#### Inverse of a matrix
 ```{r}
 U <- matrix(data = c(1:4), nrow = 2, byrow = TRUE)
 
@@ -126,21 +120,107 @@ round(U %*% inU, 2)
 round(inU %*% U, 2)
 ```
 
-### Determinant of a matrix
+#### Determinant of a matrix
 ```{r}
 # Use det() to obtain the determinant of a matrix
 det(U)
 ```
 
-## Operations with matrices
+### Operations with matrices
 
-### Adding matices
+a. Adding matices
 ```{r}
-#
+# Using the above matrices (Z and Y) we will show that Z + Y = X
+# Adding matrices of the same dimension will produce a matrix of the same dimension
+dim(Z + Y); dim (Z); dim(Y)
+Z + Y
 ```
 
+b. Subtracting matrices
+```{r}
+# Subtracting matrices of the same dimension will produce a matrix of the same dimension
+dim(Z - Y); dim (Z); dim(Y)
+Z - Y
+```
 
-## Practice Problems
+c. Multiplying a matrix by a scalar
+```{r}
+# Multiplying a matrix by a scaler wo;; prodice a matrix of the same dimension
+# Suppose that c = 3
+
+3 * Z 
+```
+
+d. Matrix Multiplication
+```{r}
+m1 <- matrix(data = c(3,4,2,5,1,2), nrow = 3, ncol = 2, byrow = TRUE)
+print (m1) ; dim(m1)
+
+m2 <- matrix(data = c(7,2,1,3,5,2), nrow = 2, ncol = 3, byrow = TRUE)
+print(m2); dim(m2)
+
+# Matrix multiplication
+m1 %*% m2
+```
+
+### Properties of matrix operations
+1. $A + B = B + A$
+```{r}
+Z + Y
+Y + Z
+```
+
+2. $(A+B)+C=A+(B+C)$ 
+```{r}
+(Z + Y) + X
+Z + (Y + X)
+```
+
+3. $(AB)C=A(BC)$
+```{r}
+(Z %*% Y) %*% X
+Z %*% (Y %*% X)
+```
+
+4. $(A+B)C=AC + BC$ 
+```{r}
+(Z + Y) %*% X
+(Z %*% X) + (Y %*% X)
+```
+
+5. If $A$ is an $m\times n$ matrix, then $I_mA=A$ and $AI_n=A$
+```{r}
+A
+Im <- diag(x = 1, nrow = 2)
+In <- diag(x = 1, nrow = 3)
+
+Im %*% A
+A %*% In
+```
+
+Note that, in general $AB \ne BA$   
+```{r}
+Z %*% Y
+Y %*% Z
+```
+
+### Writing a system of equations using matrix notation
+***** SOPHIE LOOK HERE ***** I don't really know how to show this!
+```{r}
+a1 <- rep(0, 100)
+a2 <- rnorm(100, 0, 1)
+a3 <- 2*rnorm(100, 0, 2)
+A <- cbind(a1, a2, a3)
+dim(A)
+
+X <- as.matrix(c(1:3))
+dim(X)
+
+Y <- A %*% X
+dim(Y)
+```
+
+### Practice Problems
 1. Solve the following:
   a. $\begin{bmatrix} 2&4&2\\ 1&3&0\\1&6&2\\ \end{bmatrix} +
       \begin{bmatrix} 1&5&0\\ -2&-3&0\\ 1&9&5\\ \end{bmatrix} = 
