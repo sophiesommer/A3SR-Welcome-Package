@@ -644,10 +644,16 @@ Suppose test scores on a particular exam are normally distributed with mean 70 a
 ## Notes  
 Much of statistics is based on taking a sample from a population and using that sample to make inference about the larger population.  
 
-Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 1000 people whose title is "Data Scientist" and we ask them to report their salary. Then, we take the mean of the resulting salaries and we want to know how confident we are that this mean is representative of the larger population. To do that, we can leverage the central limit theorem, which says (essentially; I am leaving out a few caveats):  
+Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 400 people whose title is "Data Scientist" and we ask them to report their salary. Then, we inspect the resulting salaries and find that the mean is 100,000 dollars and standard deviation is 10,000 dollars. Leveraging what we know (at least from this sample) about the variability in salaries, we may want to make a statement about how confident we are that the mean salary of the larger population is in some range (centered around 100,000 dollars). To do that, we can leverage the central limit theorem, which says:  
 
-If we take repeated samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is small) normally distributed with mean $\mu$ and standard deviation (which we actually call the *standard error* of $\bar{x}$) $\frac{\sigma}{\sqrt{n}}$ where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it).   
+If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is large enough) normally distributed with mean $\mu$ and standard deviation (which we actually call the *standard error* of $\bar{x}$) $\frac{\sigma}{\sqrt{n}}$ where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it). This is true for any population distribution (uniform, skewed, etc.) as long as sample size is large enough.     
 
+Note: in general, the term "standard error" is used to describe the standard deviation of an estimate.  
+
+Another note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.   
+
+#### Confidence Intervals    
+Because of the central limit theorem, we can use the sample mean plus or minus (approximately) 2 times the standard error of $\bar{x}$ ($\frac{\sigma}{\sqrt{n}}$) to get a confidence interval around an observed sample mean. Even more accurately, we can use: $\bar{x}\pm 1.96*SE$ because 95% of the area under the curve of the normal distribution lies within 1.96 standard deviations from the mean. So, in the example above, we could say that we are (approximately) 95% confident that the average salary of data scientists is between $100,000-1.96*\frac{10,000}{\sqrt{400}}=99,020$ and $100,000-1.96*\frac{10,000}{\sqrt{400}}=100,980$.  
 
   
 \pagebreak    
@@ -661,11 +667,54 @@ If we take repeated samples of size $n$ from a population of interest and use th
 
 ## Notes  
 
-#### Confidence Intervals  
+#### Hypothesis testing: Framework    
+Suppose we know that test scores on a state-wide exam (which is meant to measure math ability) are normally distributed with mean 70 and standard deviation 10. However, one school believes that their students have higher average math ability (as measured by this test). To test this claim, they randomly sample 100 students to take the test, and these students earn a mean score of 72. Is there sufficient evidence to support the school's claim that their students have higher average math ability as measured by this test? 
 
-#### Z-Tests, T-Tests and P-Values
+We could design the following null and alternative hypotheses:  
+Null hypothesis: Students at this school have the same average math ability as measured by the test as the general population.   
 
-  
+Alternative hypothesis: Students at this school have higher than average math ability as measured by this test than the general population.   
+
+#### Z-Tests, T-Tests and P-Values  
+By the central limit theorem: if the null hypothesis is true (i.e., if these students were randomly sampled from the full population), the expected distribution of sample means (with sample size=100) should be normal with mean $70$ and standard error $\frac{10}{\sqrt{100}}=1$. This distribution is shown below:   
+
+```{r, echo=FALSE,fig.align="center", out.width = "275px"}
+curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
+      ylab="f(x)", xlab="x=Mean Score")
+```    
+   
+Given this distribution, the probability that we would randomly observe a sample of $100$ students with a mean score of $72$ can be calculated as follows: 
+
+Calculate a test statistic (in this case a Z score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for the normal distribution to calculate the proportion of samples of size $100$ that we would expect to be equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
+
+```{r, echo=FALSE,fig.align="center", out.width = "275px"}
+coord.x <- c(72,seq(72,75,0.01),75)
+coord.y <- c(0,dnorm(seq(72,75,0.01),70,1),0)
+curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
+      ylab="f(x)", xlab="x=Mean Score")
+polygon(coord.x,coord.y,col='skyblue')
+```   
+    
+In this case, the shaded area is approximately $0.023$. Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case.  
+
+Other notes:   
+-For sample sizes, $n<30$, then there are two problems: 1. if the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal and 2. If sample size is small, we may not be able to accurately estimate the standard error based on the sample. If the population distribution is normal, concern #1 goes away. And, to manage concern #2, common practice is to use the T distribution with $n-1$ degrees freedom to estimate the sampling distribution (instead of a normal distribution)
+
+-The example described above is a "one-tailed" test. A two tailed test in this example would be used to test whether scores at this school are different from the full population (either greater than or less than). A two tailed p-value for this example would equal the shaded area below, which is the proportion of sample means more than 2 points greater or less than the state average that would be expected by random chance under the null. Because the normal distribution is symmetric, this is $0.023*2=.046$:    
+
+```{r, echo=FALSE,fig.align="center", out.width = "275px"}
+coord.x <- c(72,seq(72,75,0.01),75)
+coord.y <- c(0,dnorm(seq(72,75,0.01),70,1),0)
+coord.x2 <- c(65,seq(65,68,0.01),68)
+coord.y2 <- c(0,dnorm(seq(65,68,0.01),70,1),0)
+curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
+      ylab="f(x)", xlab="x=Mean Score")
+polygon(coord.x,coord.y,col='skyblue')
+polygon(coord.x2,coord.y2,col='skyblue')
+```     
+
+
+
 \pagebreak    
   
 # Correlation and Covariance   
