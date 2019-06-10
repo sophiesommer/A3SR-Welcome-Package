@@ -1,0 +1,264 @@
+---
+title: "Lab 3: Investing in a New Drug"
+output: 
+  learnr::tutorial:
+  progressive: true
+  allow_skip: false
+runtime: shiny_prerendered
+---
+
+```{r setup, include = FALSE}
+if(!require(learnr)) {
+  install.packages("learnr")
+}
+library(learnr)
+
+if(!require(shiny)) {
+  install.packages("shiny")
+}
+library(shiny)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r blank, include = TRUE, echo = TRUE}
+options(scipen=999)
+```
+  
+  
+## The problem
+
+In this lab, we will use the R programming language to simulate the drug approval process as outlined by Wheelan in Naked Statistics$^1$. The following tree diagram (Wheelan, p. 83) shows all possible outcomes and their probabilities. At the bottom, Wheelan also outlines how to calculate average expected payoff over many iterations of this process. In the following lab, you will learn how to simulate this result in R. You are not expected to be able to replicate all of the code yourself, but we think that you can understand it! Our hope is that this lab will help explain how other simulations in this module are operating under the hood.    
+
+
+![](www/Drug_Investment.png)  
+
+
+Citation:  
+1. Wheelan, C. J. (2013). Naked statistics: Stripping the dread from the data. New York: W.W. Norton.
+
+
+## Using the Sample Function  
+
+### Exercise: Sampling one value from a set  
+
+The sample() function in R can be used to sample some numbers from a set of possible outcomes with given probabilities. The following code can be used to select one value (denoted by "size") from the set of possibilities (0,1), where the probability of drawing a 0 is 40% (or .4) and the probability of drawing a 1 is 60% (or .6). Note: in R, we use c() to combine values into a set (called a vector).   
+
+Try running the code a few times to test it out and inspect the output (you should get 0s sometimes and 1s sometimes). Then, try changing the code so that it samples from the values (0,1,2) with probabilities (.3,.5,.2).      
+
+```{r sample, exercise=TRUE, exercise.setup = 'blank'}
+sample(c(0,1), size = 1, prob = c(.4,.6))
+```
+
+```{r sample-solution}
+sample(c(0,1,2), size = 1, prob = c(.3,.5,.2))
+```
+    
+    
+### Exercise: Sampling multiple values from a set  
+
+We can also change the size parameter to sample multiple values at once. However, we may need to use the replace parameter if we want to sample from the same set repeatedly. The following code can be used to sample 5 values from the set (0,1) with probabilities (.4,.6). We set replace=TRUE so that every time we sample a value, we put it back into our possibilities set before taking a new sample. If we did not set replace=TRUE, the default is replace=FALSE. In the example below, we would get an error (because we cannot draw 5 values from a set of 2 values without replacement).   
+
+Try running the code a few times and check that the output makes sense to you. Then, try changing the code so that it samples 10 values.  
+
+```{r sample2, exercise=TRUE, exercise.setup = 'blank'}
+sample(c(0,1), size = 5, prob = c(.4,.6), replace = TRUE)
+```
+
+```{r sample2-solution}
+sample(c(0,1), size = 10, prob = c(.4,.6), replace = TRUE)
+```
+   
+### Exercise: Sampling from a set of character strings  
+
+In the last two exercises, we sampled from the set of (0,1), but we don't have to necessarily sample from a set of numbers. We can also use quotes to denote character strings. The code below can be used to sample one color from the set ("blue","green") with probabilities (.4, .6).    
+
+Try running the code a few times and check that the output makes sense to you. Then, try changing the code to sample 2 colors from the set ("purple", "yellow", "orange") with probabilities (.3,.3,.4)     
+
+```{r sample3, exercise=TRUE, exercise.setup = 'blank'}
+sample(c("blue","green"), size = 1, prob = c(.4,.6), replace = TRUE)
+```
+
+```{r sample3-solution}
+sample(c("purple", "yellow", "orange"), size = 2, prob = c(.3,.3,.4), replace = TRUE)
+```
+  
+## Step 1: Cure or No Cure  
+
+### Exercise: Cure or No Cure  
+At the first stage of the process outlined by Wheelan, the drug can either cure or not cure the intended disease, with probabilities .3 and .7, respectively. Use sample() (as demonstrated in the previous section) to sample one outcome from the options "Cure" or "No Cure" with probabilities .3 and .7, respectively. Run it a few times to ensure that the code works as you expect.   
+
+```{r step1, exercise=TRUE, exercise.setup = 'blank'}
+
+```
+
+```{r step1-solution}
+sample(c("Cure","No Cure"), size = 1, prob = c(.3,.7))
+```
+    
+    
+## Step 2: Approved or Not Approved
+
+### Exercise: Approved or Not Approved  
+If the drug does not lead to a cure for the intended disease, the process is over and there is a 250,000 refund. Otherwise, if the drug does lead to a cure, there is an approval process where the drug has a probability of .6 of being approved. We can use an if/else conditional statement "if(condition) {Execute some code} else {execute some other code}". This will check if some condition is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code.    
+
+The following code:  
+1) samples from ("Cure", "No Cure") with probabilities (.3,.7) as above
+2) If the outcome is "No Cure" then we get a payout of 250,000
+3) If the outcome is "Cure", we sample from the possibilities "Approved", "Not Approved" with probabilities (.6,.4). 
+4)If the drug is not approved, the payout is 0 dollars
+5)If the drug is approved, the payout will be determined by the next step of the process and is therefore unknown at this point.    
+
+Read through the code and run it 5-10 times to see if you understand what is going on. Note: "==" can be read as "is equal to".  
+
+
+```{r step2, exercise=TRUE, exercise.setup = 'blank'}
+#first, we determine whether the drug cured the intended disease or not and save the result as step1
+step1 = sample(c("Cure","No Cure"), size = 1, prob = c(.3,.7))
+
+#if step1 led to no cure, you get a payout of 250,000
+if (step1 == "No Cure"){
+  payout = 250000
+} else{ #otherwise...
+
+#if step1 led to a cure, we go to the next node of the tree: step2
+#step2 tells us whether the drug is approved or not approved
+  step2 = sample(c("Approved","Not Approved"), size = 1, prob = c(.6,.4))
+  
+  #if the drug is not approved, then the process is over and the payout is $0
+  if (step2 == "Not Approved"){
+    payout = 0
+  } else{ #otherwise...
+  
+    #if the drug is approved, we will move to the next step of the process
+    payout = "unknown"
+  }
+  
+}
+
+paste0("You got a payout of $", payout) #this line is just to print the payout so that you see it
+```
+
+```{r step2-solution}
+#first, we determine whether the drug cured the intended disease or not and save the result as step1
+step1 = sample(c("Cure","No Cure"), size = 1, prob = c(.3,.7))
+
+#if step1 led to no cure, you get a payout of 250,000
+if (step1 == "No Cure"){
+  payout = 250000
+} else{ #otherwise...
+
+#if step1 led to a cure, we go to the next node of the tree: step2
+#step2 tells us whether the drug is approved or not approved
+  step2 = sample(c("Approved","Not Approved"), size = 1, prob = c(.6,.4))
+  
+  #if the drug is not approved, then the process is over and the payout is $0
+  if (step2 == "Not Approved"){
+    payout = 0
+  } else{ #otherwise...
+  
+    #if the drug is approved, we will move to the next step of the process
+    payout = "unknown"
+  }
+  
+}
+
+paste0("You got a payout of $", payout) #this line is just to print the payout so that you see it
+```
+   
+
+## Step 3: Goes to Market or Not
+
+### Exercise: Goes to Market or Doesn't Go to Market  
+If the drug cures the intended disease and gets approved, then it can a) go to market (with probability .9), leading to a 25 million dollar payout or b) a competitor could beat you to the market, leading to a payout of 0 dollars.   
+
+Read through the code below to see if you can follow the process. Then, run the code a few times to see what happens.     
+
+```{r step3, exercise=TRUE, exercise.setup = 'blank'}
+#first, we determine whether the drug cured the intended disease or not and save the result as step1
+step1 = sample(c("Cure","No Cure"), size = 1, prob = c(.3,.7))
+
+#if step1 led to no cure, you get a payout of 250,000 and the process ends
+if (step1 == "No Cure"){
+  payout = 250000
+} else{ #otherwise...
+
+#if step1 led to a cure, we go to the next node of the tree: step2
+#step2 tells us whether the drug is approved or not approved
+  step2 = sample(c("Approved","Not Approved"), size = 1, prob = c(.6,.4))
+  
+  #if the drug is not approved, then the process is over and the payout is $0
+  if (step2 == "Not Approved"){
+    payout = 0
+  } else{ #otherwise...
+  
+    #if the drug is approved, we will check if the drug goes to market
+    step3 = sample(c("Market","Beaten to Market"), size = 1, prob = c(.9,.1))
+    
+    #if the drug goes to market, then the payout is 25,000,000
+    if (step3 == "Market"){
+      payout = 25000000
+    } else{ #otherwise...
+      
+      #if a competitor beats you, the payout is 0 dollars
+      payout = 0
+    }
+    
+  }
+  
+}
+
+paste0("You got a payout of $", payout) #this line is just to print the payout so that you see it
+```
+
+
+## Step 4: Repeat
+
+### Exercise: Repeat the process a bunch of times 
+Now that we have some code to model this process, we can use a for loop to repeat the process a bunch of times and save the results in a vector. Then we can use the mean() function to calculate the mean payout across all of our iterations. Read through the code and see if you can understand it. Then, try running it and inspect the mean payout (you can run it a few times and will get slightly different values each time). Is the mean payout what you expect (i.e., what Wheelan calculated)? Try increasing the number of iterations to 1000 and then compare again to the expectation calculated by Wheelan. Is it close(r)?         
+
+```{r repeat, exercise=TRUE, exercise.setup = 'blank'}
+iterations = 100 #set the number of iterations: change this number to change the number of iterations
+payouts <- rep(NA, iterations) #create an empty vector to store payouts
+
+for(i in 1:iterations){ #repeat the process iterations times
+  
+  #first, we determine whether the drug cured the intended disease and save the result as step1
+  step1 = sample(c("Cure","No Cure"), size = 1, prob = c(.3,.7))
+  
+  #if step1 led to no cure, you get a payout of 250,000 and the process ends
+  if (step1 == "No Cure"){
+    payouts[i] = 250000
+  } else{ #otherwise...
+  
+  #if step1 led to a cure, we go to the next node of the tree: step2
+  #step2 tells us whether the drug is approved or not approved
+    step2 = sample(c("Approved","Not Approved"), size = 1, prob = c(.6,.4))
+    
+    #if the drug is not approved, then the process is over and the payout is $0
+    if (step2 == "Not Approved"){
+      payouts[i] = 0
+    } else{ #otherwise...
+    
+      #if the drug is approved, we will check if the drug goes to market
+      step3 = sample(c("Market","Beaten to Market"), size = 1, prob = c(.9,.1))
+      
+      #if the drug goes to market, then the payout is 25,000,000
+      if (step3 == "Market"){
+        payouts[i] = 25000000
+      } else{ #otherwise...
+        
+        #if a competitor beats you, the payout is 0 dollars
+        payouts[i] = 0
+      }
+    }
+  }
+}
+
+mean(payouts) #calculate mean payout over all of the iterations
+table(payouts) #look at a table of the payouts
+```
+  
+
+
+
