@@ -724,8 +724,25 @@ polygon(coord.x2,coord.y2,col='skyblue')
   -Probability   
   
 ## Notes  
+Correlation and covariance both measure the extent to which a change in one variable is related to a change in another variable. For example, height and weight tend to have positive covariance and correlation. People who are taller also tend to weigh more (although not always). Conversly, temperature and heating costs tend to have negative covariance and correlation. As the outside temperature increases, the cost to heat my apartment tends to decrease.  
 
-
+```{r, echo=FALSE,fig.align="center", out.width = "400px"}
+set.seed(102)
+x<- rnorm(100)
+y<- rnorm(100)
+z <- x+rnorm(100,0,.4)
+w <- -x+rnorm(100,0,.4)
+par(mfrow=c(2,3))
+plot(x,z, pch=16, main="Positive Covariance", xlab="Variable A", ylab="Variable B")
+plot(x,y, pch=16, main="No Covariance", xlab="Variable A", ylab="Variable B")
+plot(x,w, pch=16, main="Negative Covariance", xlab="Variable A", ylab="Variable B")
+```
+  
+Covariance ranges from negative infinity to positive infinity and is calculated as follows (note: when using sample covariance to estimate population covariance, we divide by $n-1$ instead:  
+$$Cov(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n}$$
+  
+Correlation is a standardized version of covariance, which ranges between $-1$ to $1$. A correlation of 0 means the variables are not associated. A correlation of $1$ or $-1$ indicates that the variables are perfectly positively or negatively correlated (i.e., perfectly linearly related). Correlation is calculated as follows:   
+$$Corr(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\Sigma_{i=1}^n(x_i-\bar{x})^2(y_i-\bar{y})^2}}$$
   
 \pagebreak  
   
