@@ -685,7 +685,7 @@ curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mea
    
 Given this distribution, the probability that we would randomly observe a sample of $100$ students with a mean score of $72$ can be calculated as follows: 
 
-Calculate a test statistic (in this case a Z score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for the normal distribution to calculate the proportion of samples of size $100$ that we would expect to be equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
+Calculate a test statistic (in this case a Z score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for the normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
 
 ```{r, echo=FALSE,fig.align="center", out.width = "275px"}
 coord.x <- c(72,seq(72,75,0.01),75)
@@ -750,6 +750,34 @@ $$Corr(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\Sigma_{i=1}^n
 ## Relevant Courses:  
 
   -Quantitative Methods   
+
+## Notes  
+Suppose that we have the following information for 100 US adults: 1) their height in inches and 2) their mother's height in inches. A plot of the data looks like this:  
+
+```{r, echo=FALSE,fig.align="center", out.width = "400px"}
+set.seed(102)
+x<- rnorm(100, 67,3)
+z <- x+rnorm(100,0,3)
+plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
+
+```
+    
+We see that there appears to be a positive, linear association between mother's heights and children's heights. In other words, on average, taller mothers appear to have taller children. There are many ways we could try to fit a line to this data, but one of the most common is ordinary least squares regression:  
+
+1) We set up the following template for a linear relationship between child height and mother height:  $\hat{y}=\hat{\beta_0} + \hat{\beta_1}x$ where $\hat{y}$ represents the "predicted" height of a child born to a mother of height $x$. The $\hat{}$ symbol is used to denote a prediction/estimate. Also, the true values of $\beta_0$ and $\beta_1$ (for all mothers and children) are unknown so we are estimating them based on this sample as well           
+2) Based on this "model", the $i$th child's height is given by $y_i= \hat{\beta_0} + \hat{\beta_1}x_i+\varepsilon_i$ where $x_i$ is their mother's height and $\varepsilon_i$ is the difference between the child's true height and their predicted height based on the linear model in  part 1.  (in other words: $\varepsilon_i=y_i-(\hat{\beta_0}+\hat{\beta_1}x_i)=y_i-\hat{y_i}$   
+3) Using calculus, we find values of $\beta_0$ and $\beta_1$ that minimize $\Sigma_{i=1}^{n}\varepsilon_i$ (called the residual sum of squares or RSS)  
+\pagebreak  
+  
+Graphically, this means that the OLS regression line minimizes the vertical distance between each point and the line:     
+```{r, echo=FALSE,fig.align="center", out.width = "400px"}
+plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
+data <- data.frame(X=x,Z=z)
+lm1 <- lm(Z~X, data=data)
+abline(summary(lm1)$coef[1,1],summary(lm1)$coef[2,1],col=4,lwd=2)
+segments(x[1], z[1], x[1], predict(lm1)[1], col = 2, lwd=3)
+text(67.9,70,expression(epsilon[i]),cex=2,col=2)
+```
 
 
   
