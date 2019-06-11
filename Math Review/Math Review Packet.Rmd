@@ -438,17 +438,25 @@ Note: There are many other properties of integrals, which may be useful once or 
   4. $\int x^ndx=\frac{1}{n+1}x^{n+1}+C$
   
 ### U substitution  
-Let $g$ be a function whose range is an interval $I$, and let $f$ be a function that is continuous on $I$. If g is differentiable on its domain and $F$ is an antiderivative of $f$ on I, then 
+Let $g$ be a differentiable function with range on some interval $I$, and let $f$ be a continuous function on $I$. Then, by the reverse of the chain rule:   
 
   $$\int f(g(x))g'(x)dx = F(g(x)) + C$$
 
-If $u = g(x)$, then $du = g'(x)dx$ and 
-  $$\int f(u)du = F(u) + C$$
+If you note that an integral can be written in this form, U substitution may be useful: 
+Let $u = g(x)$, then $du = g'(x)dx$ and 
+  $$\int f(g(x))g'(x)dx=\int f(u)du = F(u) + C$$
 
-### Example: 
-1. $\int 2x(x^2 + 1)^4 dx$ \newline
-$u = x^2 + 1 , du = 2xdx$ \newline
-$\int u^4 du = \frac{u^5}{5} + C = \frac{(x^2 + 1)^5}{5} + C$
+
+#### Example: 
+$\int 2x(x^2 + 1)^4 dx$ \newline
+Let $u = x^2 + 1$. Then $\frac{du}{dx}=2x$, i.e., $du = 2xdx$ \newline
+Therefore, $\int 2x(x^2 + 1)^4 dx=\int u^4 du = \frac{u^5}{5}+C=\frac{(x^2 + 1)^5}{5}+C$
+
+#### Example (same thing, but with a definite integral):   
+$\int_1^2 2x(x^2 + 1)^4 dx$ \newline
+Let $u = x^2 + 1$. Then $\frac{du}{dx}=2x$, i.e., $du = 2xdx$ \newline
+Note that we are calculating the definite integral from $x=1$ to $x=2$, which translates to the integral from $u=1^2=1$ to $u=2^2=4$ \newline
+Therefore, $\int_1^2 2x(x^2 + 1)^4 dx=\int_1^4 u^4 du = \frac{u^5}{5}|_1^4 =\frac{4^5}{5}-\frac{1^5}{5}=204.6$
 
 \pagebreak
   
@@ -458,12 +466,14 @@ $\int u^4 du = \frac{u^5}{5} + C = \frac{(x^2 + 1)^5}{5} + C$
     a. $\int 5x^2 dx$  
     b. $\int 2x^3-\frac{3}{x^2} dx$   
     c. $\int(2x-2)(x+3)dx$  
-    d. $\int \frac{2}{x} dx$
+    d. $\int \frac{2}{x} dx$  
+    e. $\int \frac{(ln(x))^2}{x}dx$  
   2. Evaluate the following definite integrals:  
     a. $\int_0^1 4x^3 dx$  
     b. $\int_{-2}^2 8x^3+3x^2-5x+2 dx$  
     c. $\int_1^\infty \frac{2}{x^2} dx$    
-    d. $\int_1^2\int_{0}^{2}2x^3+3y^3x^2$ $dxdy$
+    d. $\int_1^2\int_{0}^{2}2x^3+3y^3x^2$ $dxdy$  
+    e. $\int_{-1}^1 (1+x)(2x+x^2) dx$ 
 
    
 ## Answers    
@@ -472,13 +482,15 @@ $\int u^4 du = \frac{u^5}{5} + C = \frac{(x^2 + 1)^5}{5} + C$
     a. $\int 5x^2 dx=\frac{5}{3}x^3$   
     b. $\int 2x^3-\frac{3}{x^2} dx=\int 2x^3-3x^{-2} dx=\frac{1}{2}x^4+3x^{-1}+C$  
     c. $\int(2x-2)(x+3)dx=\int2x^2+4x-6dx=\frac{2}{3}x^3+2x^2-6x+C$  
-    d. $\int \frac{2}{x} dx=2\int \frac{1}{x} dx=2ln|x|+C$  
+    d. $\int \frac{2}{x} dx=2\int \frac{1}{x} dx=2ln|x|+C$
+    e. $\int \frac{(ln(x))^2}{x}dx=\frac{(ln(x))^3}{3}+C$ (hint: let u=lnx)
     
   2. Definite integrals:  
     a. $\int_0^1 4x^3 dx=x^4|^1_0=1^4-0^4=1$  
     b. $\int_{-2}^2 8x^3+3x^2-5x+2 dx=(2x^4+x^3-\frac{5}{2}x^2+2x)|^2_{-2}=(32+8-10+4)-(32-8-10-4)=24$  
     c. $\int_1^\infty \frac{2}{x^2} dx=\int_1^\infty 2x^{-2} dx=-2x^{-1}|^\infty_1=0--2=2$  
-    d. $\int_1^2\int_{0}^{2}2x^3+3y^3x^2$ $dxdy=\int_1^2(\frac{1}{2}x^4+y^3x^3)|^2_0dy=\int_1^28+8y^3dy=(8y+2y^4)|^2_1=(16+32)-(8+2)=38$  
+    d. $\int_1^2\int_{0}^{2}2x^3+3y^3x^2$ $dxdy=\int_1^2(\frac{1}{2}x^4+y^3x^3)|^2_0dy=\int_1^28+8y^3dy=(8y+2y^4)|^2_1=(16+32)-(8+2)=38$   
+    e. $\int_{-1}^1 (1+x)(2x+x^2) dx=\frac{1}{12}u^6|_{-1}^3\approx60.67$
     
     
 
