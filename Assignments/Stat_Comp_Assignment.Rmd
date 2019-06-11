@@ -1,5 +1,5 @@
 ---
-title: "2351-Probability"
+title: "2352-Statistical Computing"
 output: pdf_document
 ---
 

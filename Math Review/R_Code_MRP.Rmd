@@ -7,7 +7,24 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### A Note:
+The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program, you will be able to perform calculations in R...
+
+\pagebreak
+
 ## Properties of Logarithms
+
+In R the log() function computed logarithms by natural logarithms ($ln()$) to calculate logarithms with different bases such as $log_{10}$ use log10(), $log_{2}$ use log2(), etc... 
+
+For example if we wanted to solve $log_{10}10000$: 
+```{r}
+log10(10000)
+```
+
+Additionally if we wanted to solve $e^4$, we would use the exp()
+```{r}
+exp(4)
+```
 
 ### Practice Problems.
 1. Solve the following:
@@ -46,7 +63,7 @@ log10(5) + log10(2)
 ### Creating a Matrix in R 
 Type ?matrix in the **Condole** or matrix in **Help** to look at the inputs of the matrix function.
 
-If we want to store the matrix we need to call it "A", for example and store the matrix. 
+If we want to store the matrix we need give a name to the matrix, "Z" for example, and store the matrix. 
 
 For example $\textbf{Z} = \begin{bmatrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ \end{bmatrix}$ $\textbf{Y} = \begin{bmatrix} 1&4&7\\ 2&5&8\\ 3&6&9\\ \end{bmatrix}$
 
@@ -87,11 +104,16 @@ class(I)
 
 #### Diagonal 
 ```{r}
-X <- matrix(data = c(1,0,0,0,4,0,0,0,5), nrow = 3, byrow = TRUE)
-print(X)
+X1 <- matrix(data = c(1,0,0,0,4,0,0,0,5), nrow = 3, byrow = TRUE)
+print(X1)
 
 # To obtain the obtain the values of the diagonal of an n x n matrix
-diag(X)
+diag(X1)
+
+# We could also create an empty matrix and assign values to the diagonal
+X2 <- matrix(data = 0, nrow = 3, ncol = 3)
+diag(X2) <- c(1,4,5)
+print(X2)
 ```
 
 #### Upper and Lower Triangular Matrices 
@@ -148,7 +170,7 @@ Z - Y
 
 c. Multiplying a matrix by a scalar
 ```{r}
-# Multiplying a matrix by a scaler wo;; prodice a matrix of the same dimension
+# Multiplying a matrix by a scaler will produce a matrix of the same dimension
 # Suppose that c = 3
 
 3 * Z 
@@ -164,6 +186,11 @@ print(m2); dim(m2)
 
 # Matrix multiplication
 m1 %*% m2
+
+# It is important to note that when multiplying matrices we need to use %*% rather than * because using * will multiply the values element-wise. 
+print(Z); print(Y)
+Z * Y 
+Z %*% Y
 ```
 
 ### Properties of matrix operations
@@ -175,20 +202,20 @@ Y + Z
 
 2. $(A+B)+C=A+(B+C)$ 
 ```{r}
-(Z + Y) + X
-Z + (Y + X)
+(Z + Y) + X1
+Z + (Y + X1)
 ```
 
 3. $(AB)C=A(BC)$
 ```{r}
-(Z %*% Y) %*% X
-Z %*% (Y %*% X)
+(Z %*% Y) %*% X1
+Z %*% (Y %*% X1)
 ```
 
 4. $(A+B)C=AC + BC$ 
 ```{r}
-(Z + Y) %*% X
-(Z %*% X) + (Y %*% X)
+(Z + Y) %*% X1
+(Z %*% X1) + (Y %*% X1)
 ```
 
 5. If $A$ is an $m\times n$ matrix, then $I_mA=A$ and $AI_n=A$
@@ -344,30 +371,19 @@ sd(dat)
 sqrt(var(dat))
 ```
 
-### Summarizing variables visually
-```{r}
-set.seed(101)
-x <- rnorm(1000,5,2)
-par(mfrow=c(2,2))
-hist(x, main="Histogram of x", xlab="x")
-plot(density(x),main="Density of x", xlab="x")
-boxplot(x, main="Box Plot of x")
-```
-
-\pagebreak
-
-## Basic Probability 
-
-## Random Variables and Probability 
-
-
 \pagebreak
 ## Central Limit Theorem Introduction
-```{r}
+We can sample from many distributions in R. The following will walk through sampling from a normal distribution. 
 
+In the example with average salary of "Data Scientists" we have a sample (n = 400), mean of 100,000 and standard deviation of 10,000. 
+```{r, tidy = TRUE}
+DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)
+par(mfrow=c(2,2))
+hist(DS_salary, main = "Histogram of Data Scientist's salaries", cex.main = 0.7, xlab = "Salaries")
+plot(density(DS_salary), main = "Density plot of Data Scientist's salaries", cex.main = 0.7, xlab = "Salaries")
+boxplot(DS_salary, main = "Boxplot of Data Scientist's salaries", cex.main = 0.7)
 ```
 
-\pagebreak
 ## Z-Tests, T-Test, P-Values
 
 \pagebreak
