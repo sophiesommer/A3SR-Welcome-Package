@@ -600,24 +600,26 @@ $P(A$ and $B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are indep
       c. What is the probability of A and C: $P(A\cap C)$?    
       d. What is the probability of A or C: $P(A\cup C)$?  
       e. What is the probability of B given A: $P(B|A)$?     
-      f. What is the probability of B given A: $P(B|A)$?   
+      f. Write out the sample points in the complement of B: $B^c$     
+    
+    
   2. Suppose that you are playing the following game with your friend: you have a urn with 10 marbles inside. 8 marbles are red and 2 marbles are blue. Your friend randomly picks a marble from the urn. If the marble is blue, your friend wins the game. If the marble is red, then you get to pick a marble from the urn. The game continues until someone draws a blue marble to win the game.        
     a. What is the probability of your friend winning on the first turn?   
     b. What is your probability of winning on your first turn (i.e., given that your friend got a red marble on the first turn)?    
-    c. What is the probability that you and your friend both pick red marbles on your first turns?  
-    d. Suppose that your friend decides to cheat and take two marbles out of the urn on their first turn. What is the probability that the one of the marbles is blue (i.e., that the first marble is blue or the second marble is blue)?  
+    c. What is the probability that you and your friend both pick red marbles on your first turns?    
+   
+    
   3. Suppose that you collected responses from a random sample of 200 New Yorkers for the following 2 questions: 1) Do you exercise at least 3 times per week? and 2) Have you ever been diagnosed with Depression? Use the following table (which shows the number of yes/no responses to each question) to calculate the indicated probabilities.     
     
 ```{r, echo=FALSE}
-dat <- data.frame(ExerciseY=c(45,65),
-                  ExerciseN=c(52,38))
-rownames(dat) <- c("No (Depression)", "Yes (Depression)")
-colnames(dat) <- c("No (Exercise)", "Yes (Exercise)")
-knitr::kable(dat)
+dat <- data.frame(YesE=c(45,65),
+                  NoE=c(52,38))
+rownames(dat) <- c("NoD", "YesD")
+knitr::kable(dat, row.names=T,col.names=c("           YesE","    NoE"),align="r")
 ```     
      
      
-      a. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression?  
+      a. What is the probability of an individual respondent having been diagnosed with depression?  
       b. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they exercise at least 3 times per day?    
       c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per day?     
       d. Based on your responses above, do you think that there is an association between exercise frequency and probability of being diagnosed with depression?    
@@ -626,26 +628,25 @@ knitr::kable(dat)
 ## Answers    
   
   1. Question 1   
-    a.   
-    b.  
-    c.  
-    d.  
-    e.  
-    f.  
+    a. Sample space = {TT, TH, HT, HH}     
+    b. A={TT, TH}, B={TT}, C={TT, HH}      
+    c. $A\cap C=$ {TT} so $P(A\cap C)=\frac{1}{4}$   
+    d. $A\cup C=$ {TT, TH, HH} so $P(A\cup C)=\frac{3}{4}$  
+    e. $P(B|A)=\frac{1}{2}$  
+    f. B = {TH, HT, HH}  
       
   2. Question 2     
-    a.   
-    b.  
-    c.  
-    d.  
+    a. $\frac{2}{10}$     
+    b. $\frac{2}{9}$   
+    c. $\frac{8}{10}*\frac{7}{9}\approx 0.62$   
     
   3. Question 3  
-    a.  
-    b.  
-    c.  
-    d.  
+    a. $\frac{65+38}{200}=.515$   
+    b. $\frac{38}{38+52}\approx .42$    
+    c. $\frac{65}{65+45}\approx .59$    
+    d. Yes, there seems to be a higher probability of depression among individuals who do not exercise. Note that we could run a chi square test for independence here to test the hypothesis that answers to these questions are independent. This is worth looking up if you have never seen it before.      
     
-    
+      
 \pagebreak
   
 # Random Variables and Probability Density/Mass Functions  
@@ -656,14 +657,17 @@ knitr::kable(dat)
   -Statistical Computing
   -Causal Inference   
   
-## Notes   
+## Notes     
+  
+#### Random variable definition  
 Random variables are functions with *numerical* outcomes that occur with some level of uncertainty. Often, experiments with non-numerical outcomes are represented by random variables. For example, flipping a fair coin one time could be considered a random variable with two possible outcomes: 0 (corresponding to tails) or 1 (corresponding to heads).   
 
 Random variables can be discrete or continuous:    
   
   1. Discrete random variables have a finite number of potential outcomes     
-  2. Continuous random variables have infinitely (countably or uncountably) many possible outcomes        
-  
+  2. Continuous random variables have infinitely (countably or uncountably) many possible outcomes     
+
+#### Probability Distributions        
 A probability distribution of a random variable determines the relative likelihood of each potential outcome of that random variable.   
   
   1. Probability Mass Function (PMF): (for discrete random variables) maps possible values of a random variable to their probabilities.   
@@ -703,7 +707,30 @@ It is helpful to remember the following for any data that follows a normal distr
 Often, we want to compare two numbers and understand the extent to which they are different. One way to do this is by using Z-scores. Z-scores are generally used for observations that follow an approximately normal distribution. The Z-score for a particular observation $x$ from a distribution with mean $\mu$ and standard deviation $\sigma$ is given by $Z=\frac{x-\mu}{\sigma}$. The Z-score for any observation tells you how far (in standard deviations) that observation is from the mean, $\mu$. If the observation came from a normal distribution, then Z-scores follow a standard ($\mu=0,\sigma=1$) normal distribution and a Z-table can be used to convert the Z-Score to a percentile (or vice versa). You will learn to use a Z-table in probability, but you might want to look this up if you have never seen it before.  
 
 #### Example    
-Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90. Then Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile. Meanwhile, Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile
+Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90. Then Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile. Meanwhile, Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile  
+
+#### Expectation and Variance   
+Random variables have expectation (also called expected value) and variance:   
+For a continuous random variable, X, on the interval [a,b] and PDF $f(x)$, $E(X)=\int_a^bxf(x)dx$   
+For a discrete random variable, X, with possible outcomes $x_1,...,x_n$, $E(X)=\Sigma_{i=1}^{n}x_iP(x_i)$  
+
+The variance of a random variable X is given by: $E(X^2)-(E(X))^2$   
+Note: For now, the exact formulas for expectation and variance of a random variable are less important than understanding that expectation is a measure of central tendency and variance is a measure of spread   
+
+Properties of expected value:   
+  1. $E(X+Y) = E(X)+E(Y)$     
+  2. $E(cX) = cE(X)$ where $c$ is a constant   
+  
+Properties of expected value (for a random variable $X$):  
+  1. $E(X+Y) = E(X)+E(Y)$ where $Y$ is also a random variable   
+  2. $E(X+c) = E(X)+c$ where $c$ is a constant  
+  3. $E(cX) = cE(X)$ where $c$ is a constant   
+  
+Properties of variance (for a random variable $X$)  
+  1. $E(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent
+  2. $Var(X+c) = Var(X)$ where $c$ is a constant       
+  3. $Var(cX) = c^2Var(X)$ where $c$ is a constant   
+
 \pagebreak    
 
 # Central Limit Theorem Introduction   
