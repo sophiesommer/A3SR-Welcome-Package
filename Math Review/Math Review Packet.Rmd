@@ -734,13 +734,13 @@ If the population distribution is normal, concern #1 goes away. And, to manage c
 A one sample T-test for a sample mean is generally used when sample size is small and observations appear (roughly) normally distributed.  
 
 Example:   
-Based on a national survey, US adults get an average of 6.8 hours of sleep per night. Suppose that we collect a sample of 25 NYU students and find that they got an average of 6.4 hours of sleep per night (sd=1). Is there sufficient evidence to suggest that NYU students are getting consistently less sleep than the national average?  
+Based on a national survey, US adults get an average of 6.8 hours of sleep per night. Suppose that we collect a sample of 25 NYU students and find that they got an average of 6.4 hours of sleep per night (sd=1). Is there sufficient evidence to suggest that NYU students are getting less sleep than the national average?  
 
 We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$
 We construct a test statistic (in this case, a T-score/T-test) comparing our observed mean with the national average: T-score=$\frac{6.8-6.4}{0.2}=2$  
 We calculate a one-tailed P-value using a T distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this)  
 At a significant level of $0.05$ we reject the null in favor of the alternative   
-
+  
 ##### T-test for Paired Data  
 Suppose we want to compare the prices of common coffee drinks at Starbucks and Dunkin' Donuts. For every drink (i.e., small hot coffee, small iced coffee, etc.) we have the price at Starbucks and the price at Dunkin' Donuts. A mock-up of some data (note: this is completely made up) is shown below.     
 ```{r, echo=FALSE}
@@ -751,15 +751,17 @@ rownames(dat) <- c("Small Hot Coffee", "Medium Hot Coffee", "Large Hot Coffee",
 colnames(dat) <- c("Starbucks Price", "DD Price")
 knitr::kable(dat)
 ```     
-In this case, we could make a third column in our data, which is calculated by Starbucks Price - DD Price:  
+   
+In this case, we could make a third column in our data, which is calculated by Starbucks Price - DD Price:    
 ```{r, echo=FALSE}
 dat$PriceDiff <- dat$`Starbucks Price`-dat$`DD Price`
 colnames(dat) <- c("Starbucks Price", "DD Price", "Price Difference")
 knitr::kable(dat)
-```   
-Now, we could test the following: 
-Null hypothesis: The mean price difference is 0
-Alternative hypothesis: The mean price difference is not 0  
+```    
+   
+Now, we could test the following:   
+Null hypothesis: The mean price difference is 0  
+Alternative hypothesis: The mean price difference is not 0    
 
 We can use a 2-tailed T-test on the price difference column as follows: Suppose that, for 25 total drinks, the mean price difference was .09 (sd=.25). Then we estimate standard error as: $\frac{.25}{\sqrt{25}}=.05$ and the T-score is $\frac{.09-0}{.05}=1.8$, giving a P-value of .04 (using 1-pt(1.8,df=24)). So, at a .05 level, we reject the null that the mean price difference is 0.  
 
