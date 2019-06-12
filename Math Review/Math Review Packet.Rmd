@@ -550,17 +550,17 @@ boxplot(x, main="Box Plot of x")
   
 ## Notes    
 
-Random process: Something that produces observation(s) with some level of uncertainty.  
+Random process/Experiment: Something that produces observation(s) with some level of uncertainty.  
 Sample point: A single possible outcome of a random process.  
 Sample space: All possible sample points for an random process.    
   
-Here are some examples of random processes, sample points, and sample spaces:     
+Here are some examples of random processes/experiments, sample points, and sample spaces:     
   
-  a) Random process: Roll a standard 6-sided die and record the result (the number that is face up)    
+  a) Random process/Experiment: Roll a standard 6-sided die and record the result (the number that is face up)    
 example of a sample point: 2     
 sample space: {1,2,3,4,5,6}     
        
-  b) Random process: Roll a die, then flip a coin (with probability .6 of landing on heads) and record the die roll and whether heads or tails is facing upward on the coin.  
+  b) Random process/Experiment: Roll a die, then flip a coin (with probability .6 of landing on heads) and record the die roll and whether heads or tails is facing upward on the coin.  
 example of a sample point: (2,Heads)   
 sample space: {(1,Heads),(2,Heads),(3,Heads),(4,Heads),(5,Heads),(6,Heads),(1,Tails),(2,Tails),(3,Tails),  
 (4,Tails),(5,Tails),(6,Tails)}  
@@ -579,11 +579,74 @@ Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=0$
 For a particular outcome, $A$, of a random process, the complement of that outcome, $A^c$ is made up of all sample points *not* in $A$.   
 $A+A^c=1$   
 
-#### Multiplication Rule (for independent events)   
-If $A$ and $B$ are independent:   
-$P(A$ and $B) = P(A) \times P(B)$    
+#### Conditional Probability  
+The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$ and is calculated as (Bayes rule): $P(A|B)=\frac{P(B|A)P(A)}{P(B)}$.  
 
+#### Multiplication Rule    
+Generally:  
+$P(A$ and $B) = P(A) \times P(B|A)$  
+Therefore if $A$ and $B$ are independent:    
+$P(A$ and $B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
+  
+## Practice Problems   
+  
+  1. Suppose that you run an experiment that involves flipping 2 fair coins. Consider the following events:  
+    A={The first coin flip is tails}  
+    B={Both coin flips are tails}  
+    C={The coin flips are the same (i.e., both heads or both tails)}  
+    
+      a. Write out the sample space for this experiment    
+      b. Write out the sample points that comprise each event   
+      c. What is the probability of A and C: $P(A\cap C)$?    
+      d. What is the probability of A or C: $P(A\cup C)$?  
+      e. What is the probability of B given A: $P(B|A)$?     
+      f. What is the probability of B given A: $P(B|A)$?   
+  2. Suppose that you are playing the following game with your friend: you have a urn with 10 marbles inside. 8 marbles are red and 2 marbles are blue. Your friend randomly picks a marble from the urn. If the marble is blue, your friend wins the game. If the marble is red, then you get to pick a marble from the urn. The game continues until someone draws a blue marble to win the game.        
+    a. What is the probability of your friend winning on the first turn?   
+    b. What is your probability of winning on your first turn (i.e., given that your friend got a red marble on the first turn)?    
+    c. What is the probability that you and your friend both pick red marbles on your first turns?  
+    d. Suppose that your friend decides to cheat and take two marbles out of the urn on their first turn. What is the probability that the one of the marbles is blue (i.e., that the first marble is blue or the second marble is blue)?  
+  3. Suppose that you collected responses from a random sample of 200 New Yorkers for the following 2 questions: 1) Do you exercise at least 3 times per week? and 2) Have you ever been diagnosed with Depression? Use the following table (which shows the number of yes/no responses to each question) to calculate the indicated probabilities.     
+    
+```{r, echo=FALSE}
+dat <- data.frame(ExerciseY=c(45,65),
+                  ExerciseN=c(52,38))
+rownames(dat) <- c("No (Depression)", "Yes (Depression)")
+colnames(dat) <- c("No (Exercise)", "Yes (Exercise)")
+knitr::kable(dat)
+```     
+     
+     
+      a. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression?  
+      b. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they exercise at least 3 times per day?    
+      c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per day?     
+      d. Based on your responses above, do you think that there is an association between exercise frequency and probability of being diagnosed with depression?    
 
+   
+## Answers    
+  
+  1. Question 1   
+    a.   
+    b.  
+    c.  
+    d.  
+    e.  
+    f.  
+      
+  2. Question 2     
+    a.   
+    b.  
+    c.  
+    d.  
+    
+  3. Question 3  
+    a.  
+    b.  
+    c.  
+    d.  
+    
+    
+\pagebreak
   
 # Random Variables and Probability Density/Mass Functions  
 ## Relevant Courses:  
@@ -658,7 +721,9 @@ If we take repeated independent samples of size $n$ from a population of interes
 
 Note: in general, the term "standard error" is used to describe the standard deviation of an estimate.  
 
-Another note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.   
+Another note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.  
+
+A final note: The distribution of sample means described above is called the "sampling distribution" of the mean.   
 
 #### Confidence Intervals (an example)        
 Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 400 people whose title is "Data Scientist" and we ask them to report their salary. Then, we inspect the resulting salaries and find that the mean is 100,000 dollars and standard deviation is 10,000 dollars. Leveraging what we know (at least from this sample) about the variability in salaries, we may want to make a statement about how confident we are that the mean salary of the larger population is in some range (centered around 100,000 dollars).   
@@ -677,7 +742,7 @@ Because of the central limit theorem, we can use the sample mean plus or minus (
 
 ## Notes  
 
-#### Hypothesis testing: Framework    
+#### Hypothesis testing: framework    
 Suppose we know that test scores on a state-wide exam (which is meant to measure math ability) are normally distributed with mean 70 and standard deviation 10. However, one school believes that their students have higher average math ability (as measured by this test). To test this claim, they randomly sample 100 students to take the test, and these students earn a mean score of 72. Is there sufficient evidence to support the school's claim that their students have higher average math ability as measured by this test? 
 
 We could design the following null and alternative hypotheses:  
@@ -695,7 +760,7 @@ curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mea
    
 Given this distribution, the probability that we would randomly observe a sample of $100$ students with a mean score of $72$ can be calculated as follows: 
 
-Calculate a test statistic (in this case a Z-test), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for the normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
+Calculate a test statistic (in this case a Z-score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for the normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
 
 ```{r, echo=FALSE,fig.align="center", out.width = "275px"}
 coord.x <- c(72,seq(72,75,0.01),75)
@@ -728,7 +793,7 @@ polygon(coord.x2,coord.y2,col='skyblue')
   1. if the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal.  
   2. If sample size is small, we may not be able to accurately estimate the standard error based on the sample.    
     
-If the population distribution is normal, concern #1 goes away. And, to manage concern #2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$(instead of a normal distribution) because the T distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution.     
+If the population distribution is normal, concern 1 goes away. And, to manage concern 2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$ (instead of a normal distribution) because the t distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution.     
 
 ##### One Sample T-tests  
 A one sample T-test for a sample mean is generally used when sample size is small and observations appear (roughly) normally distributed.  
@@ -736,7 +801,7 @@ A one sample T-test for a sample mean is generally used when sample size is smal
 Example:   
 Based on a national survey, US adults get an average of 6.8 hours of sleep per night. Suppose that we collect a sample of 25 NYU students and find that they got an average of 6.4 hours of sleep per night (sd=1). Is there sufficient evidence to suggest that NYU students are getting less sleep than the national average?  
 
-We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score/T-test) comparing our observed mean with the national average: T-score=$\frac{6.8-6.4}{0.2}=2$. Then, we calculate a one-tailed P-value using a T distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this). At a significant level of $0.05$ we reject the null in favor of the alternative.    
+We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score, which is similar to a Z-score) comparing our observed mean with the national average: $T=\frac{6.8-6.4}{0.2}=2$. Then, we calculate a one-tailed P-value using a T distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this). At a significant level of $0.05$ we reject the null in favor of the alternative.    
   
 ##### T-test for Paired Data  
 Suppose we want to compare the prices of common coffee drinks at Starbucks and Dunkin' Donuts. For every drink (i.e., small hot coffee, small iced coffee, etc.) we have the price at Starbucks and the price at Dunkin' Donuts. A mock-up of some data (note: this is completely made up) is shown below.     
@@ -772,12 +837,12 @@ Using what we know about the properties of variance, we can derive that:
 $$SE^2(\bar{x_1}-\bar{x_2})=SE^2(\bar{x_1})+(-1)^2SE^2(\bar{x_2})= SE^2(\bar{x_1})+SE^2(\bar{x_2})=\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}$$  
 So, $SE(\bar{x_1}-\bar{x_2})$ can be estimated using: $SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$  
 
-Alternatively, if we think that the two groups have equal variances, we can used the pooled standard deviation formula to get a better estimate of $SE^2(\bar{x_1}-\bar{x_2})$. The formula is:  
-$$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2} $$     
+Alternatively, if we think that the two groups have equal variances, we can used the pooled standard deviation formula to get a better estimate of $SE(\bar{x_1}-\bar{x_2})$. The formula is:  
+$$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$     
 
    
 Degrees of freedom:  
-In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution.   
+In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution (or if assuming equal variances and using the $s^2_{pooled}$, we can use $n_1+n_2-2$ degrees of freedom).   
 
 
 \pagebreak    
