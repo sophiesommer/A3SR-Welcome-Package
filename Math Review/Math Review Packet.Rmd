@@ -721,14 +721,14 @@ polygon(coord.x,coord.y,col='skyblue')
 polygon(coord.x2,coord.y2,col='skyblue')
 ```      
   
-#### The T distribution and T-tests  
+#### The t distribution and T-tests  
 
 -For sample sizes, $n<30$, then there are two problems:   
   
   1. if the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal.  
   2. If sample size is small, we may not be able to accurately estimate the standard error based on the sample.    
     
-If the population distribution is normal, concern #1 goes away. And, to manage concern #2, common practice is to use the T distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$(instead of a normal distribution) because the T distribution has heavier tails for small degrees freedom. Note: the T distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the T distribution is essentially identical to a standard normal distribution.     
+If the population distribution is normal, concern #1 goes away. And, to manage concern #2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$(instead of a normal distribution) because the T distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution.     
 
 ##### One Sample T-tests  
 A one sample T-test for a sample mean is generally used when sample size is small and observations appear (roughly) normally distributed.  
@@ -736,10 +736,7 @@ A one sample T-test for a sample mean is generally used when sample size is smal
 Example:   
 Based on a national survey, US adults get an average of 6.8 hours of sleep per night. Suppose that we collect a sample of 25 NYU students and find that they got an average of 6.4 hours of sleep per night (sd=1). Is there sufficient evidence to suggest that NYU students are getting less sleep than the national average?  
 
-We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$
-We construct a test statistic (in this case, a T-score/T-test) comparing our observed mean with the national average: T-score=$\frac{6.8-6.4}{0.2}=2$  
-We calculate a one-tailed P-value using a T distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this)  
-At a significant level of $0.05$ we reject the null in favor of the alternative   
+We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score/T-test) comparing our observed mean with the national average: T-score=$\frac{6.8-6.4}{0.2}=2$. Then, we calculate a one-tailed P-value using a T distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this). At a significant level of $0.05$ we reject the null in favor of the alternative.    
   
 ##### T-test for Paired Data  
 Suppose we want to compare the prices of common coffee drinks at Starbucks and Dunkin' Donuts. For every drink (i.e., small hot coffee, small iced coffee, etc.) we have the price at Starbucks and the price at Dunkin' Donuts. A mock-up of some data (note: this is completely made up) is shown below.     
@@ -768,12 +765,19 @@ We can use a 2-tailed T-test on the price difference column as follows: Suppose 
 ##### Two-Sample T-Test Comparing Sample Means (non-paired data)
 If we want to compare two independent sample means for data that is not paired (for example, if we had prices for 100 drinks at Starbucks and 100 drinks at Dunkin Donuts, but they were not paired by drink type), we can use an independent sample T-test.   
 
-This is done in much the same way as before, but we need a different way of estimating the standard error. Using what we know about the properties of variance, we can derive that:  
+This is done in much the same way as before, except now we need to calculate $\bar{x_1}$ (the mean of group 1), $\bar{x_2}$ (the mean of group 2), calculate their difference, and then construct a T-test comparing this value to a null hypothesis that $\bar{x_1}-\bar{x_2}=0$. Also, we need a different way of estimating the standard error and need to know how many degrees of freedom to use for our t distribution (see below).    
+   
+Standard error:  
+Using what we know about the properties of variance, we can derive that:  
 $$SE^2(\bar{x_1}-\bar{x_2})=SE^2(\bar{x_1})+(-1)^2SE^2(\bar{x_2})= SE^2(\bar{x_1})+SE^2(\bar{x_2})=\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}$$  
-So, $SE^2(\bar{x_1}-\bar{x_2})$ can be estimated using: $SE^2(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$  
+So, $SE(\bar{x_1}-\bar{x_2})$ can be estimated using: $SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$  
 
-Alternatively, if we think that the two groups have equal variances, we can used the pooled variance formula to get a better estimate of $SE^2(\bar{x_1}-\bar{x_2})$  
+Alternatively, if we think that the two groups have equal variances, we can used the pooled standard deviation formula to get a better estimate of $SE^2(\bar{x_1}-\bar{x_2})$. The formula is:  
+$$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2} $$     
 
+   
+Degrees of freedom:  
+In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution.   
 
 
 \pagebreak    
