@@ -367,7 +367,7 @@ Properties of derivatives:
   2. Constant multiple rule: $(cf(x))'=cf'(x)$ where $c$ is a constant  
   3. Power rule: If $f(x)=x^n$, then $f'(x)=nx^{n-1}$  
   4. Product rule: $(f(x)g(x))' = f'(x)g(x) + g'(x)f(x)$  
-  5. Quotient rule (given g(x) != 0): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
+  5. Quotient rule (given $g(x) \ne 0$): $(\frac{f(x)}{g(x)})' = \frac{f'(x)g(x) - g'(x)f(x)}{g^2(x)}$  
   
 ### Partial derivatives  
 
@@ -388,7 +388,7 @@ For a function of more than one variable (i.e., $f(x,y)$), we can take partial d
     b. $f(x,y)=(xy^4+2y)^3$   
     c. $f(x,y)=4x^3+xy+x^2y^2+4x+2$   
     
-  3. Find all local minima and maxima for the following function (and note whether they are minima or maxima): $\frac{2}{3}x^3-x^2-12x$  
+  3. Find all local minima and maxima for the following function (and note whether they are minima or maxima): $f(x)=\frac{2}{3}x^3-x^2-12x$  
 
  
 ## Solutions    
@@ -569,7 +569,7 @@ sample space: {(1,Heads),(2,Heads),(3,Heads),(4,Heads),(5,Heads),(6,Heads),(1,Ta
 Suppose that a random process is repeated infinitely many times; Then the probability of a particular outcome is the proportion of times that the outcome is observed.  
 
 #### Law of Large Numbers   
-As a random process is repeated more times, the observed proportion of any particular outcome will converge to the true empirical probability of that outcome   
+As a random process is repeated more times, the observed proportion of any particular outcome will converge to the true empirical probability of that outcome.     
 
 #### Addition Rule  
 $P(A$ or $B) = P(A) + P(B) - P(A$ and $B)$  
@@ -580,7 +580,7 @@ For a particular outcome, $A$, of a random process, the complement of that outco
 $A+A^c=1$   
 
 #### Conditional Probability  
-The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$ and is calculated as (Bayes rule): $P(A|B)=\frac{P(B|A)P(A)}{P(B)}$.  
+The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$ and is calculated as (Bayes rule): $P(A|B)=\frac{P(B|A)P(A)}{P(B)}$    
 
 #### Multiplication Rule    
 Generally:  
@@ -678,7 +678,7 @@ There are many common probability distributions that you will need to know (thes
 #### PMF Example    
 Binomial(n=10,p=.5) distribution: Can be thought of as the probability of x tails among 10 flips of a fair coin   
 
-```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "275px"}
+```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "200px"}
 binom <- rbinom(10000,10,.5)
 plot(table(binom)/length(binom), ylab="Probability", xlab="Number of Tails", 
        main="PMF of binomial distribution with n=10, p=.5")
@@ -704,10 +704,10 @@ It is helpful to remember the following for any data that follows a normal distr
   -More than 99% of the data falls within 3 standard deviations of the mean   
   
 #### Z-Scores    
-Often, we want to compare two numbers and understand the extent to which they are different. One way to do this is by using Z-scores. Z-scores are generally used for observations that follow an approximately normal distribution. The Z-score for a particular observation $x$ from a distribution with mean $\mu$ and standard deviation $\sigma$ is given by $Z=\frac{x-\mu}{\sigma}$. The Z-score for any observation tells you how far (in standard deviations) that observation is from the mean, $\mu$. If the observation came from a normal distribution, then Z-scores follow a standard ($\mu=0,\sigma=1$) normal distribution and a Z-table can be used to convert the Z-Score to a percentile (or vice versa). You will learn to use a Z-table in probability, but you might want to look this up if you have never seen it before.  
+Often, we want to compare two numbers and understand the extent to which they are different. One way to do this is by using Z-scores. Z-scores are generally used for observations that follow an approximately normal distribution. The Z-score for a particular observation $x$ from a distribution with mean $\mu$ and standard deviation $\sigma$ is given by $Z=\frac{x-\mu}{\sigma}$. The Z-score for any observation tells you how far (in standard deviations) that observation is from the mean, $\mu$. If the observation came from a normal distribution, then Z-scores follow a standard ($\mu=0,\sigma=1$) normal distribution and a Z-table can be used to convert the Z-Score to a percentile (or vice versa). You will learn to use a Z-table in probability, but you might want to look this up if you have never seen it before. "Standardizing" a dataset involves converting all values to their Z-Scores.      
 
 #### Example    
-Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90. Then Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile. Meanwhile, Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile  
+Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90. Then Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile. Meanwhile, Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile.    
 
 #### Expectation and Variance   
 Random variables have expectation (also called expected value) and variance:   
@@ -715,7 +715,7 @@ For a continuous random variable, X, on the interval [a,b] and PDF $f(x)$, $E(X)
 For a discrete random variable, X, with possible outcomes $x_1,...,x_n$, $E(X)=\Sigma_{i=1}^{n}x_iP(x_i)$  
 
 The variance of a random variable X is given by: $E(X^2)-(E(X))^2$   
-Note: For now, the exact formulas for expectation and variance of a random variable are less important than understanding that expectation is a measure of central tendency and variance is a measure of spread   
+Note: For now, the exact formulas for expectation and variance of a random variable are less important than understanding that expectation is a measure of central tendency and variance is a measure of spread.     
 
 Properties of expected value:   
   1. $E(X+Y) = E(X)+E(Y)$     
@@ -727,7 +727,7 @@ Properties of expected value (for a random variable $X$):
   3. $E(cX) = cE(X)$ where $c$ is a constant   
   
 Properties of variance (for a random variable $X$)  
-  1. $E(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent
+  1. $E(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent  
   2. $Var(X+c) = Var(X)$ where $c$ is a constant       
   3. $Var(cX) = c^2Var(X)$ where $c$ is a constant   
 
@@ -755,7 +755,7 @@ A final note: The distribution of sample means described above is called the "sa
 #### Confidence Intervals (an example)        
 Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 400 people whose title is "Data Scientist" and we ask them to report their salary. Then, we inspect the resulting salaries and find that the mean is 100,000 dollars and standard deviation is 10,000 dollars. Leveraging what we know (at least from this sample) about the variability in salaries, we may want to make a statement about how confident we are that the mean salary of the larger population is in some range (centered around 100,000 dollars).   
 
-Because of the central limit theorem, we can use the sample mean plus or minus (approximately) 2 times the standard error of $\bar{x}$ ($\frac{\sigma}{\sqrt{n}}$) to get a confidence interval around an observed sample mean. Even more accurately, we can use: $\bar{x}\pm 1.96*SE$ because 95% of the area under the curve of the normal distribution PDF lies within 1.96 standard deviations from the mean. So, in the example above, we could say that we are (approximately) 95% confident that the average salary of data scientists is between $100,000-1.96*\frac{10,000}{\sqrt{400}}=99,020$ and $100,000-1.96*\frac{10,000}{\sqrt{400}}=100,980$.   
+Because of the central limit theorem, we can use the sample mean plus or minus (approximately) 2 times the standard error of $\bar{x}$ (remember: $SE_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$) to get a confidence interval around an observed sample mean. Even more accurately, we can use: $\bar{x}\pm 1.96*SE$ because 95% of the area under the curve of the normal distribution PDF lies within 1.96 standard deviations from the mean. So, in the example above, we could say that we are (approximately) 95% confident that the average salary of data scientists is between $100,000-1.96*\frac{10,000}{\sqrt{400}}=99,020$ and $100,000-1.96*\frac{10,000}{\sqrt{400}}=100,980$.   
 
   
 \pagebreak    
@@ -787,27 +787,27 @@ curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mea
    
 Given this distribution, the probability that we would randomly observe a sample of $100$ students with a mean score of $72$ can be calculated as follows: 
 
-Calculate a test statistic (in this case a Z-score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for the normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
+Calculate a test statistic (in this case a Z-score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for a standard normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
 
 ```{r, echo=FALSE,fig.align="center", out.width = "275px"}
-coord.x <- c(72,seq(72,75,0.01),75)
-coord.y <- c(0,dnorm(seq(72,75,0.01),70,1),0)
-curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
+coord.x <- c(2,seq(2,3,0.01),3)
+coord.y <- c(0,dnorm(seq(2,3,0.01),0,1),0)
+curve(dnorm(x,0,1), xlim=c(-3,3), main='Null Distribution of Standardized Sample Means',
       ylab="f(x)", xlab="x=Mean Score")
 polygon(coord.x,coord.y,col='skyblue')
 ```   
     
-In this case, the shaded area is approximately $0.023$. Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case.  
+In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case.  
 
 Note:    
 -The example described above is a "one-tailed" test. A two tailed test in this example would be used to test whether scores at this school are different from the full population (either greater than or less than). A two tailed p-value for this example would equal the shaded area below, which is the proportion of sample means more than 2 points greater or less than the state average that would be expected by random chance under the null. Because the normal distribution is symmetric, this is $0.023*2=.046$:    
 
 ```{r, echo=FALSE,fig.align="center", out.width = "275px"}
-coord.x <- c(72,seq(72,75,0.01),75)
-coord.y <- c(0,dnorm(seq(72,75,0.01),70,1),0)
-coord.x2 <- c(65,seq(65,68,0.01),68)
-coord.y2 <- c(0,dnorm(seq(65,68,0.01),70,1),0)
-curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
+coord.x <- c(2,seq(2,3,0.01),3)
+coord.y <- c(0,dnorm(seq(2,3,0.01),0,1),0)
+coord.x2 <- c(-3,seq(-3,-2,0.01),-2)
+coord.y2 <- c(0,dnorm(seq(-3,-2,0.01),0,1),0)
+curve(dnorm(x,0,1), xlim=c(-3,3), main='Null Distribution of Standardized Sample Means',
       ylab="f(x)", xlab="x=Mean Score")
 polygon(coord.x,coord.y,col='skyblue')
 polygon(coord.x2,coord.y2,col='skyblue')
@@ -817,7 +817,7 @@ polygon(coord.x2,coord.y2,col='skyblue')
 
 -For sample sizes, $n<30$, then there are two problems:   
   
-  1. if the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal.  
+  1. If the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal.  
   2. If sample size is small, we may not be able to accurately estimate the standard error based on the sample.    
     
 If the population distribution is normal, concern 1 goes away. And, to manage concern 2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$ (instead of a normal distribution) because the t distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution.     
@@ -828,7 +828,7 @@ A one sample T-test for a sample mean is generally used when sample size is smal
 Example:   
 Based on a national survey, US adults get an average of 6.8 hours of sleep per night. Suppose that we collect a sample of 25 NYU students and find that they got an average of 6.4 hours of sleep per night (sd=1). Is there sufficient evidence to suggest that NYU students are getting less sleep than the national average?  
 
-We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score, which is similar to a Z-score) comparing our observed mean with the national average: $T=\frac{6.8-6.4}{0.2}=2$. Then, we calculate a one-tailed P-value using a T distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this). At a significant level of $0.05$ we reject the null in favor of the alternative.    
+We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score, which is similar to a Z-score) comparing our observed mean with the national average: $T=\frac{6.8-6.4}{0.2}=2$. Then, we calculate a one-tailed p-value using a t distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this). At a significance level of $0.05$ we reject the null in favor of the alternative.    
   
 ##### T-test for Paired Data  
 Suppose we want to compare the prices of common coffee drinks at Starbucks and Dunkin' Donuts. For every drink (i.e., small hot coffee, small iced coffee, etc.) we have the price at Starbucks and the price at Dunkin' Donuts. A mock-up of some data (note: this is completely made up) is shown below.     
@@ -852,7 +852,7 @@ Now, we could test the following:
 Null hypothesis: The mean price difference is 0  
 Alternative hypothesis: The mean price difference is not 0    
 
-We can use a 2-tailed T-test on the price difference column as follows: Suppose that, for 25 total drinks, the mean price difference was .09 (sd=.25). Then we estimate standard error as: $\frac{.25}{\sqrt{25}}=.05$ and the T-score is $\frac{.09-0}{.05}=1.8$, giving a P-value of .04 (using 1-pt(1.8,df=24)). So, at a .05 level, we reject the null that the mean price difference is 0.  
+We can use a 2-tailed T-test on the price difference column as follows: Suppose that, for 25 total drinks, the mean price difference was .09 (sd=.25). Then we estimate standard error as: $\frac{.25}{\sqrt{25}}=.05$ and the T-score is $\frac{.09-0}{.05}=1.8$, giving a p-value of .04 (using 1-pt(1.8,df=24)). So, at a .05 level, we reject the null that the mean price difference is 0.  
 
 ##### Two-Sample T-Test Comparing Sample Means (non-paired data)
 If we want to compare two independent sample means for data that is not paired (for example, if we had prices for 100 drinks at Starbucks and 100 drinks at Dunkin Donuts, but they were not paired by drink type), we can use an independent sample T-test.   
