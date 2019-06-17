@@ -1,9 +1,11 @@
 ---
 title: "R Code to Complement Math Review Packet"
-output: 
-    pdf_document:
-    toc: true
-    toc_depth: 2
+output:
+  pdf_document: null
+  html_document:
+    df_print: paged
+  toc: yes
+  toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
@@ -11,77 +13,72 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### A Note:
-The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program you will be able to perform many calculations in R, R is much more powerful than a calculator. The R code provided is to supplement the math review packet to give you an understanding of how you could use R to solve a variety of problems. 
+The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program you will be able to perform many calculations in R, which provides more flexibility and data storage than a typical calculator. The R code below is meant to a) introduce you to using R as a calculator and b) give some context for how you could use R to solve a variety of problems. 
 
 We will cover: \newline
 - Logarithms \newline
 - Matrices \newline
 - Statistical concepts \newline
-    * Central tendency \newline
-    * The Central Limit Theorem \newline
-    * Covariance and correlation \newline
-    * Ordinary Least Square regression \newline
+    * Central tendency \newline  
+    * The Central Limit Theorem \newline  
+    * Covariance and correlation \newline  
+    * Ordinary Least Square regression \newline  
 
-Please use this as a resource to become more comofortable with R. You can run the R chunks by pressing the green play button to run the code to see how one would try to answer the practice questions in R. You can run parts of the code and change portions of it in the Console to better understand what functions do or look up functions in the **Help** tab or type '?function' into the Console. 
+Please use this as a resource to become more comofortable with R. You can run the R chunks by pressing the green play button in the top right corner (of the chunk). Or, you can run parts of the code and change portions of it in the Console. It may also be useful to look up functions in the **Help** tab (or type '?function' into the Console) to see function documentation. 
 
-This is meant to be a tool to provide more practice and context before the start of the program. You can comment (by using '#' in the R chunk) as a way for annotating the code to identify what the code is doing in your own words. This is good practice to understand what code is doing to allow you to write your own code in the future. 
+You may also find it helpful to take notes in this document so that you can reference it during the first few months of classes. You can comment (by using '#' in the R chunk) as a way of annotating it in your own words. This is good practice for deciphering other people's code and is a good habit for documenting your own future work. 
 
-Note: You will also see, in this document, LaTeX notation. If you hover over the items in the dollar signs you will see what the formatting will look like when knitted to an pdf. 
+Note: In this document, you will also see LaTeX notation, which is used to render math symbols when you knit to PDF. If you hover over the items in the dollar signs, you will see what the formatting will look like when knitted to a PDF. 
 
 \pagebreak
 
 ## Properties of Logarithms
 
-In R the log() function computed logarithms by natural logarithms ($ln()$) to calculate logarithms with different bases such as $log_{10}$ use log10(), $log_{2}$ use log2(), etc... 
+In R, the log() function computes natural logarithms (i.e., $ln()$). To calculate $log_{10}()$ use log10(); to calculate $log_{2}()$, use log2().  
 
-For example if we wanted to solve $log_{10}10000$: 
+For example if we wanted to solve $log_{10}(10000)$: 
 ```{r log10}
 log10(10000)
 ```
 
-Additionally if we wanted to solve $e^4$, we would use the exp()
+In general, we can also calculate exponents using the ^ character. For example, $3^8$ could be calculated by typing 3^8. Additionally, if we wanted to calculate $e^4$, we could use the exp() function.  
 ```{r exp}
+3^8
 exp(4)
 ```
 
 ### Practice Problems.
-1. Solve the following:
+1. Show that, if x=3, it is true that:
 a. $log_e(e^x) = x$
 ```{r Logs 1a}
-# If x = 3
 log(exp(3))
 ```
 
-b. $log_{10}(100) = 2$
+b. $log_{10}(100)$
 ```{r Logs 1b}
-log10(100)
+log10(10)
 ```
 
-c. $log_{10}(\frac{1}{10}) = -1$
+c. $log_{10}(\frac{1}{10})$
 ```{r Logs 1c}
-log10(1/10)
+log10(1/100)
 ```
 
-d. $log_{10}(0) =$ No solution
+d. $log_{10}(0)$ Note: There is no solution here; R returns -Inf  
 ```{r Logs 1d}
 log10(0)
 ```
-
-
-3 Condense the following 
-c. $log_{10}(5) + log_{10}(2) = 1$
-```{r Log 3c}
-log10(5) + log10(2)
-```
+  
 
 \pagebreak
 
 # Matrix Algebra
 
 ### Creating a Matrix in R 
-Type ?matrix in the **Condole** or matrix in **Help** to look at the inputs of the matrix function.
-
-If we want to store the matrix we need give a name to the matrix, "Z" for example, and store the matrix. 
+Type ?matrix in the **Console** or matrix in **Help** to look at the inputs of the matrix function.  
+  
+When you look at the usage of a function, you may see that some parameters are assigned default values, while others are assigned "NA" or "NULL" values (i.e., missing values). In the matrix function, we need to input a vector of values, the number of rows, number of columns, an indication of whether the matrix should be filled by row-wise (or column-wise), and dimension names if we want them. Note that, if we do not indicate a number of rows, the matrix will automatically have one row. Also note that, by default, the matrix will be filled column-wise (you can change the byrow parameter to TRUE to fill the matrix row-wise).    
+If we want to store the matrix for future use, we need give a name to the matrix ("Z", for example), and use an arrow (<-) or equals sign (=) to assign the result of the matrix function to that name. We can also use the print() function to print the matrices we have created.   
 
 For example $\textbf{Z} = \begin{bmatrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ \end{bmatrix}$ $\textbf{Y} = \begin{bmatrix} 1&4&7\\ 2&5&8\\ 3&6&9\\ \end{bmatrix}$
 
@@ -100,7 +97,8 @@ The transpose of an $m\times n$ matrix, $A$ is the $n\times m$ matrix (denoted $
 $$\textbf{A}=\begin{bmatrix} 1&2&5\\ 3&4&7\\ \end{bmatrix}$$  
 then,  
 $$\textbf{A}^T=\begin{bmatrix} 1&3\\ 2&4\\ 5&7\\ \end{bmatrix}$$  
-
+  
+In R, we can get the transpose of a matrix by using the t() function
 ```{r}
 # Matrix A
 A <- matrix(data = c(1,2,5,3,4,7), nrow = 2, ncol = 3, byrow = TRUE)
@@ -108,7 +106,7 @@ A <- matrix(data = c(1,2,5,3,4,7), nrow = 2, ncol = 3, byrow = TRUE)
 print(A)
 
 # A transpose
-print(t(A))
+t(A)
 ```
 
 #### Identity Matrix 
@@ -117,7 +115,7 @@ print(t(A))
 # I = 4x4 identity matrix
 I <- diag(4)
 print(I)
-class(I)
+class(I) #tells you the object class; in this case, a matrix!
 ```
 
 #### Diagonal 
@@ -130,19 +128,22 @@ diag(X1)
 
 # We could also create an empty matrix and assign values to the diagonal
 X2 <- matrix(data = 0, nrow = 3, ncol = 3)
-diag(X2) <- c(1,4,5)
+diag(X2) <- c(1,2,3)
 print(X2)
 ```
 
 #### Upper and Lower Triangular Matrices 
 ```{r, tidy=TRUE}
-# Create an empty matrix
+# Create a 3 by 3 matrix of zeros
 V <- W <- matrix(data = 0, nrow = 3, ncol = 3, byrow = TRUE)
 print(W)
 
 # Use upper.tri() or lower.tri() to change the elements of the upper triangular matrix or lower triangular matrix, respectively. 
 
 # Upper Triangular
+#this returns a 3 by 3 matrix with TRUE's in the upper triangle and FALSE's everywhere else:
+upper.tri(W, diag = TRUE) 
+#we can then assign values to the upper triangle of W using square brackets 
 W[upper.tri(W, diag = TRUE)] <- c(1:6)
 print(W)
 
@@ -154,13 +155,21 @@ print(V)
 #### Inverse of a matrix
 ```{r}
 U <- matrix(data = c(1:4), nrow = 2, byrow = TRUE)
+print(U)
 
-# Use solve() to obtain the inversie of a matrix
-inU <- solve(U)
+# Use the solve() function to obtain the inverse of a matrix
+invU <- solve(U)
+print(invU)
 
-# Confirm you get an identity matrix
-round(U %*% inU, 2)
-round(inU %*% U, 2)
+# We can then perform matrix multiplication using %*%
+# Note that, if we just use *, R will multiply the two matrices element-wise, instead of using 
+# Matrix multiplication  
+
+# Confirm you get an identity matrix   
+result1 <- U %*% invU
+result2 <- invU %*% U
+round(result1, digits=2)  
+round(result2, digits=2)
 ```
 
 #### Determinant of a matrix
@@ -173,22 +182,27 @@ det(U)
 
 a. Adding matices
 ```{r}
-# Using the above matrices (Z and Y) we will show that Z + Y = X
+# Using the above matrices (Z and Y) we will show that Z + Y = X  
+# Note: the dim() function gives the dimensions of a matrix (rows first, then columns)
 # Adding matrices of the same dimension will produce a matrix of the same dimension
-dim(Z + Y); dim (Z); dim(Y)
+dim(Z) 
+dim(Y)
+dim(Z + Y)
 Z + Y
 ```
 
 b. Subtracting matrices
 ```{r}
 # Subtracting matrices of the same dimension will produce a matrix of the same dimension
-dim(Z - Y); dim (Z); dim(Y)
+dim (Z) 
+dim(Y)
+dim(Z - Y)
 Z - Y
 ```
 
 c. Multiplying a matrix by a scalar
 ```{r}
-# Multiplying a matrix by a scaler will produce a matrix of the same dimension
+# Multiplying a matrix by a scalar will produce a matrix of the same dimension
 # Suppose that c = 3
 
 3 * Z 
@@ -251,31 +265,17 @@ Note that, in general $AB \ne BA$
 Z %*% Y
 Y %*% Z
 ```
+  
 
-### Writing a system of equations using matrix notation
-***** SOPHIE LOOK HERE ***** I don't really know how to show this!
-```{r}
-a1 <- rep(0, 100)
-a2 <- rnorm(100, 0, 1)
-a3 <- 2*rnorm(100, 0, 2)
-A <- cbind(a1, a2, a3)
-dim(A)
-
-X <- as.matrix(c(1:3))
-dim(X)
-
-Y <- A %*% X
-dim(Y)
-```
-
-\pagebreak
-
+\pagebreak  
+  
 ### Practice Problems
-1. Solve the following:
+1. Show each of the following by solving the left side of the equation in R:    
+
   a. $\begin{bmatrix} 2&4&2\\ 1&3&0\\1&6&2\\ \end{bmatrix} +
       \begin{bmatrix} 1&5&0\\ -2&-3&0\\ 1&9&5\\ \end{bmatrix} = 
-      \begin{bmatrix} 3&9&2\\ -1&0&0\\ 2&15&7\\ \end{bmatrix}$  
-    
+      \begin{bmatrix} 3&9&2\\ -1&0&0\\ 2&15&7\\ \end{bmatrix}$    
+        
 ```{r Matrix 1a}
 M1 <- matrix(data = c(2,4,2,1,3,0,1,6,2),
              nrow = 3, ncol = 3, byrow = TRUE)
@@ -300,15 +300,16 @@ M3 %*% M4
 
 c. Let $\textbf{A} =\begin{bmatrix} 1&2\\ 3&5\\ 4&0\\ \end{bmatrix} \mbox{and } 
        \textbf{B} =\begin{bmatrix} 4&4\\ 1&2\\ 7&0\\ \end{bmatrix}  
-       \textbf{A}^T \textbf{B} = \begin{bmatrix} 35&10\\ 13&18\\ \end{bmatrix}$ 
+       \textbf{A}^T \textbf{B} = \begin{bmatrix} 35&10\\ 13&18\\ \end{bmatrix}$   
        
 ```{r Matrix 1c}
 A <- matrix(data = c(1,2,3,5,4,0), nrow = 3, ncol = 2, byrow = TRUE)
 
 B <- matrix(data = c(4,1,7,4,2,0),nrow = 3, ncol=2, byrow = FALSE)
 
-t(A) %*% B
-```
+t(A) %*% B  
+```  
+  
 d. Using the same matrices as in part c, $\textbf{B}^T\textbf{A} = 
 \begin{bmatrix} 35&13\\ 10&18\\ \end{bmatrix}$
 
@@ -316,7 +317,7 @@ d. Using the same matrices as in part c, $\textbf{B}^T\textbf{A} =
 t(B) %*% A
 ```
 
-Show that **A** and **B** are inverses:
+Show that **A** and **B** are inverses:  
 $\begin{bmatrix} 1&2&1\\ 2&2&0\\ 1&1&1\\ \end{bmatrix}  
   \begin{bmatrix} -1&0.5&1\\ 1&0&-1\\ 0&-0.5&1\\ \end{bmatrix}=
   \begin{bmatrix} 1&0&0\\ 0&1&0\\ 0&0&1\\ \end{bmatrix}$
@@ -340,15 +341,17 @@ A %*% B
 ```{r Matrix 3}
 A <- matrix (data= (1:12), nrow = 4, ncol = 3, byrow = FALSE)
 B <- matrix (data = (1:24), nrow = 3, ncol = 8, byrow = TRUE)
-```
-  a. $\textbf{AB}$ exists and is 4x8 matrix. 
+```  
+
+  a. $\textbf{AB}$ exists and is 4x8 matrix.   
 ```{r Matrix 3a}
 A %*% B
 dim(A%*%B)
-```
-  b. $\textbf{BA}$ does not exist. 
+```  
+
+  b. $\textbf{BA}$ does not exist.   
 ```{r Matrix 3b}
-# The following produce errors
+# The following produces errors
 # B %*% A
 ```
 
@@ -358,12 +361,13 @@ M5 <- matrix(data = c(1, -2, 4, 3), nrow = 2, ncol = 2, byrow = TRUE)
 det(M5)
 ```
 
-\pagebreak
+\pagebreak   
+  
 ## Variables : Types and Summaries
 
 ### Summary statistics for central tendency 
 ```{r Summary statistics for central tendency, tidy = TRUE}
-dat <- c(1,2,3,5,5,4,6,6,1,2,10,11,9,9,9)
+dat <- c(1,2,3,5,5,4,6,6,1,2,10,11,9,9,9) #save a vector of values
 
 # Mean
 mean(dat)
@@ -373,19 +377,29 @@ median(dat)
 
 # Mode -- R does not have a built in function for mode but you can use the table function to see what the most common value is
 table(dat)
+as.numeric(names(table(dat))[which.max(table(dat))]) #an ugly hack to find the mode
 ```
 
 ### Summary statistics for spread
 ```{r Summary statistics for spread}
 # Range
+#the range function actually returns the minimum and maximum of dat in a vector
+range(dat) 
+
+#to calculate the range, we can subtract the first element in range(dat) (the minumum) 
+#from the second element in range(dat) (the maximum)
 range(dat)[2]-range(dat)[1]
+
+#another option is to use the diff() function, which calculates the difference between to values
 diff(range(dat))
 
-# Sample Variance
+# Variance 
 var(dat)
 
 # Standard Deviation
 sd(dat)
+
+# Show that the square root of the variance gives the same output as sd() 
 sqrt(var(dat))
 ```
 
@@ -393,20 +407,47 @@ sqrt(var(dat))
 ## Central Limit Theorem Introduction
 We can sample from many distributions in R. The following will walk through sampling from a normal distribution. 
 
-In the example with average salary of "Data Scientists" we have a sample (n = 400), mean of 100,000 and standard deviation of 10,000. 
+In the example with average salary of "Data Scientists" we have a sample (n = 400), a mean salary of 100,000 and standard deviation of 10,000. 
 ```{r, tidy = TRUE}
-DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)
+#set the seed for reproducibility. Note, the choice of 102 was random. 
+#this can be used when you are using random sampling functions to ensure the same results every time
+set.seed(102)
+
+#take a random sample of 400 values from a normal distribution with mean 100,000 and sd 10,000
+DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)   
+
+#this creates a 4 by 4 grid in which to place the following three plots
 par(mfrow=c(2,2))
-hist(DS_salary, main = "Histogram of Data Scientist's salaries", cex.main = 0.7, xlab = "Dollars (USD)", breaks = 10)
-plot(density(DS_salary), main = "Density plot of Data Scientist's salaries", cex.main = 0.7, xlab = "Dollars (USD)")
-boxplot(DS_salary, main = "Boxplot of Data Scientist's salaries", cex.main = 0.7)
+
+#plot a histogram of the salaries:  
+hist(DS_salary, 
+     main = "Histogram of Data Scientist's salaries", 
+     cex.main = 0.7, 
+     xlab = "Dollars (USD)", 
+     breaks = 10)
+
+#plot the smoothed density of the salaries: 
+plot(density(DS_salary), 
+     main = "Density plot of Data Scientist's salaries", 
+     cex.main = 0.7, 
+     xlab = "Dollars (USD)")  
+
+#make a boxplot of the salaries: 
+boxplot(DS_salary, 
+        main = "Boxplot of Data Scientist's salaries", 
+        cex.main = 0.7)
 ```
 
 ### Confidence Intervals (an example)
 ```{r}
+#save the mean, standard deviation, and sample size
 mean_ <- 100000
 sd_ <- 10000
 n <- 400
+
+#note: qnorm gives quantiles for a standard normal distribition
+#for example, qnorm(0.975) gives the 97.5th percentile value for a standard normal distribution
+#(standard normal means mean=0 and sd=1)
 error <- qnorm(0.975)*sd_/sqrt(n)
 mean_ - error # lower bound of confidence interval
 mean_ + error # upper bound of confidence interval
@@ -424,9 +465,13 @@ $H_a = \mu_{school} \ne \mu_{population}$
 'rnorm' : randomly draws from a normal distribution \newline
 
 ```{r, tidy = TRUE}
-# Find the proportion of sample means that is 2 points greater than or less than the state average
-1 - pnorm(72, mean = 70, sd = 1)
-pnorm(72, mean = 70, sd = 1, lower.tail = FALSE)
+# Find the proportion of sample means that are 2 points greater than or less than the state average  
+# By default, pnorm gives the area under the curve of the specified normal distribution less than the
+# given quantile. Therefore, if we want the area under the curve greater than that quantile, we can 
+# either subtract the result from 1 or use lower.tail=FALSE to get the upper tail of the distribution 
+
+1 - pnorm(q=72, mean = 70, sd = 1)
+pnorm(q=72, mean = 70, sd = 1, lower.tail = FALSE)
 ```
 
 ### The t-distribution  and T-tests
@@ -434,55 +479,70 @@ pnorm(72, mean = 70, sd = 1, lower.tail = FALSE)
 Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution. In the example below we plot t-distributions with difference degrees of freedom (df = 1, 3,8, 30) and compare it to normal distribution. 
 
 ```{r}
-x <- seq(-4, 4, length=100)
-zdist <- dnorm(x)
+x <- seq(-4, 4, length=100) #creates a vector of 100 equally spaced values between -4 and 4
+zdist <- dnorm(x) #calculates height of a standard normal probability distribution at each value in x
 
-degf <- c(1, 3, 8, 30)
-colors <- c("red", "blue", "green", "purple", "black")
-labels <- c("df=1", "df=3", "df=8", "df=30", "normal")
+degf <- c(1, 3, 8, 30) #save a vector of degrees of freedom for each t distribution
+colors <- c("red", "blue", "green", "purple", "black") #save a vector of colors for the plots
+labels <- c("df=1", "df=3", "df=8", "df=30", "normal") #save a vector of labels (used in legend)
 
-plot(x, zdist, type="l", lty=2, xlab="x-value",
-  ylab="Density", main="Comparison of t Distributions", cex.main=0.9)
-
-for (i in 1:4){
-  lines(x, dt(x,degf[i]), lwd=2, col=colors[i])
-}
-
-legend("topright", inset=.05, title="Distributions",
-  labels, lwd=2, lty=c(1, 1, 1, 1, 2), col=colors, cex= 0.8)
-```
-
-We can also look at QQ Plots of data generated from a t-distribution with varying degrees of freedom (using 'rt'). Using the car package and the 'qqPlot' function we see that as the degrees of the freedom increases the tails of the data stay within the the blue lines, indicating it follows a normal distribution.
-```{r}
-par(mfrow=c(1,2))
+plot(x=x, #give x coordinates to plot
+     y=zdist, #give corresponding y coordinates
+     type="l", #specify that we want a line connecting the dots
+     lty=2, #make that line a little thicker (default is 1)
+     xlab="Value", #give an x-axis label
+     ylab="Density",  #give a y-axis label
+     main="Comparison of t Distributions", #title the plot
+     cex.main=0.9) #make the plot title a little smaller (default is 1)
 
 for (i in 1:4){
-  car::qqPlot(rt(1000, df = degf[i]), ylab = labels[i], pch=22)
+  #lines() function adds lines to the plot instead of creating new plots
+  lines(x=x, 
+        y=dt(x=x,df=degf[i]), #now use dt() to get height of a t distribution with specified df
+        lwd=2, 
+        col=colors[i]) 
 }
+
+legend(x="topright",  #location for legend
+       inset=.05, #add a slight inset for the legend location
+       title="Distributions", #title the legend
+       legend=labels, #specify text for the legend
+       lwd=2, #change the size of the lines in the legend to be thicker (default is 1)
+       lty=c(1, 1, 1, 1, 2), #change the line type of the lines in the legend (default is 1; dotted is 2)
+       col=colors, #specify colors of the lines in the legend
+       cex= 0.8) #make the legend a little smaller overall (default is 1)
 ```
+    
+  
 
 \pagebreak
 ## Correlation and Covariance
 
-We can use the 'cov' and 'cor' functionsto find the covariance and correlation of two variables, respectively.  
+We can use the 'cov' and 'cor' functions to find the covariance and correlation of two variables, respectively.  
 ```{r}
+# Create some fake data
 set.seed(102)
 x <- rnorm(100)
 y <- rnorm(100)
 z <- x+rnorm(100,0,.4)
 w <- -x+rnorm(100,0,.4)
+
+# Calculate covariances
 cov(x,z) # Positive covariance
 cov(x,y) # No covariance
 cov(x,w) # Negative covariance
 
+# Calculate correlations
 cor(x,z) # Positive correlation
 cor(x,y) # No covariance
 cor(x,w) # Negative covariance
 ```
 
 \pagebreak
-## Simple Ordinary Least Squares Regression
+## Simple Ordinary Least Squares Regression   
+Note: You don't need to understand how to do this yet (necessarily); however, we wanted to show you how the example from the review packet was created.  
 ```{r, tidy=TRUE}
+# Create some fake data
 set.seed(102)
 child_height <- rnorm(100, 67,3)
 mother_height <- child_height+rnorm(100,0,3)
