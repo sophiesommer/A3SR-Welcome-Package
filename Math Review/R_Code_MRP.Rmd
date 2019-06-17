@@ -1,6 +1,9 @@
 ---
 title: "R Code to Complement Math Review Packet"
-output: pdf_document
+output: 
+    pdf_document:
+    toc: true
+    toc_depth: 2
 ---
 
 ```{r setup, include=FALSE}
@@ -8,7 +11,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### A Note:
-The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program, you will be able to perform calculations in R...
+The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program you will be able to perform many calculations in R, R is much more powerful than a calculator. The R code provided is to supplement the math review packet to give you an understanding of how you could use R to solve a variety of problems. 
+
+We will cover: \newline
+- Logarithms \newline
+- Matrices \newline
+- Statistical concepts \newline
+    * Central tendency \newline
+    * The Central Limit Theorem \newline
+    * Covariance and correlation \newline
+    * Ordinary Least Square regression \newline
+
+Please use this as a resource to become more comofortable with R. You can run the R chunks by pressing the green play button to run the code to see how one would try to answer the practice questions in R. You can run parts of the code and change portions of it in the Console to better understand what functions do or look up functions in the **Help** tab or type '?function' into the Console. 
+
+This is meant to be a tool to provide more practice and context before the start of the program. You can comment (by using '#' in the R chunk) as a way for annotating the code to identify what the code is doing in your own words. This is good practice to understand what code is doing to allow you to write your own code in the future. 
+
+Note: You will also see, in this document, LaTeX notation. If you hover over the items in the dollar signs you will see what the formatting will look like when knitted to an pdf. 
 
 \pagebreak
 
@@ -17,12 +35,12 @@ The notes and code in this document are meant to serve as complementary material
 In R the log() function computed logarithms by natural logarithms ($ln()$) to calculate logarithms with different bases such as $log_{10}$ use log10(), $log_{2}$ use log2(), etc... 
 
 For example if we wanted to solve $log_{10}10000$: 
-```{r}
+```{r log10}
 log10(10000)
 ```
 
 Additionally if we wanted to solve $e^4$, we would use the exp()
-```{r}
+```{r exp}
 exp(4)
 ```
 
@@ -400,20 +418,16 @@ $H_0 = \mu_{school} = \mu_{population}$
 $H_a = \mu_{school} \ne \mu_{population}$
 
 ### Z-Tests and P-Values
+'dnorm' : probability density function of a normal distribution \newline
+'qnorm' : computes the probability from a normal distribution \newline
+'pnorm' : computes the percentile from a normal distribution \newline
+'rnorm' : randomly draws from a normal distribution \newline
+
 ```{r, tidy = TRUE}
 # Find the proportion of sample means that is 2 points greater than or less than the state average
 1 - pnorm(72, mean = 70, sd = 1)
 pnorm(72, mean = 70, sd = 1, lower.tail = FALSE)
 ```
-
-'dnorm' : probability density function of a normal distribution
-'qnorm' : computes the probability from a normal distribution
-'pnorm' : computes the percentile from a normal distribution
-'rnorm' : randomly draws from a normal distribution  
-```{r}
-#INSERT HERE DIFFERENCES BETWEEN dnorm, qnorm, pnorm, and rnorm 
-```
-
 
 ### The t-distribution  and T-tests
 
@@ -468,14 +482,20 @@ cor(x,w) # Negative covariance
 
 \pagebreak
 ## Simple Ordinary Least Squares Regression
-```{r}
+```{r, tidy=TRUE}
 set.seed(102)
 child_height <- rnorm(100, 67,3)
 mother_height <- child_height+rnorm(100,0,3)
 
-plot(child_height, mother_height, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
-abline(lm(mother_height~child_height),col=4,lwd=2)
+# We can use lm() to fit a linear model for example lm(y~x) and store the fit
+fit1 <- lm(mother_height~child_height)
 
-summary(lm(mother_height~child_height))
+plot(child_height, mother_height, pch=16, 
+     main="Child height vs. Mother height",
+     xlab="Mother height", ylab="Child height")
+abline(fit1, col=4, lwd=2)
+
+# The summary() function produces the summary results of fitted models 
+summary(fit1)
 ```
 
