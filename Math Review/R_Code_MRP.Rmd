@@ -379,15 +379,103 @@ In the example with average salary of "Data Scientists" we have a sample (n = 40
 ```{r, tidy = TRUE}
 DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)
 par(mfrow=c(2,2))
-hist(DS_salary, main = "Histogram of Data Scientist's salaries", cex.main = 0.7, xlab = "Salaries")
-plot(density(DS_salary), main = "Density plot of Data Scientist's salaries", cex.main = 0.7, xlab = "Salaries")
+hist(DS_salary, main = "Histogram of Data Scientist's salaries", cex.main = 0.7, xlab = "Dollars (USD)", breaks = 10)
+plot(density(DS_salary), main = "Density plot of Data Scientist's salaries", cex.main = 0.7, xlab = "Dollars (USD)")
 boxplot(DS_salary, main = "Boxplot of Data Scientist's salaries", cex.main = 0.7)
 ```
 
-## Z-Tests, T-Test, P-Values
+### Confidence Intervals (an example)
+```{r}
+mean_ <- 100000
+sd_ <- 10000
+n <- 400
+error <- qnorm(0.975)*sd_/sqrt(n)
+mean_ - error # lower bound of confidence interval
+mean_ + error # upper bound of confidence interval
+```
+
+## Z-Tests, T-Test, and P-Values
+
+$H_0 = \mu_{school} = \mu_{population}$
+$H_a = \mu_{school} \ne \mu_{population}$
+
+### Z-Tests and P-Values
+```{r, tidy = TRUE}
+# Find the proportion of sample means that is 2 points greater than or less than the state average
+1 - pnorm(72, mean = 70, sd = 1)
+pnorm(72, mean = 70, sd = 1, lower.tail = FALSE)
+```
+
+'dnorm' : probability density function of a normal distribution
+'qnorm' : computes the probability from a normal distribution
+'pnorm' : computes the percentile from a normal distribution
+'rnorm' : randomly draws from a normal distribution  
+```{r}
+#INSERT HERE DIFFERENCES BETWEEN dnorm, qnorm, pnorm, and rnorm 
+```
+
+
+### The t-distribution  and T-tests
+
+Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution. In the example below we plot t-distributions with difference degrees of freedom (df = 1, 3,8, 30) and compare it to normal distribution. 
+
+```{r}
+x <- seq(-4, 4, length=100)
+zdist <- dnorm(x)
+
+degf <- c(1, 3, 8, 30)
+colors <- c("red", "blue", "green", "purple", "black")
+labels <- c("df=1", "df=3", "df=8", "df=30", "normal")
+
+plot(x, zdist, type="l", lty=2, xlab="x-value",
+  ylab="Density", main="Comparison of t Distributions", cex.main=0.9)
+
+for (i in 1:4){
+  lines(x, dt(x,degf[i]), lwd=2, col=colors[i])
+}
+
+legend("topright", inset=.05, title="Distributions",
+  labels, lwd=2, lty=c(1, 1, 1, 1, 2), col=colors, cex= 0.8)
+```
+
+We can also look at QQ Plots of data generated from a t-distribution with varying degrees of freedom (using 'rt'). Using the car package and the 'qqPlot' function we see that as the degrees of the freedom increases the tails of the data stay within the the blue lines, indicating it follows a normal distribution.
+```{r}
+par(mfrow=c(1,2))
+
+for (i in 1:4){
+  car::qqPlot(rt(1000, df = degf[i]), ylab = labels[i], pch=22)
+}
+```
 
 \pagebreak
 ## Correlation and Covariance
 
+We can use the 'cov' and 'cor' functionsto find the covariance and correlation of two variables, respectively.  
+```{r}
+set.seed(102)
+x <- rnorm(100)
+y <- rnorm(100)
+z <- x+rnorm(100,0,.4)
+w <- -x+rnorm(100,0,.4)
+cov(x,z) # Positive covariance
+cov(x,y) # No covariance
+cov(x,w) # Negative covariance
+
+cor(x,z) # Positive correlation
+cor(x,y) # No covariance
+cor(x,w) # Negative covariance
+```
+
 \pagebreak
 ## Simple Ordinary Least Squares Regression
+```{r}
+set.seed(102)
+child_height <- rnorm(100, 67,3)
+mother_height <- child_height+rnorm(100,0,3)
+
+plot(child_height, mother_height, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
+abline(lm(mother_height~child_height),col=4,lwd=2)
+
+summary(lm(mother_height~child_height))
+```
+
