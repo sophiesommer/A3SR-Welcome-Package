@@ -550,51 +550,91 @@ boxplot(x, main="Box Plot of x")
   
 ## Notes    
 
-Random process/Experiment: Something that produces observation(s) with some level of uncertainty.  
-Sample point: A single possible outcome of a random process.  
-Sample space: All possible sample points for an random process.    
+### Set Theory   
+
+This section goes over some definitions and theory before we go any further.
+
+**Set** - An unordered collection of distinct elements.
+
+A set is made of of elements, and each of those elements is a **member** of the set. We use the $\in$ symbol to denote membership. The following means _element x is a member of set A_.
+$$x \in A$$
+
+Curly braces are usually used to denote sets.
+$$\{1,2,3\}$$
+You could think of this set as variable x, given that x is either 1,2, or 3. We write this mathematically as the following (the pipe | means "given")
+$$\{x\ |\ x = 1\ \mathrm{or}\ x = 2\ \mathrm{or}\ x = 3\}$$
+A more general form of this for any set can be written as:
+$\{x|conditions\}$ Where x are the elements of the set, defined by whatever conditions the situation calls for.
+
+#### Some properties of sets
+
++ **A set is uniquely defined by its members**
+Two sets are equal only if all of their elements are the same. However sets are also unordered - so $\{1,2,3\}$ is equal to $\{3,1,2\}$
+
++ The **Empty Set** has no contents. It is represented by $\emptyset$ or $\{\}$ 
+
++ Set A can be a **Subset** of set B if all the elements in set A are also members of set B. Mathematically, this is written as $A \subset B$. Note that the empty set is the subset of any other set and $A \subset A$ for any set $A$.
+
++ We say that sets $A_1, A_2, A_3,\ldots$ are **mutually exclusive** or **disjoint** if $A_i \cap A_j = \emptyset$ for any distinct pair $A_i \ne A_j$. For instance, in the coin-toss experiment the set A = {Heads} and B = {Tails} would be mutually exclusive.  
+
+### Sample spaces
+
+For an experiment E, the set of all possible outcomes (sample points) of E is called the **sample space** and is denoted by the letter $S$  
   
-Here are some examples of random processes/experiments, sample points, and sample spaces:     
+Here are some examples of experiments, sample points, and sample spaces:     
   
-  a) Random process/Experiment: Roll a standard 6-sided die and record the result (the number that is face up)    
+  a) Experiment: Roll a standard 6-sided die and record the result (the number that is face up)    
 example of a sample point: 2     
 sample space: {1,2,3,4,5,6}     
        
-  b) Random process/Experiment: Roll a die, then flip a coin (with probability .6 of landing on heads) and record the die roll and whether heads or tails is facing upward on the coin.  
+  b) Experiment: Roll a die, then flip a coin (with probability .6 of landing on heads) and record the die roll and whether heads or tails is facing upward on the coin.  
 example of a sample point: (2,Heads)   
 sample space: {(1,Heads),(2,Heads),(3,Heads),(4,Heads),(5,Heads),(6,Heads),(1,Tails),(2,Tails),(3,Tails),  
-(4,Tails),(5,Tails),(6,Tails)}  
+(4,Tails),(5,Tails),(6,Tails)}    
+
+#### Events  
+An event is a specific collection of outcomes, or in other words, a **subset of the sample space**. After the performance of a random experiment, we say that the event A _occurred_ if the experiment's outcome _belongs to_ A. 
        
 #### Probability Definition  
-Suppose that a random process is repeated infinitely many times; Then the probability of a particular outcome is the proportion of times that the outcome is observed.  
+Suppose that a random experiment (also called a random process) is repeated infinitely many times; Then the probability of a particular event is the proportion of times that the event occured.  
 
 #### Law of Large Numbers   
-As a random process is repeated more times, the observed proportion of any particular outcome will converge to the true empirical probability of that outcome.     
+As a random experiment is repeated more times, the observed proportion of times that an event occurs will converge to the true empirical probability of that event.     
 
+#### Union, Intersection and Difference
+Given subsets A and B, it is often useful to manipulate them in an algebraic fashion. We have three set operations at our disposal to accomplish this: **union**, **intersection**, and **difference**. Additionally we can take the **complement** of one of the sets. Below is a table that summarizes the pertinent information about these operations.
+
+| Name         | Notation        | Definition               |  
+|--------------|-----------------|--------------------------|  
+| Union        | $A \cup B$      | In either A or B or both |  
+| Intersection | $A \cap B$      | In both A and B          |  
+| Difference   | $A \setminus B$ | In A but not in B        |   
+
+  
 #### Addition Rule  
-$P(A$ or $B) = P(A) + P(B) - P(A$ and $B)$  
-Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=0$   
-
-#### Complements  
-For a particular outcome, $A$, of a random process, the complement of that outcome, $A^c$ is made up of all sample points *not* in $A$.   
-$A+A^c=1$   
-
-#### Conditional Probability  
-The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$ and is calculated as (Bayes rule): $P(A|B)=\frac{P(B|A)P(A)}{P(B)}$    
+$P(A$ or $B)=P(A \cup B) = P(A) + P(B) - P(A$ and $B)$  
+Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=0$     
 
 #### Multiplication Rule    
 Generally:  
 $P(A$ and $B) = P(A) \times P(B|A)$  
 Therefore if $A$ and $B$ are independent:    
 $P(A$ and $B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
+
+#### Complements  
+For random experiment sample space $S$: The complement of an event $A$ is denoted $A^c$ and is made up of all sample points in $S$ that are *not* in $A$.   
+$A+A^c=1$     
+
+#### Conditional Probability  
+The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$ and is calculated as: $P(A|B)=\frac{P(A\cap B)}{P(B)}$    
+  
   
 ## Practice Problems   
   
   1. Suppose that you run an experiment that involves flipping 2 fair coins. Consider the following events:  
-    A={The first coin flip is tails}  
-    B={Both coin flips are tails}  
-    C={The coin flips are the same (i.e., both heads or both tails)}  
-    
+    A=The first coin flip is tails  
+    B=Both coin flips are tails  
+    C=The coin flips are the same (i.e., both heads or both tails)    
       a. Write out the sample space for this experiment    
       b. Write out the sample points that comprise each event   
       c. What is the probability of A and C: $P(A\cap C)$?    
@@ -603,12 +643,11 @@ $P(A$ and $B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are indep
       f. Write out the sample points in the complement of B: $B^c$     
     
     
-  2. Suppose that you are playing the following game with your friend: you have a urn with 10 marbles inside. 8 marbles are red and 2 marbles are blue. Your friend randomly picks a marble from the urn. If the marble is blue, your friend wins the game. If the marble is red, then you get to pick a marble from the urn. The game continues until someone draws a blue marble to win the game.        
-    a. What is the probability of your friend winning on the first turn?   
-    b. What is your probability of winning on your first turn (i.e., given that your friend got a red marble on the first turn)?    
-    c. What is the probability that you and your friend both pick red marbles on your first turns?    
-   
-    
+  2. Suppose that you are playing the following game with your friend: you have a urn with 10 marbles inside. 8 marbles are red and 2 marbles are blue. Your friend randomly picks a marble from the urn. If the marble is blue, your friend wins the game. If the marble is red, then you get to pick a marble from the urn. The game continues until someone draws a blue marble to win the game.       
+      a. What is the probability of your friend winning on the first turn?     
+      b. What is your probability of winning on your first turn (i.e., given that your friend got a red marble on the first turn)?     
+      c. What is the probability that you and your friend both pick red marbles on your first turns?     
+     
   3. Suppose that you collected responses from a random sample of 200 New Yorkers for the following 2 questions: 1) Do you exercise at least 3 times per week? and 2) Have you ever been diagnosed with Depression? Use the following table (which shows the number of yes/no responses to each question) to calculate the indicated probabilities.     
     
 ```{r, echo=FALSE}
@@ -617,8 +656,7 @@ dat <- data.frame(YesE=c(45,65),
 rownames(dat) <- c("NoD", "YesD")
 knitr::kable(dat, row.names=T,col.names=c("           YesE","    NoE"),align="r")
 ```     
-     
-     
+        
       a. What is the probability of an individual respondent having been diagnosed with depression?  
       b. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they exercise at least 3 times per day?    
       c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per day?     
@@ -862,7 +900,7 @@ This is done in much the same way as before, except now we need to calculate $\b
 Standard error:  
 Using what we know about the properties of variance, we can derive that:  
 $$SE^2(\bar{x_1}-\bar{x_2})=SE^2(\bar{x_1})+(-1)^2SE^2(\bar{x_2})= SE^2(\bar{x_1})+SE^2(\bar{x_2})=\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}$$  
-So, $SE(\bar{x_1}-\bar{x_2})$ can be estimated using: $SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$  
+So, $SE(\bar{x_1}-\bar{x_2})$ can be estimated using: $$SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$    
 
 Alternatively, if we think that the two groups have equal variances, we can used the pooled standard deviation formula to get a better estimate of $SE(\bar{x_1}-\bar{x_2})$. The formula is:  
 $$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$     

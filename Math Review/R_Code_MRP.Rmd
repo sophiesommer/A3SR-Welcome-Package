@@ -24,15 +24,16 @@ The notes and code in this document are meant to serve as complementary material
 We will cover: \newline
 - Logarithms \newline
 - Matrices \newline
+- Basic Probability \newline
 - Statistical concepts \newline
-    * Central tendency \newline  
+    * Summary Statistics \newline  
     * The Central Limit Theorem \newline  
     * Covariance and correlation \newline  
     * Ordinary Least Square regression \newline  
 
-Please use this as a resource to become more comofortable with R. You can run the R chunks by pressing the green play button in the top right corner (of the chunk). Or, you can run parts of the code and change portions of it in the Console. It may also be useful to look up functions in the **Help** tab (or type '?function' into the Console) to see function documentation. 
+Please use this as a resource to become more comfortable with R. You can run the R chunks by pressing the green play button in the top right corner (of the chunk). Or, you can run parts of the code and change portions of it in the Console. It may also be useful to look up functions in the **Help** tab (or type '?function' into the Console) to see function documentation. 
 
-You may also find it helpful to take notes in this document so that you can reference it during the first few months of classes. You can comment (by using '#' in the R chunk) as a way of annotating it in your own words. This is good practice for deciphering other people's code and is a good habit for documenting your own future work. 
+You may also find it helpful to take notes in this document so that you can reference them during the first few months of classes. You can comment (by using '#' in the R chunk) as a way of annotating it in your own words. This is good practice for deciphering other people's code and is a good habit for documenting your own future work. 
 
 Note: In this document, you will also see LaTeX notation, which is used to render math symbols when you knit to PDF. If you hover over the items in the dollar signs, you will see what the formatting will look like when knitted to a PDF. 
 
@@ -53,21 +54,23 @@ In general, we can also calculate exponents using the ^ character. For example, 
 exp(4)
 ```
 
-### Practice Problems.
-1. Show that, if x=3, it is true that:
-a. $log_e(e^x) = x$
+### Practice Problems.  
+Note: these problems are identical to those in the review packet. Try them by hand first; then use the code chunks below to verify that you get the same answers.  
+
+1. Calculate the following.  
+a. $log_e(e^3)$
 ```{r Logs 1a}
 log(exp(3))
 ```
 
 b. $log_{10}(100)$
 ```{r Logs 1b}
-log10(10)
+log10(100)
 ```
 
 c. $log_{10}(\frac{1}{10})$
 ```{r Logs 1c}
-log10(1/100)
+log10(1/10)
 ```
 
 d. $log_{10}(0)$ Note: There is no solution here; R returns -Inf  
@@ -111,7 +114,7 @@ A <- matrix(data = c(1,2,5,3,4,7), nrow = 2, ncol = 3, byrow = TRUE)
 
 print(A)
 
-# A transpose
+# Transpose of A
 t(A)
 ```
 
@@ -127,6 +130,7 @@ class(I) #tells you the object class; in this case, a matrix!
 #### Diagonal 
 ```{r}
 X1 <- matrix(data = c(1,0,0,0,4,0,0,0,5), nrow = 3, byrow = TRUE)
+diag(X1) #note that diag(matrix) gives you the diagonal values of the matrix  
 print(X1)
 
 # To obtain the obtain the values of the diagonal of an n x n matrix
@@ -140,15 +144,17 @@ print(X2)
 
 #### Upper and Lower Triangular Matrices 
 ```{r, tidy=TRUE}
-# Create a 3 by 3 matrix of zeros
+# Create 2 3 by 3 matrices of zeros (save them as V and W)
 V <- W <- matrix(data = 0, nrow = 3, ncol = 3, byrow = TRUE)
 print(W)
 
-# Use upper.tri() or lower.tri() to change the elements of the upper triangular matrix or lower triangular matrix, respectively. 
+# Use upper.tri() or lower.tri() to change the elements of the upper triangular matrix 
+# or lower triangular matrix, respectively. 
 
 # Upper Triangular
 #this returns a 3 by 3 matrix with TRUE's in the upper triangle and FALSE's everywhere else:
 upper.tri(W, diag = TRUE) 
+
 #we can then assign values to the upper triangle of W using square brackets 
 W[upper.tri(W, diag = TRUE)] <- c(1:6)
 print(W)
@@ -275,7 +281,9 @@ Y %*% Z
 
 \pagebreak  
   
-### Practice Problems
+### Practice Problems  
+Note: these problems are identical to those in the review packet. Try them by hand first; then use the code chunks below to verify that you get the same answers.   
+  
 1. Show each of the following by solving the left side of the equation in R:    
 
   a. $\begin{bmatrix} 2&4&2\\ 1&3&0\\1&6&2\\ \end{bmatrix} +
@@ -396,100 +404,28 @@ range(dat)
 #from the second element in range(dat) (the maximum)
 range(dat)[2]-range(dat)[1]
 
-#another option is to use the diff() function, which calculates the difference between to values
+#another option is to use the diff() function, which calculates the difference between two values
 diff(range(dat))
 
-# Variance 
+# Variance of a set of values can be calculated using the var() function 
 var(dat)
 
-# Standard Deviation
+# Standard Deviation can be calculated using the sd() function
 sd(dat)
 
 # Show that the square root of the variance gives the same output as sd() 
 sqrt(var(dat))
 ```
 
-\pagebreak
-## Central Limit Theorem Introduction
-We can sample from many distributions in R. The following will walk through sampling from a normal distribution. 
+\pagebreak  
 
-In the example with average salary of "Data Scientists" we have a sample (n = 400), a mean salary of 100,000 and standard deviation of 10,000. 
-```{r, tidy = TRUE}
-#set the seed for reproducibility. Note, the choice of 102 was random. 
-#this can be used when you are using random sampling functions to ensure the same results every time
-set.seed(102)
+## Probability   
 
-#take a random sample of 400 values from a normal distribution with mean 100,000 and sd 10,000
-DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)   
-
-#this creates a 4 by 4 grid in which to place the following three plots
-par(mfrow=c(2,2))
-
-#plot a histogram of the salaries:  
-hist(DS_salary, 
-     main = "Histogram of Data Scientist's salaries", 
-     cex.main = 0.7, 
-     xlab = "Dollars (USD)", 
-     breaks = 10)
-
-#plot the smoothed density of the salaries: 
-plot(density(DS_salary), 
-     main = "Density plot of Data Scientist's salaries", 
-     cex.main = 0.7, 
-     xlab = "Dollars (USD)")  
-
-#make a boxplot of the salaries: 
-boxplot(DS_salary, 
-        main = "Boxplot of Data Scientist's salaries", 
-        cex.main = 0.7)
-```
-
-### Confidence Intervals (an example)
-```{r}
-#save the mean, standard deviation, and sample size
-mean_ <- 100000
-sd_ <- 10000
-n <- 400
-
-#note: qnorm gives quantiles for a standard normal distribition
-#for example, qnorm(0.975) gives the 97.5th percentile value for a standard normal distribution
-#(standard normal means mean=0 and sd=1)
-error <- qnorm(0.975)*sd_/sqrt(n)
-mean_ - error # lower bound of confidence interval
-mean_ + error # upper bound of confidence interval
-```
-  
-## Probability  
 Note: the R code in this section uses some more advanced techniques (like loops and functions) that will not be formally covered until later. For now, do your best to understand the code, but focus on running it and understanding the output.  
 
-# Set Theory
 
-This section goes over some definitions and theory before we go any further.
 
-**Set** - An unordered collection of distinct elements.
-
-A set is made of of elements, and each of those elements is a **member** of the set. We use the $\in$ symbol to denote membership. The following means _element x is a member of set A_.
-$$x \in A$$
-
-Curly braces are usually used to denote sets.
-$$\{1,2,3\}$$
-You could think of this set as variable x, given that x is either 1,2, or 3. We write this mathematically as the following (the pipe | means "given")
-$$\{x\ |\ x = 1\ \mathrm{or}\ x = 2\ \mathrm{or}\ x = 3\}$$
-A more general form of this for any set can be written as:
-$\{x|conditions\}$ Where x are the elements of the set, defined by whatever conditions the situation calls for.
-
-## Some properties of sets
-
-+ **A set is uniquely defined by its members**
-Two sets are equal only if all of their elements are the same. However sets are also unordered - so $\{1,2,3\}$ is equal to $\{3,1,2\}$
-
-+ The **Empty Set** has no contents. It is represented by $\emptyset$ or $\{\}$ 
-
-+ Set A can be a **Subset** of set B if all the elements in set A are also members of set B. Mathematically, this is written as $A \subset B$. Note that the empty set is the subset of any other set and $A \subset A$ for any set $A$.
-
-+ We say that sets $A_1, A_2, A_3,\ldots$ are **mutually exclusive** or **disjoint** if $A_i \cap A_j = \emptyset$ for any distinct pair $A_i \ne A_j$. For instance, in the coin-toss experiment the set A = {Heads} and B = {Tails} would be mutually exclusive.
-
-# Sample Spaces
+### Sample Spaces
 
 For an experiment E, the set of all possible outcomes of E is called the **sample space** and is denoted by the letter $S$. For a coin-toss experiment, $S$ would be the results “Head” or “Tail”, which we may represent by $S = \{H, T\}$.
 
@@ -608,7 +544,7 @@ unique(outcomes)
 ```
 
 
-# Events
+### Events
 
 An event is a specific collection of outcomes, or in other words, a **subset of the sample space**. After the performance of a random experiment, we say that the event A _occurred_ if the experiment's outcome _belongs to_ A. 
 
@@ -629,7 +565,7 @@ sample.space <- unique(outcomes)
 
 ```
 
-## Brackets [ ]
+### Brackets [ ]
 
 R has different ways to find subsets. Square brackets select certain elements of a vector:
 
@@ -643,7 +579,7 @@ sample.space[1:3]
 sample.space[c(2,5)]
 ```
 
-## The `%in%` function
+### The `%in%` function
 
 The function %in% helps to learn whether each value of one vector lies somewhere inside another vector. Consider set $x$, the numbers from 1 to 10, and set $y$, the numbers from 8 to 12.
 
@@ -656,7 +592,7 @@ y[which(y %in% x)]
 
 Notice that the returned value of the first line is a vector of length 5 which tests whether each element of y is in x, in turn. The returned value of the second line are the elements of y that are also elements of x. 
 
-# Union, Intersection and Difference
+### Union, Intersection and Difference
 
 Given subsets A and B, it is often useful to manipulate them in an algebraic fashion. We have three set operations at our disposal to accomplish this: **union**, **intersection**, and **difference**. Additionally we can take the **complement** of one of the sets. Below is a table that summarizes the pertinent information about these operations.
 
@@ -694,7 +630,7 @@ setdiff(y,x)
 # The difference is not symmetrical because we're taking the area of the second from the area of the first. 
 ```
 
-## Complement
+### Complements
 
 If we know the Sample Space, we can also use `setdiff` to take the **complement** of a subset. A complement is the entire part of the sample space _not_ in the subset. Set up a new sample space containing the numbers 1 to 15 and find the complement of x in this sample space.
 
@@ -704,7 +640,59 @@ s <- 1:15 # A sample space of number 1-15
 
 setdiff(s,x) # The complement of x in sample space s
 
+```  
+  
+\pagebreak    
+  
+## Central Limit Theorem Introduction
+We can sample from many distributions in R. The following will walk through sampling from a normal distribution. 
+
+In the example with average salary of "Data Scientists" we have a sample (n = 400), a mean salary of 100,000 and standard deviation of 10,000. 
+```{r, tidy = TRUE}
+#set the seed for reproducibility. Note, the choice of 102 was random. 
+#this can be used when you are using random sampling functions to ensure the same results every time
+set.seed(102)
+
+#take a random sample of 400 values from a normal distribution with mean 100,000 and sd 10,000
+DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)   
+
+#this creates a 4 by 4 grid in which to place the following three plots
+par(mfrow=c(2,2))
+
+#plot a histogram of the salaries:  
+hist(DS_salary, 
+     main = "Histogram of Data Scientist's salaries", 
+     cex.main = 0.7, 
+     xlab = "Dollars (USD)", 
+     breaks = 10)
+
+#plot the smoothed density of the salaries: 
+plot(density(DS_salary), 
+     main = "Density plot of Data Scientist's salaries", 
+     cex.main = 0.7, 
+     xlab = "Dollars (USD)")  
+
+#make a boxplot of the salaries: 
+boxplot(DS_salary, 
+        main = "Boxplot of Data Scientist's salaries", 
+        cex.main = 0.7)
 ```
+
+### Confidence Intervals (an example)
+```{r}
+#save the mean, standard deviation, and sample size
+mean_ <- 100000
+sd_ <- 10000
+n <- 400
+
+#note: qnorm gives quantiles for a standard normal distribition
+#for example, qnorm(0.975) gives the 97.5th percentile value for a standard normal distribution
+#(standard normal means mean=0 and sd=1)
+error <- qnorm(0.975)*sd_/sqrt(n)
+mean_ - error # lower bound of confidence interval
+mean_ + error # upper bound of confidence interval
+```
+   
      
 ## Z-Tests, T-Test, and P-Values
 
