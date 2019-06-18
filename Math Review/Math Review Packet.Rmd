@@ -105,7 +105,7 @@ $=log_3(\frac{5x^2}{2})$
 
 ### Definitions  
 An $m\times n$ matrix $A$ has $m$ rows, $n$ columns, and can be written as:     
-$$A=\begin{bmatrix}
+$$\textbf{A}=\begin{bmatrix}
 a_{11}&a_{12}&...&a_{1n}\\
 a_{21}&a_{22}&...&a_{2n}\\
 ...&...&...&...\\
@@ -113,19 +113,19 @@ a_{m1}&a_{m2}&...&a_{mn}\\
 \end{bmatrix}$$
 
 The transpose of an $m\times n$ matrix, $A$ is the $n\times m$ matrix (denoted $A^T$) such that every element $a_{ij}$ in matrix A is moved to row $j$ and column $i$. For example, if:  
-$$A=\begin{bmatrix}
+$$\textbf{A}=\begin{bmatrix}
 1&2&5\\
 3&4&7\\
 \end{bmatrix}$$  
 then,  
-$$A^T=\begin{bmatrix}
+$$\textbf{A}^T=\begin{bmatrix}
 1&3\\
 2&4\\
 5&7\\
 \end{bmatrix}$$  
 
 The $n\times n$ identity matrix $I_n$ is a matrix with $1$s on the diagonal and $0$s everywhere else:  
-$$I_n=\begin{bmatrix}
+$$\textbf{I}_n=\begin{bmatrix}
 1&0&...&0\\
 0&1&...&0\\
 ...&...&\ddots &...\\
@@ -153,7 +153,7 @@ $$\begin{bmatrix}
 0&4&4\\
 \end{bmatrix}$$   
    
-Suppose that an we have $2$ $n\times n$ matrices, $A$ and $B$, such that $AB=I_n$ (note: this also implies $BA=I_n$). Then we say that $B$ is the inverse of $A$ (and vice versa) and we can write, $B=A^{-1}$. A matrix $A$ has an inverse if and only if its determinant is not equal to zero. Note that the determinant of a $2\times 2$ matrix can be calculated as follows (it is not important that you are able to calculate the determinant of a higher dimensional matrix by hand):  
+Suppose that an we have $2$ $n\times n$ matrices, $A$ and $B$, such that $AB=I_n$ (note: this also implies $\textbf{BA}=\textbf{I}_n$). Then we say that $B$ is the inverse of $A$ (and vice versa) and we can write, $B=A^{-1}$. A matrix $A$ has an inverse if and only if its determinant is not equal to zero. Note that the determinant of a $2\times 2$ matrix can be calculated as follows (it is not important that you are able to calculate the determinant of a higher dimensional matrix by hand):  
 $$det(\begin{bmatrix}
 a&b\\
 c&d\\
@@ -161,10 +161,10 @@ c&d\\
 
 ### Operations with matrices  
 
-  a. Adding matrices ($A+B=C$): If we add $2$ $m\times n$ matrices, $A$ and $B$, we get another $m\times n$ matrix $C$ such that $c_{ij}=a_{ij}+b_{ij}$  
-  b. Subtracting matrices ($A-B=C$): If we subtract the $m\times n$ matrix $B$ from the $m\times n$ matrix $A$, we get another $m\times n$ matrix $C$ such that $c_{ij}=a_{ij}-b_{ij}$   
-  c. Multiplying a matrix by a scalar ($cA=B$): If we multiply the $m\times n$ matrix $A$ by a scalar, $c$, then we get another $m\times n$ matrix $B$ such that $b_{ij}=c*a_{ij}$   
-  d. Matrix multiplication ($AB=C$): Note that it is only possible to compute $AB$ if the number of columns in matrix $A$ equals the number of rows in matrix $B$. If this is the case, then when we multiply an $m\times n$ matrix $A$ by an $n\times k$ matrix $B$, we get an $m\times k$ matrix, $C$, such that $c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+\dots+a_{in}b_{nk}$   
+  a. Adding matrices ($\textbf{A}+\textbf{B}=\textbf{C}$): If we add $2$ $m\times n$ matrices, $\textbf{A}$ and $\textbf{B}$, we get another $m\times n$ matrix $C$ such that $c_{ij}=a_{ij}+b_{ij}$  
+  b. Subtracting matrices ($\textbf{A}-\textbf{B}=\textbf{C}$): If we subtract the $m\times n$ matrix $\textbf{B}$ from the $m\times n$ matrix $\textbf{A}$, we get another $m\times n$ matrix $\textbf{C}$ such that $c_{ij}=a_{ij}-b_{ij}$   
+  c. Multiplying a matrix by a scalar ($c\textbf{A}=\textbf{B}$): If we multiply the $m\times n$ matrix $\textbf{A}$ by a scalar, $c$, then we get another $m\times n$ matrix $\textbf{B}$ such that $b_{ij}=c*a_{ij}$   
+  d. Matrix multiplication ($\textbf{AB}=\textbf{C}$): Note that it is only possible to compute $\textbf{AB}$ if the number of columns in matrix $\textbf{A}$ equals the number of rows in matrix $\textbf{B}$. If this is the case, then when we multiply an $m\times n$ matrix $\textbf{A}$ by an $n\times k$ matrix $\textbf{B}$, we get an $m\times k$ matrix, $\textbf{C}$, such that $c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+\dots+a_{in}b_{nk}$   
   
 ### Example 1: Matrix Multiplication     
 $$\begin{bmatrix}
@@ -188,13 +188,13 @@ $$\begin{bmatrix}
 \end{bmatrix}$$
 
 ### Properties of matrix operations  
-  1. $A+B=B+A$  
-  2. $(A+B)+C=A+(B+C)$   
-  3. $(AB)C=A(BC)$   
-  4. $(A+B)C=AC + BC$  
-  5. If $A$ is an $m\times n$ matrix, then $I_mA=A$ and $AI_n=A$
+  1. $\textbf{A}+\textbf{B}=\textbf{B}+\textbf{A}$  
+  2. $(\textbf{A}+\textbf{B})+\textbf{C}=\textbf{A}+(\textbf{B}+\textbf{C})$   
+  3. $(\textbf{AB})\textbf{C}=\textbf{A}(\textbf{BC})$   
+  4. $(\textbf{A}+\textbf{B})\textbf{C}=\textbf{AC} + \textbf{BC}$  
+  5. If $\textbf{A}$ is an $m\times n$ matrix, then $\textbf{I}_m\textbf{A}=\textbf{A}$ and $\textbf{AI}_n=\textbf{A}$
   
-Note that, in general $AB \ne BA$   
+Note that, in general $\textbf{AB} \ne \textbf{BA}$   
 \pagebreak  
 
 ### Writing a system of equations using matrix notation   
@@ -205,7 +205,7 @@ $y_2=a_{21}x_1+a_{22}x_2+\dots+a_{2n}x_n$
 $y_m=a_{m1}x_1+a_{m2}x_2+\dots+a_{mn}x_n$  
 
 We can re-write these equations much more simply as:  
-$Y=AX$ where $Y$is a $1\times m$ matrix, $A$ is an $m\times n$ matrix, and $X$ is a $1\times n$ matrix:  
+$\textbf{Y}=\textbf{AX}$ where $\textbf{Y}$is a $1\times m$ matrix, $\textbf{A}$ is an $m\times n$ matrix, and $X$ is a $1\times n$ matrix:  
 
 $$\begin{bmatrix}
 y_1\\
@@ -256,7 +256,7 @@ $$
 5&2&-1\\
 3&4&2\\
 \end{bmatrix}$      
-    c. Let A=$\begin{bmatrix}
+    c. Let **A**=$\begin{bmatrix}
 1&2\\
 3&5\\
 4&0\\
@@ -265,10 +265,10 @@ $B=\begin{bmatrix}
 4&4\\
 1&2\\
 7&0\\
-\end{bmatrix}$ Calculate $A^TB$   
-    d. Using the same matrices as in part c, calculate $B^TA$         
+\end{bmatrix}$ Calculate $\textbf{A}^T\textbf{B}$   
+    d. Using the same matrices as in part c, calculate $\textbf{B}^T\textbf{A}$         
    
-  2. Show that $A$ and $B$ are inverses:   
+  2. Show that $\textbf{A}$ and $\textbf{B}$ are inverses:   
      $A=\begin{bmatrix}
 1&2&1\\
 2&2&0\\
@@ -280,9 +280,9 @@ $B=\begin{bmatrix}
 0&-0.5&1\\
 \end{bmatrix}$   
 
-  3. Suppose that $A$ is a 4x3 matrix and $B$ is a $3x8$ matrix.  
-    a. Does $AB$ exist? If so, what are the dimensions of $AB$?  
-    b. Does $BA$ exist? If so, what are the dimensions of $BA$?  
+  3. Suppose that $\textbf{A}$ is a 4x3 matrix and $\textbf{B}$ is a $3x8$ matrix.  
+    a. Does $\textbf{AB}$ exist? If so, what are the dimensions of $\textbf{AB}$?  
+    b. Does $\textbf{BA}$ exist? If so, what are the dimensions of $\textbf{BA}$?  
     
   4. What is the determinant of $\begin{bmatrix}
 1&-2\\
@@ -312,7 +312,7 @@ $B=\begin{bmatrix}
 10&18\\
 \end{bmatrix}$      
        
-  2. Show that $A$ and $B$ are inverses:    
+  2. Show that $\textbf{A}$ and $\textbf{B}$ are inverses:    
   $\begin{bmatrix}
 1&2&1\\
 2&2&0\\
@@ -328,9 +328,9 @@ $B=\begin{bmatrix}
 0&0&1\\
 \end{bmatrix}$
   
-  3. Suppose that $A$ is a 4x3 matrix and $B$ is a $3x8$ matrix.  
-    a. $AB$ exists and is 4x8   
-    b. $BA$ does not exist    
+  3. Suppose that $\textbf{A}$ is a 4x3 matrix and $\textbf{B}$ is a $3x8$ matrix.  
+    a. $\textbf{AB}$ exists and is 4x8   
+    b. $\textbf{BA}$ does not exist    
     
   4. The determinant is $(1*3)-(-2*4)=(3)-(-8)=11$   
   
