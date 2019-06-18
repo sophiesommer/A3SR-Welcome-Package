@@ -156,7 +156,7 @@ A Uniform distribution has an equal probability of an event occuring given an in
 N <- 50 # Set the size of sample 
 ITER <- 50 # Set the number of iterations for the size of the sampling distribution 
 
-draw_mean_uni1 <- # inset code here
+draw_mean_uni1 <- # insert code here
 
 # Sample from the simulated data (from a uniform distribution stored above)
   # find the mean, and store the value ITER times

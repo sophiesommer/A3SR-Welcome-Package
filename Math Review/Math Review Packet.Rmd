@@ -153,7 +153,7 @@ $$\begin{bmatrix}
 0&4&4\\
 \end{bmatrix}$$   
    
-Suppose that an we have $2$ $n\times n$ matrices, $A$ and $B$, such that $AB=I_n$ (note: this also implies $\textbf{BA}=\textbf{I}_n$). Then we say that $B$ is the inverse of $A$ (and vice versa) and we can write, $B=A^{-1}$. A matrix $A$ has an inverse if and only if its determinant is not equal to zero. Note that the determinant of a $2\times 2$ matrix can be calculated as follows (it is not important that you are able to calculate the determinant of a higher dimensional matrix by hand):  
+Suppose that an we have $2$ $n\times n$ matrices, $\textbf{A}$ and $\textbf{B}$, such that $\textbf{AB}=\textbf{I}_n$ (note: this also implies $\textbf{BA}=\textbf{I}_n$). Then we say that $B$ is the inverse of $A$ (and vice versa) and we can write, $\textbf{B}=\textbf{A}^{-1}$. A matrix $\textbf{A}$ has an inverse if and only if its determinant is not equal to zero. Note that the determinant of a $2\times 2$ matrix can be calculated as follows (it is not important that you are able to calculate the determinant of a higher dimensional matrix by hand):  
 $$det(\begin{bmatrix}
 a&b\\
 c&d\\
@@ -205,7 +205,7 @@ $y_2=a_{21}x_1+a_{22}x_2+\dots+a_{2n}x_n$
 $y_m=a_{m1}x_1+a_{m2}x_2+\dots+a_{mn}x_n$  
 
 We can re-write these equations much more simply as:  
-$\textbf{Y}=\textbf{AX}$ where $\textbf{Y}$is a $1\times m$ matrix, $\textbf{A}$ is an $m\times n$ matrix, and $X$ is a $1\times n$ matrix:  
+$\textbf{Y}=\textbf{AX}$ where $\textbf{Y}$ is a $1\times m$ matrix, $\textbf{A}$ is an $m\times n$ matrix, and $X$ is a $1\times n$ matrix:  
 
 $$\begin{bmatrix}
 y_1\\
