@@ -16,7 +16,7 @@ If we take repeated independent samples of size $n$ from a population of interes
 ### The mean of the sampling distribution of the mean 
 Suppose we are trying to estimate the mean commuting time for graduate students for a population of 1000 grduate students. Let's say the population mean is 45 minutes. If we randomly select a sample of 50 graduate students we might observe a sample mean ($\bar{x}$) equal to 35 minutes. Suppose we randomly select another 20 graduate students from the popluation and find the mean to be 50 minutes. We repeat this process over and over again to have distribution of means for all the possible samples of 50 graduate students. This is called a **sampling distribution of the mean**. From the **central limit theorem** the sampling distribution of the mean has a mean of $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$. 
 
-We can simulate this in R. You can sample from a variety distribtions in base R, given the distribution parameters. For example, we can sample from a binomial distribution using **rbinom**, a poisson distribution using **rpois**, and a normal distribution using **rnorm**. The R function rnorm() takes in parameters of the distribution: n (the number of observations), mean (the mean of the sample), and sd (the standard deviation) to randomly draw from the distribution. 
+We can simulate this in R. You can sample from a variety distribtions in base R, given the distribution parameters. For example, we can sample from a binomial distribution using 'rbinom', a poisson distribution using 'rpois', and a normal distribution using 'rnorm'. The R function rnorm() takes in parameters of the distribution: n (the number of observations), mean (the mean of the sample), and sd (the standard deviation) to randomly draw from the distribution. 
 
 We will explore the example from above through simulation, assuming that the population of graduate students is normally distributed. 
 ```{r, tidy = TRUE}
@@ -144,7 +144,7 @@ Note: this assignment should be submitted as a knitted PDF file. Please include 
 ### Uniform Distribution
 A Uniform distribution has an equal probability of an event occuring given an interval from [a,b]. 
 
-1. Simulate a sample from a uniform distribution (use **runif**)of size 500 from an interval between 0 and 1. Store and plot your sample. Note: You can type runif in the *Help* tab or type ?runif into the Console to look at the documentation of the function
+1. Simulate a sample from a uniform distribution (use 'runif')of size 500 from an interval between 0 and 1. Store and plot your sample. Note: You can type runif in the *Help* tab or type '?runif' into the Console to look at the documentation of the function.
 ```{r, tidy = TRUE}
 ## Insert your code here
 ```
