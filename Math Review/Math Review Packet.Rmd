@@ -755,10 +755,6 @@ For a discrete random variable, X, with possible outcomes $x_1,...,x_n$, $E(X)=\
 
 The variance of a random variable X is given by: $E(X^2)-(E(X))^2$   
 Note: For now, the exact formulas for expectation and variance of a random variable are less important than understanding that expectation is a measure of central tendency and variance is a measure of spread.     
-
-Properties of expected value:   
-  1. $E(X+Y) = E(X)+E(Y)$     
-  2. $E(cX) = cE(X)$ where $c$ is a constant   
   
 Properties of expected value (for a random variable $X$):  
   1. $E(X+Y) = E(X)+E(Y)$ where $Y$ is also a random variable   
