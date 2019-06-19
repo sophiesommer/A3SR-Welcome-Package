@@ -659,8 +659,8 @@ knitr::kable(dat, row.names=T,col.names=c("           YesE","    NoE"),align="r"
 ```     
         
       a. What is the probability of an individual respondent having been diagnosed with depression?  
-      b. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they exercise at least 3 times per day?    
-      c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per day?     
+      b. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they exercise at least 3 times per week?    
+      c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per week?     
       d. Based on your responses above, do you think that there is an association between exercise frequency and probability of being diagnosed with depression?    
 
    
