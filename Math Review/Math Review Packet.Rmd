@@ -164,10 +164,9 @@ c&d\\
 
 ### Operations with matrices  
 
-  a. Adding matrices ($\textbf{A}+\textbf{B}=\textbf{C}$): If we add $2$ $m\times n$ matrices, $\textbf{A}$ and $\textbf{B}$, we get another $m\times n$ matrix $C$ such that $c_{ij}=a_{ij}+b_{ij}$  
-  b. Subtracting matrices ($\textbf{A}-\textbf{B}=\textbf{C}$): If we subtract the $m\times n$ matrix $\textbf{B}$ from the $m\times n$ matrix $\textbf{A}$, we get another $m\times n$ matrix $\textbf{C}$ such that $c_{ij}=a_{ij}-b_{ij}$   
-  c. Multiplying a matrix by a scalar ($c\textbf{A}=\textbf{B}$): If we multiply the $m\times n$ matrix $\textbf{A}$ by a scalar, $c$, then we get another $m\times n$ matrix $\textbf{B}$ such that $b_{ij}=c*a_{ij}$   
-  d. Matrix multiplication ($\textbf{AB}=\textbf{C}$): Note that it is only possible to compute $\textbf{AB}$ if the number of columns in matrix $\textbf{A}$ equals the number of rows in matrix $\textbf{B}$. If this is the case, then when we multiply an $m\times n$ matrix $\textbf{A}$ by an $n\times k$ matrix $\textbf{B}$, we get an $m\times k$ matrix, $\textbf{C}$, such that $c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+\dots+a_{in}b_{nk}$   
+  a. Adding/Subtracting matrices ($\textbf{A}\pm\textbf{B}=\textbf{C}$): If we add or subtract $2$ $m\times n$ matrices, $\textbf{A}$ and $\textbf{B}$, we get another $m\times n$ matrix $C$ such that $c_{ij}=a_{ij}\pm b_{ij}$     
+  b. Multiplying a matrix by a scalar ($c\textbf{A}=\textbf{B}$): If we multiply the $m\times n$ matrix $\textbf{A}$ by a scalar, $c$, then we get another $m\times n$ matrix $\textbf{B}$ such that $b_{ij}=c*a_{ij}$    
+  c. Matrix multiplication ($\textbf{AB}=\textbf{C}$): Note that it is only possible to compute $\textbf{AB}$ if the number of columns in matrix $\textbf{A}$ equals the number of rows in matrix $\textbf{B}$. If this is the case, then when we multiply an $m\times n$ matrix $\textbf{A}$ by an $n\times k$ matrix $\textbf{B}$, we get an $m\times k$ matrix, $\textbf{C}$, such that $c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+\dots+a_{in}b_{nk}$     
   
 ### Example 1: Matrix Multiplication     
 $$\begin{bmatrix}

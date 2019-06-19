@@ -43,19 +43,19 @@ Note: In this document, you will also see LaTeX notation, which is used to rende
 
 In R, the log() function computes natural logarithms (i.e., $ln()$). To calculate $log_{10}()$ use log10(); to calculate $log_{2}()$, use log2().  
 
-For example if we wanted to solve $log_{10}(10000)$: 
+For example, if we wanted to solve $log_{10}(10000)$: 
 ```{r log10}
 log10(10000)
 ```
 
-In general, we can also calculate exponents using the ^ character. For example, $3^8$ could be calculated by typing 3^8. Additionally, if we wanted to calculate $e^4$, we could use the exp() function.  
+In general, we can calculate exponents using the ^ character. For example, $3^8$ could be calculated by typing 3^8. Additionally, if we wanted to calculate $e^4$, we could use the exp() function.  
 ```{r exp}
 3^8
 exp(4)
 ```
 
 ### Practice Problems.  
-Note: these problems are identical to those in the review packet. Try them by hand first; then use the code chunks below to verify that you get the same answers.  
+Note: these problems are almost identical to those in the review packet. Try them by hand first; then use the code chunks below to verify that you get the same answers.  
 
 1. Calculate the following.  
 a. $log_e(e^3)$
@@ -92,20 +92,16 @@ If we want to store the matrix for future use, we need give a name to the matrix
 For example $\textbf{Z} = \begin{bmatrix} 1&2&3\\ 4&5&6\\ 7&8&9\\ \end{bmatrix}$ $\textbf{Y} = \begin{bmatrix} 1&4&7\\ 2&5&8\\ 3&6&9\\ \end{bmatrix}$
 
 ```{r Matrix Example}
-#Sorting by row
+#fill by row
 Z <- matrix(data = c(1,2,3,4,5,6,7,8,9),nrow = 3, ncol = 3, byrow = TRUE)
 print(Z)
 
-#Sorting by column
+#fill by column
 Y <- matrix(data = (1:9), nrow = 3, ncol = 3, byrow = FALSE)
 print(Y)
 ```
-
-### Definitions 
-The transpose of an $m\times n$ matrix, $A$ is the $n\times m$ matrix (denoted $A^T$) such that every element $a_{ij}$ in matrix A is moved to row $j$ and column $i$. For example, if:  
-$$\textbf{A}=\begin{bmatrix} 1&2&5\\ 3&4&7\\ \end{bmatrix}$$  
-then,  
-$$\textbf{A}^T=\begin{bmatrix} 1&3\\ 2&4\\ 5&7\\ \end{bmatrix}$$  
+  
+### Transpose of a matrix  
   
 In R, we can get the transpose of a matrix by using the t() function
 ```{r}
@@ -127,10 +123,9 @@ print(I)
 class(I) #tells you the object class; in this case, a matrix!
 ```
 
-#### Diagonal 
+#### Diagonals 
 ```{r}
 X1 <- matrix(data = c(1,0,0,0,4,0,0,0,5), nrow = 3, byrow = TRUE)
-diag(X1) #note that diag(matrix) gives you the diagonal values of the matrix  
 print(X1)
 
 # To obtain the obtain the values of the diagonal of an n x n matrix
@@ -151,11 +146,10 @@ print(W)
 # Use upper.tri() or lower.tri() to change the elements of the upper triangular matrix 
 # or lower triangular matrix, respectively. 
 
-# Upper Triangular
-#this returns a 3 by 3 matrix with TRUE's in the upper triangle and FALSE's everywhere else:
+#upper.tri() returns a 3 by 3 matrix with TRUE's in the upper triangle and FALSE's everywhere else:
 upper.tri(W, diag = TRUE) 
 
-#we can then assign values to the upper triangle of W using square brackets 
+#we can then assign values to the upper triangle of W using square brackets
 W[upper.tri(W, diag = TRUE)] <- c(1:6)
 print(W)
 
@@ -164,7 +158,7 @@ V[lower.tri(V, diag = TRUE)] <- c(1:6)
 print(V)
 ```
 
-#### Inverse of a matrix
+### Inverse of a matrix
 ```{r}
 U <- matrix(data = c(1:4), nrow = 2, byrow = TRUE)
 print(U)
@@ -180,7 +174,7 @@ print(invU)
 # Confirm you get an identity matrix   
 result1 <- U %*% invU
 result2 <- invU %*% U
-round(result1, digits=2)  
+round(result1, digits=2) #this rounds to two decimal places  
 round(result2, digits=2)
 ```
 
@@ -192,27 +186,21 @@ det(U)
 
 ### Operations with matrices
 
-a. Adding matices
+a. Adding and subtracting matrices
 ```{r}
-# Using the above matrices (Z and Y) we will show that Z + Y = X  
+# Using the above matrices (Z and Y) we will calculate Z+Y and Z-Y  
 # Note: the dim() function gives the dimensions of a matrix (rows first, then columns)
-# Adding matrices of the same dimension will produce a matrix of the same dimension
+# Adding/subtracting matrices will produce a matrix of the same dimension
 dim(Z) 
 dim(Y)
 dim(Z + Y)
-Z + Y
-```
-
-b. Subtracting matrices
-```{r}
-# Subtracting matrices of the same dimension will produce a matrix of the same dimension
-dim (Z) 
-dim(Y)
 dim(Z - Y)
+Z + Y
 Z - Y
 ```
+  
 
-c. Multiplying a matrix by a scalar
+b. Multiplying a matrix by a scalar
 ```{r}
 # Multiplying a matrix by a scalar will produce a matrix of the same dimension
 # Suppose that c = 3
@@ -220,21 +208,20 @@ c. Multiplying a matrix by a scalar
 3 * Z 
 ```
 
-d. Matrix Multiplication
+c. Matrix Multiplication
 ```{r}
 m1 <- matrix(data = c(3,4,2,5,1,2), nrow = 3, ncol = 2, byrow = TRUE)
-print (m1) ; dim(m1)
+print (m1) 
+dim(m1)
 
 m2 <- matrix(data = c(7,2,1,3,5,2), nrow = 2, ncol = 3, byrow = TRUE)
-print(m2); dim(m2)
+print(m2)
+dim(m2)
 
 # Matrix multiplication
 m1 %*% m2
 
-# It is important to note that when multiplying matrices we need to use %*% rather than * because using * will multiply the values element-wise. 
-print(Z); print(Y)
-Z * Y 
-Z %*% Y
+# It is important to note that when multiplying matrices we need to use %*% rather than *; using * will multiply the values element-wise.   
 ```
 
 ### Properties of matrix operations
@@ -293,7 +280,6 @@ Note: these problems are identical to those in the review packet. Try them by ha
 ```{r Matrix 1a}
 M1 <- matrix(data = c(2,4,2,1,3,0,1,6,2),
              nrow = 3, ncol = 3, byrow = TRUE)
-
 M2 <- matrix(data = c(1,5,0,-2,-3,0,1,9,5),
              nrow = 3, ncol = 3, byrow = TRUE)
 
@@ -306,7 +292,6 @@ M1 + M2
       
 ```{r Matrix 1b}
 M3 <- matrix(data = c(2,-2,4,1,2,2), nrow = 3, ncol = 2, byrow = FALSE)
-
 M4 <- matrix(data = c(5,3,2,4,-1,2), nrow = 2, ncol = 3, byrow = FALSE)
 
 M3 %*% M4
@@ -318,7 +303,6 @@ c. Let $\textbf{A} =\begin{bmatrix} 1&2\\ 3&5\\ 4&0\\ \end{bmatrix} \mbox{and }
        
 ```{r Matrix 1c}
 A <- matrix(data = c(1,2,3,5,4,0), nrow = 3, ncol = 2, byrow = TRUE)
-
 B <- matrix(data = c(4,1,7,4,2,0),nrow = 3, ncol=2, byrow = FALSE)
 
 t(A) %*% B  
@@ -365,8 +349,7 @@ dim(A%*%B)
 
   b. $\textbf{BA}$ does not exist.   
 ```{r Matrix 3b}
-# The following produces errors
-# B %*% A
+# Running B %*% A produces errors
 ```
 
 4. The determinant of $det\begin{bmatrix} 1&-2\\ 4&3\\ \end {bmatrix} = 11$
@@ -415,11 +398,37 @@ sd(dat)
 
 # Show that the square root of the variance gives the same output as sd() 
 sqrt(var(dat))
+
+#this creates a 2 by 2 grid in which to place the following three plots
+par(mfrow=c(2,2))
+```
+  
+### Summarizing variables visually   
+The following code can be used to make plots similar to those in the math review packet. We have copied the code here so that you can take a look!  
+
+```{r}
+#plot a histogram of the salaries:  
+hist(dat, 
+     main = "Histogram of Data", 
+     cex.main = 0.7, 
+     xlab = "Value", 
+     breaks = 10)
+
+#plot the smoothed density of the salaries: 
+plot(density(dat), 
+     main = "Density Plot of Data", 
+     cex.main = 0.7, 
+     xlab = "Value")  
+
+#make a boxplot of the salaries: 
+boxplot(dat, 
+        main = "Boxplot of Data", 
+        cex.main = 0.7)
 ```
 
 \pagebreak  
 
-## Probability   
+## Basic Probability   
 
 Note: the R code in this section uses some more advanced techniques (like loops and functions) that will not be formally covered until later. For now, do your best to understand the code, but focus on running it and understanding the output.  
 
@@ -644,20 +653,54 @@ setdiff(s,x) # The complement of x in sample space s
   
 \pagebreak    
   
-## Central Limit Theorem Introduction
-We can sample from many distributions in R. The following will walk through sampling from a normal distribution. 
+## Random Variables and Probability Density/Mass Functions    
 
-In the example with average salary of "Data Scientists" we have a sample (n = 400), a mean salary of 100,000 and standard deviation of 10,000. 
+### PDF-related functions in R  
+We can sample from many distributions in R. For example, we can use the rnorm() function to sample from a normal distribution. Note that we can also draw from a variety of other distributions in R by using functions like rt(), rchisq(), runif(), etc.   
+
+There are four main functions that you will use for probability distributions in R. Below are examples for the normal distribution, but you can extrapolate what similar functions for other probability distributions would be called:     
+'dnorm' : gives the height of the probability density function of a normal distribution at any value, $x$ \newline
+'pnorm' : computes probabilities from a normal distribution (by default: area under the curve on the interval $(-\infty,x)$, where you specify $x$). This is also called a percentile. \newline  
+'qnorm' : computes quantiles from a normal distribution (essentially the inverse of pnorm)  \newline
+'rnorm' : randomly draws values from a normal distribution \newline   
+    
+Here are some examples of how to use these functions in R. Note that pnorm(1.96) is approximately .975, whereas qnorm(.975) is approximately 1.96  
+```{r}
+#calculate height of a standard normal PDF at x=0
+dnorm(x=0, mean=0, sd=1)
+
+#calculate the area under the curve of a standard normal PDF on the interval (-Inf,1.96)
+pnorm(q=1.96, mean=0, sd=1)
+
+#calculate the quantile for a 97.5th percentile value on a standard normal PDF
+qnorm(p=.975, mean=0, sd=1)
+
+#sample 5 values from a normal distribution with mean=0 and sd=1
+rnorm(n=5, mean=0, sd=1)
+```
+    
+\pagebreak  
+  
+
+## Central Limit Theorem Introduction  
+
+In the example with average salary of "Data Scientists" we have a sample (n = 400), a mean salary of 100,000 and standard deviation of 10,000.   
+
+Suppose we want R to randomly sample 400 values from a normal distribution with mean 100,000 and a standard deviation of 10,000 (note that, for the CLT to hold in this example, it was not necessary for the salaries to be normally distributed). We can do this in R as follows:        
+
+
 ```{r, tidy = TRUE}
-#set the seed for reproducibility. Note, the choice of 102 was random. 
-#this can be used when you are using random sampling functions to ensure the same results every time
+#set the seed for reproducibility. Note the choice of 102 was random. 
+#you may want to include this when using random sampling functions to ensure the same results every time
 set.seed(102)
 
 #take a random sample of 400 values from a normal distribution with mean 100,000 and sd 10,000
 DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)   
 
-#this creates a 4 by 4 grid in which to place the following three plots
-par(mfrow=c(2,2))
+#when we calculate the mean and sd of these values, we should get close to 
+#100,000 and 10,000 respectively  
+mean(DS_salary)
+sd(DS_salary)
 
 #plot a histogram of the salaries:  
 hist(DS_salary, 
@@ -665,17 +708,27 @@ hist(DS_salary,
      cex.main = 0.7, 
      xlab = "Dollars (USD)", 
      breaks = 10)
+```
+      
+      
+Now, suppose that we take 100 samples of size 400 from the same normal distribution, and save the means in a vector. Now, when we inspect the mean and standard deviation of the means, we see that the mean (of the means) is still close to 100,000, but the standard deviation (of the means) is now close to $\frac{10,000}{\sqrt{400}}=500$     
+```{r}
+means <- vector()
 
-#plot the smoothed density of the salaries: 
-plot(density(DS_salary), 
-     main = "Density plot of Data Scientist's salaries", 
+for(i in 1:100){
+  DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000) 
+  means[i] <- mean(DS_salary) 
+}
+
+mean(means)
+sd(means)
+
+#plot a histogram of the means:  
+hist(DS_salary, 
+     main = "Histogram of Means", 
      cex.main = 0.7, 
-     xlab = "Dollars (USD)")  
-
-#make a boxplot of the salaries: 
-boxplot(DS_salary, 
-        main = "Boxplot of Data Scientist's salaries", 
-        cex.main = 0.7)
+     xlab = "Dollars (USD)", 
+     breaks = 10)
 ```
 
 ### Confidence Intervals (an example)
@@ -692,30 +745,28 @@ error <- qnorm(0.975)*sd_/sqrt(n)
 mean_ - error # lower bound of confidence interval
 mean_ + error # upper bound of confidence interval
 ```
-   
+    
+\pagebreak  
+  
      
-## Z-Tests, T-Test, and P-Values
+## Z-Tests, T-Test, and P-Values    
 
-$H_0 = \mu_{school} = \mu_{population}$
-$H_a = \mu_{school} \ne \mu_{population}$
+### Calculating P-Values in R  
+   
+Consider the example from the math review packet:  
 
-### Z-Tests and P-Values
-'dnorm' : probability density function of a normal distribution \newline
-'qnorm' : computes the probability from a normal distribution \newline
-'pnorm' : computes the percentile from a normal distribution \newline
-'rnorm' : randomly draws from a normal distribution \newline
+$H_0: \mu_{school} = \mu_{population}$
+$H_a: \mu_{school} \ne \mu_{population}$  
 
 ```{r, tidy = TRUE}
-# Find the proportion of sample means that are 2 points greater than or less than the state average  
-# By default, pnorm gives the area under the curve of the specified normal distribution less than the
-# given quantile. Therefore, if we want the area under the curve greater than that quantile, we can 
-# either subtract the result from 1 or use lower.tail=FALSE to get the upper tail of the distribution 
+# Find proportion of sample means that are 2 points greater or less than the state average  
 
+#2 ways to calculate (lower.tail=FALSE forces the function to calculate the upper tail directly)
 1 - pnorm(q=72, mean = 70, sd = 1)
 pnorm(q=72, mean = 70, sd = 1, lower.tail = FALSE)
 ```
 
-### The t-distribution  and T-tests
+### The t-distribution  
 
 Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution. In the example below we plot t-distributions with difference degrees of freedom (df = 1, 3,8, 30) and compare it to normal distribution. 
 
