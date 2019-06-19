@@ -24,8 +24,9 @@ The notes in this packet are not meant to be comprehensive in any way, nor shoul
 # Properties of Logarithms   
 ## Relevant Courses:  
 
-  -Quantitative Methods  
-  -Generalized Linear Models
+  -Quantitative Methods    
+  -Probability  
+  -Generalized Linear Models (this is a second semester course, is also the most direct use of logs)  
   
 ## Notes    
 
@@ -81,7 +82,7 @@ $=log_3(\frac{5x^2}{2})$
     a.  $x$  
     b.  $2$  
     c.  $-1$  
-    d.  There is no solution because there is no power of $10$ that would equal $0$    
+    d.  There is no solution because there is no power of $10$ that equals $0$    
        
   2. Expand:    
     a.  $log_{10}(5) +3log_{10}(y)-log_{10}(x)$    
@@ -100,6 +101,8 @@ $=log_3(\frac{5x^2}{2})$
 ## Relevant Courses:  
 
   -Quantitative Methods    
+  -Statistical Computing  
+  -Network Analysis  
 
 ## Notes    
 
@@ -132,7 +135,7 @@ $$\textbf{I}_n=\begin{bmatrix}
 0&0&...&1\\
 \end{bmatrix}$$
 
-An $n\times n$ matrix is called "diagonal" if all elements not on the diagonal are zeros. For example:  
+An $n\times n$ matrix is called "diagonal" if all elements *not* on the diagonal are zeros. For example:  
 $$\begin{bmatrix}
 1&0&0\\
 0&4&0\\
@@ -348,7 +351,7 @@ $B=\begin{bmatrix}
 The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
 $$f'(x)=y'=\frac{df}{dx}=\frac{d}{dx}(f(x))=\frac{dy}{dx}=\frac{d}{dx}(y)$$
    
-The second derivative of $y=f(x)$ with respect to $x$ is a function giving the rate of change of the instantaneous slope of $f(x)$. Notationally, it can be represented in any of the following ways (note: 3rd, 4th, etc. derivatives are notated in a similar way, with increasing exponents or $'$s):   
+The second derivative of $y=f(x)$ with respect to $x$ is the derivative of the derivative of $f(x)$. Notationally, it can be represented in any of the following ways (note: 3rd, 4th, etc. derivatives are notated in a similar way, with increasing exponents or $'$s):   
 $$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^2}{dx^2}(y)$$
   
 ### Using derivatives to find local minima and maxima of a function  
@@ -525,7 +528,7 @@ Note: without going into too much detail, it is important that summary statistic
 3. Standard deviation: $\sigma = \sqrt{\sigma^2}$    
   
 #### A note about sample variance vs. population variance   
-Note that: The definition above is used to calculate "population" variance. When using a sample to estimate the variance of $x$ in a larger population, sample variance is calculated  as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.      
+Note that: The definition above is used to calculate "population" variance. When using a sample to estimate the variance of a variable $x$ in a larger population, sample variance is calculated  as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.      
   
 Why? The first formula (where we divide by $n$) is a "biased" estimator of population variance. The sample variance formula above is not (this is covered in frequentist inference, but is worth a Google search if interested).      
 
@@ -548,12 +551,12 @@ boxplot(x, main="Box Plot of x")
 ## Relevant Courses:  
 
   -Probability   
+  -Statistical Computing  
+  -Quantitative Methods  
   
 ## Notes    
 
 ### Set Theory   
-
-This section goes over some definitions and theory before we go any further.
 
 **Set** - An unordered collection of distinct elements.
 
@@ -597,7 +600,7 @@ sample space: {(1,Heads),(2,Heads),(3,Heads),(4,Heads),(5,Heads),(6,Heads),(1,Ta
 An event is a specific collection of outcomes, or in other words, a **subset of the sample space**. After the performance of a random experiment, we say that the event A _occurred_ if the experiment's outcome _belongs to_ A. 
        
 #### Probability Definition  
-Suppose that a random experiment (also called a random process) is repeated infinitely many times; Then the probability of a particular event is the proportion of times that the event occured.  
+Suppose that we could repeat a random experiment (also called a random process) infinitely many times; Then the probability of an event is the proportion of times that the event would occur.  
 
 #### Law of Large Numbers   
 As a random experiment is repeated more times, the observed proportion of times that an event occurs will converge to the true empirical probability of that event.     
@@ -609,18 +612,18 @@ Given subsets A and B, it is often useful to manipulate them in an algebraic fas
 |--------------|-----------------|--------------------------|  
 | Union        | $A \cup B$      | In either A or B or both |  
 | Intersection | $A \cap B$      | In both A and B          |  
-| Difference   | $A \setminus B$ | In A but not in B        |   
+| Difference   | $A \setminus B$ | In A but not in B        |     
 
   
 #### Addition Rule  
-$P(A$ or $B)=P(A \cup B) = P(A) + P(B) - P(A$ and $B)$  
-Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=0$     
+$P(A$ or $B)=P(A \cup B) = P(A) + P(B) - P(A \cap B)$  
+Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=P(A \cap B)=0$     
 
 #### Multiplication Rule    
 Generally:  
-$P(A$ and $B) = P(A) \times P(B|A)$  
-Therefore if $A$ and $B$ are independent:    
-$P(A$ and $B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
+$P(A$ and $B) = P(A \cap B)=P(A) \times P(B|A)$  
+where $P(B|A)$ means the probability of $B$ given $A$. Therefore if $A$ and $B$ are independent:    
+$P(A$ and $B) = = P(A \cap B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
 
 #### Complements  
 For random experiment sample space $S$: The complement of an event $A$ is denoted $A^c$ and is made up of all sample points in $S$ that are *not* in $A$.   
@@ -649,19 +652,17 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
       b. What is your probability of winning on your first turn (i.e., given that your friend got a red marble on the first turn)?     
       c. What is the probability that you and your friend both pick red marbles on your first turns?     
      
-  3. Suppose that you collected responses from a random sample of 200 New Yorkers for the following 2 questions: 1) Do you exercise at least 3 times per week? and 2) Have you ever been diagnosed with Depression? Use the following table (which shows the number of yes/no responses to each question) to calculate the indicated probabilities.     
-    
-```{r, echo=FALSE}
-dat <- data.frame(YesE=c(45,65),
-                  NoE=c(52,38))
-rownames(dat) <- c("NoD", "YesD")
-knitr::kable(dat, row.names=T,col.names=c("           YesE","    NoE"),align="r")
-```     
-        
+  3. Suppose that you collected responses from a random sample of 200 New Yorkers for the following 2 questions: 1) Do you exercise at least 3 times per week? and 2) Have you ever been diagnosed with Depression? Use the table below (which shows the number of yes/no responses to each question) to calculate the indicated probabilities.          
       a. What is the probability of an individual respondent having been diagnosed with depression?  
       b. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they exercise at least 3 times per week?    
       c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per week?     
-      d. Based on your responses above, do you think that there is an association between exercise frequency and probability of being diagnosed with depression?    
+      d. Based on your responses above, do you think that there is an association between exercise frequency and probability of being diagnosed with depression?       
+        
+|                | Yes Exercise    | No Exercise     |     
+|----------------|-----------------|-----------------|    
+| No Depression  | 45              | 52              |    
+| Yes Depression | 65              | 38              |     
+     
 
    
 ## Answers    
@@ -693,7 +694,7 @@ knitr::kable(dat, row.names=T,col.names=c("           YesE","    NoE"),align="r"
 
   -Quantitative Methods   
   -Probability   
-  -Statistical Computing
+  -Statistical Computing  
   -Causal Inference   
   
 ## Notes     
@@ -717,7 +718,7 @@ There are many common probability distributions that you will need to know (thes
 #### PMF Example    
 Binomial(n=10,p=.5) distribution: Can be thought of as the probability of x tails among 10 flips of a fair coin   
 
-```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "200px"}
+```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "170px"}
 binom <- rbinom(10000,10,.5)
 plot(table(binom)/length(binom), ylab="Probability", xlab="Number of Tails", 
        main="PMF of binomial distribution with n=10, p=.5")
@@ -744,10 +745,7 @@ It is helpful to remember the following for any data that follows a normal distr
   
 #### Z-Scores    
 Often, we want to compare two numbers and understand the extent to which they are different. One way to do this is by using Z-scores. Z-scores are generally used for observations that follow an approximately normal distribution. The Z-score for a particular observation $x$ from a distribution with mean $\mu$ and standard deviation $\sigma$ is given by $Z=\frac{x-\mu}{\sigma}$. The Z-score for any observation tells you how far (in standard deviations) that observation is from the mean, $\mu$. If the observation came from a normal distribution, then Z-scores follow a standard ($\mu=0,\sigma=1$) normal distribution and a Z-table can be used to convert the Z-score to a percentile (or vice versa). You will learn to use a Z-table in probability, but you might want to look this up if you have never seen it before. "Standardizing" a dataset involves converting all values to their Z-scores.      
-
-#### Example    
-Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90. Then Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile. Meanwhile, Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile.    
-
+  
 #### Expectation and Variance   
 Random variables have expectation (also called expected value) and variance:   
 For a continuous random variable, X, on the interval [a,b] and PDF $f(x)$, $E(X)=\int_a^bxf(x)dx$   
@@ -762,9 +760,30 @@ Properties of expected value (for a random variable $X$):
   3. $E(cX) = cE(X)$ where $c$ is a constant   
   
 Properties of variance (for a random variable $X$)  
-  1. $E(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent  
+  1. $Var(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent  
   2. $Var(X+c) = Var(X)$ where $c$ is a constant       
   3. $Var(cX) = c^2Var(X)$ where $c$ is a constant   
+  
+## Practice Problems      
+
+  1.  Suppose test scores on a particular exam are normally distributed with mean 70 and standard deviation 10. Mike gets a score of 60 and Sarah gets a score of 90.     
+    a. Convert Mike's score to a Z-Score  
+    b. Convert Sarah's score to a Z-Score    
+    
+  2. Suppose that $X$ and $Y$ are independent random variables such that $E(X)=10$, $Var(X)=4$, $E(Y)=5$, and $Var(Y)=9$    
+    a. Calculate the expectation and variance of $2X+Y$    
+    b. Calculate the expectation and variance of $X-2Y$     
+    c. Calculate the expecation and variance of $2X+1$    
+    
+## Answers   
+  1.  Z scores:       
+    a. Mike's Z-score would be $\frac{60-70}{10}=-1$, indicating that he scored 1 standard deviation below average. Using a Z-table, we could determine that this is about 16th percentile.    
+    b. Sarah's Z-score is $\frac{90-70}{10}=2$, indicating that she scored 2 standard deviations above average, which is approximately the 98th percentile.     
+      
+  2. Expectation and variance:      
+    a. $E(2X+Y)=E(2X)+E(Y)=2E(X)+E(Y)=2*10+5=25$; $Var(2X+Y)=Var(2X)+Var(Y)=2^2Var(X)+Var(Y)=4*4+9=25$   
+    b. $E(X-2Y)=E(X)-2E(Y)=10-2*5=0$; $Var(X-2Y)=Var(X)+(-2)^2Var(Y)=4+4*9=40$    
+    c. $E(2X+1)=2E(X)+1=2*10-1=19$; $Var(2X+1)=2^2Var(X)=4*4=16$      
 
 \pagebreak    
 
@@ -905,6 +924,48 @@ $$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$
    
 Degrees of freedom:  
 In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution (or if assuming equal variances and using the $s^2_{pooled}$, we can use $n_1+n_2-2$ degrees of freedom).   
+  
+## Practice Problems      
+
+  1.  Based on a survey, the average price for a cup of coffee in the US is 2.70. Suppose that you think that coffee in the Boston area is more expensive than the national average. To test your theory, you go to 25 coffee shops in Boston and record the price for a medium coffee. Based on your sample, you find an average price of 2.80 (sd=0.30).       
+    a. What are the null and alternative hypotheses for this test (assume a one-sided test)?  
+    b. Construct a T-test to test the alternative hypothesis against the null  
+    c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here  
+    d. What would you type into R in order to calculate that p-value?  
+    e. If this was a 2-sided test, how would the alternative hypothesis change?   
+    f. If this was a 2-sided test, how would the p-value change (compared to the p-value for a one-sided test)?    
+    
+  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30).       
+    a. What are the null and alternative hypotheses for this test (assume a one-sided test that the drug is effective)?    
+    b. Construct a T-test to test the alternative hypothesis against the null  
+    c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here  
+    d. What would you type into R in order to calculate that p-value?   
+  3. Suppose that students in a particular school are randomly assigned to take Geometry with one of two different teachers, who both give the same final exam. You want to know whether there is evidence that students of teachers A and B are getting significantly different scores on the exam. You collect a sample of 30 students who had teacher A and 32 students who had teacher B. The 30 students of teacher A earn a mean score of 80 (sd=10), while the 32 students of teacher B earn a mean score of 84 (sd=12).   
+    a. What are the null and alternative hypotheses for this test (assume a two sided test that the scores are different)?    
+    b. Construct a two-sample T-test to test the alternative hypothesis against the null (do NOT assume equal variances)    
+    c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here    
+    d. What would you type into R in order to calculate that p-value?    
+    
+## Answers    
+  1.  Based on a survey, the average price for a cup of coffee in the US is 2.70. Suppose that you think that coffee in the Boston area is more expensive than the national average. To test your theory, you go to 25 coffee shops in Boston and record the price for a medium coffee. Based on your sample, you find an average price of 2.80 (sd=0.30).       
+    a. null hypothesis: The average price of a coffee in Boston is 2.70. alternative hypothesis: The average price of a coffee in Boston is $>2.70$  
+    b. SE=$\frac{0.30}{\sqrt{25}}=.06$; $T=\frac{2.80-2.70}{.06}\approx1.67$  
+    c. 24 degrees of freedom  
+    d. 1-pt(1.67,df=24) or pt(1.67,df=24, lower.tail=FALSE)  
+    e. If this was a 2-sided test, the alternative hypothesis would be that the average price of coffee in Boston is not 2.70 (either greater than or less than)     
+    f. If this was a 2-sided test, the p-value would be twice as large (because the t-distribution is symmetric)      
+    
+  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30).       
+    a. null hypothesis: $BP_{before}-BP_{after}>0$. alternative hypothesis $BP_{before}-BP_{after}=0$       
+    b. $SE=\frac{30}{\sqrt{100}}=3$; $T=\frac{9-0}{3}=3$   
+    c. 99 degrees of freedom      
+    d. 1-pt(3,df=99) or pt(3,df=99, lower.tail=FALSE)    
+  3. Suppose that students in a particular school are randomly assigned to take Geometry with one of two different teachers, who both give the same final exam. You want to know whether there is evidence that students of teachers A and B are getting significantly different scores on the exam. You collect a sample of 30 students who had teacher A and 32 students who had teacher B. The 30 students of teacher A earn a mean score of 80 (sd=10), while the 32 students of teacher B earn a mean score of 84 (sd=12).   
+    a. null hypothesis: The mean score of students who have teacher A equals the mean score of students who have teacher B ($\bar{x_a}-\bar{x_b}=0$). alternative hypothesis: The mean score of students who have teacher A is not equal to the mean score of students who have teacher B ($\bar{x_a}-\bar{x_b}\ne 0$).      
+    b. $SE(\bar{x_a}-\bar{x_b})=\sqrt{\frac{10^2}{30}+\frac{12^2}{32}}\approx 2.8$; $T=\frac{(80-84)-0}{2.8}\approx-1.4$    
+    c. I would use 29 degrees of freedom      
+    d. pt(-1.4,df=29)         
+
 
 
 \pagebreak    
