@@ -681,8 +681,8 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
     
   3. Question 3  
     a. $\frac{65+38}{200}=.515$   
-    b. $\frac{38}{38+52}\approx .42$    
-    c. $\frac{65}{65+45}\approx .59$    
+    b. $\frac{65}{65+45}\approx .59$  
+    c. $\frac{38}{38+52}\approx .42$  
     d. Yes, there seems to be a higher probability of depression among individuals who do not exercise. Note that we could run a chi square test for independence here to test the hypothesis that answers to these questions are independent. This is worth looking up if you have never seen it before.      
     
       
