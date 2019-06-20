@@ -407,20 +407,20 @@ par(mfrow=c(2,2))
 The following code can be used to make plots similar to those in the math review packet. We have copied the code here so that you can take a look!  
 
 ```{r}
-#plot a histogram of the salaries:  
+#plot a histogram of data:  
 hist(dat, 
      main = "Histogram of Data", 
      cex.main = 0.7, 
      xlab = "Value", 
      breaks = 10)
 
-#plot the smoothed density of the salaries: 
+#plot the smoothed density of data: 
 plot(density(dat), 
      main = "Density Plot of Data", 
      cex.main = 0.7, 
      xlab = "Value")  
 
-#make a boxplot of the salaries: 
+#make a boxplot of data: 
 boxplot(dat, 
         main = "Boxplot of Data", 
         cex.main = 0.7)
