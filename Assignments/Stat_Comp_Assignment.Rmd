@@ -1,6 +1,6 @@
 ---
 title: "2352-Statistical Computing Homework 1"
-author: Firstname Lastname
+author: "Firstname Lastname"
 output: pdf_document
 ---
 
