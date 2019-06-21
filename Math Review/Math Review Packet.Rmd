@@ -922,7 +922,7 @@ $$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$
 
    
 Degrees of freedom:  
-In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution (or if assuming equal variances and using the $s^2_{pooled}$, we can use $n_1+n_2-2$ degrees of freedom).   
+When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\big)^2}{\frac{\big(\frac{\sigma_1^2}{n_1}\big)^2}{n_1-1}+\frac{\big(\frac{\sigma_2^2}{n_2}\big)^2}{n_2-1}}$$. However, a conservative/easier approach is to just use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution. If assuming equal variances and using the $s^2_{pooled}$ equation, then $df=n_1+n_2-2$.   
   
 ## Practice Problems      
 
@@ -942,7 +942,7 @@ In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom 
   3. Suppose that students in a particular school are randomly assigned to take Geometry with one of two different teachers, who both give the same final exam. You want to know whether there is evidence that students of teachers A and B are getting significantly different scores on the exam. You collect a sample of 30 students who had teacher A and 32 students who had teacher B. The 30 students of teacher A earn a mean score of 80 (sd=10), while the 32 students of teacher B earn a mean score of 84 (sd=12).   
     a. What are the null and alternative hypotheses for this test (assume a two sided test that the scores are different)?    
     b. Construct a two-sample T-test to test the alternative hypothesis against the null (do NOT assume equal variances)    
-    c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here    
+    c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here (note: use the simple/conservative approach)    
     d. What would you type into R in order to calculate that p-value?    
     
 ## Answers    
