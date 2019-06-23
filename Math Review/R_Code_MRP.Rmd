@@ -398,15 +398,15 @@ sd(dat)
 
 # Show that the square root of the variance gives the same output as sd() 
 sqrt(var(dat))
-
-#this creates a 2 by 2 grid in which to place the following three plots
-par(mfrow=c(2,2))
 ```
   
 ### Summarizing variables visually   
 The following code can be used to make plots similar to those in the math review packet. We have copied the code here so that you can take a look!  
 
 ```{r}
+#this creates a 2 by 2 grid in which to place the following three plots
+par(mfrow=c(2,2))
+
 #plot a histogram of data:  
 hist(dat, 
      main = "Histogram of Data", 
