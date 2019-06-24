@@ -357,9 +357,9 @@ $$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^
 To find all local minima or maxima of a function $y=f(x)$:    
   
   1. Take the first derivative of $f(x)$ with respect to x ($f'(x)$).  
-  2. Set this expression equal to zero and solve for x. These values of x are local maxima and minima.   
+  2. Set this expression equal to zero and solve for x. Local minima and maxima of f(x) will occur at these values of x.     
   3. Calculate the second derivative of $f(x)$ with respect to x ($f''(x)$)  
-  4. Plug in the values of x calculated in part 2. If the second derivative is positive, this value of x represents a local minimum; if the second derivative is negative, it is a local maximum    
+  4. Plug in the values of x calculated in part 2. If $f''(x)$ is positive, a local minimum occurs at x; if $f''(x)$ is negative, a local maximum occurs at x.   
   
 ### Properties   
 
@@ -622,7 +622,7 @@ Note that if $A$ and $B$ are disjoint then $P(A$ and $B)=P(A \cap B)=0$
 Generally:  
 $P(A$ and $B) = P(A \cap B)=P(A) \times P(B|A)$  
 where $P(B|A)$ means the probability of $B$ given $A$. Therefore if $A$ and $B$ are independent:    
-$P(A$ and $B) = = P(A \cap B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
+$P(A$ and $B) = P(A \cap B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
 
 #### Complements  
 For random experiment sample space $S$: The complement of an event $A$ is denoted $A^c$ and is made up of all sample points in $S$ that are *not* in $A$.   
@@ -782,7 +782,7 @@ Properties of variance (for a random variable $X$)
   2. Expectation and variance:      
     a. $E(2X+Y)=E(2X)+E(Y)=2E(X)+E(Y)=2*10+5=25$; $Var(2X+Y)=Var(2X)+Var(Y)=2^2Var(X)+Var(Y)=4*4+9=25$   
     b. $E(X-2Y)=E(X)-2E(Y)=10-2*5=0$; $Var(X-2Y)=Var(X)+(-2)^2Var(Y)=4+4*9=40$    
-    c. $E(2X+1)=2E(X)+1=2*10-1=19$; $Var(2X+1)=2^2Var(X)=4*4=16$      
+    c. $E(2X+1)=2E(X)+1=2*10+1=21$; $Var(2X+1)=2^2Var(X)=4*4=16$      
 
 \pagebreak    
 
@@ -923,6 +923,8 @@ $$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$
    
 Degrees of freedom:  
 When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\big)^2}{\frac{\big(\frac{\sigma_1^2}{n_1}\big)^2}{n_1-1}+\frac{\big(\frac{\sigma_2^2}{n_2}\big)^2}{n_2-1}}$$. However, a conservative/easier approach is to just use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution. If assuming equal variances and using the $s^2_{pooled}$ equation, then $df=n_1+n_2-2$.   
+    
+\pagebreak  
   
 ## Practice Problems      
 
@@ -934,7 +936,7 @@ When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{
     e. If this was a 2-sided test, how would the alternative hypothesis change?   
     f. If this was a 2-sided test, how would the p-value change (compared to the p-value for a one-sided test)?    
     
-  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30).       
+  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30). Construct a hypothesis test to test whether there is sufficient evidence to suggest that this patients blood pressure after taking the drug is significantly different from their blood pressure before taking the drug (either higher or lower)         
     a. What are the null and alternative hypotheses for this test (assume a one-sided test that the drug is effective)?    
     b. Construct a T-test to test the alternative hypothesis against the null  
     c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here  
@@ -945,8 +947,10 @@ When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{
     c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here (note: use the simple/conservative approach)    
     d. What would you type into R in order to calculate that p-value?    
     
+\pagebreak  
+  
 ## Answers    
-  1.  Based on a survey, the average price for a cup of coffee in the US is 2.70. Suppose that you think that coffee in the Boston area is more expensive than the national average. To test your theory, you go to 25 coffee shops in Boston and record the price for a medium coffee. Based on your sample, you find an average price of 2.80 (sd=0.30).       
+  1.  Coffee         
     a. null hypothesis: The average price of a coffee in Boston is 2.70. alternative hypothesis: The average price of a coffee in Boston is $>2.70$  
     b. SE=$\frac{0.30}{\sqrt{25}}=.06$; $T=\frac{2.80-2.70}{.06}\approx1.67$  
     c. 24 degrees of freedom  
@@ -954,15 +958,16 @@ When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{
     e. If this was a 2-sided test, the alternative hypothesis would be that the average price of coffee in Boston is not 2.70 (either greater than or less than)     
     f. If this was a 2-sided test, the p-value would be twice as large (because the t-distribution is symmetric)      
     
-  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30).       
-    a. null hypothesis: $BP_{before}-BP_{after}>0$. alternative hypothesis $BP_{before}-BP_{after}=0$       
+  2. BP Drug             
+    a. null hypothesis: $BP_{before}-BP_{after}=0$. alternative hypothesis $BP_{before}-BP_{after}\ne0$       
     b. $SE=\frac{30}{\sqrt{100}}=3$; $T=\frac{9-0}{3}=3$   
     c. 99 degrees of freedom      
-    d. 1-pt(3,df=99) or pt(3,df=99, lower.tail=FALSE)    
-  3. Suppose that students in a particular school are randomly assigned to take Geometry with one of two different teachers, who both give the same final exam. You want to know whether there is evidence that students of teachers A and B are getting significantly different scores on the exam. You collect a sample of 30 students who had teacher A and 32 students who had teacher B. The 30 students of teacher A earn a mean score of 80 (sd=10), while the 32 students of teacher B earn a mean score of 84 (sd=12).   
+    d. $2*$(1-pt(3,df=99)) or $2*$pt(3,df=99, lower.tail=FALSE)     
+    
+  3. Test scores     
     a. null hypothesis: The mean score of students who have teacher A equals the mean score of students who have teacher B ($\bar{x_a}-\bar{x_b}=0$). alternative hypothesis: The mean score of students who have teacher A is not equal to the mean score of students who have teacher B ($\bar{x_a}-\bar{x_b}\ne 0$).      
-    b. $SE(\bar{x_a}-\bar{x_b})=\sqrt{\frac{10^2}{30}+\frac{12^2}{32}}\approx 2.8$; $T=\frac{(80-84)-0}{2.8}\approx-1.4$    
-    c. I would use 29 degrees of freedom      
+    b. $SE(\bar{x_a}-\bar{x_b})=\sqrt{\frac{10^2}{30}+\frac{12^2}{32}}\approx 2.8$; $T=\frac{(80-84)-0}{2.8}\approx-1.4$     
+    c. I would use 29 degrees of freedom (as a conservative measure)        
     d. pt(-1.4,df=29)         
 
 
@@ -1016,8 +1021,8 @@ plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", y
     
 We see that there appears to be a positive, linear association between mother's heights and children's heights. In other words, on average, taller mothers appear to have taller children. There are many ways we could try to fit a line to this data, but one of the most common is ordinary least squares regression:  
 
-1) We set up the following template for a linear relationship between child height and mother height:  $\hat{y}=\hat{\beta_0} + \hat{\beta_1}x$ where $\hat{y}$ represents the "predicted" height of a child born to a mother of height $x$. The $\hat{}$ symbol is used to denote a prediction/estimate. Also, the true values of $\beta_0$ and $\beta_1$ (for all mothers and children) are unknown so we are estimating them based on this sample as well           
-2) Based on this "model", the $i$th child's height is given by $y_i= \hat{\beta_0} + \hat{\beta_1}x_i+\varepsilon_i$ where $x_i$ is their mother's height and $\varepsilon_i$ is the difference between the child's true height and their predicted height based on the linear model in  part 1.  (in other words: $\varepsilon_i=y_i-(\hat{\beta_0}+\hat{\beta_1}x_i)=y_i-\hat{y_i}$   
+1) We set up the following template for a linear relationship between child height and mother height:  $\hat{y}=\hat{\beta_0} + \hat{\beta_1}x$ where $\hat{y}$ represents the "predicted" height of a child born to a mother of height $x$. The $\hat{}$ symbol is used to denote a prediction/estimate. Also, the true values of $\beta_0$ and $\beta_1$ (for all mothers and children) are unknown so we are estimating them based on this sample              
+2) Based on this "model", the height of the $i$th in this sample is given by $y_i= \hat{\beta_0} + \hat{\beta_1}x_i+\varepsilon_i$ where $x_i$ is their mother's height and $\varepsilon_i$ is the difference between the child's true height and their predicted height based on the linear model in  part 1.  (in other words: $\varepsilon_i=y_i-(\hat{\beta_0}+\hat{\beta_1}x_i)=y_i-\hat{y_i}$   
 3) Using calculus, we find values of $\beta_0$ and $\beta_1$ that minimize $\Sigma_{i=1}^{n}\varepsilon_i^2$ (called the residual sum of squares or RSS)  
 \pagebreak  
   
