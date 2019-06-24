@@ -9,48 +9,71 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Properties of Logarithms
-Basics: https://www.youtube.com/watch?v=9c6-aQGfY_E
-Natural Log: https://www.youtube.com/watch?v=fZdWSlXkKzY
+# Properties of Logarithms    
+https://mcckc.edu/tutoring/docs/bt/exp_rad_log/Logarithms_and_Their_Properties.pdf    
+Basics: https://www.youtube.com/watch?v=9c6-aQGfY_E  
+Natural Log: https://www.youtube.com/watch?v=fZdWSlXkKzY  
 
   
-# Matrix Algebra  
-https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab   
-https://www.math.psu.edu/bressan/PSPDF/M441-linalgebra_review.pdf  
-
-
-# Derivatives    
-Chain Rule: https://www.youtube.com/watch?v=gt22FmU3bv4&list=PLDE077A2EC488104D&index=16
-Quotient Rule: https://www.youtube.com/watch?v=K3MxofAF-9o&list=PLDE077A2EC488104D&index=22
-
-
-# Integrals    
-U-Substitution: https://www.youtube.com/watch?v=nLKcIKbNK3Q
-More U-Substitution: https://www.youtube.com/watch?v=QNMErMqnnqY
-Integration by Parts: https://www.youtube.com/watch?v=dqaDSlYdRcs
-
-# Summary Statistics    
+# Matrix Algebra   
+https://www.math.hmc.edu/calculus/tutorials/matrixalgebra/   
+https://www.stat.washington.edu/adobra/classes/536/Files/week1/matrixfull.pdf   
+https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab     
   
 
-# P-Values and T-Tests    
-P-value: https://www.youtube.com/watch?v=UsU-O2Z1rAs
 
-T-Distribution (more technical): https://www.youtube.com/watch?v=T0xRanwAIiI
-T-Distribution (less technical): https://www.youtube.com/watch?v=Uv6nGIgZMVw
-T-Tests: https://www.youtube.com/watch?v=T9nI6vhTU1Y
+# Derivatives     
+http://tutorial.math.lamar.edu/pdf/Calculus_Cheat_Sheet_Derivatives.pdf   
+http://tutorial.math.lamar.edu/Classes/CalcI/DerivativeIntro.aspx   
+Chain Rule: https://www.youtube.com/watch?v=gt22FmU3bv4&list=PLDE077A2EC488104D&index=16  
+Quotient Rule: https://www.youtube.com/watch?v=K3MxofAF-9o&list=PLDE077A2EC488104D&index=22  
+
+
+# Integrals   
+http://tutorial.math.lamar.edu/Classes/CalcI/IntegralsIntro.aspx     
+https://www.cliffsnotes.com/study-guides/calculus/calculus/integration/definite-integrals    
+https://www.cliffsnotes.com/study-guides/calculus/calculus/integration/antiderivatives-indefinite-integrals    
+U-Substitution: https://www.youtube.com/watch?v=nLKcIKbNK3Q  
+More U-Substitution: https://www.youtube.com/watch?v=QNMErMqnnqY  
+Integration by Parts: https://www.youtube.com/watch?v=dqaDSlYdRcs    
+
+# Variables: Types and Summaries   
+Download OpenIntro Statistics (4th edition): https://leanpub.com/openintro-statistics  
+Note: you can download the PDF for free or choose to pay any amount  
+OpenIntro statistics: Chapter 1.1-1.2 (pgs 8-21), Chapter 2.1-2.2 (pgs 39-78)    
+
+#Basic Probability   
+OpenIntro statistics: Chapter 3.1-3.2 (pgs 80-111)    
+
+# Random Variables and Probability Density/Mass Functions   
+Random Variables, Expectation/Variance: OpenIntro statistics: Chapter 3.4-3.5 (pgs 115-130)    
+Probability Distributions: OpenIntro statistics: Chapter 4-3.5 (pgs 132-167) (this covers the normal, geometric, binomial, negative binomial, and poisson distributions. Normal is the most important to review; the others will be covered in Probability, but it can't hurt to review them beforehand if you have time)    
+https://www.youtube.com/watch?v=oHcrna8Fk18&list=PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN     
+Expected Value: https://www.youtube.com/watch?v=Vyk8HQOckIE    
+   
+# Central Limit Theorem Introduction    
+OpenIntro statistics: Chapter 5.1-5.2 (pgs 170-188)  
+
+# Z-Tests, T-Tests, and P-Values     
+Hypothesis Testing: OpenIntro statistics: Chapter 5.3 (pgs 189-205) (in the 4th edition, hypothesis testing is introduced in the context of proportions; for examples of hypothesis testing with the sample mean, see http://www.ltcconline.net/greenl/courses/201/hyptest/hypmean.htm)  
+T-Tests: OpenIntro statistics: Chapter 7.1-7.3 (pgs 250-277)  
+P-value: https://www.youtube.com/watch?v=UsU-O2Z1rAs  
+
+T-Distribution (more technical): https://www.youtube.com/watch?v=T0xRanwAIiI  
+T-Distribution (less technical): https://www.youtube.com/watch?v=Uv6nGIgZMVw  
+T-Tests: https://www.youtube.com/watch?v=T9nI6vhTU1Y  
 
 # Correlation and Covariance    
-https://www.youtube.com/watch?v=KDw3hC2YNFc
+https://web.stanford.edu/class/archive/cs/cs109/cs109.1178/lectureHandouts/150-covariance.pdf   
+OpenIntro statistics: Section 8.1.4 (pgs 310-312)  
+https://www.youtube.com/watch?v=KDw3hC2YNFc  
 
 
 # Ordinary Least Squares Regression    
-https://www.youtube.com/watch?v=coQAAN4eY5s  
+OpenIntro statistics: Chapter 8.1-8.2 (pgs 305-327)    
+https://www.youtube.com/watch?v=coQAAN4eY5s    
 
-# Probability Density/Mass Functions   
-https://www.youtube.com/watch?v=oHcrna8Fk18&list=PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN
 
-# Expectation   
-Expected Value: https://www.youtube.com/watch?v=Vyk8HQOckIE
 
 
 

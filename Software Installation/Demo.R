@@ -10,4 +10,3 @@ mean(My_Favorite_Numbers)
 #how many favorite numbers do I have?
 length(My_Favorite_Numbers)
 
-
