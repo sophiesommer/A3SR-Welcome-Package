@@ -1,0 +1,133 @@
+---
+title: "Introduction to R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+There are four basic data types in R (that you need to know): character, numeric, integer, logical.
+There are four basic ways to store data in R: vectors, data frames, matrices, and lists.
+
+You can learn about these data types below    
+
+#### Numerics and integers  
+
+```{r}
+#to store data in some variable name, use either = or <-
+#to save the number 5 as "number":
+number <- 5
+
+#print number:
+print(number)  
+
+#find out the class of number:
+class(number)
+
+#change number to an integer and re-save it as number2:
+number2 <- as.integer(number)
+
+#inspect the class of number2 to see that it is an integer:
+class(number2)
+```
+    
+#### Characters  
+
+```{r}
+#save a character string in a variable named message
+message <- "welcome"
+
+#print message:
+print(message)
+
+#inspect the class of message:
+class(message)
+```
+
+  
+#### Logicals   
+Logical data is either TRUE or FALSE  
+In R, TRUE=1 and FALSE=0   
+```{r}
+#save the logical TRUE as a variable called outcome:  
+outcome <- TRUE  
+
+#print outcome
+print(outcome)
+
+#inspect class of outcome
+class(outcome)
+
+#note that, weirdly, outcome+outcome=2  
+outcome+outcome
+```
+  
+In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows you to make comparisons accross variable types: integers may be compared to numerics and logicals may be compared to integers/numerics. For characters, comparatives are assessed using alphabetical order (letters earlier in the alphabet are "smaller"):    
+  1) == means "is equal to"  
+  2) != means "is not equal to"  
+  3) > means "greater than"; >= means "greater than or equal to"  
+  4) < means "less than; <= means "less than or equal to"  
+  
+```{r}
+#is 5 equal to 3?
+5==3
+
+#is 5 less than 3?
+5<3
+
+#is 5 greater than 3?
+5>3
+
+#is 5 greater than 5?
+5>5
+
+#is 5 greater than or equal to 5?
+5>=5
+
+#is 5 equal to 5?
+5==5
+
+#is "hello" equal to "hello"?
+"hello" == "hello"
+
+#is "hello" equal to "goodbye"?
+"hello" == "goodbye"
+
+#is "hello" greater than "goodbye"? (in other words is "hello" after "goodbye" alphabetically?)
+"hello">"goodbye"  
+
+#is TRUE == 1?
+TRUE==1
+
+#is FALSE==0?
+FALSE==0
+```
+  
+#### Vectors  
+```{r}
+# The easiest way to create a vector is by using the c() function
+vec1 <- c(2,3,4,5)
+print(vec1)
+
+# Note that, if you include multiple data types in a vector, R will change all values to the same data type
+vec2 <- c("hello",7,3)
+print(vec2)
+
+# For values in a row, we can also use a colon:
+vec3 <- 2:5
+print(vec3)
+
+# We can use the c() function to combine pre-saved vectors:
+vec4 <- c(vec1,vec3)
+print(vec4)
+
+# Other shortcuts for creating vectors in R   
+
+#use the rep() function to repeat values. Inspect the following to see how it works!
+rep(x=0,times=5) #create a vector of 5 zeros
+rep(x=c(1,2,3),times=5) #create a vector with five repeats of 1,2,3
+rep(c(1,2,3),each=2,times=5) #every value in 1,2,3 is repeated twice, and then that sequence is repeated 5 times
+
+```
+
