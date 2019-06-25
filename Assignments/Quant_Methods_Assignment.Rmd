@@ -34,21 +34,31 @@ mean(height$Height[height$Male==1])
 
 # Average height of women
 mean(height$Height[height$Male==0])
+```
 
+```{r}
+# Average height of men
+mean_hm <- mean(height$Height[height$Male==1])
+var_hm <- var(height$Height[height$Male==1])
+N_hm <- sum(height$Male)
+
+# Females
+# Average height of women
+mean_hw <- mean(height$Height[height$Male==0])
+var_hw <- var(height$Height[height$Male==0])
+N_hw <- length(height$Male) - sum(height$Male)
+
+sd_comb <- sqrt((var_hm/N_hm)+(var_hw/N_hw))
+
+t <- (mean_hm - mean_hw)/sd_comb
+1-pt(t, df = (N_hm+N_hw-2))
+```
+
+
+### Data Exploration
+```{r}
 summary(lm(Height~as.factor(Male), data=height))
 ```
 
-### Data Exploration
 
-
-
-```{r}
-sqrt(var(height$Height[height$Male==0]))/sqrt(255)
-
-s2pool <- ((sum(height$Male==0)-1)*(var(height$Male==0)) + (sum(height$Male==1)-1)*(var(height$Male==1)))/(500-2)
-
-spool <- sqrt(s2pool)
-
-(mean(height$Height[height$Male==1]) - mean(height$Height[height$Male==0]))/(spool*sqrt((1/243)+(1/257)))
-```
 
