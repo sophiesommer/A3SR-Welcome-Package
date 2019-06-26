@@ -13,14 +13,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Inspecting function documentation   
 There are many functions in base R that you can use (in a later tutorial, we will discuss how to create your own functions!). In order to view documentation for a function in R, you can type ?function_name or search for the function name in the help tab. As practice, let's explore the matrix() and mean() functions in R by typing ?matrix and ?mean into the console. Uncomment (by deleting the #s) the code below and run it in the console to inspect the documentation.   
-   
-Under usage for the matrix()function, you should see the following:  
-matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)  
-The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL by default.   
 ```{r}
 #?matrix
 #?mean
 ```
+   
+Under usage for the matrix() function, you should see the following:  
+matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)  
+The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL by default.   
     
 Because all parameters of the matrix() function have defaults, we could call matrix() with no inputs and we would get a 1x1 matrix with NA values and no dimension names. We can also pick and choose whatever parameters we do want to fill in and ignore anything that we want to leave as defaults.       
 ```{r}
@@ -68,8 +68,9 @@ mean(data1, na.rm=TRUE)
   
 ## Data types and structures    
 
-This section covers four basic data types in R: characters, numerics, integers, and logicals.
-This section covers four basic ways to store data in R: vectors, data frames, matrices, and lists.
+This section covers:    
+  -Four basic data types in R: characters, numerics, integers, and logicals  
+  -Four basic ways to store data in R: vectors, matrices, data frames, and lists  
 
 You can learn about these data types below    
 
@@ -229,7 +230,7 @@ A * B
 A+B
 
 # Transpose of a matrix
-t(A)
+t(B)
 
 # Inverse of a matrix
 solve(B)
@@ -382,6 +383,8 @@ example_data[3,]
 # Print the 2nd and 3rd row of example_data
 example_data[2:3,]
 
+# Print Sarah's Age
+example_data["Sarah","Age"]
 
 ### THREE DIFFERENT WAYS TO GET THE 2ND COLUMN (Age)
 # Using the column index
@@ -393,7 +396,22 @@ example_data$Age
 # Using square brackets and the column name
 example_data[,"Age"]
 ```
-    
+     
+Some more examples of using logicals to extract specific data from a data frame:  
+```{r}
+# Extract the ages of people who are from New York
+example_data$Age[example_data$State=="New York"]
+
+# Extract only the rows of example_data where Age is equal to 24
+example_data[example_data$Age==24,]
+
+# Extract only the rows of example_data where Age is 24 and State is New York
+example_data[example_data$Age==24 & example_data$State=="New York",]
+
+# Extract the row names (i.e., names) of those who are 24 from New York
+rownames(example_data)[example_data$Age==24 & example_data$State=="New York"]
+```
+
 
 
 
