@@ -58,6 +58,7 @@ t <- (mean_hm - mean_hw)/sd_comb
 ### Data Exploration
 ```{r}
 summary(lm(Height~as.factor(Male), data=height))
+# walk through lm() in this exercise 
 ```
 
 
