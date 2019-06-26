@@ -203,9 +203,70 @@ rep(c(1,2,3),each=2,times=5) #repeat each value in 1,2,3 twice, then repeat that
 seq(from=1, to=5, by=.5) #create a vector with values from 1-5, incementing by .5
 seq(from=1, to=5, length.out=17) #create a vector with 17 equally spaced values going from 1 to 5
 ```
-   
+    
+#### Matrices  
+As shown above, an m by n matrix can be created in R using the matrix() function  
+Here are some examples  
 ```{r}
+A <- matrix(2, nrow=3, ncol=3)
+print(A)
+B <- matrix(c(1,2,5,3,4,0,2,1,5), nrow=3, ncol=3, byrow=TRUE)
+print(B)
 
+#print the dimensions of a matrix (number of rows followed by number of columns)
+dim(A)
+
+#matrix multiplication
+A %*% B
+
+#element-wise multiplication  
+A * B
+
+#element-wise addition
+A+B
+
+#transpose of a matrix
+t(A)
+
+#inverse of a matrix
+solve(B)
 ```
+  
+#### Data Frames  
+Data frames are generally used to store tabular data. Data frames are composed of same-length vectors; these vectors can be of differing data types. In general, when you read a .csv data file into R, it will be saved as a data frame.  
+We can create a data frame in R as follows:  
+```{r}
+#create a fake dataset called example_data
+example_data <- data.frame(ID_Num = c(1:10),
+                           Age = rep(24:28, each=2),
+                           State = c(rep("New Jersey", 5), rep("New York", 5)))
+
+#change row names of the data frame (some made up names)
+rownames(example_data) <- c("Sarah", "Mike", "Drew", "Eric", "Maria", 
+                            "Lindsey", "Mark", "Jenny", "Sophie", "Paul")
+
+#print the data frame
+example_data
+```
+    
+The following R code outlines a few ways to inspect data in a data frame.    
+```{r}
+#get dimensions (same as matrices)
+dim(example_data)
+
+#get summaries of the columns
+summary(example_data)
+
+#access a single column of the data frame using $
+example_data$Age
+
+#inspect row names
+rownames(example_data)
+
+#inspect column names
+colnames(example_data)
+```
+
+
 
 
