@@ -1,14 +1,75 @@
 ---
 title: "Introduction to R"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+  
+## Using basic functions in R      
+
+#### Inspecting function documentation   
+There are many functions in base R that you can use (in a later tutorial, we will discuss how to create your own functions!). In order to view documentation for a function in R, you can type ?function_name or search for the function name in the help tab. As practice, let's explore the matrix() and mean() functions in R by typing ?matrix and ?mean into the console. Uncomment (by deleting the #s) the code below and run it in the console to inspect the documentation.   
+   
+Under usage for the matrix()function, you should see the following:  
+matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)  
+The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL by default.   
+```{r}
+#?matrix
+#?mean
+```
+    
+Because all parameters of the matrix() function have defaults, we could call matrix() with no inputs and we would get a 1x1 matrix with NA values and no dimension names. We can also pick and choose whatever parameters we do want to fill in and ignore anything that we want to leave as defaults.       
+```{r}
+#call matrix() with no inputs
+matrix()
+
+#make a 2x3 matrix of NAs
+matrix(nrow=2, ncol=3)
+```
+    
+In contrast, the mean() function has some required parameters. When you type ?mean into the console, you should see the following:      
+mean(x, trim = 0, na.rm = FALSE, ...)    
+The parameter x has no default value; you must specify the values that you want to take the mean of. The other paramters are given defaults: trim=0 and na.rm=FALSE. If you read the descriptions for these parameters, you will see that trim allows you to calculate a trimmed mean (i.e., eliminate some proportion of extreme values before calculating the mean) and na.rm allows you to remove missing (NA) values before calculating the mean. By default, R will not do any trimming and NAs will not be removed. This can cause issues (see below):  
+
+```{r}
+#create some data and save it as data1 and data2
+data1 <- c(1,2,3,4,7,NA)
+data2 <- c(1,2,3,4,7)
+
+#calculate the mean of data1 and data2
+#note that data1 has a mean of NA because there was an NA value that was not removed
+mean(data1)
+mean(data2)
+
+#now explicitly set na.rm=TRUE and recalculate the mean of data1. Now we get the same as data2
+mean(data1, na.rm=TRUE)
+```
+      
+#### Calling functions in R  
+When using functions in R, you can make it clear which inputs refer to which parameters by either a) using the order of the parameters specified in the usage or b) naming them explicitly.  
+```{r}
+#note that these two calls to the mean() function will return the same output
+mean(data1, .2, TRUE)
+mean(x=data1, trim=.2, na.rm=TRUE)
+
+#however, the following code will give an error because "TRUE" is not a valid input to trim,
+#which is the second parameter listed in the usage
+#mean(data1,TRUE)
+
+#to specify na.rm=TRUE but leave the trim=0 default as is, we simply do the following:
+mean(data1, na.rm=TRUE)
+#(note that, since data1 still matches to x, which is the first parameter in usage, 
+#we do not need to specify x=data1)
+```
+  
+## Data types and structures    
 
 There are four basic data types in R (that you need to know): character, numeric, integer, logical.
-There are four basic ways to store data in R: vectors, data frames, matrices, and lists.
+There are five basic ways to store data in R: vectors, data frames, matrices, arrays, and lists.
 
 You can learn about these data types below    
 
@@ -18,6 +79,7 @@ You can learn about these data types below
 #to store data in some variable name, use either = or <-
 #to save the number 5 as "number":
 number <- 5
+number = 5 #does the same thing
 
 #print number:
 print(number)  
@@ -73,6 +135,9 @@ In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows
 #is 5 equal to 3?
 5==3
 
+#is 5 not equal to 3?
+5!=3
+
 #is 5 less than 3?
 5<3
 
@@ -110,9 +175,13 @@ FALSE==0
 vec1 <- c(2,3,4,5)
 print(vec1)
 
-# Note that, if you include multiple data types in a vector, R will change all values to the same data type
-vec2 <- c("hello",7,3)
-print(vec2)
+# Note that, if you include multiple data types in a vector, R will change all values to the same type
+vec2 <- c(7,3)
+vec2
+class(vec2)
+vec3 <- c(7,3,"hello")
+vec3
+class(vec3)
 
 # For values in a row, we can also use a colon:
 vec3 <- 2:5
@@ -121,13 +190,22 @@ print(vec3)
 # We can use the c() function to combine pre-saved vectors:
 vec4 <- c(vec1,vec3)
 print(vec4)
-
-# Other shortcuts for creating vectors in R   
-
+```
+   
+Here are some other useful shortcuts for creating vectors in R:  
+```{r}
 #use the rep() function to repeat values. Inspect the following to see how it works!
 rep(x=0,times=5) #create a vector of 5 zeros
 rep(x=c(1,2,3),times=5) #create a vector with five repeats of 1,2,3
-rep(c(1,2,3),each=2,times=5) #every value in 1,2,3 is repeated twice, and then that sequence is repeated 5 times
+rep(c(1,2,3),each=2,times=5) #repeat each value in 1,2,3 twice, then repeat that 5 times  
+
+#use the seq function to create a sequence of values  
+seq(from=1, to=5, by=.5) #create a vector with values from 1-5, incementing by .5
+seq(from=1, to=5, length.out=17) #create a vector with 17 equally spaced values going from 1 to 5
+```
+   
+```{r}
 
 ```
+
 
