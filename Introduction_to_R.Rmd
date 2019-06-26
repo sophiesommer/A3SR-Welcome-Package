@@ -24,10 +24,10 @@ The matrix function has 5 distinct parameters. All of them have default values. 
     
 Because all parameters of the matrix() function have defaults, we could call matrix() with no inputs and we would get a 1x1 matrix with NA values and no dimension names. We can also pick and choose whatever parameters we do want to fill in and ignore anything that we want to leave as defaults.       
 ```{r}
-#call matrix() with no inputs
+# Call matrix() with no inputs
 matrix()
 
-#make a 2x3 matrix of NAs
+# Make a 2x3 matrix of NAs
 matrix(nrow=2, ncol=3)
 ```
     
@@ -36,74 +36,74 @@ mean(x, trim = 0, na.rm = FALSE, ...)
 The parameter x has no default value; you must specify the values that you want to take the mean of. The other paramters are given defaults: trim=0 and na.rm=FALSE. If you read the descriptions for these parameters, you will see that trim allows you to calculate a trimmed mean (i.e., eliminate some proportion of extreme values before calculating the mean) and na.rm allows you to remove missing (NA) values before calculating the mean. By default, R will not do any trimming and NAs will not be removed. This can cause issues (see below):  
 
 ```{r}
-#create some data and save it as data1 and data2
+# Create some data and save it as data1 and data2
 data1 <- c(1,2,3,4,7,NA)
 data2 <- c(1,2,3,4,7)
 
-#calculate the mean of data1 and data2
-#note that data1 has a mean of NA because there was an NA value that was not removed
+# Calculate the mean of data1 and data2
+# Note that data1 has a mean of NA because there was an NA value that was not removed
 mean(data1)
 mean(data2)
 
-#now explicitly set na.rm=TRUE and recalculate the mean of data1. Now we get the same as data2
+# Now explicitly set na.rm=TRUE and recalculate the mean of data1. Now we get the same as data2
 mean(data1, na.rm=TRUE)
 ```
       
 #### Calling functions in R  
 When using functions in R, you can make it clear which inputs refer to which parameters by either a) using the order of the parameters specified in the usage or b) naming them explicitly.  
 ```{r}
-#note that these two calls to the mean() function will return the same output
+# Note that these two calls to the mean() function will return the same output
 mean(data1, .2, TRUE)
 mean(x=data1, trim=.2, na.rm=TRUE)
 
-#however, the following code will give an error because "TRUE" is not a valid input to trim,
-#which is the second parameter listed in the usage
-#mean(data1,TRUE)
+# However, the following code will give an error because "TRUE" is not a valid input to trim,
+# Which is the second parameter listed in the usage
+# Mean(data1,TRUE)
 
-#to specify na.rm=TRUE but leave the trim=0 default as is, we simply do the following:
+# To specify na.rm=TRUE but leave the trim=0 default as is, we simply do the following:
 mean(data1, na.rm=TRUE)
-#(note that, since data1 still matches to x, which is the first parameter in usage, 
-#we do not need to specify x=data1)
+# (Note that, since data1 still matches to x, which is the first parameter in usage, 
+#  we do not need to specify x=data1)
 ```
   
 ## Data types and structures    
 
-There are four basic data types in R (that you need to know): character, numeric, integer, logical.
-There are five basic ways to store data in R: vectors, data frames, matrices, arrays, and lists.
+This section covers four basic data types in R: characters, numerics, integers, and logicals.
+This section covers four basic ways to store data in R: vectors, data frames, matrices, and lists.
 
 You can learn about these data types below    
 
 #### Numerics and integers  
 
 ```{r}
-#to store data in some variable name, use either = or <-
-#to save the number 5 as "number":
+# To store data in some variable name, use either = or <-
+# To save the number 5 as "number":
 number <- 5
 number = 5 #does the same thing
 
-#print number:
+# Print number:
 print(number)  
 
-#find out the class of number:
+# Find out the class of number:
 class(number)
 
-#change number to an integer and re-save it as number2:
+# Change number to an integer and re-save it as number2:
 number2 <- as.integer(number)
 
-#inspect the class of number2 to see that it is an integer:
+# Inspect the class of number2 to see that it is an integer:
 class(number2)
 ```
     
 #### Characters  
 
 ```{r}
-#save a character string in a variable named message
+# Save a character string in a variable named message
 message <- "welcome"
 
-#print message:
+# Print message:
 print(message)
 
-#inspect the class of message:
+# Inspect the class of message:
 class(message)
 ```
 
@@ -112,16 +112,16 @@ class(message)
 Logical data is either TRUE or FALSE  
 In R, TRUE=1 and FALSE=0   
 ```{r}
-#save the logical TRUE as a variable called outcome:  
+# Save the logical TRUE as a variable called outcome:  
 outcome <- TRUE  
 
-#print outcome
+# Print outcome
 print(outcome)
 
-#inspect class of outcome
+# Inspect class of outcome
 class(outcome)
 
-#note that, weirdly, outcome+outcome=2  
+# Note that, weirdly, outcome+outcome=2  
 outcome+outcome
 ```
   
@@ -129,43 +129,43 @@ In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows
   1) == means "is equal to"  
   2) != means "is not equal to"  
   3) > means "greater than"; >= means "greater than or equal to"  
-  4) < means "less than; <= means "less than or equal to"  
+  4) < means "less than; <= means "less than or equal to"   
   
 ```{r}
-#is 5 equal to 3?
+# Is 5 equal to 3?
 5==3
 
-#is 5 not equal to 3?
+# Is 5 not equal to 3?
 5!=3
 
-#is 5 less than 3?
+# Is 5 less than 3?
 5<3
 
-#is 5 greater than 3?
+# Is 5 greater than 3?
 5>3
 
-#is 5 greater than 5?
+# Is 5 greater than 5?
 5>5
 
-#is 5 greater than or equal to 5?
+# Is 5 greater than or equal to 5?
 5>=5
 
-#is 5 equal to 5?
+# Is 5 equal to 5?
 5==5
 
-#is "hello" equal to "hello"?
+# Is "hello" equal to "hello"?
 "hello" == "hello"
 
-#is "hello" equal to "goodbye"?
+# Is "hello" equal to "goodbye"?
 "hello" == "goodbye"
 
-#is "hello" greater than "goodbye"? (in other words is "hello" after "goodbye" alphabetically?)
+# Is "hello" greater than "goodbye"? (in other words is "hello" after "goodbye" alphabetically?)
 "hello">"goodbye"  
 
-#is TRUE == 1?
+# Is TRUE == 1?
 TRUE==1
 
-#is FALSE==0?
+# Is FALSE==0?
 FALSE==0
 ```
   
@@ -190,16 +190,19 @@ print(vec3)
 # We can use the c() function to combine pre-saved vectors:
 vec4 <- c(vec1,vec3)
 print(vec4)
+
+# Use the length function to find the length of a vector  
+length(vec4)
 ```
    
 Here are some other useful shortcuts for creating vectors in R:  
 ```{r}
-#use the rep() function to repeat values. Inspect the following to see how it works!
+# Use the rep() function to repeat values. Inspect the following to see how it works!
 rep(x=0,times=5) #create a vector of 5 zeros
 rep(x=c(1,2,3),times=5) #create a vector with five repeats of 1,2,3
 rep(c(1,2,3),each=2,times=5) #repeat each value in 1,2,3 twice, then repeat that 5 times  
 
-#use the seq function to create a sequence of values  
+# Use the seq function to create a sequence of values  
 seq(from=1, to=5, by=.5) #create a vector with values from 1-5, incementing by .5
 seq(from=1, to=5, length.out=17) #create a vector with 17 equally spaced values going from 1 to 5
 ```
@@ -213,22 +216,22 @@ print(A)
 B <- matrix(c(1,2,5,3,4,0,2,1,5), nrow=3, ncol=3, byrow=TRUE)
 print(B)
 
-#print the dimensions of a matrix (number of rows followed by number of columns)
+# Print the dimensions of a matrix (number of rows followed by number of columns)
 dim(A)
 
-#matrix multiplication
+# Matrix multiplication
 A %*% B
 
-#element-wise multiplication  
+# Element-wise multiplication  
 A * B
 
-#element-wise addition
+# Element-wise addition
 A+B
 
-#transpose of a matrix
+# Transpose of a matrix
 t(A)
 
-#inverse of a matrix
+# Inverse of a matrix
 solve(B)
 ```
   
@@ -236,36 +239,112 @@ solve(B)
 Data frames are generally used to store tabular data. Data frames are composed of same-length vectors; these vectors can be of differing data types. In general, when you read a .csv data file into R, it will be saved as a data frame.  
 We can create a data frame in R as follows:  
 ```{r}
-#create a fake dataset called example_data
+# Create a fake dataset called example_data
 example_data <- data.frame(ID_Num = c(1:10),
                            Age = rep(24:28, each=2),
                            State = c(rep("New Jersey", 5), rep("New York", 5)))
 
-#change row names of the data frame (some made up names)
+# Change row names of the data frame (some made up names)
 rownames(example_data) <- c("Sarah", "Mike", "Drew", "Eric", "Maria", 
                             "Lindsey", "Mark", "Jenny", "Sophie", "Paul")
 
-#print the data frame
+# Print the data frame
 example_data
 ```
     
 The following R code outlines a few ways to inspect data in a data frame.    
 ```{r}
-#get dimensions (same as matrices)
+# Get dimensions (same as matrices)
 dim(example_data)
 
-#get summaries of the columns
+# Get number of columns
+ncol(example_data)
+
+# Get number of rows
+nrow(example_data)
+
+# Get summaries of the columns
 summary(example_data)
 
-#access a single column of the data frame using $
+# Access a single column of the data frame using $
 example_data$Age
 
-#inspect row names
+# Inspect row names
 rownames(example_data)
 
-#inspect column names
+# Inspect column names
 colnames(example_data)
 ```
+
+  
+#### Lists  
+Lists enable multiple data types or data sets to be stored in a simple object. For example, a list could have a data frame as its first element, a vector as its second element, and a character string as its third element.  
+```{r}
+# Save vector vec1, matrix A, and vector vec2 in a list called example list
+example_list <- list(vec1, A, vec2)
+
+# Print example_list
+example_list
+```
+    
+## Indexing  
+In R, indices start at 1, not 0 as in other languages. For example, the index of the 3rd element in a vector is 3. 
+
+#### Using indices to extract elements in a vector  
+We can use indices enclosed in square brackets in order to extract data from a vector as follows:  
+```{r}
+# This R chunk uses vector vec4 from above  
+# Re-print vec4
+vec4
+
+# Extract the 3rd element in vec4
+vec4[3]
+
+# Extract the 3rd through 5th elements in vec4
+vec4[3:5]
+
+# Extract the 1st, 3rd, and 7th elements in vec4
+vec4[c(1,3,7)]
+
+# Remove the 2nd element from vec4
+vec4[-2]
+
+# Remove the 2nd, 4th, and 5th elements from vec4
+vec4[-c(2,4,5)]
+```
+   
+We can also use the following functions to either a) get a logical vector indicating which values in the vector meet some criterion or b) get indices of values in a vector that meet some criterion.  
+```{r}
+# Logical vector of the same length as vec4
+# TRUE wherever elements equal 2; FALSE elsewhere
+vec4==2
+
+# Get indices of all values in vec4 that are equal to 2
+which(vec4==2)
+
+# Get index of the maximum value in vec4 
+# If the maximum occurs more than once, this returns the first location by default  
+which.max(vec4)
+
+# Return logical vector indicating which elements of vec4 are either equal to 2 or 4 
+vec4 %in% c(2,4)  
+
+# Another way to do the same. Note that | means "or" and & means "and"
+vec4==2 | vec4==4
+```
+  
+By enclosing the output from the above functions in square brackets, we can extract elements meeting particular criteria from a vector. For example:  
+```{r}
+# Extract elements of vec4 that are equal to 2 
+vec4[vec4==2]
+
+# Extract elements of vec4 that are equal to 2 or 4
+vec4[vec4==2|vec4==4]
+#or:
+vec4[vec4 %in% c(2,4)]
+```
+   
+#### Using indices to extract elements in a matrix
 
 
 
