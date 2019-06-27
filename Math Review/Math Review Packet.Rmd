@@ -913,12 +913,12 @@ If we want to compare two independent sample means for data that is not paired (
 This is done in much the same way as before, except now we need to calculate $\bar{x_1}$ (the mean of group 1), $\bar{x_2}$ (the mean of group 2), calculate their difference, and then construct a T-test comparing this value to a null hypothesis that $\bar{x_1}-\bar{x_2}=0$. Also, we need a different way of estimating the standard error and need to know how many degrees of freedom to use for our t distribution (see below).    
    
 Standard error:  
-Using what we know about the properties of variance, we can derive that:  
+Using what we know about the properties of variance, we can derive that (note: $s_1$ and $s_2$ represent the sample standard deviations of group 1 and group 2, respectively:  
 $$SE^2(\bar{x_1}-\bar{x_2})=SE^2(\bar{x_1})+(-1)^2SE^2(\bar{x_2})= SE^2(\bar{x_1})+SE^2(\bar{x_2})=\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}$$  
 So, $SE(\bar{x_1}-\bar{x_2})$ can be estimated using: $$SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$    
 
-Alternatively, if we think that the two groups have equal variances, we can used the pooled standard deviation formula to get a better estimate of $SE(\bar{x_1}-\bar{x_2})$. The formula is:  
-$$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$     
+Note that there are two possible ways to estimate $s_1$ and $s_2$: We can a) estimate $s_1$ and $s_2$ separately or b) if we think that the two groups have equal variances, we can used the pooled standard deviation formula (below) to take advantage of a larger sample size to estimate the population standard deviation (and then use $s_{pooled}$ for both $s_1$ and $s_2$). The formula is:  
+$$s_{pooled}=\sqrt{\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}}$$     
 
    
 Degrees of freedom:  
