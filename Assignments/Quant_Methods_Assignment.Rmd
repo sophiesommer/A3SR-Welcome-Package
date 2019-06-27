@@ -21,6 +21,25 @@ So, $SE(\bar{x_1}-\bar{x_2})$ can be estimated using: $$SE(\bar{x_1}-\bar{x_2})=
 
 Alternatively, if we think that the two groups have equal variances, we can used the pooled standard deviation formula to get a better estimate of $SE(\bar{x_1}-\bar{x_2})$. The formula is:  
 $$s^2_{pooled}=\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}$$     
+```{r}
+# Average height of men
+mean_hm <- mean(height$Height[height$Male==1])
+var_hm <- var(height$Height[height$Male==1])
+N_hm <- sum(height$Male)
+
+# Females
+# Average height of women
+mean_hw <- mean(height$Height[height$Male==0])
+var_hw <- var(height$Height[height$Male==0])
+N_hw <- length(height$Male) - sum(height$Male)
+
+# Standard Error for women # Asssuming equal variance 
+s2pool <- (var_hm*(N_hm -1) + var_hw*(N_hw -1))/(N_hm+N_hw-2)
+spool <- sqrt(s2pool)
+spool/sqrt(257) #to get the standard error 
+```
+
+
 
 
 Degrees of freedom:  
@@ -48,7 +67,7 @@ mean_hw <- mean(height$Height[height$Male==0])
 var_hw <- var(height$Height[height$Male==0])
 N_hw <- length(height$Male) - sum(height$Male)
 
-sd_comb <- sqrt((var_hm/N_hm)+(var_hw/N_hw))
+sd_comb <- sqrt((s2pool/(N_hm))+(s2pool/N_hw))
 
 t <- (mean_hm - mean_hw)/sd_comb
 1-pt(t, df = (N_hm+N_hw-2))
