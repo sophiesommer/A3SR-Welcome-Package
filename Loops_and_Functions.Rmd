@@ -88,7 +88,6 @@ Answer the following questions:
 2. What is the probability of obtaining a credit limit of 2000 dollars?
 3. What is the probability of obtaining a credit limit of 10000 dollars?
 
-
 ```{r, tidy = TRUE}
 iterations <-  1000 # set the number of iterations: change this number to change the number of iterations
 creditcard <- rep(NA, iterations) #create an empty vector to store results of credit card application 
