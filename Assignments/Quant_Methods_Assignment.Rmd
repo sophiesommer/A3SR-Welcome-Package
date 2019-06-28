@@ -1,5 +1,5 @@
 ---
-title: "Quantitative_Methods_Assignment"
+title: "Quantitative Methods Assignment 1"
 author: "Firstname Lastname"
 output: pdf_document
 ---
@@ -8,10 +8,8 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# T-tests and linear regression: A comparison 
-
-### T-test Recap  
-#### One Sample T-test  
+# T-test Recap     
+#### One Sample T-test     
 Remember that, for a random variable, $X$, the standard error of $\bar{x}$ for a sample of size $n$ is $SE(\bar{x})=\frac{\sigma}{\sqrt{n}}$; therefore, for a single sample of size $n$, we can estimate the standard error of $\bar{x}$ using $SE(\bar{x})=\frac{s}{\sqrt{n}}$ where $s$ is the sample standard deviation.  
 
 This can be used to derive a T statistic, which can then be compared to a t distribution with $n-1$ degrees of freedom.
@@ -27,7 +25,7 @@ $$s_{pooled}=\sqrt{\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}}$$
    
 We can then use the estimated standard error to calculate a test statistic, which we can then compare to a t distribution with degrees of freedom as follows:     
 In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution.   
-If assuming equal variances and using the $s_{pooled}$, we can use $n_1+n_2-2$ degrees of freedom.   
+If assuming equal variances and using $s_{pooled}$, we can use $n_1+n_2-2$ degrees of freedom.   
 
 #### Linear Regression with a Dummy Variable  
 First, let's read in some data. In order to read in the file, you will need to download height_sex.csv to your computer and include the full file path in the function call below. For example, I could put the file in my "Downloads" folder and call:  
@@ -46,14 +44,16 @@ For this assignment, we are going to focus on the "Height" and "Male" variables.
 plot(height$Male, height$Height, xlab="Male", ylab="Height")
 ```
     
-Suppose for a moment that you only had one set of heights, say, ${60, 63, 63, 70, 72}$ and you wanted to find some value, $M$, such that the sum of the differences between $M$ and each value in the set is minimized. It turns out that the value of $M$ which satisfies this minimization problem is the mean of the dataset (you can prove this with some relatively simple calculus. We leave the proof to the interested reader, but hopefully this claim already feels somewhat intuitive).  
+Suppose for a moment that you only have one set of heights, say, $\{60, 63, 63, 70, 72\}$ and you want to find some value, $M$, such that the sum of the differences between $M$ and each value in your set of heights is minimized. It turns out that the value of $M$ which satisfies this minimization problem is the mean of the dataset (you can prove this with some relatively simple calculus). The proof is left to the interested reader, but hopefully this claim already feels somewhat intuitive.  
 
 Now, suppose we try to fit an OLS regression line to this data. This would involve finding values of $\beta_0$ and $\beta_1$ such that the vertical distance between each point (in the above graph) and the line $Height=\beta_0+\beta_1*Male$ is minimized. 
 
 There are only two possible values of "Male" in this dataset: 0 and 1. Therefore, one way to think about minimizing the vertical distances between each data point and the line is this: Find the mean height of women (i.e., everyone with Male=0), find the mean height of men (i.e., everyone with Male=1), and connect the two points $(0,\text{mean womens height} )$ and $(1,\text{mean mens height} )$.   
 
 Now we can try to write the equation for this line in the form $Height=\beta_0+\beta_1*Male$. Using the strategy described above, we know that $(0,\text{mean womens height})$ is the y-intercept of the line. Therefore $\beta_0 = \text{mean womens height}$. We also know that $\beta_1$ is the slope of the line. Since we know two points on the line, we can calculate the slope as $\frac{y_2-y_1}{x_2-x_1}= \frac{(\text{mean mens height} - \text{mean womens height})}{(1-0)} = \text{mean mens height} - \text{mean womens height}$. So, $\beta_1 = \text{mean mens height} - \text{mean womens height}$.   
-
+    
+\pagebreak   
+  
 # Assignment  
 
 1. The mean height of men is calculated below and saved as MM. Fill in the rest of the code to a) save the mean height of women as MW and b) print the mean height of women  
@@ -150,7 +150,7 @@ linmod <- lm(Height~Male, data=height)
 summary(linmod)
 ```
    
-7. Reprint the following values that you saved in previous problems: Mean women's height (MW), difference in mean height for men and women (MeanDiff), standard error of this mean difference (SEMeanDiff), the T statistic for the difference in means (Ttest). Which of these values can you find in the lm() output above?  
+7. Reprint the following values that you saved in previous problems: Mean women's height (MW), difference in mean height for men and women (MeanDiff), standard error of this mean difference (SEMeanDiff), and the T statistic for the difference in means (Ttest). Which of these values can you find in the lm() output above?  
 ```{r}
 # Re-print MW
 
