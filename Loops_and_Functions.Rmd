@@ -82,7 +82,7 @@ paste("Your credit card application was", creditcard) #This line prints out the 
 
 # For loops
 Now that we have some code to model this process, we can use a for loop to repeat the process a bunch of times and save the results in a vector. Read through the code and see if you can understand it. Then, try running it and inspect the percentage of times our credit card application is not approved. Is this what you would expect? Try increasing the number of iterations to 1000 and then compare again to the probability of having having a credit score of "300-599". 
-
+g
 Answer the following questions: 
 1. What do you expect the probability of having your credit card approved?
 2. What is the probability of obtaining a credit limit of 2000 dollars?
