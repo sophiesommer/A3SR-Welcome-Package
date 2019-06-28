@@ -82,7 +82,7 @@ paste("Your credit card application was", creditcard) #This line prints out the 
 ```
 
 # For loops
-Now that we have some code to model this process, we can use a for loop to repeat the process a bunch of times and save the results in a vector. Read through the code and see if you can understand it. Then, try running it and inspect the mean payout (you can run it a few times and will get slightly different values each time). Is the mean payout what you expect (i.e., what Wheelan calculated)? Try increasing the number of iterations to 1000 and then compare again to the expectation calculated by Wheelan. Is it close(r)?
+Now that we have some code to model this process, we can use a for loop to repeat the process a bunch of times and save the results in a vector. Read through the code and see if you can understand it. Then, try running it and inspect the percentage of times our credit card application is not approved. Is this what you would expect? Try increasing the number of iterations to 1000 and then compare again to the probability of having having a credit score of "300-599". 
 
 ```{r, tidy = TRUE}
 iterations <-  1000 # set the number of iterations: change this number to change the number of iterations
@@ -116,7 +116,7 @@ for(i in 1:iterations){ #repeat the process iterations times
 table(creditcard)/iterations
 ```
 
+## While loops 
 
 
-
-
+## Functions 
