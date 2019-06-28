@@ -1,0 +1,126 @@
+---
+title: "Loops and Functions"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Sampling 
+
+## Sampling one value from a set 
+The sample() function in R can be used to sample some numbers from a set of possible outcomes with given probabilities. The following code can be used to select one value (denoted by “size”) from the set of possibilities (0,1), where the probability of drawing a 0 is 40% (or .4) and the probability of drawing a 1 is 60% (or .6). Note: in R, we use c() to combine values into a set (called a vector).
+
+Run the following a couple of times to understand the output. 
+```{r}
+sample(c(0,1), size = 1, prob = c(.2,.8)) 
+
+# What is the output?
+# One number that is either 0 or 1. 0 has a probability of 0.20 and 1 has a probability of 0.80.
+```
+
+Now let's change some of the some of the parameters so that it samples from the values (0,1,2) with probabilities (0.3, 0.5, 0.2)
+```{r}
+# Insert code here 
+```
+
+## Sampling multiple values from a set
+
+We can also change the size parameter to sample multiple values at once. However, we may need to use the replace parameter if we want to sample from the same set repeatedly. 
+
+Running the following code will produce an error because we only have 2 values in our sample space and want to draw 3 values without replacement. For example if I draw a 1, then 3 will be the only value for me to draw from for my 2nd draw. This leave me no values to draw from for my third draw. 
+```{r, tidy = TRUE}
+# Sampling 3 values from a set containing only 2 values with replace = FALSE
+sample(c(1,3), size = 3, prob = c(.4,.6), replace = FALSE) 
+```
+```{r}
+# Sampling 3 values from a set containing only 2 values with replace = TRUE
+sample(c(1,3), size = 3, prob = c(.4,.6), replace = TRUE) 
+```
+
+## Sampling from a set of character strings
+In the previous examples, we sampled from numeric values, but we do not necessarily sample from only numbers. We can use quotes to denote character strings. The code can we used to sample one color from the set of primary colors ("red", "yellow", "blue") with probabilities (0.3, 0.3, 0.4). 
+
+```{r}
+sample(c("red", "yellow", "blue"), size = 1, prob = c(0.3, 0.3, 0.4), replace = TRUE)
+```
+
+## If/else conditional statements
+We can use an if/else conditional statement: "if (condition) {Execute some code} else {execute some other code}". This will check if the condition is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code. 
+
+Please note that the following example is not representative of an actual credit card application process. There are many of ther factors that are taken into consideration that we are not accounting for. 
+
+The following code will go sample from two sets of credit scores ("300-599", "600-850") with probabilities (0.3, 0.7). If the outcome is "300-599" then our credit card application is  not approved. If the outcome is "600-850", we will sample from the credit ranges "600-699", "700-850" with probabilities (0.4, 0.6). If your credit score is between "600-699" your credit card application is approved with a credit limit of 2,000, else (your credit score is between "700-850") your credit card application is approved with credit limit of 10,000.
+```{r}
+# First we determine whether our credit card application is approved based off credit score
+creditscore1 <- sample(c("300-599", "600-850"), size = 1, prob = c(0.3, 0.7), replace = FALSE)
+
+# If our credit score is between 300-599, our credit card application is not approved
+if (creditscore1 == "300-599"){
+    creditcard = "not approved"
+  } else { # otherwise...
+    
+    # If our credit score is between 600-850 we can go the the next step: creditscore2
+    # creditscore2 tells us that our credit card application was approved and our credit limit
+    creditscore2 <- sample(c("600-699", "700-850"), size = 1, prob = c(0.4, 0.6), replace = FALSE)
+    
+    #  If our credit score is between 600-699, our credit card is approved with a credit limit of $2000
+    if (creditscore2 == "600-699") {
+      creditcard = "approved - credit limit: $2,000"
+      
+    } else { # otherwise...
+      
+      #  If our credit score is between 600-699, our credit card is approved with a credit limit of $10000
+      creditcard = "approved - credit limit: $10,000"
+    }
+  }
+paste("Your credit card application was", creditcard) #This line prints out the outcome of our credit card application
+```
+
+# For loops
+Now that we have some code to model this process, we can use a for loop to repeat the process a bunch of times and save the results in a vector. Read through the code and see if you can understand it. Then, try running it and inspect the percentage of times our credit card application is not approved. Is this what you would expect? Try increasing the number of iterations to 1000 and then compare again to the probability of having having a credit score of "300-599". 
+g
+Answer the following questions: 
+1. What do you expect the probability of having your credit card approved?
+2. What is the probability of obtaining a credit limit of 2000 dollars?
+3. What is the probability of obtaining a credit limit of 10000 dollars?
+
+```{r, tidy = TRUE}
+iterations <-  1000 # set the number of iterations: change this number to change the number of iterations
+creditcard <- rep(NA, iterations) #create an empty vector to store results of credit card application 
+
+for(i in 1:iterations){ #repeat the process iterations times
+
+    # First we determine whether our credit card application is approved based off credit score
+    creditscore1 <- sample(c("300-599", "600-850"), size = 1, prob = c(0.3, 0.7), replace = FALSE)
+      
+      # If our credit score is between 300-599, our credit card application is not approved
+      if (creditscore1 == "300-599"){
+        creditcard[i] = "not approved"
+      } else { # otherwise...
+    
+        # If our credit score is between 600-850 we can go the the next step: creditscore2
+        # creditscore2 tells us that our credit card application was approved and our credit limit
+        creditscore2 <- sample(c("600-699", "700-850"), size = 1, prob = c(0.4, 0.6), replace = FALSE)
+    
+        # If our credit score is between 600-699, our credit card is approved with a credit limit of $2000
+        if (creditscore2 == "600-699") {
+           creditcard[i] = "approved - credit limit: $2,000"
+        } else { # otherwise...
+      
+      #  If our credit score is between 600-699, our credit card is approved with a credit limit of $10000
+      creditcard[i] = "approved - credit limit: $10,000"
+    }
+  }
+}
+
+table(creditcard)/iterations
+```
+
+## While loops 
+
+
+## Functions 
