@@ -35,7 +35,6 @@ Running the following code will produce an error because we only have 2 values i
 ```{r, tidy = TRUE}
 # Sampling 3 values from a set containing only 2 values with replace = FALSE
 sample(c(1,3), size = 3, prob = c(.4,.6), replace = FALSE) 
-
 ```
 ```{r}
 # Sampling 3 values from a set containing only 2 values with replace = TRUE
