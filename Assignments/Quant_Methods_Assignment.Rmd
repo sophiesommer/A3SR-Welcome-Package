@@ -10,12 +10,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # T-test Recap     
 #### One Sample T-test     
-Remember that, for a random variable, $X$, the standard error of $\bar{x}$ for a sample of size $n$ is $SE(\bar{x})=\frac{\sigma}{\sqrt{n}}$; therefore, for a single sample of size $n$, we can estimate the standard error of $\bar{x}$ using $SE(\bar{x})=\frac{s}{\sqrt{n}}$ where $s$ is the sample standard deviation.  
+For a sample of size $n$, we can estimate the standard error of $\bar{x}$ using $SE(\bar{x})=\frac{s}{\sqrt{n}}$ where $s$ is the sample standard deviation.  
 
-This can be used to derive a T statistic, which can then be compared to a t distribution with $n-1$ degrees of freedom.
+This can be used to derive a T Score, which can then be compared to a t distribution with $n-1$ degrees of freedom.
 
 #### Two (Independent) Sample T-test
-Remember that we can estimate the standard error of $\bar{x_1}-\bar{x_2}$ using the following formula (derived in the math review packet) :  
+We can estimate the standard error of $\bar{x_1}-\bar{x_2}$ using the following formula (derived in the math review packet) :  
 $$SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$    
    
 In this formula, $s_1$ and $s_2$ represent the sample standard deviations for group 1 and group 2, respectively. 
