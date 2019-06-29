@@ -123,4 +123,47 @@ table(creditcard)/iterations
 ## While loops 
 
 
+```{r}
+
+```
+
+
 ## Functions 
+Functions are created using 'function()' and are stored as R obejcts in your global environemnt. They are R objects of class "function".
+
+Functions follow the following structure: 
+
+'myFunction <- function( arguments ){
+    execute some interesting code
+}'
+
+Let's take a look at the arguments for the 'lm()' function
+```{r}
+args(lm)
+```
+
+We see that 'lm' as many different arguments but there are default settings for most parameters that we do not need to set. For lm() we need a formula (ie. y ~ x) and the data the values comes from or (data$y ~ data$x).
+
+```{r}
+water_data <- data.frame(Days = c(1:12),
+                         WaterConsumed = rnorm(12, 40, 5),
+                         TimeExercise =  2*rnorm(12, 30, 5))
+
+head(water_data)
+```
+
+It is important that we follow the position the argument is in for a given function or match the argument by the argument name. Run the following code and identify the subtle differences. 
+```{r}
+# The following is the same
+lm(water_data$TimeExercise~water_data$WaterConsumed)
+lm(TimeExercise~WaterConsumed, water_data)
+
+# The following code will result in an error 
+# What would we add to the code to produce the same results as above? (Hint: look at arguments of lm())
+lm(water_data, TimeExercise~WaterConsumed)
+```
+
+We can have functions nested in the function itself and functions that take on other functions as arguments. 
+
+
+
