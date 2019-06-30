@@ -148,7 +148,7 @@ A uniform distribution has two parameters: a and b. The PDF of the uniform distr
  
 # Set the number of iterations  
 
-samp_means <- # insert code here to initialize an empty vector
+# insert code here to initialize an empty vector called samp_means
 
 
 for (i in 1:ITER){
