@@ -8,6 +8,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# Notes  
   
 ## Using basic functions in R      
 
@@ -465,8 +466,10 @@ levels(fake_data)
 ```
     
 Note that we have created a factor variable with 5 levels. Even though each element in the data is a character string, the class is "factor", not "character". This tells R that the variable is categorical.  
+  
+## Setting up your workspace/global environment  
 
-### Reading in data   
+#### Reading in data   
 There are a number of ways to read data into R, but the most common is to use the read.csv function, which can read in a .csv file and convert it to a data frame in your working environment. In order for R to read a file, you must either include the full path to the file or you must set your working directory to the location of the file. If you are planning to knit to PDF, the call to setwd() or the full file name must be included in an R chunk (instead of just running it in the Console). Another option is to use an Rproj file to automatically set your working directory to a particular location every time you open it.   
 
 Note that an easy way to get a file path is to right click on the file in your finder window and then click "get info". The info page should include a file path that you can copy and paste into R. Note that file names and path names need to be in quotes.   
@@ -484,13 +487,13 @@ Some commonly used data sets are already available to you in base R (and others 
 #load iris data set into my working environment
 data(iris)
 
-#view first five rows of the iris dataset
-iris[1:5,]
+#view the structure of the iris dataset
+str(iris)
 ```
   
 Finally, if you have data in other formats, you might need some other functions in R. Probably the most relevant is the read_dta function (in the "haven" package) or read.dta (in the "foreign" package). Both functions read .dta files, which is how Stata files are generally saved.  
 
-### Downloading new packages and functions   
+#### Downloading new packages and functions   
 To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You will also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  
 ```{r, message=FALSE}
 # Install the psych package
@@ -504,15 +507,58 @@ library(psych)
 require(psych) 
 ```
   
-### Using R as a calculator    
+## Using R as a calculator      
+
+It is helpful to know how to do some basic calculations in R (see below)
 ```{r}
+# Add, subtract, multiply or divide values: 
+5+3 #add
+5-2 #subtract
+5*3 #multiply
+5/2 #divide
+
+# Exponents and logs
+5^2 #5 squared
+log(5) #log base e of 5
+
+# Modulo 
+5%%2 #gives remainder of 5/2
+
+# Factorial 
+factorial(3) #gives 3 factorial
+```
+  
+Many operations can also be applied to an entire vector or matrix of values.  
+```{r}
+# Create a vector with the numbers from 1-10  
+vec <- 1:10
+print(vec)
+
+# If you add, subtract, multiply, divide, exponentiate, etc.. a vector by a constant
+# Then that operation is applied to every element of the vector (same for matrices)
+
+# Add 5 to every value in a vector
+vec+5
+
+# Multiply every value in a vector by 2
+vec*2
+
+# Cube every element in a vector
+vec^3
+
+# Take the factorial of every value in a vector
+factorial(vec)
 
 ```
 
-### Top 10 most useful functions to look up  
-```{r}
+# Practice Problems   
+  1. Download the psych package and load it into your workspace  
+  2. Use the data() function to load the "income" dataset from the psych packages  
+  3. Inspect the structure of the income dataset. How many rows and columns are there? What are the variable names and types?
 
-```
+
+
+
 
 
 
