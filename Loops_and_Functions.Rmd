@@ -120,14 +120,6 @@ for(i in 1:iterations){ #repeat the process iterations times
 table(creditcard)/iterations
 ```
 
-## While loops 
-
-
-```{r}
-
-```
-
-
 ## Functions 
 Functions are created using 'function()' and are stored as R obejcts in your global environemnt. They are R objects of class "function".
 
@@ -166,4 +158,10 @@ lm(water_data, TimeExercise~WaterConsumed)
 We can have functions nested in the function itself and functions that take on other functions as arguments. 
 
 
+## While loops 
+
+The credit card company 
+```{r}
+
+```
 
