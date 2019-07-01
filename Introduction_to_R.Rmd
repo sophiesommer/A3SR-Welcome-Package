@@ -91,6 +91,10 @@ class(number)
 # Change number to an integer and re-save it as number2:
 number2 <- as.integer(number)
 
+# Another way to save a value as an integer: 
+number3 <- 5L
+class(number3)
+
 # Inspect the class of number2 to see that it is an integer:
 class(number2)
 ```
@@ -110,7 +114,7 @@ class(message)
 
   
 #### Logicals   
-Logical data is either TRUE or FALSE  
+Logical values are either TRUE or FALSE  
 In R, TRUE=1 and FALSE=0   
 ```{r}
 # Save the logical TRUE as a variable called outcome:  
@@ -131,6 +135,7 @@ In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows
   2) != means "is not equal to"  
   3) > means "greater than"; >= means "greater than or equal to"  
   4) < means "less than; <= means "less than or equal to"   
+  5) & means "and"; | means "or"
   
 ```{r}
 # Is 5 equal to 3?
@@ -144,6 +149,12 @@ In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows
 
 # Is 5 greater than 3?
 5>3
+
+# Is 5 greater than 3 AND less than 7?
+5>3 & 5<7
+
+# Is 5 less than 3 OR less than 7?
+5<3 | 5<7
 
 # Is 5 greater than 5?
 5>5
@@ -199,9 +210,9 @@ length(vec4)
 Here are some other useful shortcuts for creating vectors in R:  
 ```{r}
 # Use the rep() function to repeat values. Inspect the following to see how it works!
-rep(x=0,times=5) #create a vector of 5 zeros
-rep(x=c(1,2,3),times=5) #create a vector with five repeats of 1,2,3
-rep(c(1,2,3),each=2,times=5) #repeat each value in 1,2,3 twice, then repeat that 5 times  
+rep(x=0, times=5) #create a vector of 5 zeros
+rep(x=c(1,2,3), times=5) #create a vector with five repeats of 1,2,3
+rep(c(1,2,3), each=2, times=5) #repeat each value in 1,2,3 twice, then repeat that 5 times  
 
 # Use the seq function to create a sequence of values  
 seq(from=1, to=5, by=.5) #create a vector with values from 1-5, incementing by .5
@@ -396,7 +407,7 @@ example_data$Age
 # Using square brackets and the column name
 example_data[,"Age"]
 ```
-     
+      
 Some more examples of using logicals to extract specific data from a data frame:  
 ```{r}
 # Extract the ages of people who are from New York
@@ -411,7 +422,97 @@ example_data[example_data$Age==24 & example_data$State=="New York",]
 # Extract the row names (i.e., names) of those who are 24 from New York
 rownames(example_data)[example_data$Age==24 & example_data$State=="New York"]
 ```
+  
+#### Extracting elements of a list    
+Extracting values from a list requires two steps: first you'll need to extract the element of the list you are interested in using double square brackets: [[]]. Then, you can use regular square brackets to extract values from each element as described in the above sections. See below:  
+```{r}
+# Re-print example_list
+example_list
 
+# Extract the first element in the list (which is a vector)
+example_list[[1]]
+
+# Extract the 2nd value in that vector 
+example_list[[1]][2]
+
+# Extract the value in the 1st row, 3rd column of the second element of the list
+example_list[[2]][1,3]
+
+```
+   
+
+#### Factor variables and levels   
+One other data structure that you'll see is a factor variable with levels. This is often used for categorical data. For example, suppose you collect some data where you ask people to rate their agreement with the statement, "I like coffee." Each person responds on a scale from 1-5 where 1=strongly disagree, 2=disagree, 3=no opinion, 4=agree, and 5=strongly agree. When you collect this data, you might want the numerical responses to be linked with their descriptions; but you don't want R to treat this as a continuous variable (for example, a value of 2.3 is not possible). (note: factor variables can also be used for non-ordered categorical variables). The code below shows an example:  
+```{r}
+# Create some fake data
+fake_data <- sample(c("strongly disagree", "disagree", "no opinon", "agree", "strongly agree"),
+                    size=100, replace=TRUE, prob=c(.2,.3,.1,.3,.2))
+
+# Make fake_data into a factor variable  
+fake_data <- as.factor(fake_data)
+
+# Look at the first 3 elements of the fake data
+fake_data[1:3]
+
+# Inspect class of fake_data
+class(fake_data)
+
+# Inspect the structure of fake_data
+str(fake_data)
+
+# Inspect the levels of fake_data
+levels(fake_data)
+```
+    
+Note that we have created a factor variable with 5 levels. Even though each element in the data is a character string, the class is "factor", not "character". This tells R that the variable is categorical.  
+
+### Reading in data   
+There are a number of ways to read data into R, but the most common is to use the read.csv function, which can read in a .csv file and convert it to a data frame in your working environment. In order for R to read a file, you must either include the full path to the file or you must set your working directory to the location of the file. If you are planning to knit to PDF, the call to setwd() or the full file name must be included in an R chunk (instead of just running it in the Console). Another option is to use an Rproj file to automatically set your working directory to a particular location every time you open it.   
+
+Note that an easy way to get a file path is to right click on the file in your finder window and then click "get info". The info page should include a file path that you can copy and paste into R. Note that file names and path names need to be in quotes.   
+```{r}
+# Use setwd() to set your working directory to a particular location
+setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Assignments")
+
+# Now that I've set my working directory to my "Assignments" folder,
+# I can read any .csv file in that location by simply writing the name in quotes:
+data <- read.csv("height_sex.csv")
+```
+     
+Some commonly used data sets are already available to you in base R (and others are available once you download particular packages). For example, I can load the iris dataset by simply using the data() function:  
+```{r}
+#load iris data set into my working environment
+data(iris)
+
+#view first five rows of the iris dataset
+iris[1:5,]
+```
+  
+Finally, if you have data in other formats, you might need some other functions in R. Probably the most relevant is the read_dta function (in the "haven" package) or read.dta (in the "foreign" package). Both functions read .dta files, which is how Stata files are generally saved.  
+
+### Downloading new packages and functions   
+To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You will also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  
+```{r, message=FALSE}
+# Install the psych package
+# Note: I have commented out the code so that it doesnt re-install on my computer  
+# install.packages("psych")
+
+# Load psych package
+library(psych)
+#require() does the same thing but will first check if the package is already loaded, 
+#and only loads it if it is not already there:
+require(psych) 
+```
+  
+### Using R as a calculator    
+```{r}
+
+```
+
+### Top 10 most useful functions to look up  
+```{r}
+
+```
 
 
 
