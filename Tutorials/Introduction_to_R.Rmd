@@ -50,6 +50,8 @@ mean(data2)
 mean(data1, na.rm=TRUE)
 ```
       
+Note that many functions that take vector inputs (i.e., max(), min(), sum(), etc.) have an na.rm parameter, which is set to FALSE by default. So, if you try to use one of these functions and get NA as the result, then you might have to add na.rm=TRUE to the function call.  
+  
 #### Calling functions in R  
 When using functions in R, you can make it clear which inputs refer to which parameters by either a) using the order of the parameters specified in the usage or b) naming them explicitly.  
 ```{r}
@@ -474,9 +476,8 @@ There are a number of ways to read data into R, but the most common is to use th
 
 Note that an easy way to get a file path is to right click on the file in your finder window and then click "get info". The info page should include a file path that you can copy and paste into R. Note that file names and path names need to be in quotes.   
 ```{r}
-# Use setwd() to set your working directory to a particular location
-# Note: need to change the file path to your own path
-setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Assignments")
+# Use setwd() to set your working directory to a particular location  
+setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Tutorials")
 
 # Now that I've set my working directory to my "Assignments" folder,
 # I can read any .csv file in that location by simply writing the name in quotes:
@@ -555,41 +556,41 @@ factorial(vec)
 # Practice Problems     
 
 1. Creating and manipulating data  
-  a. Create a vector with the following values: {1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,100.5,NA} and save it as my_vec   
-  b. Calculate the mean of my_vec   
-  c. Multiply all of the elements in my_vec by 2 and take the sum of the doubled values  
-  d. Extract the 1st, 3rd, and 10th values in my_vec and save them as my_short_vec  
-  e. Calculate the median of my_short_vec  
-  f. Create the following matrix (hover your mouse over it to view it in the Rmd): $\begin{bmatrix} 1&2&3\\ 4&5&6\\ 4&4&0\\ \end{bmatrix}$ and save it as my_mat   
+  a. Create a vector with the following values: {1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,100.5,NA} and save it as my_vec
+  b. Calculate the mean of my_vec
+  c. Multiply all of the elements in my_vec by 2 and take the sum of the doubled values
+  d. Extract the 1st, 3rd, and 10th values in my_vec and save them as my_short_vec
+  e. Calculate the median of my_short_vec
+  f. Create the following matrix (hover your mouse over it to view it in the Rmd): $\begin{bmatrix} 1&2&3\\ 4&5&6\\ 4&4&0\\ \end{bmatrix}$ and save it as my_mat
   g. Find the transpose of my_mat
   h. Find the inverse of my_mat
   i. Add 3 to every value of my_mat and save the result as my_mat2
-  j. matrix multiply my_mat by my_mat2   
-  k. Create a data frame with two columns: the first column is called "name"; the second column is called "age". The data frame should have 5 rows, where each row corresponds to the following 5 people: James (age 12), Sara (age 25), Jen (age 50), Ellie (age 64), and Mike (age 30). Save the data frame as my_df  
-  l. Print the first two rows of my_df  
-  m. Print only the rows of my_df that correspond to people who are under the age of 30   
-  n. Create a list called my_list which contains 3 elements: my_vec, my_mat, and my_df (in that order)   
-  o. Use double brackets to extract the 3rd value in the first element of my_list    
-
-
-2. Inspecting a dataset  
-  a. Download the "carData" package and load it into your workspace  
-  b. Use the data() function to load the "TitanicSurvival" from the "carData" package  
-  c. Inspect the structure of the TitanicSurvival dataset. How many rows and columns are there? What are the variable names and types?  
-  d. Print the first five rows of the dataset  
+  j. matrix multiply my_mat by my_mat2
+  k. Create a data frame with two columns: the first column is called "name"; the second column is called "age". The data frame should have 5 rows, where each row corresponds to the following 5 people: James (age 12), Sara (age 25), Jen (age 50), Ellie (age 64), and Mike (age 30). Save the data frame as my_df
+  l. Print the first two rows of my_df
+  m. Print only the rows of my_df that correspond to people who are under the age of 30
+  n. Create a list called my_list which contains 3 elements: my_vec, my_mat, and my_df (in that order)
+  o. Use double brackets to extract the 3rd value in the first element of my_list
+  
+2. Inspecting a dataset   
+  a. Download the "carData" package and load it into your workspace
+  b. Use the data() function to load the "TitanicSurvival" from the "carData" package
+  c. Inspect the structure of the TitanicSurvival dataset. How many rows and columns are there? What are the variable names and types?
+  d. Print the first five rows of the dataset
   e. Print the survival status of people in the 5th, 8th, and 9th rows of the dataset  
-  f. Create a new data frame called "survival" which only includes age and survival status for the first 50 people in the dataset  
+  f. Create a new data frame called "survival" which only includes age and survival status for the first 50 people in the dataset
   g. Print the first 5 rows of your new data frame ("survival")
-  h. What is the mean age of passengers on the ship? How old was the oldest person on the ship? How old was the youngest person on the ship? Save your answers as mean_age, oldest_age, and youngest_age, respectively.  
+  h. What is the mean age of passengers on the ship? How old was the oldest person on the ship? How old was the youngest person on the ship? Save your answers as mean_age, oldest_age, and youngest_age, respectively.
   i. Did the youngest person on the ship survive? Did the oldest person?
   j. How many males and females were on the ship?
   k. How many people on the ship meet the following conditions?: female AND older than 30
   l. How many people on the ship meet the following conditions?: male AND survived
-  m. What is the mean age of females on the ship?   
+  m. What is the mean age of females on the ship?
   
 \pagebreak  
-
-#Answers  
+  
+#Answers   
+  
 1. Creating and manipulating data   
   a. Create a vector with the following values: {1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,100,NA} and save it as my_vec   
 ```{r}
