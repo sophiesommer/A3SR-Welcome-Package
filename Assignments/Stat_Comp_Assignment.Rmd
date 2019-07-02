@@ -11,185 +11,160 @@ knitr::opts_chunk$set(echo = TRUE)
 # Simulating the Central Limit Theorem
 
 ## The Central Limit Theorem
-If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is large enough) normally distributed with mean $\mu$ and standard deviation (which we actually call the *standard error* of $\bar{x}$) $\frac{\sigma}{\sqrt{n}}$ where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it).     
+If we take repeated independent samples of size $n$ from a population of interest (note: it must have finite mean) and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is large enough) normally distributed with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (where $\sigma$ is the population standard deviation).     
 
-### The mean of the sampling distribution of the mean 
-Suppose we are trying to estimate the mean commuting time for graduate students for a population of 1000 grduate students. Let's say the population mean is 45 minutes. If we randomly select a sample of 50 graduate students we might observe a sample mean ($\bar{x}$) equal to 35 minutes. Suppose we randomly select another 20 graduate students from the popluation and find the mean to be 50 minutes. We repeat this process over and over again to have distribution of means for all the possible samples of 50 graduate students. This is called a **sampling distribution of the mean**. From the **central limit theorem** the sampling distribution of the mean has a mean of $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$. 
+### A New Example  
+Suppose you are trying to estimate the mean commuting time for all graduate students at NYU. 
 
-We can simulate this in R. You can sample from a variety distribtions in base R, given the distribution parameters. For example, we can sample from a binomial distribution using 'rbinom', a poisson distribution using 'rpois', and a normal distribution using 'rnorm'. The R function rnorm() takes in parameters of the distribution: n (the number of observations), mean (the mean of the sample), and sd (the standard deviation) to randomly draw from the distribution. 
+Suppose for a moment that the truth, which you can't know in real life, is this: If you could ask every single graduate student to report their commuting time, the true mean would be 45 minutes (sd=15 minutes). 
 
-We will explore the example from above through simulation, assuming that the population of graduate students is normally distributed. 
+Suppose that, in order to estimate the mean commuting time for the full population, you randomly select a sample of 50 graduate students and observe a sample mean ($\bar{x}$) equal to 35 minutes. If you randomly sampled 50 different graduate students, you might have found a sample mean of 50 minutes. 
+
+If you could take all possible samples of 50 graduate students and compute the sample mean for each, then the resulting distribution of means is called the **sampling distribution of the mean**. From the **central limit theorem** the sampling distribution of the mean is normal with a mean of $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (where $\mu$=the population mean and $\sigma$=the population standard deviation). 
+
+
+### Simulation in R
+We can simulate this in R by taking repeated samples of size 50 from a population with known parameters and storing the mean of each sample. 
+
+There are a number of base R functions that randomly sample values from probability distributions with specified parameters. All of these functions start with the letter "r". For example, `rbinom` samples from a binomial distribution, `rpois` samples from a Poisson distribution, and `rnorm` samples from a normal distribution.     
+
+First, let's create a simulated population of graduate student commute times.   
 ```{r, tidy = TRUE}
-# Set seed allows for reproducible results and for the document to produce the exact sample numbers and samples 
-set.seed(12345)  
+# Set.seed allows reproducible results when using random sampling functions 
+set.seed(123)
 
-# A sample of 400 observations from a normal distribution with mean = 2.25 and sd = 2. 
-dat1 <- rnorm(1000, 45, 15)
+# Draw 25000 values from a normal(45,15) distribution and save them in a vector: population
+population <- rnorm(n=25000, mean=45, sd=15) 
+pop_mean <- mean(population) # Computes the mean of the population
+pop_mean # Prints the mean of the population
+pop_sd <- sd(population) # Computes the sd of the population
+pop_sd # Prints the sd of the population
 
-# We can visualize our data using the R functions plot(), density(), and hist()
+par(mfrow=c(1,2)) # Creates a 1 by 2 grid to plot figures in 
+hist(population) # Plots a histogram of the draw
+plot(density(population)) # Creates a density plot of the draw
+```
+      
+Notice that the mean and standard devation of the simulated commute times are very close to 45 and 15, respectively. Note: because of the set.seed() function, you will get the same exact values every time you run the code chunk above (you can remove it and re-run the code to see a new random sample of 25,000 values if you'd like).   
 
-# This creates matrix of m rows by n columns to be able to plot more than one plot
-par(mfrow=c(1,2))
+Now, suppose that these commute times (saved as a vector called "population") are the true commute times of all graduate students at NYU. If we take a lot of random samples of 50 commute times from the overall population and save the resulting sample means, we will get a very good approximation for the sampling distribution of the mean. The central limit theorem tells us that the sampling distribution of the mean is normal, with a mean of $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (where $\mu$=the population mean and $\sigma$=the population standard deviation). Let's use the population values to estimate the mean and standard deviation of the sampling distribution of the mean:   
 
-# Creates a density plot of the data
-plot(density(dat1), main="Density Plot of random sample", cex.main = 0.8)
+```{r}
+samp_size <- 50 # Save a sample size of 50
 
-# Creates a histogram of the data 
-hist(dat1, main = "Histogram of random sample", ylab="", xlab="", cex.main = 0.8) 
+# Save and print the mean of the sampling distribution of the mean
+samp_dist_mean <- pop_mean
+samp_dist_mean
+
+# Save and print the standard deviation of the sampling distribution of the mean
+samp_dist_SE <- pop_sd/sqrt(samp_size)
+samp_dist_SE
 ```
 
-We see that while we sample from a normal distribution, our sample might not necessarily look normal. 
-```{r, tidy = TRUE}
-# Draw 50 observations and take the mean of the draw 
-N <- 50 # Storing the number of observations
- # Randomly draw from the above simulated data N times and stores it in draw1
-draw1 <- sample(dat1, N) 
-mean(draw1) # Computes the mean of the draw
 
-par(mfrow=c(1,2))
-hist(draw1) # Plots a histogram of the draw
-plot(density(draw1)) # Creates a density plot of the draw
-```
+Thus, we expect the sampling distribution of the means to be normally distributed with mean=44.9 and sd=2.13. Now we are ready to test this using a simulation in R. To start, we will repeat the process 100 times (in each iteration, we sample 50 values from the population and save their mean). Then, we will inspect the distribution of the sample means and take their mean and standard deviation.   
 
-Now let's create a sampling distribution of the mean of size 50. 
 ```{r, tidy = TRUE}
-N <- 50 # Set the size of sample
-ITER <- 50 # Set the number of iterations
+samp_size <- 50 # Set the size of sample
+ITER <- 100 # Set the number of iterations (i.e., number of samples)
 
 # Create empty vector of length ITER to store results 
-draw_mean1 <- rep(NA, length=ITER)
+samp_means <- rep(NA, length=ITER)
 
-# Creates a loop to draw 20 observations from the simulated data (dat1), takes the mean of the 20 observations, and stores the mean and repeates this, over the loop, ITER times (in this case 50 times)
+# Creates a loop to repeat this process ITER times
 for (i in 1:ITER){
-  draw_mean1[i] <- mean(sample(dat1, N))
+  samp_means[i] <- mean(sample(population, size=50))
 }
 
-mean(draw_mean1)
+# This should be close to 44.9
+mean(samp_means)
+
+# This should be close to 2.13
+sd(samp_means)
 
 par(mfrow=c(1,2))
 # Plots a histogram of the sample means
-hist(draw_mean1, main="Histogram of sample means (N = 50)", cex.main = 0.8)
+hist(samp_means, main="Histogram of sample means (N = 50)", cex.main = 0.8)
+
 # Creates a density plot of the sample means 
-plot(density(draw_mean1), main = "Density plot of sample means (N = 50)", cex.main = 0.8)
+plot(density(samp_means), main = "Density plot of sample means (N = 50)", cex.main = 0.8)
+
+# Adds a density plot showing the expected sampling distribution based on CLT
+lines(seq(38,53,.1),dnorm(seq(38,53,.1),samp_dist_mean,samp_dist_SE), col=2)
+legend(x="topright", legend=c("observed", "expected"), lwd=2, lty=c(1,1),col=c(1,2), cex= 0.6) 
 ```
+    
+We observed a sampling distribution that was fairly similar to what we expected. The more samples we take (i.e., the larger ITER is), the closer the observed sampling distribution should be to our expectations based on the CLT (feel free to experiment!). 
 
-Next we can increase the number of iterations to 100, 1000, and 4000 and see what happens to the sampling distribution as we increase the number of iterations. 
-```{r, tidy = TRUE}
-N <- 50 # Set the size of sample
-ITER <- 100 # Set the number of iterations
-
-# Create empty vector of length ITER to store results 
-draw_mean2 <- rep(NA, length=ITER)
-
-# Creates a loop to draw 20 observations from the simulated data (dat1), takes the mean of the 20 observations, and stores the mean and repeates this, over the loop, ITER times (in this case 100 times)
-for (i in 1:ITER){
-  draw_mean2[i] <- mean(sample(dat1, N))
-}
-
-mean(draw_mean2)
-
-par(mfrow=c(1,2))
-# Plots a histogram of the sample means
-hist(draw_mean2, main="Histogram of sample means (N = 100)", cex.main = 0.8)
-# Creates a density plot of the sample means
-plot(density(draw_mean2), main="Density plot of sample means (N = 100)", cex.main = 0.8) 
+## Homework (Due after 1st week of classes)  
+```{r, tidy = TRUE}  
+# Keep this here when you submit and do not call set.seed() again 
+# This way, everyone will get the same answers
+set.seed(333)
 ```
-
-```{r, tidy = TRUE}
-N <- 50 # Set the size of sample
-ITER <- 1000 # Set the number of iterations
-
-# Create empty vector of length ITER to store results 
-draw_mean3 <- rep(NA, length=ITER)
-
-# Creates a loop to draw 20 observations from the simulated data (dat1), takes the mean of the 20 observations, and stores the mean and repeates this, over the loop, ITER times (in this case 1000 times)
-for (i in 1:ITER){
-  draw_mean3[i] <- mean(sample(dat1, N))
-}
-
-mean(draw_mean3)
-
-par(mfrow=c(1,2))
-# Plots a histogram of the sample means
-hist(draw_mean3, main="Histogram of sample means (N = 1000)", cex.main = 0.8)
-plot(density(draw_mean3), main="Density plot of sample means (N = 1000)", cex.main = 0.8) # Creates a density plot of the sample means 
-```
-
-```{r, tidy = TRUE}
-N <- 50 # Set the size of sample
-ITER <- 4000 # Set the number of iterations
-
-# Create empty vector of length ITER to store results 
-draw_mean4 <- rep(NA, length=ITER)
-
-# Creates a loop to draw 20 observations from the original sample (dat1), takes the mean of the 20 observations, and stores the mean and iterates over the loop ITER times (in this case 4000 times)
-for (i in 1:ITER){
-  draw_mean4[i] <- mean(sample(dat1, N))
-}
-
-mean(draw_mean4)
-
-par(mfrow=c(1,2))
-hist(draw_mean4, main="Histogram of sample means (N = 4000)", cex.main = 0.8) # Plots a histogram of the sample means
-plot(density(draw_mean4), main="Density plot of sample means (N = 4000)", cex.main = 0.8) # Creates a density plot of the sample means 
-```
-
-
-From this example we see that as we increase N, the sampling distribution of the mean approaches a normal distribution. This is true for any population distribution (uniform, skewed, etc.) as long as sample size is large enough. 
-
-## Homework (Due after 1st week of classes)
+  
 
 Note: this assignment should be submitted as a knitted PDF file. Please include the course number, your last name, and first name (for example 2352_LASTNAME_FIRSTNAME). You may delete all notes above the homework heading before submitting. 
 
 ### Uniform Distribution
-A Uniform distribution has an equal probability of an event occuring given an interval from [a,b]. 
+A uniform distribution has two parameters: a and b. The PDF of the uniform distribution is defined such that $f(x)=\frac{1}{b-a}$ on the interval [a,b]. Therefore, if you draw values from a Uniform(a,b) distribution, then all values on the interval [a,b] are equally likely.   
 
-1. Simulate a sample from a uniform distribution (use 'runif')of size 500 from an interval between 0 and 1. Store and plot your sample. Note: You can type runif in the *Help* tab or type '?runif' into the Console to look at the documentation of the function.
+1. Sample 10,000 values from a uniform distribution with a=0 and b=1 (use 'runif'; note that the parameter a is the same as "min" and b is the same as "max" in the function documentation). Store these variables in a vector called "pop" and plot a histogram of the values. Note: You can type runif in the *Help* tab or type '?runif' into the Console to look at the documentation of the function.
 ```{r, tidy = TRUE}
-## Insert your code here
+# Sample and store (in a vector: pop) 10000 values from a uniform(0,1) distribution
+
+# Plot a histogram of pop
+
 ```
+   
+2. Note that the expected value of a Uniform(a,b) distribution is $E(X)=\frac{a+b}{2}$ and the variance of the uniform distribution is $Var(X)=\frac{1}{12}(b-a)^2$. Therefore, if X is a Uniform(0,1) random variable, then $E(X)=\frac{0+1}{2}=0.5$ and $Var(X)=\frac{1}{12}(b-a)^2=\frac{1}{12}(1-0)^2\approx 0.083$. Calculate the mean and standard deviation of "pop" and verify that you get values close to $0.5$ and $\sqrt{0.083}\approx .289$, respectively. Save the population mean as pop_mean and the population standard deviation as pop_sd    
+```{r, tidy = TRUE}
+# Calculate population mean and save as pop_mean
 
-2. Draw a sample of size 50 from the simulated data and find the mean. Create loop to creates a sampling distribution of the mean with 50, 100, 1000, and 4000 sample means. Plot the histogram of each sampling distribution. Note: Use the above notes as a reference and some guidance. 
+# Print pop_mean  
+
+# Calculation population sd and save as pop_sd
+
+# Print pop_sd
+
+```  
+    
+3. In question 4, you will take 1000 samples of size 50 from the population ("pop") and calculate the mean of each sample. What do you expect the mean and standard deviation of these means to be? Note: show your calculations and final answers below:  
+```{r, tidy = TRUE}
+# Calculate the expected mean of the means and save as samp_dist_mean
+
+# Print samp_dist_mean  
+
+# Calculate the expected sd of the means and save as samp_dist_sd
+
+# Print samp_dist_sd  
+
+```  
+
+   
+4. Draw 1000 samples of size 50 from "pop"; calculate and save the mean of each sample in a vector called samp_means. Calculate the mean and standard devation of the samp_means. Then, plot a histogram and density plot of samp_means. The code has been outlined for you.   
 ```{r, tidy=TRUE}
-# Sampling distribution of the mean from a uniform distribution of size 50 
+# Set the size of sample 
+ 
+# Set the number of iterations  
 
-N <- 50 # Set the size of sample 
-ITER <- 50 # Set the number of iterations for the size of the sampling distribution 
+# insert code here to initialize an empty vector called samp_means
 
-draw_mean_uni1 <- # insert code here
 
-# Sample from the simulated data (from a uniform distribution stored above)
-  # find the mean, and store the value ITER times
 for (i in 1:ITER){
-  # Insert code here to store sample means 
+  # Insert code here to sample 50 values from a uniform(0,1) distribution
+  # And save the mean of those values in the ith location of samp_means
 }
 
-# Show your results visually
-# Insert code here 
+# Calculate the mean of samp_means
+
+# Calculate the standard deviation of samp_means
+
+# Plot a histogram of samp_means
+
+# Plot a smoothed density plot of samp_means  
+
 ```
-
-```{r}
-# Sampling distribution of the mean from a uniform distribution of size 100 
-
-N <- 50 # Set the size of sample 
-ITER <- 100
-# Insert code here
-```
-
-```{r}
-# Sampling distribution of the mean from a uniform distribution of size 1000 
-
-N <- 50 # Set the size of sample 
-ITER <- 1000
-# Insert code here
-```
-
-```{r}
-# Sampling distribution of the mean from a uniform distribution of size 4000 
-
-N <- 50 # Set the size of sample 
-ITER <- 4000
-
-# Insert code here
-```
+   
+  
 

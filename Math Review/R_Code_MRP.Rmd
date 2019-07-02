@@ -22,16 +22,16 @@ knitr::opts_chunk$set(echo = TRUE)
 The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program you will be able to perform many calculations in R, which provides more flexibility and data storage than a typical calculator. The R code below is meant to a) introduce you to using R as a calculator and b) give some context for how you could use R to solve a variety of problems. 
 
 We will cover: \newline
-- Logarithms \newline
-- Matrices \newline
-- Basic Probability \newline
-- Statistical concepts \newline
-    * Summary Statistics \newline  
-    * The Central Limit Theorem \newline  
-    * Covariance and correlation \newline  
-    * Ordinary Least Square regression \newline  
+  - Logarithms \newline
+  - Matrices \newline
+  - Basic Probability \newline
+  - Statistical concepts \newline
+      + Summary Statistics \newline
+      + The Central Limit Theorem \newline
+      + Covariance and correlation  \newline
+      + Ordinary Least Square regression  \newline
 
-Please use this as a resource to become more comfortable with R. You can run the R chunks by pressing the green play button in the top right corner (of the chunk). Or, you can run parts of the code and change portions of it in the Console. It may also be useful to look up functions in the **Help** tab (or type '?function' into the Console) to see function documentation. 
+Please use this as a resource to become more comfortable with R. You can run the R chunks by pressing the green play button in the top right corner (of the chunk). Or, you can run parts of the code and change portions of it in the Console. It may also be useful to look up functions in the **Help** tab (or type `?function` into the Console) to see function documentation. 
 
 You may also find it helpful to take notes in this document so that you can reference them during the first few months of classes. You can comment (by using '#' in the R chunk) as a way of annotating it in your own words. This is good practice for deciphering other people's code and is a good habit for documenting your own future work. 
 
@@ -73,7 +73,7 @@ c. $log_{10}(\frac{1}{10})$
 log10(1/10)
 ```
 
-d. $log_{10}(0)$ Note: There is no solution here; R returns -Inf  
+d. $log_{10}(0)$ Note: There is no solution here; R returns -Inf. It is negative because as the value approaches 0, the logarithm becomes increasingly negative. 
 ```{r Logs 1d}
 log10(0)
 ```
@@ -134,7 +134,12 @@ diag(X1)
 # We could also create an empty matrix and assign values to the diagonal
 X2 <- matrix(data = 0, nrow = 3, ncol = 3)
 diag(X2) <- c(1,2,3)
+
 print(X2)
+
+# The following code is a more direct way of creating a X2 
+diag(c(1,2,3)) 
+diag(1:3)
 ```
 
 #### Upper and Lower Triangular Matrices 
@@ -200,12 +205,16 @@ Z - Y
 ```
   
 
-b. Multiplying a matrix by a scalar
-```{r}
+b. Multiplying a matrix by a scalar and vector
+```{r, tidy = TRUE}
 # Multiplying a matrix by a scalar will produce a matrix of the same dimension
 # Suppose that c = 3
 
 3 * Z 
+
+# Multiplying by a vector will multiply "down the rows".  
+
+Z * (1:3)
 ```
 
 c. Matrix Multiplication
@@ -383,12 +392,15 @@ as.numeric(names(table(dat))[which.max(table(dat))]) #an ugly hack to find the m
 #the range function actually returns the minimum and maximum of dat in a vector
 range(dat) 
 
-#to calculate the range, we can subtract the first element in range(dat) (the minumum) 
+# To calculate the range, we can subtract the first element in range(dat) (the minumum) 
 #from the second element in range(dat) (the maximum)
 range(dat)[2]-range(dat)[1]
 
-#another option is to use the diff() function, which calculates the difference between two values
+# Another option is to use the diff() function, which calculates the difference between two values
 diff(range(dat))
+
+# Interquartile Range (IQR) can be calculated using IQR(). 
+IQR(dat)
 
 # Variance of a set of values can be calculated using the var() function 
 var(dat)
@@ -404,23 +416,23 @@ sqrt(var(dat))
 The following code can be used to make plots similar to those in the math review packet. We have copied the code here so that you can take a look!  
 
 ```{r}
-#this creates a 2 by 2 grid in which to place the following three plots
+# This creates a 2 by 2 grid in which to place the following three plots
 par(mfrow=c(2,2))
 
-#plot a histogram of data:  
+# Plot a histogram of data:  
 hist(dat, 
      main = "Histogram of Data", 
      cex.main = 0.7, 
      xlab = "Value", 
      breaks = 10)
 
-#plot the smoothed density of data: 
+# Plot the smoothed density of data: 
 plot(density(dat), 
      main = "Density Plot of Data", 
      cex.main = 0.7, 
      xlab = "Value")  
 
-#make a boxplot of data: 
+# Make a boxplot of data: 
 boxplot(dat, 
         main = "Boxplot of Data", 
         cex.main = 0.7)
@@ -530,7 +542,7 @@ unique(outcomes)
 What is the difference between the two?
 
 > ANSWER:
-> Sampling without replacement didnt have any repeats (e.g. 1 1 or 2 2). 
+> Sampling without replacement did not have any repeats (e.g. 1 1 or 2 2). 
 
 Suppose we do not actually keep track of which ball came first. All we observe are the two balls, and we have no idea about the order in which they were selected. We call this **unordered sampling** (the opposite, and what we were doing before is _ordered sampled_) because the order of the selections does not matter with respect to what we observe.
 
@@ -656,15 +668,15 @@ setdiff(s,x) # The complement of x in sample space s
 ## Random Variables and Probability Density/Mass Functions    
 
 ### PDF-related functions in R  
-We can sample from many distributions in R. For example, we can use the rnorm() function to sample from a normal distribution. Note that we can also draw from a variety of other distributions in R by using functions like rt(), rchisq(), runif(), etc.   
+We can sample from many distributions in R. For example, we can use the `rnorm()` function to sample from a normal distribution. Note that we can also draw from a variety of other distributions in R by using functions like `rt()`, `rchisq()`, `runif()`, etc.   
 
 There are four main functions that you will use for probability distributions in R. Below are examples for the normal distribution, but you can extrapolate what similar functions for other probability distributions would be called:     
-'dnorm' : gives the height of the probability density function of a normal distribution at any value, $x$ \newline
-'pnorm' : computes probabilities from a normal distribution (by default: area under the curve on the interval $(-\infty,x)$, where you specify $x$). This is also called a percentile. \newline  
-'qnorm' : computes quantiles from a normal distribution (essentially the inverse of pnorm)  \newline
-'rnorm' : randomly draws values from a normal distribution \newline   
+`dnorm` : gives the height of the probability density function of a normal distribution at any value, $x$ \newline
+`pnorm` : computes probabilities from a normal distribution (by default: area under the curve on the interval $(-\infty,x)$, where you specify $x$). This is also called a percentile. \newline  
+`qnorm` : computes quantiles from a normal distribution (essentially the inverse of pnorm)  \newline
+`rnorm` : randomly draws values from a normal distribution \newline   
     
-Here are some examples of how to use these functions in R. Note that pnorm(1.96) is approximately .975, whereas qnorm(.975) is approximately 1.96  
+Here are some examples of how to use these functions in R. Note that `pnorm(1.96)` is approximately .975, whereas `qnorm(.975)` is approximately 1.96  
 ```{r}
 #calculate height of a standard normal PDF at x=0
 dnorm(x=0, mean=0, sd=1)
@@ -690,19 +702,19 @@ Suppose we want R to randomly sample 400 values from a normal distribution with 
 
 
 ```{r, tidy = TRUE}
-#set the seed for reproducibility. Note the choice of 102 was random. 
-#you may want to include this when using random sampling functions to ensure the same results every time
+# Set the seed for reproducibility. Note the choice of 102 was random. 
+# You may want to include this when using random sampling functions to ensure the same results every time
 set.seed(102)
 
-#take a random sample of 400 values from a normal distribution with mean 100,000 and sd 10,000
+# Take a random sample of 400 values from a normal distribution with mean 100,000 and sd 10,000
 DS_salary <- rnorm(n = 400, mean = 100000, sd = 10000)   
 
-#when we calculate the mean and sd of these values, we should get close to 
-#100,000 and 10,000 respectively  
+# When we calculate the mean and sd of these values, we should get close to 
+# 100,000 and 10,000 respectively  
 mean(DS_salary)
 sd(DS_salary)
 
-#plot a histogram of the salaries:  
+# Plot a histogram of the salaries:  
 hist(DS_salary, 
      main = "Histogram of Data Scientist's salaries", 
      cex.main = 0.7, 
@@ -711,8 +723,8 @@ hist(DS_salary,
 ```
       
       
-Now, suppose that we take 100 samples of size 400 from the same normal distribution, and save the means in a vector. Now, when we inspect the mean and standard deviation of the means, we see that the mean (of the means) is still close to 100,000, but the standard deviation (of the means) is now close to $\frac{10,000}{\sqrt{400}}=500$     
-```{r}
+Now, suppose that we take 100 samples each of size 400 from the same normal distribution, and save the means in a vector. Now, when we inspect the mean and standard deviation of the means, we see that the mean (of the means) is still close to 100,000, but the standard deviation (of the means) is now close to $\frac{10,000}{\sqrt{400}}=500$     
+```{r, tidy = TRUE }
 means <- vector()
 
 for(i in 1:100){
@@ -723,13 +735,16 @@ for(i in 1:100){
 mean(means)
 sd(means)
 
-#plot a histogram of the means:  
-hist(DS_salary, 
+# Plot a histogram of the means:  
+hist(means, 
      main = "Histogram of Means", 
      cex.main = 0.7, 
      xlab = "Dollars (USD)", 
      breaks = 10)
+
+# Notice that the main difference between the histogram of DS salaries as compared to the histogram of means is the shrinking of the x-axis. Both histograms are centered around 100000, but the histogram of means has a smaller spread. If we were to increase the number of iterations, the distribution of sample means would look normally distributed, with a smaller spread on the x-axis. 
 ```
+
 
 ### Confidence Intervals (an example)
 ```{r}

@@ -1,5 +1,5 @@
 ---
-title: "A3SR Math Review"
+title: "A3SR Math/Statistics Review Packet"
 output:
   pdf_document: default
 header-includes:
@@ -11,22 +11,27 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-\bcenter  
 
 # Fall 2019  
   
 ### A Note: 
-The notes in this packet are not meant to be comprehensive in any way, nor should they be used for learning this material for the first time. Instead, the resources provided here are meant to accomplish two main goals: 1) to give you a sense of the skills/topics that professors will expect you to have learned prior to the start of this program and 2) to jog your memory/refresh your working knowledge of these concepts if you need a quick re-cap. For anything that you haven't learned before or have not seen in many years, the notes provided here may not be sufficient. Suggested outside resources are provided in a separate document, including links to additional practice problems. In designing these materials, we have tried to be concise, and have only included topics that are directly related to concepts covered in your first semester courses. We have also tried to find a balance between things you are expected to understand versus things that you will be expected to calculate. In this program, a lot of complex calculations can be done in R (or using other online tools, like Wolfram Alpha). Most of the time, you will not be asked to do this work by hand (at least not more than once). However, you will find it much easier to understand results in R (and potential errors) if you have a sense of what is going on "under the hood". More in-depth familiarity and experience with these topics is always helpful (if you have additional time for review), and we hope that this packet provides guidance on where to focus your attention.     
+The notes in this packet are not meant to be comprehensive in any way, nor should they be used for learning this material for the first time. Instead, the resources provided here are meant to accomplish two main goals: \newline
 
-\ecenter
+1) To give you a sense of the skills/topics that professors will expect you to have learned prior to the start of this program \newline
+2) To jog your memory/refresh your working knowledge of these concepts if you need a quick re-cap. \newline
+
+For anything that you haven't learned before or have not seen in many years, the notes provided here may not be sufficient. Suggested outside resources are provided in a separate document, including links to additional practice problems. In designing these materials, we have tried to be concise, and have only included topics that are directly related to concepts covered in your first semester courses. We have also tried to find a balance between things you are expected to understand versus things that you will be expected to calculate. In this program, a lot of complex calculations can be done in R (or using other online tools, like Wolfram Alpha). Most of the time, you will not be asked to do this work by hand (at least not more than once). However, you will find it much easier to understand results in R (and potential errors) if you have a sense of what is going on "under the hood". More in-depth familiarity and experience with these topics is always helpful (if you have additional time for review), and we hope that this packet provides guidance on where to focus your attention.     
+
+
 \pagebreak
 
 # Properties of Logarithms   
 ## Relevant Courses:  
 
-  -Quantitative Methods    
-  -Probability  
-  -Generalized Linear Models (this is a second semester course, is also the most direct use of logs)  
+  - Quantitative Methods  
+  - Probability  
+  - Generalized Linear Models (this is a second semester course, is also the most direct use of logs)  
+
   
 ## Notes    
 
@@ -100,9 +105,13 @@ $=log_3(\frac{5x^2}{2})$
 # Matrix Algebra  
 ## Relevant Courses:  
 
-  -Quantitative Methods    
-  -Statistical Computing  
-  -Network Analysis  
+  - Quantitative Methods
+  - Spatial Statistics
+  - Machine Learning
+  - Multi-Level Modeling
+  - Statistical Computing
+  - Network Analysis
+
 
 ## Notes    
 
@@ -196,7 +205,7 @@ $$\begin{bmatrix}
   4. $(\textbf{A}+\textbf{B})\textbf{C}=\textbf{AC} + \textbf{BC}$  
   5. If $\textbf{A}$ is an $m\times n$ matrix, then $\textbf{I}_m\textbf{A}=\textbf{A}$ and $\textbf{AI}_n=\textbf{A}$
   
-Note that, in general $\textbf{AB} \ne \textbf{BA}$   
+Note that, in general, meaning that it is not expected, $\textbf{AB} \ne \textbf{BA}$, though it may be true in some cases. 
 \pagebreak  
 
 ### Writing a system of equations using matrix notation   
@@ -341,10 +350,14 @@ $B=\begin{bmatrix}
 # Derivatives   
 ## Relevant Courses:  
 
-  -Probability  
-  -Quantitative Methods   
+  - Probability 
+  - Frequentist Inference
+  - Survival Analysis
+  - Quantitative Methods   
   
 ## Notes   
+
+Note: If any of the material below is unfamilar to you, please watch the videos in the Math Resources document to get a refresher on the concept of derivatives. 
 
 ### Definition  
 The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
@@ -417,8 +430,10 @@ For a function of more than one variable (i.e., $f(x,y)$), we can take partial d
 # Integrals   
 ## Relevant Courses:  
 
-  -Probability  
-  -Quantitative Methods  
+  - Probability
+  - Frequentist Inference
+  - Survival Analysis
+  - Quantitative Methods  
 
 ## Notes    
 
@@ -500,17 +515,18 @@ Therefore, $\int_1^2 2x(x^2 + 1)^4 dx=\int_2^5 u^4 du = \frac{u^5}{5}|_2^5 =\fra
 # Variables: Types and Summaries    
 ## Relevant Courses:  
 
-  -Probability  
-  -Quantitative Methods  
-  -Statistical Computing    
+  - Probability  
+  - Quantitative Methods  
+  - Statistical Computing    
      
 ## Notes    
 ### Types of variables:  
   1. Numerical  
-    a. continuous (example: height)  
-    b. discrete (example: population)   
+    a. continuous: variables that can theoretically have an *infinite* number of values between two points (examples: height, weight, time)
+    b. discrete: variables for which only a *finite* number of values can occur between any two points (examples: number of green jellybeans in a bag, number of students in a classroom, number of white shirts in my closet)
+    
   2. Categorical  
-    a. nominal (unordered) (example: responses to: "who are you planning to vote for in the upcoming election?" )  
+    a. nominal (unordered) (example: responses to: "who are you planning to vote for in the upcoming election?")  
     b. ordinal (ordered) (example: responses to: "On a scale from 1-10, how happy are you right now?")  
 
 ### Summarizing variables:  
@@ -532,7 +548,7 @@ Note that: The definition above is used to calculate "population" variance. When
 Why? The first formula (where we divide by $n$) is a "biased" estimator of population variance. The sample variance formula above is not (this is covered in frequentist inference, but is worth a Google search if interested).      
 
 #### Summarizing variables visually   
-A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are worth looking up if they are not immediately familiar.  
+A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are essential to look up if they are not immediately familiar.  
 
 ```{r, echo=FALSE,fig.align="center",fig.keep='all'}
 set.seed(101)
@@ -602,7 +618,7 @@ An event is a specific collection of outcomes, or in other words, a **subset of 
 Suppose that we could repeat a random experiment (also called a random process) infinitely many times; Then the probability of an event is the proportion of times that the event would occur.  
 
 #### Law of Large Numbers   
-As a random experiment is repeated more times, the observed proportion of times that an event occurs will converge to the true empirical probability of that event.     
+As a random experiment is repeated more times, the observed proportion of times that an event occurs will converge to the true probability of that event.     
 
 #### Union, Intersection and Difference
 Given subsets A and B, it is often useful to manipulate them in an algebraic fashion. We have three set operations at our disposal to accomplish this: **union**, **intersection**, and **difference**. Additionally we can take the **complement** of one of the sets. Below is a table that summarizes the pertinent information about these operations.
@@ -691,10 +707,13 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
 # Random Variables and Probability Density/Mass Functions  
 ## Relevant Courses:  
 
-  -Quantitative Methods   
-  -Probability   
-  -Statistical Computing  
-  -Causal Inference   
+  - Quantitative Methods   
+  - Probability   
+  - Statistical Computing 
+  - Multi-Level Modeling
+  - Machine Learning
+  - Bayesian Inference
+  - Causal Inference   
   
 ## Notes     
   
@@ -758,10 +777,12 @@ Properties of expected value (for a random variable $X$):
   2. $E(X+c) = E(X)+c$ where $c$ is a constant  
   3. $E(cX) = cE(X)$ where $c$ is a constant   
   
+  
 Properties of variance (for a random variable $X$)  
   1. $Var(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent  
   2. $Var(X+c) = Var(X)$ where $c$ is a constant       
   3. $Var(cX) = c^2Var(X)$ where $c$ is a constant   
+  4. $Var(aX + bY) = a^2Var(X) + b^2Var(Y) + abCov(X,Y)$
   
 ## Practice Problems      
 
@@ -850,7 +871,7 @@ curve(dnorm(x,0,1), xlim=c(-3,3), main='Null Distribution of Standardized Sample
 polygon(coord.x,coord.y,col='skyblue')
 ```   
     
-In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case.  
+In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case. If our p-value was greater than 0.05, we would "fail to reject the null hypothesis" but would *never* accept the null. 
 
 Note:    
 -The example described above is a "one-tailed" test. A two tailed test in this example would be used to test whether scores at this school are different from the full population (either greater than or less than). A two tailed p-value for this example would equal the shaded area below, which is the proportion of sample means more than 2 points greater or less than the state average that would be expected by random chance under the null. Because the normal distribution is symmetric, this is $0.023*2=.046$:    
@@ -873,7 +894,15 @@ polygon(coord.x2,coord.y2,col='skyblue')
   1. If the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal.  
   2. If sample size is small, we may not be able to accurately estimate the standard error based on the sample.    
     
-If the population distribution is normal, concern 1 goes away. And, to manage concern 2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$ (instead of a normal distribution) because the t distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution.     
+If the population distribution is normal, concern 1 goes away. And, to manage concern 2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$ (instead of a normal distribution) because the t distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution. 
+
+Note: While df$>30$ is conventionally normally distributed, it might not necessarily be the case. Consider a statistic for a two-tailed test with df=31. The t-test would say it is not significant but the z-test would say it is (see example below).
+
+```{r, echo = TRUE}
+1-pt(1.67,df=31, lower.tail = TRUE) #t-test 
+1-pnorm(1.67, lower.tail = TRUE) #z-test
+```
+
 
 ##### One Sample T-tests  
 A one sample T-test for a sample mean is generally used when sample size is small and observations appear (roughly) normally distributed.  
@@ -977,8 +1006,11 @@ When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{
 # Correlation and Covariance   
 ## Relevant Courses:  
 
-  -Quantitative Methods   
-  -Probability   
+  - Quantitative Methods
+  - Spatial Statistics
+  - Multi-Level Modeling
+  - Machine Learning
+  - Probability   
   
 ## Notes  
 Correlation and covariance both measure the extent to which a change in one variable is related to a change in another variable. For example, height and weight tend to have positive covariance and correlation. People who are taller also tend to weigh more (although not always). Conversly, temperature and heating costs tend to have negative covariance and correlation. As the outside temperature increases, the cost to heat my apartment tends to decrease.  
@@ -999,7 +1031,8 @@ Covariance ranges from negative infinity to positive infinity and is calculated 
 $$Cov(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n}$$
   
 Correlation is a standardized version of covariance, which ranges between $-1$ to $1$. A correlation of 0 means the variables are not associated. A correlation of $1$ or $-1$ indicates that the variables are perfectly positively or negatively correlated (i.e., perfectly linearly related). Correlation is calculated as follows:   
-$$Corr(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\Sigma_{i=1}^n(x_i-\bar{x})^2(y_i-\bar{y})^2}}$$
+$$Corr(x,y)= \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}=
+\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\Sigma_{i=1}^n(x_i-\bar{x})^2(y_i-\bar{y})^2}}$$
   
 \pagebreak  
   
@@ -1013,7 +1046,7 @@ Suppose that we have the following information for 100 US adults: 1) their heigh
 
 ```{r, echo=FALSE,fig.align="center", out.width = "400px"}
 set.seed(102)
-x<- rnorm(100, 67,3)
+x <- rnorm(100, 67,3)
 z <- x+rnorm(100,0,3)
 plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
 
@@ -1028,16 +1061,32 @@ We see that there appears to be a positive, linear association between mother's 
   
 Graphically, this means that the OLS regression line minimizes the vertical distance between each point and the line:     
 ```{r, echo=FALSE,fig.align="center", out.width = "400px"}
-plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
-data <- data.frame(X=x,Z=z)
-lm1 <- lm(Z~X, data=data)
+plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height (inches)", ylab="Child height (inches)")
+data <- data.frame("MotherHeight"=x,"ChildHeight"=z)
+lm1 <- lm(ChildHeight~MotherHeight, data=data)
 abline(summary(lm1)$coef[1,1],summary(lm1)$coef[2,1],col=4,lwd=2)
 segments(x[1], z[1], x[1], predict(lm1)[1], col = 2, lwd=3)
 text(67.9,70,expression(epsilon[i]),cex=2,col=2)
 ```
 
+Interpreting the $\beta$ coefficients from a linear fit using OLS regression:
+- There are two hypothesis tests being performed when running this regression first for $\beta_0$ and second $\beta_1$
+    1) $H_0: \beta_0 = 0$
+       $H_a = \beta_0 \ne 0$
+    2) $H_0: \beta_1 = 0$
+       $H_a = \beta_1 \ne 0$
+       
+In this this scenario with mother's and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. This means that $\beta_0$ is not significantly different from 0 and there is evidence to suggest that $\beta_1$ is significantly different from 0.
+
+If we compare mother's heights that differ by 1 unit on the x-axis, let's say 1 inch in this scenario, then we expect their average difference in child's height to equal $\beta_1 = 1.10$. For example if mother1's height is 64 inches and mother2's height is 65, we expect the average difference in their child's height to be 1.10 inches. 
+
+```{r, echo = FALSE}
+summary(lm1)
+```
 
   
+ 
+ 
  
 
   
