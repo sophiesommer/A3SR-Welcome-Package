@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Simulating the Central Limit Theorem
 
 ## The Central Limit Theorem
-If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is large enough) normally distributed with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (where $\sigma$ is the population standard deviation).     
+If we take repeated independent samples of size $n$ from a population of interest (note: it must have finite mean) and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is large enough) normally distributed with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (where $\sigma$ is the population standard deviation).     
 
 ### A New Example  
 Suppose you are trying to estimate the mean commuting time for all graduate students at NYU. 
@@ -26,7 +26,7 @@ If you could take all possible samples of 50 graduate students and compute the s
 ### Simulation in R
 We can simulate this in R by taking repeated samples of size 50 from a population with known parameters and storing the mean of each sample. 
 
-There are a number of base R functions that randomly sample values from probability distributions with specified parameters. All of these functions start with the letter "r". For example, 'rbinom' samples from a binomial distribution, 'rpois' samples from a Poisson distribution, and 'rnorm' samples from a normal distribution.     
+There are a number of base R functions that randomly sample values from probability distributions with specified parameters. All of these functions start with the letter "r". For example, `rbinom` samples from a binomial distribution, `rpois` samples from a Poisson distribution, and `rnorm` samples from a normal distribution.     
 
 First, let's create a simulated population of graduate student commute times.   
 ```{r, tidy = TRUE}
@@ -117,7 +117,7 @@ A uniform distribution has two parameters: a and b. The PDF of the uniform distr
 
 ```
    
-2. Note that the expected value of a Uniform(a,b) distribution is $E(X)=\frac{a+b}{2}$ and the variance of the uniform distribution is $Var(X)=\frac{1}{12}(b-a)^2$. Therefore, if X is a Uniform(0,1) random variable, then $E(X)==\frac{0+1}{2}=0.5$ and $Var(X)=\frac{1}{12}(b-a)^2=\frac{1}{12}(1-0)^2\approx 0.083$. Calculate the mean and standard deviation of "pop" and verify that you get values close to $0.5$ and $\sqrt{0.083}\approx .289$, respectively. Save the population mean as pop_mean and the population standard deviation as pop_sd    
+2. Note that the expected value of a Uniform(a,b) distribution is $E(X)=\frac{a+b}{2}$ and the variance of the uniform distribution is $Var(X)=\frac{1}{12}(b-a)^2$. Therefore, if X is a Uniform(0,1) random variable, then $E(X)=\frac{0+1}{2}=0.5$ and $Var(X)=\frac{1}{12}(b-a)^2=\frac{1}{12}(1-0)^2\approx 0.083$. Calculate the mean and standard deviation of "pop" and verify that you get values close to $0.5$ and $\sqrt{0.083}\approx .289$, respectively. Save the population mean as pop_mean and the population standard deviation as pop_sd    
 ```{r, tidy = TRUE}
 # Calculate population mean and save as pop_mean
 
