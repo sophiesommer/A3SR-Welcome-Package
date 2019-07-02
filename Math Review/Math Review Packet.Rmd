@@ -1,5 +1,5 @@
 ---
-title: "A3SR Math/Statistics Review"
+title: "A3SR Math/Statistics Review Packet"
 output:
   pdf_document: default
 header-includes:
@@ -1061,7 +1061,7 @@ We see that there appears to be a positive, linear association between mother's 
   
 Graphically, this means that the OLS regression line minimizes the vertical distance between each point and the line:     
 ```{r, echo=FALSE,fig.align="center", out.width = "400px"}
-plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
+plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height (inches)", ylab="Child height (inches)")
 data <- data.frame("MotherHeight"=x,"ChildHeight"=z)
 lm1 <- lm(ChildHeight~MotherHeight, data=data)
 abline(summary(lm1)$coef[1,1],summary(lm1)$coef[2,1],col=4,lwd=2)
@@ -1076,9 +1076,9 @@ Interpreting the $\beta$ coefficients from a linear fit using OLS regression:
     2) $H_0: \beta_1 = 0$
        $H_a = \beta_1 \ne 0$
        
-In this this scenario with mother and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. 
+In this this scenario with mother's and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. This means that $\beta_0$ is not significantly different from 0 and there is evidence to suggest that $\beta_1$ is significantly different from 0.
 
-If we compare mother's heights that differ by 1 unit on the x-axis, let's say 1 inc in this scenario, then we expect their average difference in child's height to equal $\beta_1 = 1.10$. 
+If we compare mother's heights that differ by 1 unit on the x-axis, let's say 1 inch in this scenario, then we expect their average difference in child's height to equal $\beta_1 = 1.10$. For example if mother1's height is 64 inches and mother2's height is 65, we expect the average difference in their child's height to be 1.10 inches. 
 
 ```{r, echo = FALSE}
 summary(lm1)

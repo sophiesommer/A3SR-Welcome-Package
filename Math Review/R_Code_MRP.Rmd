@@ -742,7 +742,7 @@ hist(means,
      xlab = "Dollars (USD)", 
      breaks = 10)
 
-# Notice that the main difference between the histogram of DS salaries as compared to the histogram of means is the shrinking of the x-axis. Both histograms are centered around 100000, but the histogram of means has a smaller spread. 
+# Notice that the main difference between the histogram of DS salaries as compared to the histogram of means is the shrinking of the x-axis. Both histograms are centered around 100000, but the histogram of means has a smaller spread. If we were to increase the number of iterations, the distribution of sample means would look normally distributed, with a smaller spread on the x-axis. 
 ```
 
 
