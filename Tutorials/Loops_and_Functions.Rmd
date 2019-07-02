@@ -8,162 +8,207 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+  
 
-# Sampling 
+## If/else conditional statements  
 
-## Sampling one value from a set 
-The sample() function in R can be used to sample some numbers from a set of possible outcomes with given probabilities. The following code can be used to select one value (denoted by “size”) from the set of possibilities (0,1), where the probability of drawing a 0 is 40% (or .4) and the probability of drawing a 1 is 60% (or .6). Note: in R, we use c() to combine values into a set (called a vector).
+#### Set up   
+An if/else conditional statement is set up as follows: "if (condition) {Execute some code} else {execute some other code}". First, R will check if the condition you've specified is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code. 
+  
+#### Credit card company example  
+Please note that the following example is not representative of an actual credit card application process. There are many other factors in the credit card approval process that we are ignoring for the sake of the example. 
 
-Run the following a couple of times to understand the output. 
-```{r,tidy = TRUE}
-sample(c(0,1), size = 1, prob = c(.2,.8)) 
+Suppose that a credit card company exclusively uses credit scores (a value between 300-850 that supposedly measures how likely you are to pay your bills on time) to determine whether or not a potential application is approved (note: for simplicity, we will assume that people with credit scores between 300 and 850 are all equally likely to apply). The company uses the following system: People with credit scores less than 500 are denied and people with credit scores greater than or equal to 500 are approved.  
 
-# What is the output?
-# One number that is either 0 or 1. 0 has a probability of 0.20 and 1 has a probability of 0.80.
-```
-
-Now let's change some of the some of the parameters so that it samples from the values (0,1,2) with probabilities (0.3, 0.5, 0.2)
-```{r,tidy = TRUE}
-# Insert code here 
-```
-
-## Sampling multiple values from a set
-
-We can also change the size parameter to sample multiple values at once. However, we may need to use the replace parameter if we want to sample from the same set repeatedly. 
-
-Running the following code will produce an error because we only have 2 values in our sample space and want to draw 3 values without replacement. For example if I draw a 1, then 3 will be the only value for me to draw from for my 2nd draw. This leave me no values to draw from for my third draw. 
-```{r, tidy = TRUE}
-# Sampling 3 values from a set containing only 2 values with replace = FALSE
-# sample(c(1,3), size = 3, prob = c(.4,.6), replace = FALSE) 
-```
+For any given credit score, we can use an if/else statement to determine whether the application will be approved or denied.  
 
 ```{r, tidy = TRUE}
-# Sampling 3 values from a set containing only 2 values with replace = TRUE
-sample(c(1,3), size = 3, prob = c(.4,.6), replace = TRUE) 
-```
+# First we randomly sample a credit score for a potential applicant
+creditscore <- sample(seq(300, 850, by=1), size = 1)
 
-## Sampling from a set of character strings
-In the previous examples, we sampled from numeric values, but we do not necessarily sample from only numbers. We can use quotes to denote character strings. The code can we used to sample one color from the set of primary colors ("red", "yellow", "blue") with probabilities (0.3, 0.3, 0.4). 
-
-```{r, tidy = TRUE}
-sample(c("red", "yellow", "blue"), size = 1, prob = c(0.3, 0.3, 0.4), replace = TRUE)
-```
-
-## If/else conditional statements
-We can use an if/else conditional statement: "if (condition) {Execute some code} else {execute some other code}". This will check if the condition is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code. 
-
-Please note that the following example is not representative of an actual credit card application process. There are many of ther factors that are taken into consideration that we are not accounting for. 
-
-The following code will go sample from two sets of credit scores ("300-599", "600-850") with probabilities (0.3, 0.7). If the outcome is "300-599" then our credit card application is  not approved. If the outcome is "600-850", we will sample from the credit ranges "600-699", "700-850" with probabilities (0.4, 0.6). If your credit score is between "600-699" your credit card application is approved with a credit limit of 2,000, else (your credit score is between "700-850") your credit card application is approved with credit limit of 10,000.
-```{r, tidy = TRUE}
-# First we determine whether our credit card application is approved based off credit score
-creditscore1 <- sample(c("300-599", "600-850"), size = 1, prob = c(0.3, 0.7), replace = FALSE)
-
-# If our credit score is between 300-599, our credit card application is not approved
-if (creditscore1 == "300-599"){
+# If the credit score is less than 500, the credit card is not approved
+if (creditscore < 500){
     creditcard = "not approved"
-  } else { # otherwise...
     
-    # If our credit score is between 600-850 we can go the the next step: creditscore2
-    # creditscore2 tells us that our credit card application was approved and our credit limit
-    creditscore2 <- sample(c("600-699", "700-850"), size = 1, prob = c(0.4, 0.6), replace = FALSE)
+    } else { # otherwise...
+      creditcard = "approved"
+    }
+
+#This line prints out the outcome of our credit card application
+paste("Your credit card application was", creditcard) 
+```
     
-    #  If our credit score is between 600-699, our credit card is approved with a credit limit of $2000
-    if (creditscore2 == "600-699") {
-      creditcard = "approved - credit limit: $2,000"
+Now suppose that, once you are approved, your credit limit is determined by your credit score. There are two possible credit limits for applicants, so there are actually 3 possible outcomes for any given application: If the credit score is less than 500, the application is denied; if the credit score is in the range 500-699, the card is approved with a credit limit of 2000 dollars; and if the credit score is in the range 700-850, the card is approved with a credit limit of 10,000 dollars. We can use an "else if" statement in order to check another condition before the "else" statement:  
+```{r, tidy = TRUE}
+# First we randomly sample a credit score for a potential applicant
+creditscore <- sample(seq(300, 850, by=1), size = 1)
+
+# If the credit score is less than 500, the credit card is not approved
+if (creditscore < 500){
+    creditcard = "not approved"
+    
+    } else if(creditscore < 700) { # otherwise if it is less than 700...
+      creditcard = "approved with a credit limit of 2000 dollars"
       
     } else { # otherwise...
-      
-      #  If our credit score is between 600-699, our credit card is approved with a credit limit of $10000
-      creditcard = "approved - credit limit: $10,000"
+      creditcard = "approved with a credit limit of 10,000 dollars"
     }
-  }
-paste("Your credit card application was", creditcard) #This line prints out the outcome of our credit card application
-```
 
-## Functions 
+#This line prints out the outcome of our credit card application
+paste("Your credit card application was", creditcard) 
+```
+  
+
+## Functions   
+Now suppose that the credit card company wants to create an online system where people can input their credit scores and quickly determine their approval status and credit limit. Instead of changing the value of "creditscore" every time and re-running the code, we can create a function that takes in a credit score and spits out the application result. This way, any time we want to determine the result of a new application, we only have to run one line of code! In general, any time you are copy and pasting code more than twice (even if you are tweaking inputs slightly), it probably makes sense to write a function.  
+
 Functions are created using 'function()' and are stored as R obejcts in your global environemnt. They are R objects of class "function".
 
-Functions follow the following structure: 
+Functions follow the following structure:   
 
-'myFunction <- function( arguments ){
-    execute some interesting code
-}'
-
-Using the above example with credit card application, we can create a function that takes in a numerical value (x) and determine if the application was approved. We will use the same conditions as above and for the sake of simplicity, if the credit card is not approved the credit limit will equal 0. 
-
-We will first set the condition if x is less than 600, then the credit card application will be denied and receive a credit limit of 0. If the credit score is between 600 and 700, then the application will be approved with a credit limit of 2000. Lastly, if the credit score is above 700, then the credit card application is approved with a credit limit of 10000. Once it meets one of the conditions, the function will print out out creditscore. 
+myFunction <- function( arguments ){  
+    execute some interesting code  
+}  
+  
+Using the above credit card application process, we can create a function that takes in a numerical credit score (x) and determines the result of the application. We will use the same conditions as above.   
 ```{r, tidy = TRUE}
-cc_app_function <- function(x) { # name the function and set the arguments of the function
+# name the function and set the arguments of the function
+# note: you could include multiple inputs separated by commas   
+cc_app_function <- function(creditscore) { 
+
+    # If the credit score is less than 500, the credit card is not approved
+    if (creditscore < 500){
+    creditcard = "not approved"
     
-  if (x < 600){ # sets the 1st condition 
-        creditlimit = 0 # what happens when the 1st condition is met 
+    } else if(creditscore < 700) { # otherwise if it is less than 700...
+      creditcard = "approved with a credit limit of 2000 dollars"
       
-        } else if (x >= 600 && x < 700) { # sets the 2nd condition 
-          creditlimit = 2000 # what happens when the 2nd condition is met
-          
-          } else { x > 700 # sets the 3rd condition
-            creditlimit = 10000 # what happens when the 3rd condition is met
-            }
-    creditlimit # calls the result of the credit card application 
+    } else { # otherwise...
+      creditcard = "approved with a credit limit of 10,000 dollars"
     }
+  
+  return(creditcard) # this tells R that the function will return the value of "creditcard"
+}
 ```
 
-Now let's make sure the function works. What is the result of my credit card application if my credit score is 500? 650? 790? 
+Now let's make sure the function works. What is the result of my credit card application if my credit score is 300? 650? 790? 
 ```{r, tidy = TRUE}
-# Insert code here to see what the result of your credit card application is 
+cc_app_function(300)
+cc_app_function(650)
+cc_app_function(790)
 ```
-
-
-# For loops
-
-Let's say we have 500 samples with ~30% of our sample with a credit score less than 600, ~28% with a a credit score between 600 and 700, and ~42% with a credit score greater than 700 and we want to determine the credit card application process of each credit score. We could find the credit card of each application through the following code... 
+   
+Now suppose that the credit card company wants to add a more personal critereon to the application process: some applicants have the opportunity to speak with a representative on the phone. The company representative can automatically approve (with a 10,000 dollar limit) any applicant that they speak to, regardless of their credit score, by giving their application a stamp of approval. The company wants to add an input to the above function, indicating whether or not the application received a stamp of approval:   
+```{r}
+# add another input called stamp. Set stamp=FALSE as a default
+cc_app_function2 <- function(creditscore, stamp=FALSE) { 
+  
+  #first check if the application has a stamp of approval
+  #note: we also could have just written "stamp" in the conditional 
+  #because if stamp=TRUE then "stamp" and "stamp==TRUE" both return "TRUE"
+  if(stamp==TRUE){
+    creditcard = "approved with a credit limit of 10,000 dollars"
+  } 
+  
+  else { #Otherwise (i.e., if stamp==FALSE)...
+    # If the credit score is less than 500, the credit card is not approved
+    if (creditscore < 500){
+    creditcard = "not approved"
+    
+    } else if(creditscore < 700) { # otherwise if it is less than 700...
+      creditcard = "approved with a credit limit of 2000 dollars"
+      
+    } else { # otherwise...
+      creditcard = "approved with a credit limit of 10,000 dollars"
+    }
+  }
+  
+  return(creditcard) # this tells R that the function will return the value of "creditcard"
+}
+```
+   
+Note that, because stamp=FALSE by default, we do not have to specify "stamp" in the function input unless we want to set stamp=TRUE. Therefore, we can use this new function exactly as before (we just have one new option if we want to use it):   
 ```{r, tidy = TRUE}
+cc_app_function2(300)
+cc_app_function2(300, stamp=TRUE)
+cc_app_function2(650)
+cc_app_function2(790)
+```
+  
+## For loops
+
+Suppose that we want to repeat this process many times, for many potential scores (which could be saved in a vector). One way to do this is by using a for loop to iterate through various scores and determine the outcome for each (which can also be saved in a vector).   
+
+First, lets create a fake dataset of potential credit card applicants:   
+```{r}
+#this makes the results of this chunk reproducible
 set.seed(333)
-N <- 500 # Sets the sample size and the number of loops we will run
-creditscores <- sample(c(rnorm(n = round(N*0.30), mean = 500, sd = 25), 
-                          rnorm(n = round(N*0.28), mean = 650, sd = 20),
-                          rnorm(n = round(N*0.42), mean = 750, sd = 20)), 500) # Creates random sample of credit scores
 
-cc_app_function(creditscores[1]) # Finds the result of a credit card application with the creditscore in position 1
-cc_app_function(creditscores[2]) # Finds the result of a credit card application with the creditscore in position 2
-cc_app_function(creditscores[3]) # Finds the result of a credit card application with the creditscore in position 3
-cc_app_function(creditscores[4]) # Finds the result of a credit card application with the creditscore in position 4
-cc_app_function(creditscores[5]) # Finds the result of a credit card application with the creditscore in position 5 
-# We can continue this process to cc_app_function(creditscores[500]) but that is redundant and can be done much more efficiently with a for loop 
+#take a sample of 10 random credit scores and approval stamps
+creditscores <- sample(seq(300, 850, by=1), size = 10, replace=TRUE) 
+stamps <- sample(c(TRUE, FALSE), size=10, replace=TRUE)  
+
+#create a data frame called data
+data <- data.frame(score=creditscores, stamp=stamps)
+
+#inspect data
+data
 ```
+  
+Now, let's create a vector of application results for each of these simulated applicants.  
 
-We can better model this process with a for loop to repeat the process a bunch of times and save the results in a vector. The general format for loops is to create an empty vector, matrix, dataframe, etc... to store your results. 
+Note that, if we want to save results in a vector, it is good practice to initialize a vector of the proper length before starting to fill it. 
 
-In the example below we will store our results in an empty vector. Then we initialize the loop to begin at the position we want to start from (ie. if we want to start from the very beginning we will start at 1) through where we want the loop to stop (if want to go through all the credit scores we can use 'length(creditscores)' but since we are creating the set of credit scores we will end at the Nth position). 
-
-In the loop, we will assign our results to the empty vector that we created (cc_app_results) and store the results for every iteration. In each iteration, the result of out credit card application, for each credit score, is stored. We can look at the probabilites of our credit card application by using the 'table' command and dividing our results by the total number of values/iterations (N). 
-
+In each iteration of the loop below, the result of each credit card application (corresponding to a row of the dataset above) is calculated and stored in a vector called app_results. We can then inspect a table of the results.  
 ```{r, tidy = TRUE}
-cc_app_results <- rep(NA, N) # Create an empty vector to store your results
+#save sample size (the number of rows in the dataset)
+samp_size <- nrow(data)
 
-for(i in 1:N){ #repeat the process for every credit score, the creditscore vector is of size N
-  cc_app_results[i] <- cc_app_function(creditscores[i]) # store our results from the cc_app_function for each credit score
+#initialize a vector of the same length called app_results
+app_results <- rep(NA, samp_size)
+
+#iterate through each row of "data" and save the application result
+for(i in 1:samp_size){
+  app_results[i] <- cc_app_function2(data$score[i], data$stamp[i])
 }
 
-# We can call the results from the loop to see if they are the same as from above
-cc_app_results[1]
-cc_app_results[2]
-
-table(cc_app_results)/N # Probabilites of credit limits 
+#inspect a table of the results  
+table(app_results)
 ```
-
-Is this what you would expect? 
-1. What is the probability of obtaining a credit limit of 2000 dollars?
-2. What is the probability of obtaining a credit limit of 10000 dollars?
+  
 
 ## While loops 
 
-The credit card company can only approve 50 credit card application with a credit limit of 10000. Let's walk through a while loop to see how many credit card applications will go through before approving 50 card applications. 
+Suppose that the credit card company can only approve 50 credit card applications with a credit limit of 10,000. Let's walk through a while loop to estimate how many credit card applications will go through before approving 50 card applications.    
+
 ```{r, tidy = TRUE}
+#create two counter variables: 
+#total_apps: keeps track of the total number of applications that are reviewed
+#high_limit_apps: keeps track of the total number of high-limit applications that are approved
+total_apps <- 0
+high_limit_apps <- 0
 
+#while the number of high limit approvals is <=50, continue accepting applications
+while(high_limit_apps <= 50){
+  
+  #simulate a random credit score and result of "stamp"
+  creditscore <- sample(seq(300, 850, by=1), size = 1) 
+  stamp <- sample(c(TRUE, FALSE), size=1) 
+  
+  #find out the application result
+  app_result <- cc_app_function2(creditscore, stamp)
+  
+  #increase the total apps counter by 1
+  total_apps <- total_apps + 1
+  
+  #if a high limit credit card is approved, increase the high limit counter by 1
+  if(app_result=="approved with a credit limit of 10,000 dollars"){
+    high_limit_apps <- high_limit_apps + 1
+  }
+}
 
-
+#print the total number of applications that were reviewed
+total_apps
 ```
 
 

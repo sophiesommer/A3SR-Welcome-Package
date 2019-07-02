@@ -171,7 +171,7 @@ summary(linmod)
 # Use the standard error of b_0 to calculate the t value
 
 ```
-  
+   
 
   
 
