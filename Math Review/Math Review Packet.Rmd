@@ -357,6 +357,8 @@ $B=\begin{bmatrix}
   
 ## Notes   
 
+Note: If any of the material below is unfamilar to you, please watch the videos in the Math Resources document to get a refresher on the concept of derivatives. 
+
 ### Definition  
 The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
 $$f'(x)=y'=\frac{df}{dx}=\frac{d}{dx}(f(x))=\frac{dy}{dx}=\frac{d}{dx}(y)$$
@@ -869,7 +871,7 @@ curve(dnorm(x,0,1), xlim=c(-3,3), main='Null Distribution of Standardized Sample
 polygon(coord.x,coord.y,col='skyblue')
 ```   
     
-In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case.  
+In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case. If our p-value was greater than 0.05, we would "fail to reject the null hypothesis" but would *never* accept the null. 
 
 Note:    
 -The example described above is a "one-tailed" test. A two tailed test in this example would be used to test whether scores at this school are different from the full population (either greater than or less than). A two tailed p-value for this example would equal the shaded area below, which is the proportion of sample means more than 2 points greater or less than the state average that would be expected by random chance under the null. Because the normal distribution is symmetric, this is $0.023*2=.046$:    
@@ -892,7 +894,15 @@ polygon(coord.x2,coord.y2,col='skyblue')
   1. If the population distribution is skewed, we need a larger sample size to ensure that $\bar{x}$ is normal.  
   2. If sample size is small, we may not be able to accurately estimate the standard error based on the sample.    
     
-If the population distribution is normal, concern 1 goes away. And, to manage concern 2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$ (instead of a normal distribution) because the t distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution.     
+If the population distribution is normal, concern 1 goes away. And, to manage concern 2, common practice is to use the t distribution with $n-1$ degrees freedom to estimate the sampling distribution of $\bar{x}$ (instead of a normal distribution) because the t distribution has heavier tails for small degrees freedom. Note: the t distribution is a probability distribution with a single parameter, degrees of freedom (df). It is similar to a standard normal distribution, but has heavier tails when df$<30$. When df$>30$, the t distribution is essentially identical to a standard normal distribution. 
+
+Note: While df$>30$ is conventionally normally distributed, it might not necessarily be the case. Consider a statistic for a two-tailed test with df=31. The t-test would say it is not significant but the z-test would say it is (see example below).
+
+```{r, echo = TRUE}
+1-pt(1.67,df=31, lower.tail = TRUE) #t-test 
+1-pnorm(1.67, lower.tail = TRUE) #z-test
+```
+
 
 ##### One Sample T-tests  
 A one sample T-test for a sample mean is generally used when sample size is small and observations appear (roughly) normally distributed.  
@@ -1021,7 +1031,8 @@ Covariance ranges from negative infinity to positive infinity and is calculated 
 $$Cov(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n}$$
   
 Correlation is a standardized version of covariance, which ranges between $-1$ to $1$. A correlation of 0 means the variables are not associated. A correlation of $1$ or $-1$ indicates that the variables are perfectly positively or negatively correlated (i.e., perfectly linearly related). Correlation is calculated as follows:   
-$$Corr(x,y)=\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\Sigma_{i=1}^n(x_i-\bar{x})^2(y_i-\bar{y})^2}}$$
+$$Corr(x,y)= \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}=
+\frac{\Sigma_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\Sigma_{i=1}^n(x_i-\bar{x})^2(y_i-\bar{y})^2}}$$
   
 \pagebreak  
   
@@ -1035,7 +1046,7 @@ Suppose that we have the following information for 100 US adults: 1) their heigh
 
 ```{r, echo=FALSE,fig.align="center", out.width = "400px"}
 set.seed(102)
-x<- rnorm(100, 67,3)
+x <- rnorm(100, 67,3)
 z <- x+rnorm(100,0,3)
 plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
 
@@ -1051,15 +1062,31 @@ We see that there appears to be a positive, linear association between mother's 
 Graphically, this means that the OLS regression line minimizes the vertical distance between each point and the line:     
 ```{r, echo=FALSE,fig.align="center", out.width = "400px"}
 plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", ylab="Child height")
-data <- data.frame(X=x,Z=z)
-lm1 <- lm(Z~X, data=data)
+data <- data.frame("MotherHeight"=x,"ChildHeight"=z)
+lm1 <- lm(ChildHeight~MotherHeight, data=data)
 abline(summary(lm1)$coef[1,1],summary(lm1)$coef[2,1],col=4,lwd=2)
 segments(x[1], z[1], x[1], predict(lm1)[1], col = 2, lwd=3)
 text(67.9,70,expression(epsilon[i]),cex=2,col=2)
 ```
 
+Interpreting the $\beta$ coefficients from a linear fit using OLS regression:
+- There are two hypothesis tests being performed when running this regression first for $\beta_0$ and second $\beta_1$
+    1) $H_0: \beta_0 = 0$
+       $H_a = \beta_0 \ne 0$
+    2) $H_0: \beta_1 = 0$
+       $H_a = \beta_1 \ne 0$
+       
+In this this scenario with mother and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. 
+
+If we compare mother's heights that differ by 1 unit on the x-axis, let's say 1 inc in this scenario, then we expect their average difference in child's height to equal $\beta_1 = 1.10$. 
+
+```{r, echo = FALSE}
+summary(lm1)
+```
 
   
+ 
+ 
  
 
   
