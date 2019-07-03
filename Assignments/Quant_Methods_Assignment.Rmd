@@ -14,18 +14,20 @@ In a one-sample test, we want to test whether the mean of a population is equal 
 $$H_0: \mu = \mu_0$$
 $$H_a: \mu \ne \mu_0$$
 
-Given sample mean $\bar{X}$ and the standard error of the sample mean, $SE(\bar{x})$, we can construct a t-test statistic: $$T = \frac{\bar{x}-\mu_0}{SE(\bar{x})}$$ The value of this T-test statistic can be compared to a t distribution with $n-1$ degrees of freedom.
+Given sample mean $\bar{x}$ and the standard error of the sample mean, $SE(\bar{x})$, we can construct a t-test: $$T = \frac{\bar{x}-\mu_0}{SE(\bar{x})}$$    
 
-If abs(t) is greater than t(0.975, n-1), we can reject the null hypothesis and conclude that the population mean is different from $\mu_0$. 
+The null distribution of T is a t distribution with $n-1$ degrees of freedom.
 
-Note that for a sample size of $n$ the $SE(\bar{x})=\frac{s}{\sqrt{n}}$ where $s$ is the sample standard deviation. 
+If we set a significance level of $.05$ (for a 2-tailed test) then: If abs(T) is greater than the 97.5th quantile of a t distribution (df=n-1), we reject the null hypothesis in favor of the alternative that the population mean is different from $\mu_0$. 
+
+Note that for a sample size of $n$: $SE(\bar{x})=\frac{s}{\sqrt{n}}$ where $s$ is the sample standard deviation. 
 
 #### Two (Independent) Sample T-test
 In a two sample t-test problem, we want to test whether the mean of population 1 is the same as the mean of population 2. The hypothesis testing problem can be formulated as:
 $$H_0: \mu_1 = \mu_2$$
 $$H_a: \mu_1 \ne \mu_2$$
 
-We can construct a t statistic to test $H_0$ versus $H_a$, $$T = \frac{(\bar{x_1}-\bar{x_2})}{SE(\bar{x_1}-\bar{x_2})}$$
+We can construct a t-test to test $H_0$ versus $H_a$, $$T = \frac{(\bar{x_1}-\bar{x_2})}{SE(\bar{x_1}-\bar{x_2})}$$
 
 We can estimate the standard error of $\bar{x_1}-\bar{x_2}$ using the following formula (derived in the math review packet) :  
 $$SE(\bar{x_1}-\bar{x_2})=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$    
@@ -35,7 +37,7 @@ If we believe that the two populations have unequal variances, then we can estim
 If we believe that the two populations have equal variances, then we can say $s_1=s_2=s_{pooled}$ where: 
 $$s_{pooled}=\sqrt{\frac{s_1^2(n_1-1)+s_2^2(n_2-1)}{n_1+n_2-2}}$$      
    
-We can then use the estimated standard error to calculate a test statistic, which we can then compare to a t distribution with degrees of freedom as follows:     
+Then, the null distribution of T is a t distribution with degrees of freedom as follows:     
 In general, we use the smaller of $n_1-1$ and $n_2-1$ as the degrees of freedom for the t distribution.   
 If assuming equal variances and using $s_{pooled}$, we can use $n_1+n_2-2$ degrees of freedom.
 
@@ -58,15 +60,15 @@ plot(height$Male, height$Height, xlab="Male", ylab="Height")
 abline(lm(height$Height~height$Male))
 ```
     
-Suppose for a moment that you only have one set of heights, say, $\{60, 63, 63, 70, 72\}$ and you want to find some value, $M$, such that the sum of the squared differences between $M$ and each value in your set of heights is minimized. It turns out that the value of $M$ which satisfies this minimization problem is the mean of the dataset (you can prove this with some relatively simple calculus). The proof is left to the interested reader, but hopefully this claim already feels somewhat intuitive.  
+Suppose for a moment that you only have one set of heights, say, $\{60, 63, 63, 70, 72\}$ and you want to find some value, $M$, such that the sum of the squared differences between $M$ and each value in your set of heights is minimized. It turns out that the value of $M$ which satisfies this minimization problem is the mean of the dataset (you can prove this with some relatively simple calculus). Note: minimizing squared differences is akin to minimizing absolute distances (the mean is the solution to both minimization problems); however, we generally choose to minimize squared differences instead of absolute differences to make the calculus easier. The proof is left to the interested reader, but hopefully this claim already feels somewhat intuitive.  
 
-Now, suppose we try to fit an OLS regression line to this data. This would involve finding values of $\beta_0$ and $\beta_1$ such that the vertical distance between each point (in the above graph) and the line $Height=\beta_0+\beta_1*Male$ is minimized. 
+Now, suppose we try to fit an OLS regression line to this data. This would involve finding values of $\beta_0$ and $\beta_1$ such that the (squared) vertical distance between each point (in the above graph) and the line $Height=\beta_0+\beta_1*Male$ is minimized. 
 
 There are only two possible values of "Male" in this dataset: 0 and 1. Therefore, one way to think about minimizing the vertical distances between each data point and the line is this: Find the mean height of women (i.e., everyone with Male=0), find the mean height of men (i.e., everyone with Male=1), and connect the two points $(0,\text{mean womens height} )$ and $(1,\text{mean mens height} )$.   
 
 Now we can try to write the equation for this line in the form $Height=\beta_0+\beta_1*Male$. Using the strategy described above, we know that $(0,\text{mean womens height})$ is the y-intercept of the line. Therefore $\beta_0 = \text{mean womens height}$. We also know that $\beta_1$ is the slope of the line. Since we know two points on the line, we can calculate the slope as $\frac{y_2-y_1}{x_2-x_1}= \frac{(\text{mean mens height} - \text{mean womens height})}{(1-0)} = \text{mean mens height} - \text{mean womens height}$. So, $\beta_1 =\text{mean mens height}-\text{mean womens height}$. 
 
-A question to think about: is testing $\beta_1 = 0$ the same as testing the mean of men's height and women's height to be the same (this is the two sample t-test problem).
+A question to think about: is testing $\beta_1 = 0$ the same as testing the mean of men's height and women's height to be the same (this is the two sample t-test problem)?
     
 \pagebreak   
   
@@ -122,9 +124,7 @@ nM <- length(height$Height[height$Male==1])
 # Add code to calculate sW, the sample standard deviation for women's heights  
 sM <- sd(height$Height[height$Male==1])  
 
-# Calculate pooled standard deviation and save as spool 
-# (note: this is done for you; all you need to do is uncomment the line below)
-# spool <- sqrt((sW^2 * (nW - 1) + sM^2 * (nM - 1))/(nM + nW - 2))
+# Calculate pooled standard deviation and save as spool (note: sqrt() calculates square root)
 
 # Print spool  
 
@@ -162,8 +162,8 @@ sM <- sd(height$Height[height$Male==1])
 # Note: this has been done for you
 linmod <- lm(Height~Male, data=height)
 
-#Inspect a summary of the results 
-summary(linmod)
+#Inspect a summary of the results using the summary() function on linmod 
+
 ```
    
 7. Reprint the following values that you saved in previous problems: Mean women's height (MW), difference in mean height for men and women (MeanDiff), standard error of this mean difference (SEMeanDiff), and the T statistic for the difference in means (Ttest). Which of these values can you find in the lm() output above?  
