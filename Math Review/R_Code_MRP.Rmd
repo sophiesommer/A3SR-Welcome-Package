@@ -764,7 +764,7 @@ mean_ + error # upper bound of confidence interval
 \pagebreak  
   
      
-## Z-Tests, T-Test, and P-Values    
+## Hypothesis testing: Z-Tests, T-Test, and P-Values    
 
 ### Calculating P-Values in R  
    

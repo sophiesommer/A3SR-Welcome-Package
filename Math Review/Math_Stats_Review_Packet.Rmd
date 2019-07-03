@@ -551,11 +551,7 @@ Note: without going into too much detail, it is important that summary statistic
 2. Interquartile Range (IQR): The range of the middle 50% of scores (ie. between the bottom 25% and top 25%)
 3. Variance: For a variable $x$ and population size $n$, the (population) variance is given by $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ where $\mu$ is the mean (i.e., average squared difference between each value of $x$ and the mean).    
 4. Standard deviation: $\sigma = \sqrt{\sigma^2}$    
-  
-#### A note about sample variance vs. population variance   
-Note that: The definition above is used to calculate "population" variance. When using a sample to estimate the variance of a variable $x$ in a larger population, sample variance is calculated  as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.      
-  
-Why? The first formula (where we divide by $n$) is a "biased" estimator of population variance. The sample variance formula above is not (this is covered in frequentist inference, but is worth a Google search if interested).      
+   
 
 #### Summarizing variables visually   
 A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are essential to look up if they are not immediately familiar.  
@@ -649,6 +645,7 @@ Generally:
 $P(A$ and $B) = P(A \cap B)=P(A) \times P(B|A)$  
 where $P(B|A)$ means the probability of $B$ given $A$. Therefore if $A$ and $B$ are independent:    
 $P(A$ and $B) = P(A \cap B) = P(A) \times P(B)$ because $P(B|A)=P(B)$ if $A$ and $B$ are independent          
+\pagebreak  
 
 #### Complements  
 For random experiment sample space $S$: The complement of an event $A$ is denoted $A^c$ and is made up of all sample points in $S$ that are *not* in $A$.   
@@ -656,7 +653,8 @@ $A+A^c=1$
 
 #### Conditional Probability  
 The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$ and is calculated as: $P(A|B)=\frac{P(A\cap B)}{P(B)}$    
-  
+   
+\pagebreak  
   
 ## Practice Problems   
   
@@ -687,9 +685,9 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
 |----------------|-----------------|-----------------|    
 | No Depression  | 45              | 52              |    
 | Yes Depression | 65              | 38              |     
-     
-
-   
+       
+\pagebreak  
+    
 ## Answers    
   
   1. Question 1   
@@ -747,7 +745,7 @@ There are many common probability distributions that you will need to know (thes
 #### PMF Example    
 Binomial(n=10,p=.5) distribution: Can be thought of as the probability of x tails among 10 flips of a fair coin   
 
-```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "170px"}
+```{r, echo=FALSE,fig.align="center",fig.keep='all', out.width = "120px"}
 binom <- rbinom(10000,10,.5)
 plot(table(binom)/length(binom), ylab="Probability", xlab="Number of Tails", 
        main="PMF of binomial distribution with n=10, p=.5")
@@ -816,7 +814,68 @@ Note: For now, the exact formulas for expectation and variance of a random varia
     b. $E(X-2Y)=E(X)-2E(Y)=10-2*5=0$; $Var(X-2Y)=Var(X)+(-2)^2Var(Y)=4+4*9=40$    
     c. $E(2X+1)=2E(X)+1=2*10+1=21$; $Var(2X+1)=2^2Var(X)=4*4=16$      
 
-\pagebreak    
+\pagebreak     
+
+# Sampling distributions     
+## Relevant Courses:  
+
+
+  - Quantitative Methods
+  - Statistical Computing
+  - Probability
+  - Causal Inference   
+
+## Notes    
+In statistical analyses, researchers often want to answer questions about a large population. Because it is often impossible to get data for an entire population, common practice is to collect a sample from the population, calculate some statistic based on the sample, and then use that statistic to make inference about the population.   
+
+In order to reasonably make inference about a larger population, it is important to understand **sampling distributions**. The sampling distribution of a particular statistic is defined as follows: suppose that we could take repeated random samples of some size from a population, and calculate a particular statistic for each (the statistic could be anything: mean, median, mode, variance, range, sum, maximum, minimum, 3rd quantile, etc.). Then the distribution of sample statistics is called the "sampling distribution (of the statistic)". For example, the sampling distribution of the mean is the distribution of sample means taken from some population; meanwhile, the sampling distribution the maximum is the distribution of sample maximums taken from some population.   
+
+We could simulate this in R by creating a population and then repeatedly randomly sampling from it and collecting different statistics for each sample. First, let's create a simulated population (I arbitrarily chose to sample the population from a gamma distribution):  
+```{r, fig.align="center", out.width = "275px"}
+population <- rgamma(n=10000, shape=1, scale=2) #create a population with 10,000 values
+
+hist(population, main="Histogram of the population")
+```
+    
+Now that we have a population of values to draw from, let's take 1000 random samples of size 50 from the population and save the mean, variance, maximum, and sum of the samples. Then, we plot histograms of the sample means, sample variances, sample maximums, and sample sums. These histograms are estimated sampling distributions of these statistics (for a sample size of 50).   
+
+```{r}
+#Create empty data frame to store the sample statistics
+Results <- data.frame(Means=rep(NA,1000), Vars=rep(NA,1000), 
+                      Maxes=rep(NA,1000), Sums=rep(NA,1000))
+
+#repeat this process 1000 times: take a sample and save some sample statistics
+for(i in 1:1000){
+  sample <- sample(population, size=50) #random sample of 50 values from the population
+  Results[i,1] <- mean(sample) #store mean
+  Results[i,2] <- var(sample) #store SD
+  Results[i,3] <- max(sample) #store maximum
+  Results[i,4] <- sum(sample) #store sum
+}
+
+#plot the four sampling distributions
+par(mfrow=c(2,2))
+hist(Results[,1], main="Sampling Dist. Means", xlab="Sample Mean")
+abline(v=mean(population), col=4, lwd=2)
+hist(Results[,2], main="Sampling Dist. Variance", xlab="Sample Variance")
+abline(v=var(population), col=4, lwd=2)
+hist(Results[,3], main="Sampling Dist. Maxes", xlab="Sample Max")
+abline(v=max(population), col=4, lwd=2)
+hist(Results[,4], main="Sampling Dist. Sums",xlab="Sample Sum")
+abline(v=sum(population), col=4, lwd=2)
+
+```
+     
+The population values for each of these statistics are overlaid on each histogram as a blue line. You might notice that the mean of the sample means looks like it is almost exactly the same as the mean of the population. In fact, if we took infinitely many samples, the mean of the population will exactly equal the mean of the sample means. Thus, we say that the sample mean is an "unbiased" estimator for the population mean. This is clearly not true for the maximums (where the population maximum is as large as the largest sample maximum) or the sums (where the population sum is larger than any possible sample sum). 
+
+Note that the standard deviation of a sampling distribution for a particular statistic is called the **standard error** of the statistic.  
+
+#### A note about sample variance vs. population variance   
+When using a sample to estimate the variance of a larger population, sample variance is calculated  as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$ where $(x_1,...,x_n)$ are the values in the sample and $\mu$ is their mean.      
+  
+In contrast, when calculating the variance in a population, we divide by $n$ instead of $n-1$. The reason is that $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ is a "biased" estimator of population variance, whereas $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$ is "un-biased".    
+
+\pagebreak  
 
 # Central Limit Theorem Introduction   
 ## Relevant Courses:  
@@ -829,13 +888,12 @@ Note: For now, the exact formulas for expectation and variance of a random varia
 
 ## Notes    
 
-#### Central Limit Theorem    
-If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be (approximately, if sample size is large enough) normally distributed with mean $\mu$ and standard deviation (which we actually call the *standard error* of $\bar{x}$) $\frac{\sigma}{\sqrt{n}}$ where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it). This is true for any population distribution (uniform, skewed, etc.) as long as sample size is large enough.     
+#### Central Limit Theorem     
+If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be normally distributed with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (also called the *standard error* of $\bar{x}$) where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it). This is true for any population distribution (uniform, skewed, etc.) as long as sample size is large enough.     
 
 Note: in general, the term "standard error" is used to describe the standard deviation of an estimate.  
 
-Another note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.  
-
+Another note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.   
 A final note: The distribution of sample means described above is called the "sampling distribution" of the mean.   
 
 #### Confidence Intervals (an example)        
@@ -846,7 +904,7 @@ Because of the central limit theorem, we can use the sample mean plus or minus (
   
 \pagebreak    
   
-# Z-Tests, T-Tests, and P-Values   
+# Hypothesis testing: Z-Tests, T-Tests, and P-Values   
 ## Relevant Courses:  
 
   - Quantitative Methods
@@ -857,24 +915,38 @@ Because of the central limit theorem, we can use the sample mean plus or minus (
 ## Notes  
 
 #### Hypothesis testing: framework    
-Suppose we know that test scores on a state-wide exam (which is meant to measure math ability) are normally distributed with mean 70 and standard deviation 10. However, one school believes that their students have higher average math ability (as measured by this test). To test this claim, they randomly sample 100 students to take the test, and these students earn a mean score of 72. Is there sufficient evidence to support the school's claim that their students have higher average math ability as measured by this test? 
+Suppose we know that test scores on a state-wide exam (which is meant to measure math ability) are normally distributed with mean 70 and standard deviation 10. However, one school believes that their students have higher average math ability (as measured by this test). To test this claim, they randomly sample 100 students to take the test (because they cannot force all students to take the test), and these students earn a mean score of 72. Is there sufficient evidence to support the school's claim that their students have higher average math ability as measured by this test? 
 
 We could design the following null and alternative hypotheses:  
-Null hypothesis: Students at this school have the same average math ability as measured by the test as the general population.   
+**Null hypothesis**: Student's scores at this school are the same as in the general population.   
 
-Alternative hypothesis: Students at this school have higher than average math ability as measured by this test than the general population.   
+**Alternative hypothesis**: Student's scores at this school are higher than the general population.   
 
-#### Z-Tests and P-Values  
-By the central limit theorem: if the null hypothesis is true (i.e., if these students were randomly sampled from the full population), the expected distribution of sample means (with sample size=100) should be normal with mean $70$ and standard error $\frac{10}{\sqrt{100}}=1$. This distribution is shown below:   
+In general, the null hypothesis should represent a "lack of findings", whereas the alternative hypothesis generally represents a significant effect or difference from expectation (or difference between two groups). In a hypothesis test, we never accept the alternative hypothesis as truth; we only "reject the null in favor of the alternative". The idea is that we assume that the null is true unless there is overwhelming evidence that it is not; if there is overwhelming evidence against the null, that doesn't necessarily mean that the alternative hypothesis is true, only that there is overwhelming evidence that the null is not true.  
+
+In order to test the null hypothesis in this case, we need to know the distribution of sample means (of size 100) under the null hypothesis (this is called the **null distribution**).   
+
+By the central limit theorem: if the null hypothesis is true (i.e., if these 100 students were randomly sampled from the full population), the expected distribution of sample means (with sample size=100) should be normal with mean $70$ and standard error $\frac{10}{\sqrt{100}}=1$. This distribution is shown below:   
 
 ```{r, echo=FALSE,fig.align="center", out.width = "275px"}
 curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
       ylab="f(x)", xlab="x=Mean Score")
 ```    
    
-Given this distribution, the probability that we would randomly observe a sample of $100$ students with a mean score of $72$ can be calculated as follows: 
+Given this distribution, the probability that we would randomly observe a sample of $100$ students with a mean score of $72$ or higher is equal to the shaded blue area below:  
+```{r, echo=FALSE,fig.align="center", out.width = "275px"}
+coord.x <- c(72,seq(72,75,0.01),75)
+coord.y <- c(0,dnorm(seq(72,75,0.01),70,1),0)
+curve(dnorm(x,70,1), xlim=c(65,75), main='Null Distribution of Sample Means (Mean=70, SD=1)',
+      ylab="f(x)", xlab="x=Mean Score")
+polygon(coord.x,coord.y,col='skyblue')
+```    
+   
 
-Calculate a test statistic (in this case a Z-score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for a standard normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below):      
+#### Z-Tests and P-Values    
+We can use a Z-Test to calculate this area as follows:  
+
+Calculate a test statistic (in this case a Z-score), to determine how many standard deviations above or below the null value (in this case, the population mean) the observed sample mean is: $Z=\frac{72-70}{1}=2$. Then, we use percentiles for a standard normal distribution to calculate the proportion of samples of size $100$ that we would expect to have a sample mean equal to or greater than the observed sample mean by random chance (i.e., area of the blue shaded region below, which is equal to the shaded area above):      
 
 ```{r, echo=FALSE,fig.align="center", out.width = "275px"}
 coord.x <- c(2,seq(2,3,0.01),3)
@@ -884,7 +956,7 @@ curve(dnorm(x,0,1), xlim=c(-3,3), main='Null Distribution of Standardized Sample
 polygon(coord.x,coord.y,col='skyblue')
 ```   
     
-In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case. If our p-value was greater than 0.05, we would "fail to reject the null hypothesis" but would *never* accept the null. 
+In this case, the shaded area is approximately $0.023$ (I used 1-pnorm(2) in R to calculate this). Usually, when running a test like this, we would set a significance level ahead of time, and p-values below that value would cause us to "reject the null hypothesis in favor of the alternative". A commonly chosen significance level is (arbitrarily) $0.05$. At that level, we would reject the null in this case. If our p-value was greater than 0.05, we would "fail to reject the null hypothesis" but would *never* accept the null. Another way of thinking about the p-value is this: If the null were true (i.e., if students at this school were no different than the general population), we would have a 2.3% chance of observing a random sample of 100 students whose average score is 2 points (or more) above the national average of 70.  
 
 Note:    
 -The example described above is a "one-tailed" test. A two tailed test in this example would be used to test whether scores at this school are different from the full population (either greater than or less than). A two tailed p-value for this example would equal the shaded area below, which is the proportion of sample means more than 2 points greater or less than the state average that would be expected by random chance under the null. Because the normal distribution is symmetric, this is $0.023*2=.046$:    
@@ -1084,10 +1156,8 @@ text(67.9,70,expression(epsilon[i]),cex=2,col=2)
 
 Interpreting the $\beta$ coefficients from a linear fit using OLS regression:
 There are two hypothesis tests being performed when running this regression first for $\beta_0$ and second $\beta_1$ \newline
-    1) $H_0: \beta_0 = 0$ \newline
-     $H_a = \beta_0 \ne 0$ \newline
-    2) $H_0: \beta_1 = 0$ \newline
-       $H_a = \beta_1 \ne 0$ \newline
+    1) $H_0: \beta_0 = 0$; $H_a: \beta_0 \ne 0$ \newline
+    2) $H_0: \beta_1 = 0$; $H_a: \beta_1 \ne 0$ \newline
        
 In this this scenario with mother's and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. This means that $\beta_0$ is not significantly different from 0 and there is evidence to suggest that $\beta_1$ is significantly different from 0.
 
