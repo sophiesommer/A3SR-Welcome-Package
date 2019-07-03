@@ -1,11 +1,5 @@
 ---
 title: "Probability Homework 1: Simulation"
-header-includes:
-   - \usepackage{amsmath}
-   - \usepackage{amssymb}
-   - \usepackage{units}
-   - \usepackage{tikz}
-   - \usepackage{bm}
 output: pdf_document
 ---
 
@@ -175,7 +169,7 @@ mean(roll1 == roll2)
 
 We expect this number to tend to 0.16666 since 1/6 of the possible outcomes (out of 36 total) are doubles.
 
-## Exercises
+## Example Exercises (With Solutions)
 
 ### Question 1:
 A) If we flip a coin, what is the expected probability of getting a head? 
@@ -225,20 +219,18 @@ A friend proposes that you play a game with dice. You will roll 2 die. If the su
 A) Simulate taking the sum of 2 dice using the `RollDie()` function. Do this 1000 times and store the results.   
 
 ```{r}
-## Answer (note: this has been completed for you)
+## Answer (note: this has been outlined for you)
 
 # Re-print the RollDie function for reference
 RollDie <- function(n) {
   sample(1:6, n, replace = T)
 }
 
-# Make a vector of 1000 0s called twoDiceRolls (to save the results of each game play)
-twoDiceRolls <- rep(0,1000)
+# Make a vector of 1000 zeros called twoDiceRolls (to save the results of each game play)
 
-# Roll 2 die 1000 times and store their sum in the vector twoDiceRolls
-for (i in 1:1000) {
-  twoDiceRolls[i] <- sum(RollDie(2))
-}
+
+# Use a 'for' loop to roll 2 die 1000 times and store their sum in the vector twoDiceRolls
+
 ```
 
 **Calculate the following from the data.**
@@ -275,17 +267,18 @@ E) You play the game 10 times and win $30. You think, boy this game is easy to w
 nIter <- 10000 
 
 # Create an vector of nIter 0s called Earning to store your earnings on each iteration
-Earning <- #insert code here
 
 # play the game nIter times and store your earnings each time
 for (i in 1:nIter){
-  #fix code below to roll two die, take their sum, and save the result as: "Roll"
+  #change the code below to roll 2 die, take their sum, and save the result as: "Roll"
   Roll <- 2
   if(Roll==7){
-    #insert code here to save (in Earning[i]) the amount earned if Roll = 7 
+    #insert code here to save (in ith location of Earning) the amount earned if you roll a 7 
   }
   #insert "else if" and "else" statements here to record earnings for other possible outcomes of Roll
-}
+}  
+
+#Print the mean and sum of Earning
 
 ```
   
