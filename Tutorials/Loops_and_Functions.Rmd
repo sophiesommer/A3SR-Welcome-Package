@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 An if/else conditional statement is set up as follows: "if (condition) {Execute some code} else {execute some other code}". First, R will check if the condition you've specified is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code. 
   
 #### Credit card company example  
-Please note that the following example is not representative of an actual credit card application process. There are many other factors in the credit card approval process that we are ignoring for the sake of the example. 
+Please note that the following example is not representative of an actual credit card application process.  
 
 Suppose that a credit card company exclusively uses credit scores (a value between 300-850 that supposedly measures how likely you are to pay your bills on time) to determine whether or not a potential application is approved (note: for simplicity, we will assume that people with credit scores between 300 and 850 are all equally likely to apply). The company uses the following system: People with credit scores less than 500 are denied and people with credit scores greater than or equal to 500 are approved.  
 
@@ -48,10 +48,10 @@ if (creditscore < 500){
     creditcard = "not approved"
     
     } else if(creditscore < 700) { # otherwise if it is less than 700...
-      creditcard = "approved with a credit limit of 2000 dollars"
+      creditcard = "approved (credit limit $2000)"
       
     } else { # otherwise...
-      creditcard = "approved with a credit limit of 10,000 dollars"
+      creditcard = "approved (credit limit $10,000)"
     }
 
 #This line prints out the outcome of our credit card application
@@ -60,7 +60,7 @@ paste("Your credit card application was", creditcard)
   
 
 ## Functions   
-Now suppose that the credit card company wants to create an online system where people can input their credit scores and quickly determine their approval status and credit limit. Instead of changing the value of "creditscore" every time and re-running the code, we can create a function that takes in a credit score and spits out the application result. This way, any time we want to determine the result of a new application, we only have to run one line of code! In general, any time you are copy and pasting code more than twice (even if you are tweaking inputs slightly), it probably makes sense to write a function.  
+Now suppose that the credit card company wants to create an online system where people can input their credit scores and quickly determine their approval status and credit limit. Instead of changing the value of "creditscore" every time and re-running the code, we can create a function that takes in a credit score and spits out the application result. This way, any time we want to determine the result of a new application, we only have to run one line of code! In general, any time process requiring you to copy and paste code more than twice (even if you are tweaking inputs slightly), is probably a good candidate for a function.  
 
 Functions are created using 'function()' and are stored as R obejcts in your global environemnt. They are R objects of class "function".
 
@@ -81,10 +81,10 @@ cc_app_function <- function(creditscore) {
     creditcard = "not approved"
     
     } else if(creditscore < 700) { # otherwise if it is less than 700...
-      creditcard = "approved with a credit limit of 2000 dollars"
+      creditcard = "approved (credit limit $2000)"
       
     } else { # otherwise...
-      creditcard = "approved with a credit limit of 10,000 dollars"
+      creditcard = "approved (credit limit $10,000)"
     }
   
   return(creditcard) # this tells R that the function will return the value of "creditcard"
@@ -107,7 +107,7 @@ cc_app_function2 <- function(creditscore, stamp=FALSE) {
   #note: we also could have just written "stamp" in the conditional 
   #because if stamp=TRUE then "stamp" and "stamp==TRUE" both return "TRUE"
   if(stamp==TRUE){
-    creditcard = "approved with a credit limit of 10,000 dollars"
+    creditcard = "approved (credit limit $10,000)"
   } 
   
   else { #Otherwise (i.e., if stamp==FALSE)...
@@ -116,10 +116,10 @@ cc_app_function2 <- function(creditscore, stamp=FALSE) {
     creditcard = "not approved"
     
     } else if(creditscore < 700) { # otherwise if it is less than 700...
-      creditcard = "approved with a credit limit of 2000 dollars"
+      creditcard = "approved (credit limit $2000)"
       
     } else { # otherwise...
-      creditcard = "approved with a credit limit of 10,000 dollars"
+      creditcard = "approved (credit limit $10,000)"
     }
   }
   
@@ -179,7 +179,7 @@ table(app_results)
 
 ## While loops 
 
-Suppose that the credit card company can only approve 50 credit card applications with a credit limit of 10,000. Let's walk through a while loop to estimate how many credit card applications will go through before approving 50 card applications.    
+Suppose that the credit card company can only approve 50 credit card applications with a credit limit of 10,000. We can use a while loop to estimate how many credit card applications will be considered before 50 high limit cards are approved. A while loop will continue to run as long as a given condition is met. The set up is: while(condition) {run some code}.    
 
 ```{r, tidy = TRUE}
 #create two counter variables: 
@@ -202,7 +202,7 @@ while(high_limit_apps <= 50){
   total_apps <- total_apps + 1
   
   #if a high limit credit card is approved, increase the high limit counter by 1
-  if(app_result=="approved with a credit limit of 10,000 dollars"){
+  if(app_result=="approved (credit limit $10,000)"){
     high_limit_apps <- high_limit_apps + 1
   }
 }
@@ -211,27 +211,99 @@ while(high_limit_apps <= 50){
 total_apps
 ```
 
+  
+\pagebreak  
+  
+# Practice Problems  
+1. Suppose you are playing a game: You pick three numbers in the range 1-10. Then, a card is randomly drawn from a 10-card deck (each card has a number between 1 and 10 written on it). If the randomly drawn card matches any of the three numbers you chose, you win. Otherwise, you lose. Write a function that takes one input: a vector of the three numbers that you chose. The function should have one output: a character string indicating whether you won or lost the game. Write the function in the space below.   
 
-# Practice Problems
-1. Create a function that takes in a vector of data to find the mode of the data (see R_Code for reference)
 ```{r}
-mode_function <- function() {
- #insert code here
+
+```
+  
+2. Use a for loop to repeat the following process 100 times: randomly choose 3 numbers from 1-10 to play the game with (all values are equally likely) and record whether you won or lost the game in a vector of length 100. Print a table of your wins and losses.  
+```{r}
+
+```
+
+
+3. Create a function that takes in a vector of data and returns (one of) the mode(s) of the data. (Hint: the supplementary R code for the math/stats review packet includes some code to find the mode of a vector). Challenge problem: write a function that returns a vector of all modes in a dataset (if there is more than one mode). Hint: the which() function might be of use.    
+
+```{r}
+
+```
+
+4. Use the mode() function that you just created to find the mode of each column in the simulated dataset (use a for loop to accomplish this). Instead of saving the results in a vector, print each of the results using the print() function (note: if you don't use print() within a loop or function, nothing will print out when you run the code or call the function).
+```{r}
+dat1 <- data.frame(X1 = c(1,1,2,3,4,rep(5,5),2,rep(7,7)),
+                   X2 = c(3,9,18,27,27,20,40,1,1,1,3,4,1,rep(1,5)),
+                   X3 = c(rep(4,4), rep(2,7), rep(10,7)))
+
+
+```
+  
+\pagebreak  
+   
+# Answers  
+1. Suppose you are playing a game: You pick three numbers in the range 1-10. Then, a card is randomly drawn from a 10-card deck (each card has a number between 1 and 10 written on it). If the randomly drawn card matches any of the three numbers you chose, you win. Otherwise, you lose. Write a function that takes one input: a vector of the three numbers that you chose. The function should have one output: a character string indicating whether you won or lost the game. Write the function in the space below.   
+
+```{r}
+game <- function(numbers){
+  card <- sample(1:10, size=1)
+  
+  
+  if(card==numbers[1]|card==numbers[2]|card==numbers[3]){ #check if you won
+  #another option: if(card %in% numbers)
+    
+    result <- "You won!"
+    
+  } else {
+    
+    result <- "You lost"
+    
+  }
+  
+  return(result)
+}
+```
+
+
+2. Use a for loop to repeat the following process 100 times: randomly choose 3 numbers from 1-10 to play the game with (all values are equally likely) and record whether you won or lost the game in a vector of length 100. Print a table of your wins and losses.   
+```{r}
+game_results <- rep(NA,100)
+
+for(i in 1:100){
+  numbers <- sample(1:10, size=3, replace=FALSE)
+  game_results[i] <- game(numbers)
+}
+
+table(game_results)
+```
+
+
+3. Create a function that takes in a vector of data and returns (one of) the mode(s) of the data. (Hint: the supplementary R code for the math/stats review packet includes some code to find the mode of a vector). Challenge problem: write a function that returns a vector of all modes in a dataset (if there is more than one mode). Hint: the which() function might be of use.    
+```{r}
+mode <- function(vec) {
+ result <- as.numeric(names(table(vec))[which.max(table(vec))])
+ return(result)
+}
+
+#this one returns all modes:  
+all_modes <- function(vec) {
+ result <- as.numeric(names(table(X1))[which(table(X1)==max(table(X1)))])
+ return(result)
 }
 
 ```
 
-2. Use the mode_function to find the mode of each column in the simulated dataset
+4. Use the mode() function that you just created to find the mode of each column in the simulated dataset (use a for loop to accomplish this). Instead of saving the results in a vector, print each of the results using the print() function (note: if you don't use print() within a loop or function, nothing will print out when you run the code or call the function).   
 ```{r}
-dat1 <- data.frame(X1 = c(1,2,3,4,rep(5,5),2),
-                   X2 = c(3,9,18,27,27,20,40,1,1,1),
-                   X3 = c(rep(4,4), rep(2,6)))
+dat1 <- data.frame(X1 = c(1,1,2,3,4,rep(5,5),2,rep(7,7)),
+                   X2 = c(3,9,18,27,27,20,40,1,1,1,3,4,1,rep(1,5)),
+                   X3 = c(rep(4,4), rep(2,7), rep(10,7)))
 
-# insert code to store results
-
-for (i in 1:ncol(dat1)){
-  # insert code here
+for(i in 1:ncol(dat1)){
+  print(mode(dat1[,i]))
 }
-```
 
-3. 
+```
