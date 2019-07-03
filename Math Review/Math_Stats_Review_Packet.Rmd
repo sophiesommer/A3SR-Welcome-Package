@@ -828,7 +828,7 @@ Note: For now, the exact formulas for expectation and variance of a random varia
 ## Notes    
 In statistical analyses, researchers often want to answer questions about a large population. Because it is often impossible to get data for an entire population, common practice is to collect a sample from the population, calculate some statistic based on the sample, and then use that statistic to make inference about the population.   
 
-In order to reasonably make inference about a larger population, it is important to understand **sampling distributions**. The sampling distribution of a particular statistic is defined as follows: suppose that we could take repeated random samples of some size from a population, and calculate a particular statistic for each (the statistic could be anything: mean, median, mode, variance, range, sum, maximum, minimum, 3rd quantile, etc.). Then the distribution of sample statistics is called the "sampling distribution (of the statistic)". For example, the sampling distribution of the mean is the distribution of sample means taken from some population; meanwhile, the sampling distribution the maximum is the distribution of sample maximums taken from some population.   
+In order to reasonably make inference about a larger population, it is important to understand **sampling distributions**. The sampling distribution of a particular statistic is defined as follows: suppose that we could take repeated random samples of some size from a population, and calculate a particular statistic for each (the statistic could be anything: mean, median, mode, variance, range, sum, maximum, minimum, 3rd quantile, etc.). Then the distribution of sample statistics is called the "sampling distribution (of the statistic)". For example, the sampling distribution of the mean is the distribution of sample means taken from some population; meanwhile, the sampling distribution of the maximum is the distribution of sample maximums taken from some population.   
 
 We could simulate this in R by creating a population and then repeatedly randomly sampling from it and collecting different statistics for each sample. First, let's create a simulated population (I arbitrarily chose to sample the population from a gamma distribution):  
 ```{r, fig.align="center", out.width = "275px"}
@@ -848,7 +848,7 @@ Results <- data.frame(Means=rep(NA,1000), Vars=rep(NA,1000),
 for(i in 1:1000){
   sample <- sample(population, size=50) #random sample of 50 values from the population
   Results[i,1] <- mean(sample) #store mean
-  Results[i,2] <- var(sample) #store SD
+  Results[i,2] <- var(sample) #store variance
   Results[i,3] <- max(sample) #store maximum
   Results[i,4] <- sum(sample) #store sum
 }
