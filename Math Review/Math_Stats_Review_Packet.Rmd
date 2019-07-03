@@ -1140,7 +1140,7 @@ plot(x,z, pch=16, main="Child height vs. Mother height", xlab="Mother height", y
 We see that there appears to be a positive, linear association between mother's heights and children's heights. In other words, on average, taller mothers appear to have taller children. There are many ways we could try to fit a line to this data, but one of the most common is ordinary least squares regression:  
 
 1) We set up the following template for a linear relationship between child height and mother height:  $\hat{y}=\hat{\beta_0} + \hat{\beta_1}x$ where $\hat{y}$ represents the "predicted" height of a child born to a mother of height $x$. The $\hat{}$ symbol is used to denote a prediction/estimate. Also, the true values of $\beta_0$ and $\beta_1$ (for all mothers and children) are unknown so we are estimating them based on this sample              
-2) Based on this "model", the height of the $i$th in this sample is given by $y_i= \hat{\beta_0} + \hat{\beta_1}x_i+\varepsilon_i$ where $x_i$ is their mother's height and $\varepsilon_i$ is the difference between the child's true height and their predicted height based on the linear model in  part 1.  (in other words: $\varepsilon_i=y_i-(\hat{\beta_0}+\hat{\beta_1}x_i)=y_i-\hat{y_i}$   
+2) Based on this "model", the height of the $i$th child in this sample is given by $y_i= \hat{\beta_0} + \hat{\beta_1}x_i+\varepsilon_i$ where $x_i$ is their mother's height and $\varepsilon_i$ is the difference between the child's true height and their predicted height based on the linear model in part 1.  (in other words: $\varepsilon_i=y_i-(\hat{\beta_0}+\hat{\beta_1}x_i)=y_i-\hat{y_i}$   
 3) Using calculus, we find values of $\beta_0$ and $\beta_1$ that minimize $\Sigma_{i=1}^{n}\varepsilon_i^2$ (called the residual sum of squares or RSS)  
 \pagebreak  
   
@@ -1159,9 +1159,9 @@ There are two hypothesis tests being performed when running this regression firs
     1) $H_0: \beta_0 = 0$; $H_a: \beta_0 \ne 0$ \newline
     2) $H_0: \beta_1 = 0$; $H_a: \beta_1 \ne 0$ \newline
        
-In this this scenario with mother's and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. This means that $\beta_0$ is not significantly different from 0 and there is evidence to suggest that $\beta_1$ is significantly different from 0.
+In this this scenario, assuming a significance level of .05, we fail to reject the null hypothesis for $\beta_0$, but we do reject the null hypothesis for $\beta_1$. Therefore, we conclude that there is not sufficient evidence to suggest that $\beta_0 \ne 0$ but there is sufficient evidence to suggest that $\beta_1\ne 0$ (if we were to calculate $\beta_1$ and $\beta_0$ based off the full population of mothers and children).
 
-If we compare mother's heights that differ by 1 unit on the x-axis, let's say 1 inch in this scenario, then we expect their average difference in child's height to equal $\beta_1 = 1.10$. For example if mother1's height is 64 inches and mother2's height is 65, we expect the average difference in their child's height to be 1.10 inches. 
+If we compare mother's heights that differ by 1 unit on the x-axis, let's say 1 inch in this scenario, then we expect the average difference in their children's heights to be $\beta_1 = 1.10$. For example, for a group of mothers with an average height of 64 inches and a second group of mothers with an average height of 65 inches, we expect the heights of the children of these two groups of mothers to differ by 1.10 inches on average.   
 
 ```{r, echo = FALSE}
 summary(lm1)
