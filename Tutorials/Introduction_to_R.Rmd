@@ -293,7 +293,7 @@ colnames(example_data)
 
   
 #### Lists  
-Lists enable multiple data types or data sets to be stored in a simple object. For example, a list could have a data frame as its first element, a vector as its second element, and a character string as its third element.  
+Lists enable multiple data types or data sets to be stored in a single object. For example, a list could have a data frame as its first element, a vector as its second element, and a character string as its third element.  
 ```{r}
 # Save vector vec1, matrix A, and vector vec2 in a list called example list
 example_list <- list(vec1, A, vec2)
@@ -423,7 +423,7 @@ example_data[example_data$Age==24,]
 example_data[example_data$Age==24 & example_data$State=="New York",]
 
 # Extract the row names (i.e., names) of those who are 24 from New York
-rownames(example_data)[example_data$Age==24 & example_data$State=="New York"]
+rownames(example_data)[example_data$Age==24 & example_data$State=="New Jersey"]
 ```
   
 #### Extracting elements of a list    
@@ -445,7 +445,7 @@ example_list[[2]][1,3]
    
 
 #### Factor variables and levels   
-One other data structure that you'll see is a factor variable with levels. This is often used for categorical data. For example, suppose you collect some data where you ask people to rate their agreement with the statement, "I like coffee." Each person responds on a scale from 1-5 where 1=strongly disagree, 2=disagree, 3=no opinion, 4=agree, and 5=strongly agree. When you collect this data, you might want the numerical responses to be linked with their descriptions; but you don't want R to treat this as a continuous variable (for example, a value of 2.3 is not possible). (note: factor variables can also be used for non-ordered categorical variables). The code below shows an example:  
+One other data structure that you'll see is a factor variable with levels. This is often used for categorical data. For example, suppose you collect some data where you ask people to rate their agreement with the statement, "I like coffee." Each person responds on a scale from 1-5 where 1=strongly disagree, 2=disagree, 3=no opinion, 4=agree, and 5=strongly agree. When you collect this data, you might want the numerical responses to be linked with their descriptions. Also, you probably don't want R to treat this as a continuous variable when you run a model (because a value of 2.3 is not possible). (note: factor variables can also be used for non-ordered categorical variables). The code below shows an example:  
 ```{r}
 # Create some fake data
 fake_data <- sample(c("strongly disagree", "disagree", "no opinon", "agree", "strongly agree"),
@@ -496,7 +496,7 @@ str(iris)
 Finally, if you have data in other formats, you might need some other functions in R. Probably the most relevant is the read_dta function (in the "haven" package) or read.dta (in the "foreign" package). Both functions read .dta files, which is how Stata files are generally saved.  
 
 #### Downloading new packages and functions   
-To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You will also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  
+To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  
 ```{r, message=FALSE}
 # Install the psych package
 # Note: I have commented out the code so that it doesnt re-install on my computer  
@@ -574,7 +574,7 @@ factorial(vec)
   
   2. Inspecting a dataset   
     a. Download the "carData" package and load it into your workspace  
-    b. Use the data() function to load the "TitanicSurvival" from the "carData" package  
+    b. Use the data() function to load the "TitanicSurvival" dataset from the "carData" package  
     c. Inspect the structure of the TitanicSurvival dataset. How many rows and columns are there? What are the variable names and types?  
     d. Print the first five rows of the dataset  
     e. Print the survival status of people in the 5th, 8th, and 9th rows of the dataset     
@@ -667,7 +667,7 @@ my_list[[1]][3]
 library(carData)
 ```  
 
-  b. Use the data() function to load the "TitanicSurvival" from the "carData" package   
+  b. Use the data() function to load the "TitanicSurvival" dataset from the "carData" package   
 ```{r}
 data(TitanicSurvival)
 ```  
@@ -685,12 +685,14 @@ TitanicSurvival[1:5,]
 ```{r}
 TitanicSurvival$survived[c(5,8,9)]
 ```  
-  f. Create a new data frame called "survival" which only includes survival status and age for the first 50 people in the dataset  
-  g. Print the first 5 rows of your new data frame ("survival")
+  f. Create a new data frame called "survival" which only includes survival status and age for the first 50 people in the dataset   
 ```{r}
 survival <- TitanicSurvival[1:50,c("survived", "age")]
 survival <-TitanicSurvival[1:50,c(1,3)] #does the same thing as above
+```  
 
+  g. Print the first 5 rows of your new data frame ("survival")
+```{r}
 survival[1:5,]
 ```    
   h. What is the mean age of passengers on the ship? How old was the oldest person on the ship? How old was the youngest person on the ship? Save your answers as mean_age, oldest_age, and youngest_age, respectively.    
@@ -698,6 +700,11 @@ survival[1:5,]
 mean_age <- mean(TitanicSurvival$age, na.rm=TRUE) #mean
 oldest_age <- max(TitanicSurvival$age, na.rm=TRUE) #min
 youngest_age <- min(TitanicSurvival$age, na.rm=TRUE) #max
+
+#print the ages
+mean_age
+oldest_age
+youngest_age
 ```    
   i. Did the youngest person on the ship survive? Did the oldest person?  
 ```{r}
