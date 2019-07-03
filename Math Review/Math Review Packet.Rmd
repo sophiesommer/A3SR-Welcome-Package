@@ -360,8 +360,16 @@ $B=\begin{bmatrix}
 Note: If any of the material below is unfamilar to you, please watch the videos in the Math Resources document to get a refresher on the concept of derivatives. 
 
 ### Definition  
+The derivative ($\frac{dy}{dx}), $f'(x), etc. has many different interpretations. 
+
 The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
 $$f'(x)=y'=\frac{df}{dx}=\frac{d}{dx}(f(x))=\frac{dy}{dx}=\frac{d}{dx}(y)$$
+
+It can also be thought as: 
+1) The slope of the curve
+2) The slope of the tangent line
+3) $f'(x) = \lim_{h\to0} \frac{f(x+h)-f(x)}{h}$
+4) And the alternate form $f'(a) = \lim_{x\to a} \frac{f(x)-f(a)}{x-a}$
    
 The second derivative of $y=f(x)$ with respect to $x$ is the derivative of the derivative of $f(x)$. Notationally, it can be represented in any of the following ways (note: 3rd, 4th, etc. derivatives are notated in a similar way, with increasing exponents or $'$s):   
 $$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^2}{dx^2}(y)$$

@@ -22,7 +22,14 @@ https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
   
 
 
-# Derivatives     
+# Derivatives   
+Basic review:
+Limits: https://www.youtube.com/watch?v=HYSI-AHUqRM
+Understanding the Definition of the Derivative: https://www.youtube.com/watch?v=2wH-g60EJ18&t=181s
+Finding a Derivative Using the Definition of a Derivative: 
+https://www.youtube.com/watch?v=vzDYOHETFlo
+
+
 http://tutorial.math.lamar.edu/pdf/Calculus_Cheat_Sheet_Derivatives.pdf   
 http://tutorial.math.lamar.edu/Classes/CalcI/DerivativeIntro.aspx   
 Chain Rule: https://www.youtube.com/watch?v=gt22FmU3bv4&list=PLDE077A2EC488104D&index=16  
