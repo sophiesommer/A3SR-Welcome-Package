@@ -529,13 +529,14 @@ Therefore, $\int_1^2 2x(x^2 + 1)^4 dx=\int_2^5 u^4 du = \frac{u^5}{5}|_2^5 =\fra
      
 ## Notes    
 ### Types of variables:  
-  1. Numerical  
+  1. Quantitative 
     a. continuous: variables that can theoretically have an *infinite* number of values between two points (examples: height, weight, time)
     b. discrete: variables for which only a *finite* number of values can occur between any two points (examples: number of green jellybeans in a bag, number of students in a classroom, number of white shirts in my closet)
     
   2. Categorical  
     a. nominal (unordered) (example: responses to: "who are you planning to vote for in the upcoming election?")  
-    b. ordinal (ordered) (example: responses to: "On a scale from 1-10, how happy are you right now?")  
+    b. ordinal (ordered) (example: responses to: "On a scale from 1-10, how happy are you right now?") 
+    c. interval (ordered) (example: income brackets)
 
 ### Summarizing variables:  
 Note: without going into too much detail, it is important that summary statistics be chosen and evaluated with the variable type in mind. For example, if I calculate the mean of a variable which is categorical (nominal) with responses coded as 0s and 1s, the mean will give me the percentage of 1s in my dataset. However, this is no longer the case if the same categorical variable is coded with 1s and 2s.   
@@ -547,8 +548,9 @@ Note: without going into too much detail, it is important that summary statistic
 
 #### Summary statistics for spread  
 1. Range: For a variable $x$, the range is given by max($x$)-min($x$)     
-2. Variance: For a variable $x$ and population size $n$, the (population) variance is given by $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ where $\mu$ is the mean (i.e., average squared difference between each value of $x$ and the mean).    
-3. Standard deviation: $\sigma = \sqrt{\sigma^2}$    
+2. Interquartile Range (IQR): The range of the middle 50% of scores (ie. between the bottom 25% and top 25%)
+3. Variance: For a variable $x$ and population size $n$, the (population) variance is given by $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ where $\mu$ is the mean (i.e., average squared difference between each value of $x$ and the mean).    
+4. Standard deviation: $\sigma = \sqrt{\sigma^2}$    
   
 #### A note about sample variance vs. population variance   
 Note that: The definition above is used to calculate "population" variance. When using a sample to estimate the variance of a variable $x$ in a larger population, sample variance is calculated  as: $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n-1}$.      
