@@ -1,0 +1,23 @@
+---
+title: "Instructions"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+  
+Instructions for using the materials provided in the A3SR welcome package:  
+
+  1. Download R, R Studio, and LaTeX on your computer, following the instructions in the Software Installation folder. Instructions are provided for Macs and PCs.
+  2. Watch the following video to learn more about your R Studio window and how to create and run files: https://www.youtube.com/watch?v=Sze9mhGv11A&feature=youtu.be 
+  3. Start with the Math_Stats_Review_Packet.pdf file in the Math Review folder. We have also provided an Rmd file, which you are welcome to look at/open in R Studio, but we recommend using the PDF for cleaner formatting.  
+    a) For each section of the packet, look through the notes and complete the review problems (if applicable). If you have seen the material before and the material already makes sense to you, move to the next section! 
+    b) If the notes look unfamiliar to you (or you have trouble with the practice problems), refer to the document: Math_Resources.PDF. This provides alternative links for more in-depth review of particular topics. You can also try Googling the heading of any section, and you will find many other useful resources!  
+    c) Open the R_Code_MRP.Rmd file in R Studio and, after completing each section of the Math/Stats review packet, go to the corresponding section of the R_Code_MRP.Rmd file (if applicable). Read the text and run the code. You can also look at the knitted PDF of this file to see the output (in case something fails in R Studio), but we highly suggest that you get used to running the code yourself. If you want to test whether you have LaTeX properly installed, this is a good file to try knitting to PDF yourself! At this point, you will see a lot of code before you have been properly introduced to R. This is by design: it is okay if you don't understand everything, but hopefully this will give you some context once you start learning R from the beginning.  
+  4. Once you feel comfortable with the material in the Math/Stats Review Packet, move to the R tutorials. You should open the Introduction_to_R.Rmd file first and go through the notes/run the code in R Studio. Then, try the practice problems and check your answers. Do the same for the Loops_and_Functions.Rmd file. PDFS of both of these files are available if you'd like, but we recommend working through the Rmds if possible. 
+  5. Once you have completed all of the Math and R review, there are assignments for the following courses: Probability, Quantitative Methods, and Statistical Computing. You must complete the assignments for any courses that you are enrolled in; however, we HIGHLY recommend doing all of these assignments to ensure that you are properly prepared for the first semester. You should fill in the code in the .Rmd file. All of the assignments have notes prior to the actual assignment, which you can feel free to delete before turning anything in. You can consult the PDFs of any of these assignments, but ultimately, you are expected to write code in the Rmd file, save it as lastname_firstname_coursename_HW1 and knit it (with your answers) to a PDF. You will ultimately turn in both the Rmd and PDF files, which will be due during the second week of courses. That said, we highly recommend that you take a first stab at these assignments before you arrive on campus.
+  
+Good luck with review, and please let us know if you hit any snags on the way. We are here to help. We can't wait to meet you!  

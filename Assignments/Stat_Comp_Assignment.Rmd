@@ -104,7 +104,7 @@ set.seed(333)
 ```
   
 
-Note: this assignment should be submitted as a knitted PDF file. Please include the course number, your last name, and first name (for example 2352_LASTNAME_FIRSTNAME). You may delete all notes above the homework heading before submitting. 
+Note: this assignment should be submitted as a knitted PDF file. Please include the course number, your last name, and first name (for example LASTNAME_FIRSTNAME_2352_HW1). You may delete all notes above the homework heading before submitting. 
 
 ### Uniform Distribution
 A uniform distribution has two parameters: a and b. The PDF of the uniform distribution is defined such that $f(x)=\frac{1}{b-a}$ on the interval [a,b]. Therefore, if you draw values from a Uniform(a,b) distribution, then all values on the interval [a,b] are equally likely.   
