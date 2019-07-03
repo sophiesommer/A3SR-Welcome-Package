@@ -28,6 +28,7 @@ Limits: https://www.youtube.com/watch?v=HYSI-AHUqRM
 Understanding the Definition of the Derivative: https://www.youtube.com/watch?v=2wH-g60EJ18&t=181s
 Finding a Derivative Using the Definition of a Derivative: 
 https://www.youtube.com/watch?v=vzDYOHETFlo
+https://www.khanacademy.org/math/differential-calculus 
 
 
 http://tutorial.math.lamar.edu/pdf/Calculus_Cheat_Sheet_Derivatives.pdf   
@@ -58,10 +59,15 @@ Probability Distributions: OpenIntro statistics: Chapter 4-3.5 (pgs 132-167) (th
 https://www.youtube.com/watch?v=oHcrna8Fk18&list=PLvxOuBpazmsNIHP5cz37oOPZx0JKyNszN     
 Expected Value: https://www.youtube.com/watch?v=Vyk8HQOckIE    
    
+# Sampling Distributions  
+https://www.khanacademy.org/math/statistics-probability/sampling-distributions-library/what-is-a-sampling-distribution/v/introduction-to-sampling-distributions?modal=1
+http://onlinestatbook.com/2/sampling_distributions/intro_samp_dist.html (also has notes on CLT)  
+https://www.youtube.com/watch?v=DmZJ1blQOns 
+
 # Central Limit Theorem Introduction    
 OpenIntro statistics: Chapter 5.1-5.2 (pgs 170-188)  
 
-# Z-Tests, T-Tests, and P-Values     
+# Hypothesis testing: Z-Tests, T-Tests, and P-Values     
 Hypothesis Testing: OpenIntro statistics: Chapter 5.3 (pgs 189-205) (in the 4th edition, hypothesis testing is introduced in the context of proportions; for examples of hypothesis testing with the sample mean, see http://www.ltcconline.net/greenl/courses/201/hyptest/hypmean.htm)  
 T-Tests: OpenIntro statistics: Chapter 7.1-7.3 (pgs 250-277)  
 P-value: https://www.youtube.com/watch?v=UsU-O2Z1rAs  

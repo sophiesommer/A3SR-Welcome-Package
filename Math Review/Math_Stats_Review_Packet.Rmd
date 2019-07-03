@@ -837,7 +837,7 @@ population <- rgamma(n=10000, shape=1, scale=2) #create a population with 10,000
 hist(population, main="Histogram of the population")
 ```
     
-Now that we have a population of values to draw from, let's take 1000 random samples of size 50 from the population and save the mean, variance, maximum, and sum of the samples. Then, we plot histograms of the sample means, sample variances, sample maximums, and sample sums. These histograms are estimated sampling distributions of these statistics (for a sample size of 50).   
+Now that we have a population of values to draw from, let's take 1000 random samples of size 50 from the population and save the mean, variance, maximum, and sum of the samples. Then, we can plot histograms of the sample means, sample variances, sample maximums, and sample sums. These histograms are estimated sampling distributions of these statistics (for a sample size of 50). If we took infinitely many random samples from the population and repeated this process, we would get the "true" sampling distributions. (note: more technically, sampling distributions are described by their PDFs/PMFs instead of a histogram of frequencies, but moving from a histogram to a PDF/PMF simply requires a scale transformation from frequency to probability).      
 
 ```{r}
 #Create empty data frame to store the sample statistics

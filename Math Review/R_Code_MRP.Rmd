@@ -21,15 +21,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ### A Note:
 The notes and code in this document are meant to serve as complementary material to the Math Review Packet. In this program you will be able to perform many calculations in R, which provides more flexibility and data storage than a typical calculator. The R code below is meant to a) introduce you to using R as a calculator and b) give some context for how you could use R to solve a variety of problems. 
 
-We will cover: \newline
-  - Logarithms \newline
-  - Matrices \newline
-  - Basic Probability \newline
-  - Statistical concepts \newline
-      + Summary Statistics \newline
-      + The Central Limit Theorem \newline
-      + Covariance and correlation  \newline
-      + Ordinary Least Square regression  \newline
+We will cover:  
+  - Logarithms  
+  - Matrix Algebra  
+  - Derivatives      
+  - Integrals    
+  - Statistical Concepts    
+      + Variable Types and Summaries    
+      + Basic Probability    
+      + Random Variables    
+      + Probability Density and Mass Functions    
+      + Sampling Distributions  
+      + The Central Limit Theorem    
+      + Covariance and correlation    
+      + Ordinary Least Squares regression    
 
 Please use this as a resource to become more comfortable with R. You can run the R chunks by pressing the green play button in the top right corner (of the chunk). Or, you can run parts of the code and change portions of it in the Console. It may also be useful to look up functions in the **Help** tab (or type `?function` into the Console) to see function documentation. 
 
