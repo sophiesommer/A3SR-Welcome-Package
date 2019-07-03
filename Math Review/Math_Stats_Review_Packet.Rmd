@@ -1083,11 +1083,11 @@ text(67.9,70,expression(epsilon[i]),cex=2,col=2)
 ```
 
 Interpreting the $\beta$ coefficients from a linear fit using OLS regression:
-- There are two hypothesis tests being performed when running this regression first for $\beta_0$ and second $\beta_1$
-    1) $H_0: \beta_0 = 0$
-       $H_a = \beta_0 \ne 0$
-    2) $H_0: \beta_1 = 0$
-       $H_a = \beta_1 \ne 0$
+There are two hypothesis tests being performed when running this regression first for $\beta_0$ and second $\beta_1$ \newline
+    1) $H_0: \beta_0 = 0$ \newline
+     $H_a = \beta_0 \ne 0$ \newline
+    2) $H_0: \beta_1 = 0$ \newline
+       $H_a = \beta_1 \ne 0$ \newline
        
 In this this scenario with mother's and child's height we fail to reject the null hypothesis for $\beta_0$ and reject the null hypothesis for $\beta_1$. This means that $\beta_0$ is not significantly different from 0 and there is evidence to suggest that $\beta_1$ is significantly different from 0.
 
