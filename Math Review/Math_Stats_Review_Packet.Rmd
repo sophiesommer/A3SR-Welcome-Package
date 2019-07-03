@@ -360,16 +360,16 @@ $B=\begin{bmatrix}
 Note: If any of the material below is unfamilar to you, please watch the videos in the Math Resources document to get a refresher on the concept of derivatives. 
 
 ### Definition  
-The derivative ($\frac{dy}{dx}), $f'(x), etc. has many different interpretations. 
+The derivative ($\frac{dy}{dx})$, $f'(x)$, etc. has many different interpretations. 
 
 The derivative of a function $y=f(x)$ with respect to $x$ is defined as a function giving the instantaneous slope of $y=f(x)$ for any value $x$. Notationally, a derivative can be written in any of the following ways:  
 $$f'(x)=y'=\frac{df}{dx}=\frac{d}{dx}(f(x))=\frac{dy}{dx}=\frac{d}{dx}(y)$$
 
-It can also be thought as: 
-1) The slope of the curve
-2) The slope of the tangent line
-3) $f'(x) = \lim_{h\to0} \frac{f(x+h)-f(x)}{h}$
-4) And the alternate form $f'(a) = \lim_{x\to a} \frac{f(x)-f(a)}{x-a}$
+###### It can also be thought as: \newline
+  1. The slope of the curve \newline
+  2. The slope of the tangent line \newline
+  3. $f'(x) = \lim_{h\to0} \frac{f(x+h)-f(x)}{h}$  \newline
+  4. And the alternate form $f'(a) = \lim_{x\to a} \frac{f(x)-f(a)}{x-a}$ \newline
    
 The second derivative of $y=f(x)$ with respect to $x$ is the derivative of the derivative of $f(x)$. Notationally, it can be represented in any of the following ways (note: 3rd, 4th, etc. derivatives are notated in a similar way, with increasing exponents or $'$s):   
 $$f''(x)=y''=\frac{d^2f}{dx^2}=\frac{d^2}{dx^2}(f(x))=\frac{d^2y}{dx^2}=\frac{d^2}{dx^2}(y)$$
@@ -575,9 +575,9 @@ boxplot(x, main="Box Plot of x")
 # Basic Probability  
 ## Relevant Courses:  
 
-  -Probability   
-  -Statistical Computing  
-  -Quantitative Methods  
+  - Probability   
+  - Statistical Computing  
+  - Quantitative Methods  
   
 ## Notes    
 
@@ -717,8 +717,9 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
 # Random Variables and Probability Density/Mass Functions  
 ## Relevant Courses:  
 
-  - Quantitative Methods   
-  - Probability   
+ 
+  - Quantitative Methods
+  - Probability
   - Statistical Computing 
   - Multi-Level Modeling
   - Machine Learning
@@ -782,13 +783,13 @@ For a discrete random variable, X, with possible outcomes $x_1,...,x_n$, $E(X)=\
 The variance of a random variable X is given by: $E(X^2)-(E(X))^2$   
 Note: For now, the exact formulas for expectation and variance of a random variable are less important than understanding that expectation is a measure of central tendency and variance is a measure of spread.     
   
-Properties of expected value (for a random variable $X$):  
+###### Properties of expected value (for a random variable $X$):  
   1. $E(X+Y) = E(X)+E(Y)$ where $Y$ is also a random variable   
   2. $E(X+c) = E(X)+c$ where $c$ is a constant  
   3. $E(cX) = cE(X)$ where $c$ is a constant   
   
   
-Properties of variance (for a random variable $X$)  
+###### Properties of variance (for a random variable $X$)  
   1. $Var(X+Y) = Var(X)+Var(Y)$ where $Y$ is also a random variable *ONLY* if $X$ and $Y$ are independent  
   2. $Var(X+c) = Var(X)$ where $c$ is a constant       
   3. $Var(cX) = c^2Var(X)$ where $c$ is a constant   
@@ -820,10 +821,11 @@ Properties of variance (for a random variable $X$)
 # Central Limit Theorem Introduction   
 ## Relevant Courses:  
 
-  -Quantitative Methods    
-  -Statistical Computing  
-  -Probability
-  -Causal Inference   
+
+  - Quantitative Methods
+  - Statistical Computing
+  - Probability
+  - Causal Inference   
 
 ## Notes    
 
@@ -847,9 +849,10 @@ Because of the central limit theorem, we can use the sample mean plus or minus (
 # Z-Tests, T-Tests, and P-Values   
 ## Relevant Courses:  
 
-  -Quantitative Methods    
-  -Statistical Computing  
-  -Causal Inference   
+  - Quantitative Methods
+  - Statistical Computing
+  - Frequentist Inference
+  - Causal Inference  
 
 ## Notes  
 
@@ -1049,7 +1052,7 @@ $$Corr(x,y)= \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}=
 # Simple Ordinary Least Squares Regression   
 ## Relevant Courses:  
 
-  -Quantitative Methods   
+  - Quantitative Methods   
 
 ## Notes  
 Suppose that we have the following information for 100 US adults: 1) their height in inches and 2) their mother's height in inches. A plot of the data looks like this:  
