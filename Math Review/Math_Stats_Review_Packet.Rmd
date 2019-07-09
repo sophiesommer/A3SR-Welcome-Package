@@ -866,7 +866,7 @@ abline(v=sum(population), col=4, lwd=2)
 
 ```
      
-The population values for each of these statistics are overlaid on each histogram as a blue line. You might notice that the mean of the sample means looks like it is almost exactly the same as the mean of the population. In fact, if we took infinitely many samples, the mean of the population will exactly equal the mean of this sampling distribution. This is because the sample mean is an "unbiased" estimator for the population mean. This is clearly not true for the maximums (where the population maximum is as large as the largest sample maximum) or the sums (where if the sum is an unbiased estimator then the sum should equal the population mean multiplied by the sample size). 
+The population values for each of these statistics are overlaid on each histogram as a blue line. You might notice that the mean of the sampling distribution of the mean looks like it is almost exactly the same as the mean of the population. In fact, if we took infinitely many samples, the mean of the population will exactly equal the mean of this sampling distribution. This is because the sample mean is an "unbiased" estimator for the population mean. This is clearly not true for the maximums (where the population maximum is as large as the largest sample maximum) or the sums (where if the sum is an unbiased estimator then the sum should equal the population mean multiplied by the sample size). 
 
 Note that the standard deviation of a sampling distribution for a particular statistic is called the **standard error** of the statistic.  
 
