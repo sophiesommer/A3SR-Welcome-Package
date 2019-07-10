@@ -48,6 +48,11 @@ mean(data2)
 
 # Now explicitly set na.rm=TRUE and recalculate the mean of data1. Now we get the same as data2
 mean(data1, na.rm=TRUE)
+
+# Now just to see what happens when you fail to provide a parameter, call mean()
+# -- you need to get used to error messages and glean what you can from them; they often are very precise as to what went wrong.
+mean()
+
 ```
       
 Note that many functions that take vector inputs (i.e., max(), min(), sum(), etc.) have an na.rm parameter, which is set to FALSE by default. So, if you try to use one of these functions and get NA as the result, then you might have to add na.rm=TRUE to the function call.  
@@ -105,14 +110,17 @@ class(number2)
 #### Characters  
 
 ```{r}
-# Save a character string in a variable named message
-message <- "welcome"
+# Save a character string in a variable named msg
+#NOTE: we did not use "message" as the variable name as that would "mask" a funciton by the same name in the base package.
+# in general, it is not advised to name variables: T, TRUE, F, FALSE, t, warnings, message, print, cat, pi, and a host of other 
+# reserved names.  When in doubt, type the name on the command line to see if it calls up a pre-defined function or value.
+msg <- "welcome"
 
-# Print message:
-print(message)
+# Print msg:
+print(msg)
 
-# Inspect the class of message:
-class(message)
+# Inspect the class of msg:
+class(msg)
 ```
 
   
