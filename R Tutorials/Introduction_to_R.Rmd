@@ -476,7 +476,7 @@ str(fake_data)
 levels(fake_data)
 ```
     
-Note that we have created a factor variable with 5 levels. Even though each element in the data is a character string, the class is "factor", not "character". This tells R that the variable is categorical.  
+Note that we have created a factor variable with 5 levels. Even though each element in the data is a character string, the class is "factor", not "character". This tells R that the variable is categorical.  You can control the order of the levels in factor variables when you create them with additional parameters.
   
 ## Setting up your workspace/global environment  
 
@@ -505,7 +505,7 @@ str(iris)
 Finally, if you have data in other formats, you might need some other functions in R. Probably the most relevant is the read_dta function (in the "haven" package) or read.dta (in the "foreign" package). Both functions read .dta files, which is how Stata files are generally saved.  
 
 #### Downloading new packages and functions   
-To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  
+To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  NOTE: best practices are moving toward full reference of the package everytime you call it to avoid ambiguity. E.g., psych::describe(...).  In development phase, one often requires multiple libraries; in production phase, full referencing is likely to reduce errors.  Consider moving in that direction early in your career.
 ```{r, message=FALSE}
 # Install the psych package
 # Note: I have commented out the code so that it doesnt re-install on my computer  
@@ -570,7 +570,7 @@ factorial(vec)
     c. Multiply all of the elements in my_vec by 2 and take the sum of the doubled values  
     d. Extract the 1st, 3rd, and 10th values in my_vec and save them as my_short_vec  
     e. Calculate the median of my_short_vec  
-    f. Create the following matrix and save it as my_mat (hover your mouse over it to view it in the Rmd): $\begin{bmatrix} 1&2&3\\ 4&5&6\\ 4&4&0\\ \end{bmatrix}$    
+    f. Create the following matrix and save it as my_mat (hover your mouse over the code if viewing in the Rmd): $\begin{bmatrix} 1&2&3\\ 4&5&6\\ 4&4&0\\ \end{bmatrix}$    
     g. Find the transpose of my_mat  
     h. Find the inverse of my_mat  
     i. Add 3 to every value of my_mat and save the result as my_mat2  
