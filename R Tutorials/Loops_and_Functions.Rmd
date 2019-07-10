@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## If/else conditional statements  
 
 #### Set up   
-An if/else conditional statement is set up as follows: "if (condition) {Execute some code} else {execute some other code}". First, R will check if the condition you've specified is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code. 
+An if/else conditional statement is set up as follows: "if (condition) {Execute some code} else {execute some other code}". First, R will check if the condition you've specified is met. If so, it will execute the first chunk of code. Otherwise (else), it will execute the second chunk of code.  NOTE: unlike other languages, the *else* statement must be linked to the *if* (you cannot have a "CR/LF" between them as in many compiled languages).  In the examples that follow, the curly braces are used to establish the link.  
   
 #### Credit card company example  
 Please note that the following example is not representative of an actual credit card application process.  
@@ -60,7 +60,7 @@ paste("Your credit card application was", creditcard)
   
 
 ## Functions   
-Now suppose that the credit card company wants to create an online system where people can input their credit scores and quickly determine their approval status and credit limit. Instead of changing the value of "creditscore" every time and re-running the code, we can create a function that takes in a credit score and spits out the application result. This way, any time we want to determine the result of a new application, we only have to run one line of code! In general, anytime you have to copy and paste code more than twice (even if you are tweaking inputs slightly), that code is probably a good candidate for a function.  
+Now suppose that the credit card company wants to create an online system where people can input their credit scores and quickly determine their approval status and credit limit. Instead of changing the value of "creditscore" every time and re-running the code, we can create a function that takes in a credit score and spits out the application result. This way, any time we want to determine the result of a new application, we only have to run one line of code! In general, anytime you have to copy and paste code *more than twice* (even if you are tweaking inputs slightly), that code is probably a good candidate for a function.  
 
 Functions are created using 'function()' and are stored as R obejcts in your global environemnt. They are R objects of class "function".
 
