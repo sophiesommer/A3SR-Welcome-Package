@@ -67,7 +67,8 @@ Functions are created using 'function()' and are stored as R obejcts in your glo
 Functions follow the following structure:   
 
 myFunction <- function( arguments ){  
-    execute some interesting code  
+    execute some interesting code
+    #this last line is used to return objects by default
 }  
   
 Using the above credit card application process, we can create a function that takes in a numerical credit score (x) and determines the result of the application. We will use the same conditions as above.   
@@ -105,7 +106,7 @@ cc_app_function2 <- function(creditscore, stamp=FALSE) {
   
   #first check if the application has a stamp of approval
   #note: we also could have just written "stamp" in the conditional 
-  #because if stamp=TRUE then "stamp" and "stamp==TRUE" both return "TRUE"
+  #because "stamp" and "stamp==TRUE" both evaluate to the whether or not stamp is true.
   if(stamp==TRUE){
     creditcard = "approved (credit limit $10,000)"
   } 
@@ -127,7 +128,7 @@ cc_app_function2 <- function(creditscore, stamp=FALSE) {
 }
 ```
    
-Note that, because stamp=FALSE by default, we do not have to specify "stamp" in the function input unless we want to set stamp=TRUE. Therefore, we can use this new function exactly as before (we just have one new option if we want to use it):   
+Note that, because stamp=FALSE by default in the header to the function, we do not have to specify "stamp" in the function input unless we want to set stamp=TRUE. Therefore, we can use this new function exactly as before (we just have one new option if we want to use it):   
 ```{r, tidy = TRUE}
 cc_app_function2(300)
 cc_app_function2(300, stamp=TRUE)
@@ -141,7 +142,7 @@ Suppose that we want to repeat this process many times, for many potential score
 
 First, lets create a fake dataset of potential credit card applicants:   
 ```{r}
-#this makes the results of this chunk reproducible
+#this makes the results of this chunk reproducible (the sequence of random numbers will be identical upon multiple runs)
 set.seed(333)
 
 #take a sample of 10 random credit scores and approval stamps
@@ -179,7 +180,7 @@ table(app_results)
 
 ## While loops 
 
-Suppose that the credit card company can only approve 50 credit card applications with a credit limit of 10,000. We can use a while loop to estimate how many credit card applications will be considered before 50 high limit cards are approved. A while loop will continue to run as long as a given condition is met. The set up is: while(condition) {run some code}.    
+Suppose that the credit card company can only approve 50 credit card applications with a credit limit of 10,000. We can use a while loop to estimate how many credit card applications will be considered before 50 high limit cards are approved. A while loop will continue to run as long as a given condition is met.  NOTE: use of a for loop would be inelegant here as we do not know when it is to terminate; while loops are preferred in this context. The set up is: while(condition) {run some code}.    
 
 ```{r, tidy = TRUE}
 #create two counter variables: 
@@ -289,6 +290,8 @@ mode <- function(vec) {
 }
 
 #this one returns all modes:  
+#this is a good example of being careful not to use "off the shelf" solutions to problems:
+#which.max(x) and which(x==max(x)) have different behavior.  Try them!
 all_modes <- function(vec) {
  result <- as.numeric(names(table(X1))[which(table(X1)==max(table(X1)))])
  return(result)
