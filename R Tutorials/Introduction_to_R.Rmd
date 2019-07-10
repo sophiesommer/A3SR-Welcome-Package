@@ -126,7 +126,7 @@ class(msg)
   
 #### Logicals   
 Logical values are either TRUE or FALSE  
-In R, TRUE=1 and FALSE=0   
+In R, these reserved named variables function as if TRUE=1 and FALSE=0   (as.numeric(TRUE)=1)
 ```{r}
 # Save the logical TRUE as a variable called outcome:  
 outcome <- TRUE  
@@ -137,16 +137,16 @@ print(outcome)
 # Inspect class of outcome
 class(outcome)
 
-# Note that, weirdly, outcome+outcome=2  
+# Note that, based on the implicit conversion to numeric caused by calling the "+" operation on the logicals, outcome+outcome=2  
 outcome+outcome
 ```
   
-In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows you to make comparisons accross variable types: integers may be compared to numerics and logicals may be compared to integers/numerics. For characters, comparatives are assessed using alphabetical order (letters earlier in the alphabet are "smaller"):    
+In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows you to make comparisons accross variable types: integers may be compared to numerics and logicals may be compared to integers/numerics (through a conversion process). For characters, comparatives are assessed using alphabetical order (letters earlier in the alphabet are "smaller"):    
   1) == means "is equal to"  
   2) != means "is not equal to"  
   3) > means "greater than"; >= means "greater than or equal to"  
   4) < means "less than; <= means "less than or equal to"   
-  5) & means "and"; | means "or"
+  5) & means "and"; | means "or" (NOTE: & and && are not identical; nor are | and ||.  The first operates on vectors; the second on scalars.)
   
 ```{r}
 # Is 5 equal to 3?
@@ -268,6 +268,7 @@ example_data <- data.frame(ID_Num = c(1:10),
                            State = c(rep("New Jersey", 5), rep("New York", 5)))
 
 # Change row names of the data frame (some made up names)
+#NOTE: rownames must be unique; they will be coerced to be unique in some instances
 rownames(example_data) <- c("Sarah", "Mike", "Drew", "Eric", "Maria", 
                             "Lindsey", "Mark", "Jenny", "Sophie", "Paul")
 
@@ -311,7 +312,7 @@ example_list
 ```
     
 ## Indexing  
-In R, indices start at 1, not 0 as in other languages. For example, the index of the 3rd element in a vector is 3. 
+In R, indices start at 1, not 0 as in some other languages. For example, the index of the 3rd element in a vector is 3. 
 
 #### Using indices to extract elements in a vector  
 We can use indices enclosed in square brackets in order to extract data from a vector as follows:  
