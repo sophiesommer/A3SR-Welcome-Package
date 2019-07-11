@@ -529,14 +529,14 @@ Therefore, $\int_1^2 2x(x^2 + 1)^4 dx=\int_2^5 u^4 du = \frac{u^5}{5}|_2^5 =\fra
      
 ## Notes    
 ### Types of variables:  
-  1. Quantitative 
-    a. continuous: variables that can theoretically have an *infinite* number of values between two points (examples: height, weight, time)
-    b. discrete: variables for which only a *finite* number of values can occur between any two points (examples: number of green jellybeans in a bag, number of students in a classroom, number of white shirts in my closet)
+  1. Quantitative   
+    a. continuous: variables that can theoretically have an *infinite* number of values between two points (examples: height, weight, time)   
+    b. discrete: variables for which only a *finite* number of values can occur between any two points (examples: number of green jellybeans in a bag, number of students in a classroom, number of white shirts in my closet)  
     
   2. Categorical  
     a. nominal (unordered) (example: responses to: "who are you planning to vote for in the upcoming election?")  
-    b. ordinal (ordered) (example: responses to: "On a scale from 1-10, how happy are you right now?") 
-    c. interval (ordered) (example: income brackets)
+    b. ordinal (ordered) (example: responses to: "On a scale from 1-10, how happy are you right now?")  
+    c. interval (ordered) (example: income brackets)  
 
 ### Summarizing variables:  
 Note: without going into too much detail, it is important that summary statistics be chosen and evaluated with the variable type in mind. For example, if I calculate the mean of a variable which is categorical (nominal) with responses coded as 0s and 1s, the mean will give me the percentage of 1s in my dataset. However, this is no longer the case if the same categorical variable is coded with 1s and 2s.   
@@ -548,13 +548,13 @@ Note: without going into too much detail, it is important that summary statistic
 
 #### Summary statistics for spread  
 1. Range: For a variable $x$, the range is given by max($x$)-min($x$)     
-2. Interquartile Range (IQR): The range of the middle 50% of scores (ie. between the bottom 25% and top 25%)
+2. Interquartile Range (IQR): The range of the middle 50% of scores (ie. between the bottom 25% and top 25%)  
 3. Variance: For a variable $x$ and population size $n$, the (population) variance is given by $\sigma^2=\frac{\Sigma_{i=1}^{n}(x_i-\mu)^2}{n}$ where $\mu$ is the mean (i.e., average squared difference between each value of $x$ and the mean).    
 4. Standard deviation: $\sigma = \sqrt{\sigma^2}$    
    
 
 #### Summarizing variables visually   
-A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are essential to look up if they are not immediately familiar.  
+A few common ways of visualizing data (including central tendency, spread, and other characteristics like bimodality and skewness) are demonstrated below (histograms, smoothed density, and box plots). These are essential to look up if they are not immediately familiar.   
 
 ```{r, echo=FALSE,fig.align="center",fig.keep='all'}
 set.seed(101)
@@ -830,7 +830,12 @@ In statistical analyses, researchers often want to answer questions about a larg
 
 In order to understand our uncertainty about this statistic, it is important to understand **sampling distributions**. The sampling distribution of a particular statistic is defined as follows: suppose that we could take repeated random samples of some size from a population, and calculate a particular statistic for each (the statistic could be anything: mean, median, mode, variance, range, sum, maximum, minimum, 3rd quantile, etc.). Then the distribution of sample statistics is called the "sampling distribution (of the statistic)". For example, the sampling distribution of the mean is the probability distribution of means corresponding to all random samples of the same size taken from some population.
 
-We could simulate this in R by creating a population and then repeatedly drawing random samples of the same size from it and collecting different statistics for each sample. First, let's create a simulated population (I arbitrarily chose to sample the population from a gamma distribution):  
+We could simulate this in R by creating a population and then repeatedly drawing random samples of the same size from it and collecting different statistics for each sample. First, let's create a simulated population (I arbitrarily chose to sample the population from a gamma distribution):   
+```{r, echo=FALSE}
+set.seed(333)
+```
+
+
 ```{r, fig.align="center", out.width = "275px"}
 population <- rgamma(n=10000, shape=1, scale=2) #create a population with 10,000 values
 
@@ -862,11 +867,11 @@ abline(v=var(population), col=4, lwd=2)
 hist(Results[,3], main="Sampling Dist. Maxes", xlab="Sample Max")
 abline(v=max(population), col=4, lwd=2)
 hist(Results[,4], main="Sampling Dist. Sums",xlab="Sample Sum")
-abline(v=sum(population), col=4, lwd=2)
+abline(v=50*mean(population), col=4, lwd=2)
 
 ```
      
-The population values for each of these statistics are overlaid on each histogram as a blue line. You might notice that the mean of the sampling distribution of the mean looks like it is almost exactly the same as the mean of the population. In fact, if we took infinitely many samples, the mean of the population will exactly equal the mean of this sampling distribution. This is because the sample mean is an "unbiased" estimator for the population mean. This is clearly not true for the maximums (where the population maximum is as large as the largest sample maximum) or the sums (where if the sum is an unbiased estimator then the sum should equal the population mean multiplied by the sample size). 
+The corresponding population values for each of these statistics are overlaid on each histogram as a blue line (note: in the case of the sample sum, the corresponding "population value" is actually the sample mean multiplied by the sample size, not the population sum). You might notice that the mean of the sampling distribution of the mean looks like it is almost exactly the same as the corresponding population value (i.e., the mean of the population). In fact, if we took infinitely many samples, the mean of the population will exactly equal the mean of this sampling distribution. (Similarly, the mean of the sampling distribution of the sum will exactly equal the population mean multiplied by the sample size). This is because the sample mean and sample sum are "unbiased" estimators of their population-level equivalents. On the other hand, this is clearly not true for the maximums (where the population maximum is as large as the largest possible sample maximum).  
 
 Note that the standard deviation of a sampling distribution for a particular statistic is called the **standard error** of the statistic.  
 

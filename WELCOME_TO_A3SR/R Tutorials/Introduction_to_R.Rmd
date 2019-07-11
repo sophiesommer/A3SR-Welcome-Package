@@ -13,15 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Using basic functions in R      
 
 #### Inspecting function documentation   
-There are many functions in base R that you can use (in a later tutorial, we will discuss how to create your own functions!). In order to view documentation for a function in R, you can type ?function_name or search for the function name in the help tab. As practice, let's explore the matrix() and mean() functions in R by typing ?matrix and ?mean into the console. Uncomment (by deleting the #s) the code below and run it in the console to inspect the documentation.   
+There are many functions in base R that you can use (in a later tutorial, we will discuss how to create your own functions!). In order to view documentation for a function in R, you can type `?function_name` or search for the function name in the help tab. As practice, let's explore the `matrix()` and `mean()` functions in R by typing `?matrix` and `?mean` into the console. Uncomment (by deleting the #s) the code below and run it in the console to inspect the documentation.   
 ```{r}
 #?matrix
 #?mean
 ```
    
 Under usage for the matrix() function, you should see the following:  
-matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)  
-The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL by default.   
+matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
+The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL`= by default.   
     
 Because all parameters of the matrix() function have defaults, we could call matrix() with no inputs and we would get a 1x1 matrix with NA values and no dimension names. We can also pick and choose whatever parameters we do want to fill in and ignore anything that we want to leave as defaults.       
 ```{r}
@@ -32,7 +32,7 @@ matrix()
 matrix(nrow=2, ncol=3)
 ```
     
-In contrast, the mean() function has some required parameters. When you type ?mean into the console, you should see the following:      
+In contrast, the mean() function has some required parameters. When you type `?mean` into the console, you should see the following:      
 mean(x, trim = 0, na.rm = FALSE, ...)    
 The parameter x has no default value; you must specify the values that you want to take the mean of. The other paramters are given defaults: trim=0 and na.rm=FALSE. If you read the descriptions for these parameters, you will see that trim allows you to calculate a trimmed mean (i.e., eliminate some proportion of extreme values before calculating the mean) and na.rm allows you to remove missing (NA) values before calculating the mean. By default, R will not do any trimming and NAs will not be removed. This can cause issues (see below):  
 
@@ -48,6 +48,13 @@ mean(data2)
 
 # Now explicitly set na.rm=TRUE and recalculate the mean of data1. Now we get the same as data2
 mean(data1, na.rm=TRUE)
+
+# Now just to see what happens when you fail to provide a parameter, call mean()
+# -- you need to get used to error messages and glean what you can from them; they often are very precise as to what went wrong.
+
+# Uncomment the following code to see the error messages. This needs to be commented to be able to knit to pdf. 
+# mean()
+
 ```
       
 Note that many functions that take vector inputs (i.e., max(), min(), sum(), etc.) have an na.rm parameter, which is set to FALSE by default. So, if you try to use one of these functions and get NA as the result, then you might have to add na.rm=TRUE to the function call.  
@@ -105,20 +112,23 @@ class(number2)
 #### Characters  
 
 ```{r}
-# Save a character string in a variable named message
-message <- "welcome"
+# Save a character string in a variable named msg
+#NOTE: we did not use "message" as the variable name as that would "mask" a funciton by the same name in the base package.
+# in general, it is not advised to name variables: T, TRUE, F, FALSE, t, warnings, message, print, cat, pi, and a host of other 
+# reserved names.  When in doubt, type the name on the command line to see if it calls up a pre-defined function or value.
+msg <- "welcome"
 
-# Print message:
-print(message)
+# Print msg:
+print(msg)
 
-# Inspect the class of message:
-class(message)
+# Inspect the class of msg:
+class(msg)
 ```
 
   
 #### Logicals   
 Logical values are either TRUE or FALSE  
-In R, TRUE=1 and FALSE=0   
+In R, these reserved named variables function as if TRUE=1 and FALSE=0   (as.numeric(TRUE)=1)
 ```{r}
 # Save the logical TRUE as a variable called outcome:  
 outcome <- TRUE  
@@ -129,16 +139,16 @@ print(outcome)
 # Inspect class of outcome
 class(outcome)
 
-# Note that, weirdly, outcome+outcome=2  
+# Note that, based on the implicit conversion to numeric caused by calling the "+" operation on the logicals, outcome+outcome=2  
 outcome+outcome
 ```
   
-In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows you to make comparisons accross variable types: integers may be compared to numerics and logicals may be compared to integers/numerics. For characters, comparatives are assessed using alphabetical order (letters earlier in the alphabet are "smaller"):    
+In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows you to make comparisons accross variable types: integers may be compared to numerics and logicals may be compared to integers/numerics (through a conversion process). For characters, comparatives are assessed using alphabetical order (letters earlier in the alphabet are "smaller"):    
   1) == means "is equal to"  
   2) != means "is not equal to"  
   3) > means "greater than"; >= means "greater than or equal to"  
   4) < means "less than; <= means "less than or equal to"   
-  5) & means "and"; | means "or"
+  5) & means "and"; | means "or" (NOTE: & and && are not identical; nor are | and ||.  The first operates on vectors; the second on scalars.)
   
 ```{r}
 # Is 5 equal to 3?
@@ -260,6 +270,7 @@ example_data <- data.frame(ID_Num = c(1:10),
                            State = c(rep("New Jersey", 5), rep("New York", 5)))
 
 # Change row names of the data frame (some made up names)
+#NOTE: rownames must be unique; they will be coerced to be unique in some instances
 rownames(example_data) <- c("Sarah", "Mike", "Drew", "Eric", "Maria", 
                             "Lindsey", "Mark", "Jenny", "Sophie", "Paul")
 
@@ -303,7 +314,7 @@ example_list
 ```
     
 ## Indexing  
-In R, indices start at 1, not 0 as in other languages. For example, the index of the 3rd element in a vector is 3. 
+In R, indices start at 1, not 0 as in some other languages. For example, the index of the 3rd element in a vector is 3. 
 
 #### Using indices to extract elements in a vector  
 We can use indices enclosed in square brackets in order to extract data from a vector as follows:  
@@ -467,7 +478,7 @@ str(fake_data)
 levels(fake_data)
 ```
     
-Note that we have created a factor variable with 5 levels. Even though each element in the data is a character string, the class is "factor", not "character". This tells R that the variable is categorical.  
+Note that we have created a factor variable with 5 levels. Even though each element in the data is a character string, the class is "factor", not "character". This tells R that the variable is categorical.  You can control the order of the levels in factor variables when you create them with additional parameters.
   
 ## Setting up your workspace/global environment  
 
@@ -477,7 +488,7 @@ There are a number of ways to read data into R, but the most common is to use th
 Note that an easy way to get a file path is to right click on the file in your finder window and then click "get info". The info page should include a file path that you can copy and paste into R. Note that file names and path names need to be in quotes.   
 ```{r}
 # Use setwd() to set your working directory to a particular location  
-setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Tutorials")
+# setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Tutorials")
 
 # Now that I've set my working directory to my "Assignments" folder,
 # I can read any .csv file in that location by simply writing the name in quotes:
@@ -496,7 +507,7 @@ str(iris)
 Finally, if you have data in other formats, you might need some other functions in R. Probably the most relevant is the read_dta function (in the "haven" package) or read.dta (in the "foreign" package). Both functions read .dta files, which is how Stata files are generally saved.  
 
 #### Downloading new packages and functions   
-To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  
+To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  NOTE: best practices are moving toward full reference of the package everytime you call it to avoid ambiguity. E.g., psych::describe(...).  In development phase, one often requires multiple libraries; in production phase, full referencing is likely to reduce errors.  Consider moving in that direction early in your career.
 ```{r, message=FALSE}
 # Install the psych package
 # Note: I have commented out the code so that it doesnt re-install on my computer  
@@ -561,7 +572,7 @@ factorial(vec)
     c. Multiply all of the elements in my_vec by 2 and take the sum of the doubled values  
     d. Extract the 1st, 3rd, and 10th values in my_vec and save them as my_short_vec  
     e. Calculate the median of my_short_vec  
-    f. Create the following matrix and save it as my_mat (hover your mouse over it to view it in the Rmd): $\begin{bmatrix} 1&2&3\\ 4&5&6\\ 4&4&0\\ \end{bmatrix}$    
+    f. Create the following matrix and save it as my_mat (hover your mouse over the code if viewing in the Rmd): $\begin{bmatrix} 1&2&3\\ 4&5&6\\ 4&4&0\\ \end{bmatrix}$    
     g. Find the transpose of my_mat  
     h. Find the inverse of my_mat  
     i. Add 3 to every value of my_mat and save the result as my_mat2  

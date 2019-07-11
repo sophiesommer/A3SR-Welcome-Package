@@ -13,15 +13,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Using basic functions in R      
 
 #### Inspecting function documentation   
-There are many functions in base R that you can use (in a later tutorial, we will discuss how to create your own functions!). In order to view documentation for a function in R, you can type ?function_name or search for the function name in the help tab. As practice, let's explore the matrix() and mean() functions in R by typing ?matrix and ?mean into the console. Uncomment (by deleting the #s) the code below and run it in the console to inspect the documentation.   
+There are many functions in base R that you can use (in a later tutorial, we will discuss how to create your own functions!). In order to view documentation for a function in R, you can type `?function_name` or search for the function name in the help tab. As practice, let's explore the `matrix()` and `mean()` functions in R by typing `?matrix` and `?mean` into the console. Uncomment (by deleting the #s) the code below and run it in the console to inspect the documentation.   
 ```{r}
 #?matrix
 #?mean
 ```
    
 Under usage for the matrix() function, you should see the following:  
-matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)  
-The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL by default.   
+matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
+The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL`= by default.   
     
 Because all parameters of the matrix() function have defaults, we could call matrix() with no inputs and we would get a 1x1 matrix with NA values and no dimension names. We can also pick and choose whatever parameters we do want to fill in and ignore anything that we want to leave as defaults.       
 ```{r}
@@ -32,7 +32,7 @@ matrix()
 matrix(nrow=2, ncol=3)
 ```
     
-In contrast, the mean() function has some required parameters. When you type ?mean into the console, you should see the following:      
+In contrast, the mean() function has some required parameters. When you type `?mean` into the console, you should see the following:      
 mean(x, trim = 0, na.rm = FALSE, ...)    
 The parameter x has no default value; you must specify the values that you want to take the mean of. The other paramters are given defaults: trim=0 and na.rm=FALSE. If you read the descriptions for these parameters, you will see that trim allows you to calculate a trimmed mean (i.e., eliminate some proportion of extreme values before calculating the mean) and na.rm allows you to remove missing (NA) values before calculating the mean. By default, R will not do any trimming and NAs will not be removed. This can cause issues (see below):  
 
@@ -51,7 +51,9 @@ mean(data1, na.rm=TRUE)
 
 # Now just to see what happens when you fail to provide a parameter, call mean()
 # -- you need to get used to error messages and glean what you can from them; they often are very precise as to what went wrong.
-mean()
+
+# Uncomment the following code to see the error messages. This needs to be commented to be able to knit to pdf. 
+# mean()
 
 ```
       
@@ -486,7 +488,7 @@ There are a number of ways to read data into R, but the most common is to use th
 Note that an easy way to get a file path is to right click on the file in your finder window and then click "get info". The info page should include a file path that you can copy and paste into R. Note that file names and path names need to be in quotes.   
 ```{r}
 # Use setwd() to set your working directory to a particular location  
-setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Tutorials")
+# setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Tutorials")
 
 # Now that I've set my working directory to my "Assignments" folder,
 # I can read any .csv file in that location by simply writing the name in quotes:
