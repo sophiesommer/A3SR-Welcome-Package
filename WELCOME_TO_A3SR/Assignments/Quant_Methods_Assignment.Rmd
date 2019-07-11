@@ -82,7 +82,7 @@ MM <- mean(height$Height[height$Male==1])
 # Print mean height of men  
 MM
 
-# Save mean height of women as MM
+# Save mean height of women as MW
 
 # Print mean height of women  
 
