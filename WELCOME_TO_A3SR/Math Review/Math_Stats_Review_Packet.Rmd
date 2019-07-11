@@ -1055,7 +1055,7 @@ When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{
     e. If this was a 2-sided test, how would the alternative hypothesis change?   
     f. If this was a 2-sided test, how would the p-value change (compared to the p-value for a one-sided test)?    
     
-  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30). Construct a hypothesis test to test whether there is sufficient evidence to suggest that this patients blood pressure after taking the drug is significantly different from their blood pressure before taking the drug (either higher or lower)         
+  2. Suppose that you are running an experiment to test a drug that is designed to reduce patients' blood pressure. You collect systolic blood pressure readings for 100 patients before and after they take the drug. Then, for each patient, you calculate $BP_{before}-BP_{after}$ and find an average difference of 9 mmHg (sd=30). Construct a hypothesis test to test whether there is sufficient evidence to suggest that patients' blood pressure after taking the drug is significantly different from their blood pressure before taking the drug (either higher or lower)         
     a. What are the null and alternative hypotheses for this test (assume a one-sided test that the drug is effective)?    
     b. Construct a T-test to test the alternative hypothesis against the null  
     c. How many degrees of freedom would you use for the t-distribution that you would use to calculate a p-value here  
@@ -1087,7 +1087,7 @@ When not assuming equal variances, $$df=\frac{\big(\frac{\sigma_1^2}{n_1}+\frac{
     a. null hypothesis: The mean score of students who have teacher A equals the mean score of students who have teacher B ($\bar{x_a}-\bar{x_b}=0$). alternative hypothesis: The mean score of students who have teacher A is not equal to the mean score of students who have teacher B ($\bar{x_a}-\bar{x_b}\ne 0$).      
     b. $SE(\bar{x_a}-\bar{x_b})=\sqrt{\frac{10^2}{30}+\frac{12^2}{32}}\approx 2.8$; $T=\frac{(80-84)-0}{2.8}\approx-1.4$     
     c. I would use 29 degrees of freedom (as a conservative measure)        
-    d. pt(-1.4,df=29)         
+    d. $2*pt(-1.4,df=29)$         
 
 
 
