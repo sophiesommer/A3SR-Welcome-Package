@@ -9,6 +9,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# General Review of Statistics  
+https://www.youtube.com/playlist?list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr 
+
 # Properties of Logarithms    
 https://mcckc.edu/tutoring/docs/bt/exp_rad_log/Logarithms_and_Their_Properties.pdf    
 Basics: https://www.youtube.com/watch?v=9c6-aQGfY_E  
@@ -19,8 +22,7 @@ Natural Log: https://www.youtube.com/watch?v=fZdWSlXkKzY
 https://www.math.hmc.edu/calculus/tutorials/matrixalgebra/   
 https://www.stat.washington.edu/adobra/classes/536/Files/week1/matrixfull.pdf   
 https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab     
-  
-
+    
 
 # Derivatives   
 Basic review:
