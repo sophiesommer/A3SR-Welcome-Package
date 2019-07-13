@@ -681,7 +681,7 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
       c. Based on this sample, what is the probability of an individual respondent having been diagnosed with depression given that they DO NOT exercise at least 3 times per week?     
       d. Based on your responses above, do you think that there is an association between exercise frequency and probability of being diagnosed with depression?       
         
-|                | Yes Exercise    | No Exercise     |     
+|                | No Exercise     | Yes Exercise    |     
 |----------------|-----------------|-----------------|    
 | No Depression  | 45              | 52              |    
 | Yes Depression | 65              | 38              |     
@@ -705,8 +705,8 @@ The conditional probability of outcome $A$ given outcome $B$ is denoted $P(A|B)$
     
   3. Question 3  
     a. $\frac{65+38}{200}=.515$   
-    b. $\frac{65}{65+45}\approx .59$  
-    c. $\frac{38}{38+52}\approx .42$  
+    b. $\frac{38}{38+52}\approx .42$    
+    c. $\frac{65}{65+45}\approx .59$    
     d. Yes, there seems to be a higher probability of depression among individuals who do not exercise. Note that we could run a chi square test for independence here to test the hypothesis that answers to these questions are independent. This is worth looking up if you have never seen it before.      
     
       
@@ -894,17 +894,14 @@ In contrast, when calculating the variance in a population, we divide by $n$ ins
 ## Notes    
 
 #### Central Limit Theorem     
-If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be normally distributed with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (also called the *standard error* of $\bar{x}$) where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it). This is true for any population distribution (uniform, skewed, etc.) as long as sample size is large enough.     
-
-Note: in general, the term "standard error" is used to describe the standard deviation of an estimate.  
-
-Another note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.   
-A final note: The distribution of sample means described above is called the "sampling distribution" of the mean.   
+If we take repeated independent samples of size $n$ from a population of interest and use the sample mean (denoted $\bar{x}$) to estimate the population mean (denoted $\mu$), then these sample means will be normally distributed with mean $\mu$ and standard deviation $\frac{\sigma}{\sqrt{n}}$ (also called the *standard error* of $\bar{x}$) where $\sigma$ is the population standard deviation (which we can estimate using a sample standard deviation if we don't know it). This is true for any population distribution (uniform, skewed, etc.) as long as sample size is large enough.      
+Note: "large enough" sample size is generally (and somewhat randomly) considered to be $n\ge 30$.    
+Another note: Remember from the previous section that the distribution of sample means described above is called the "sampling distribution" of the mean.    
 
 #### Confidence Intervals (an example)        
-Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 400 people whose title is "Data Scientist" and we ask them to report their salary. Then, we inspect the resulting salaries and find that the mean is 100,000 dollars and standard deviation is 10,000 dollars. Leveraging what we know (at least from this sample) about the variability in salaries, we may want to make a statement about how confident we are that the mean salary of the larger population is in some range (centered around 100,000 dollars).   
+Suppose that we want to know the average salary of "Data Scientists". To estimate this average salary, we find a sample of 400 people whose title is "Data Scientist" and we ask them to report their salary. Then, we inspect the resulting salaries and find that the mean is 100,000 dollars and standard deviation is 10,000 dollars. Leveraging what we know (at least from this sample) about the variability in salaries, we may want to make a statement about how confident we are that the mean salary of the larger population is in some range (centered around 100,000 dollars).    
 
-Because of the central limit theorem, we can use the sample mean plus or minus (approximately) 2 times the standard error of $\bar{x}$ (remember: $SE_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$) to get a confidence interval around an observed sample mean. Even more accurately, we can use: $\bar{x}\pm 1.96*SE$ because 95% of the area under the curve of the normal distribution PDF lies within 1.96 standard deviations from the mean. So, in the example above, we could say that we are (approximately) 95% confident that the average salary of data scientists is between $100,000-1.96*\frac{10,000}{\sqrt{400}}=99,020$ and $100,000-1.96*\frac{10,000}{\sqrt{400}}=100,980$.   
+Because of the central limit theorem, we can use the sample mean plus or minus (approximately) 2 times the standard error of $\bar{x}$ (remember: $SE_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$) to get a confidence interval around an observed sample mean. Even more accurately, we can use: $\bar{x}\pm 1.96*SE$ because 95% of the area under the curve of the normal distribution PDF lies within 1.96 standard deviations from the mean. So, in the example above, we could say that we are (approximately) 95% confident that the average salary of data scientists is between $100,000-1.96*\frac{10,000}{\sqrt{400}}=99,020$ and $100,000-1.96*\frac{10,000}{\sqrt{400}}=100,980$.    
 
   
 \pagebreak    
