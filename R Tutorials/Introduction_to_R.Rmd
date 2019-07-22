@@ -24,7 +24,7 @@ matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 The matrix function has 5 distinct parameters. All of them have default values. For example, if you don't put any data into the function, the resulting matrix will be made up of NA values (this is how missing data is generally coded in R). Additionally, the function will have 1 row and 1 column by default and data will be filled by columns because byrow=FALSE by default. The matrix will not have any row or column names because dimnames=NULL`= by default.   
     
 Because all parameters of the matrix() function have defaults, we could call matrix() with no inputs and we would get a 1x1 matrix with NA values and no dimension names. We can also pick and choose whatever parameters we do want to fill in and ignore anything that we want to leave as defaults.       
-```{r}
+```{r, tidy=TRUE}
 # Call matrix() with no inputs
 matrix()
 
@@ -36,7 +36,7 @@ In contrast, the mean() function has some required parameters. When you type `?m
 mean(x, trim = 0, na.rm = FALSE, ...)    
 The parameter x has no default value; you must specify the values that you want to take the mean of. The other paramters are given defaults: trim=0 and na.rm=FALSE. If you read the descriptions for these parameters, you will see that trim allows you to calculate a trimmed mean (i.e., eliminate some proportion of extreme values before calculating the mean) and na.rm allows you to remove missing (NA) values before calculating the mean. By default, R will not do any trimming and NAs will not be removed. This can cause issues (see below):  
 
-```{r}
+```{r, tidy=TRUE}
 # Create some data and save it as data1 and data2
 data1 <- c(1,2,3,4,7,NA)
 data2 <- c(1,2,3,4,7)
@@ -61,7 +61,7 @@ Note that many functions that take vector inputs (i.e., max(), min(), sum(), etc
   
 #### Calling functions in R  
 When using functions in R, you can make it clear which inputs refer to which parameters by either a) using the order of the parameters specified in the usage or b) naming them explicitly.  
-```{r}
+```{r, tidy=TRUE}
 # Note that these two calls to the mean() function will return the same output
 mean(data1, .2, TRUE)
 mean(x=data1, trim=.2, na.rm=TRUE)
@@ -86,7 +86,7 @@ You can learn about these data types below
 
 #### Numerics and integers  
 
-```{r}
+```{r,tidy=TRUE}
 # To store data in some variable name, use either = or <-
 # To save the number 5 as "number":
 number <- 5
@@ -111,7 +111,7 @@ class(number2)
     
 #### Characters  
 
-```{r}
+```{r, tidy=TRUE}
 # Save a character string in a variable named msg
 #NOTE: we did not use "message" as the variable name as that would "mask" a funciton by the same name in the base package.
 # in general, it is not advised to name variables: T, TRUE, F, FALSE, t, warnings, message, print, cat, pi, and a host of other 
@@ -129,7 +129,7 @@ class(msg)
 #### Logicals   
 Logical values are either TRUE or FALSE  
 In R, these reserved named variables function as if TRUE=1 and FALSE=0   (as.numeric(TRUE)=1)
-```{r}
+```{r, tidy=TRUE}
 # Save the logical TRUE as a variable called outcome:  
 outcome <- TRUE  
 
@@ -150,7 +150,7 @@ In R, you can test a statement to see if it is TRUE or FALSE. Note that R allows
   4) < means "less than; <= means "less than or equal to"   
   5) & means "and"; | means "or" (NOTE: & and && are not identical; nor are | and ||.  The first operates on vectors; the second on scalars.)
   
-```{r}
+```{r, tidy=TRUE}
 # Is 5 equal to 3?
 5==3
 
@@ -195,7 +195,7 @@ FALSE==0
 ```
   
 #### Vectors  
-```{r}
+```{r, tidy=TRUE}
 # The easiest way to create a vector is by using the c() function
 vec1 <- c(2,3,4,5)
 print(vec1)
@@ -221,7 +221,7 @@ length(vec4)
 ```
    
 Here are some other useful shortcuts for creating vectors in R:  
-```{r}
+```{r, tidy=TRUE}
 # Use the rep() function to repeat values. Inspect the following to see how it works!
 rep(x=0, times=5) #create a vector of 5 zeros
 rep(x=c(1,2,3), times=5) #create a vector with five repeats of 1,2,3
@@ -235,7 +235,7 @@ seq(from=1, to=5, length.out=17) #create a vector with 17 equally spaced values 
 #### Matrices  
 As shown above, an m by n matrix can be created in R using the matrix() function  
 Here are some examples  
-```{r}
+```{r, tidy=TRUE}
 A <- matrix(2, nrow=3, ncol=3)
 print(A)
 B <- matrix(c(1,2,5,3,4,0,2,1,5), nrow=3, ncol=3, byrow=TRUE)
@@ -263,7 +263,7 @@ solve(B)
 #### Data Frames  
 Data frames are generally used to store tabular data and are composed of same-length vectors; these vectors can be of differing data types. In general, when you read a .csv data file into R, it will be saved as a data frame.  
 We can create a data frame in R as follows:  
-```{r}
+```{r, tidy=TRUE}
 # Create a fake dataset called example_data
 example_data <- data.frame(ID_Num = c(1:10),
                            Age = rep(24:28, each=2),
@@ -305,7 +305,7 @@ colnames(example_data)
   
 #### Lists  
 Lists enable multiple data types or data sets to be stored in a single object. For example, a list could have a data frame as its first element, a vector as its second element, and a character string as its third element.  
-```{r}
+```{r, tidy=TRUE}
 # Save vector vec1, matrix A, and vector vec2 in a list called example list
 example_list <- list(vec1, A, vec2)
 
@@ -318,7 +318,7 @@ In R, indices start at 1, not 0 as in some other languages. For example, the ind
 
 #### Using indices to extract elements in a vector  
 We can use indices enclosed in square brackets in order to extract data from a vector as follows:  
-```{r}
+```{r, tidy=TRUE}
 # This R chunk uses vector vec4 from above  
 # Re-print vec4
 vec4
@@ -340,7 +340,7 @@ vec4[-c(2,4,5)]
 ```
    
 We can also use the following functions to either a) get a logical vector indicating which values in the vector meet some criterion or b) get indices of values in a vector that meet some criterion.  
-```{r}
+```{r, tidy=TRUE}
 # Logical vector of the same length as vec4
 # TRUE wherever elements equal 2; FALSE elsewhere
 vec4==2
@@ -360,7 +360,7 @@ vec4==2 | vec4==4
 ```
   
 By enclosing the output from the above functions in square brackets, we can extract elements meeting particular criteria from a vector. For example:  
-```{r}
+```{r, tidy=TRUE}
 # Extract elements of vec4 that are equal to 2 
 vec4[vec4==2]
 
@@ -372,7 +372,7 @@ vec4[vec4 %in% c(2,4)]
    
 #### Using indices to extract elements in a matrix
 In a similar way, we can use square brackets to extract elements from a matrix. However, we now need both row and column indices to specify a particular element. See examples below:  
-```{r}
+```{r, tidy=TRUE}
 # Re-print matrix B for reference  
 B
 
@@ -384,7 +384,7 @@ B[B>2 & B<5]
 ```
   
 We can also use indexing to extract particular rows or columns of a matrix. Note that, in general, we extract elements from a matrix by using [row_index,column_index]. If we just want to specify row indices, but not column indicies, we can leave the column index blank; similarly, if we just want to specify column indices, we can leave the row index blank. For example:  
-```{r}
+```{r, tidy=TRUE}
 # Extract the 2nd row of matrix B
 B[2,]
 
@@ -401,7 +401,7 @@ B[c(1,3),2:3]
    
 #### Extracting elements of a data frame    
 Extracting values from a data frame works in much the same way as above; however, it is also possible to specify rows and columns of a data frame by name (or by using a dollar sign for columns). See below:  
-```{r}
+```{r, tidy=TRUE}
 # Print the 3rd row of example_data
 example_data[3,]
 
@@ -423,7 +423,7 @@ example_data[,"Age"]
 ```
       
 Some more examples of using logicals to extract specific data from a data frame:  
-```{r}
+```{r, tidy=TRUE}
 # Extract the ages of people who are from New York
 example_data$Age[example_data$State=="New York"]
 
@@ -439,7 +439,7 @@ rownames(example_data)[example_data$Age==24 & example_data$State=="New Jersey"]
   
 #### Extracting elements of a list    
 Extracting values from a list requires two steps: first you'll need to extract the element of the list you are interested in using double square brackets: [[]]. Then, you can use regular square brackets to extract values from each element as described in the above sections. See below:  
-```{r}
+```{r, tidy=TRUE}
 # Re-print example_list
 example_list
 
@@ -457,7 +457,7 @@ example_list[[2]][1,3]
 
 #### Factor variables and levels   
 One other data structure that you'll see is a factor variable with levels. This is often used for categorical data. For example, suppose you collect some data where you ask people to rate their agreement with the statement, "I like coffee." Each person responds on a scale from 1-5 where 1=strongly disagree, 2=disagree, 3=no opinion, 4=agree, and 5=strongly agree. When you collect this data, you might want the numerical responses to be linked with their descriptions. Also, you probably don't want R to treat this as a continuous variable when you run a model (because a value of 2.3 is not possible). (note: factor variables can also be used for non-ordered categorical variables). The code below shows an example:  
-```{r}
+```{r, tidy=TRUE}
 # Create some fake data
 fake_data <- sample(c("strongly disagree", "disagree", "no opinon", "agree", "strongly agree"),
                     size=100, replace=TRUE, prob=c(.2,.3,.1,.3,.2))
@@ -486,7 +486,7 @@ Note that we have created a factor variable with 5 levels. Even though each elem
 There are a number of ways to read data into R, but the most common is to use the read.csv function, which can read in a .csv file and convert it to a data frame in your working environment. In order for R to read a file, you must either include the full path to the file or you must set your working directory to the location of the file. If you are planning to knit to PDF, the call to setwd() or the full file name must be included in an R chunk (instead of just running it in the Console). Another option is to use an Rproj file to automatically set your working directory to a particular location every time you open it.   
 
 Note that an easy way to get a file path is to right click on the file in your finder window and then click "get info". The info page should include a file path that you can copy and paste into R. Note that file names and path names need to be in quotes.   
-```{r}
+```{r, tidy=TRUE}
 # Use setwd() to set your working directory to a particular location  
 # setwd("/Users/sophiesommer/Desktop/Grad School/A3SR-Welcome-Package/Tutorials")
 
@@ -496,7 +496,7 @@ data <- read.csv("height_sex.csv")
 ```
      
 Some commonly used data sets are already available to you in base R (and others are available once you download particular packages). For example, I can load the iris dataset by simply using the data() function:  
-```{r}
+```{r, tidy=TRUE}
 #load iris data set into my working environment
 data(iris)
 
@@ -508,7 +508,7 @@ Finally, if you have data in other formats, you might need some other functions 
 
 #### Downloading new packages and functions   
 To download new packages in R, you can use the install.packages() function and then use library() or require() to load the package in your workspace. Note that you will only have to use install.packages() once (unless you update R and have to delete packages for some reason); whereas you will need to re-load packages with library() or require() every time you close and re-open R Studio (assuming that you cleared your working environment). You also must include the library() or require() call within Rmd files if you are planning to knit to PDF (but you can write {r, echo=FALSE, message=FALSE} at the beginning of the chunk to surpress the output if you don't want it to show). Package names must always be in quotes.  NOTE: best practices are moving toward full reference of the package everytime you call it to avoid ambiguity. E.g., psych::describe(...).  In development phase, one often requires multiple libraries; in production phase, full referencing is likely to reduce errors.  Consider moving in that direction early in your career.
-```{r, message=FALSE}
+```{r, message=FALSE, tidy=TRUE}
 # Install the psych package
 # Note: I have commented out the code so that it doesnt re-install on my computer  
 # install.packages("psych")
@@ -523,7 +523,7 @@ require(psych)
 ## Using R as a calculator      
 
 It is helpful to know how to do some basic calculations in R (see below)
-```{r}
+```{r, tidy=TRUE}
 # Add, subtract, multiply or divide values: 
 5+3 #add
 5-2 #subtract
@@ -542,7 +542,7 @@ factorial(3) #gives 3 factorial
 ```
   
 Many operations can also be applied to an entire vector or matrix of values.  
-```{r}
+```{r, tidy=TRUE}
 # Create a vector with the numbers from 1-10  
 vec <- 1:10
 print(vec)
