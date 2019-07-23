@@ -216,7 +216,7 @@ $y_2=a_{21}x_1+a_{22}x_2+\dots+a_{2n}x_n$
 $y_m=a_{m1}x_1+a_{m2}x_2+\dots+a_{mn}x_n$  
 
 We can re-write these equations much more simply as:  
-$\textbf{Y}=\textbf{AX}$ where $\textbf{Y}$ is a $1\times m$ matrix, $\textbf{A}$ is an $m\times n$ matrix, and $X$ is a $1\times n$ matrix:  
+$\textbf{Y}=\textbf{AX}$ where $\textbf{Y}$ is a $m\times 1$ matrix, $\textbf{A}$ is an $m\times n$ matrix, and $X$ is a $n\times 1$ matrix:  
 
 $$\begin{bmatrix}
 y_1\\
@@ -224,7 +224,7 @@ y_2\\
 .\\
 .\\
 .\\
-y_n\\
+y_m\\
 \end{bmatrix}=
 \begin{bmatrix}
 a_{11}&a_{12}&...&a_{1n}\\
@@ -503,7 +503,7 @@ Therefore, $\int_1^2 2x(x^2 + 1)^4 dx=\int_2^5 u^4 du = \frac{u^5}{5}|_2^5 =\fra
 ## Answers    
   
   1. Indefinite integrals:    
-    a. $\int 5x^2 dx=\frac{5}{3}x^3$   
+    a. $\int 5x^2 dx=\frac{5}{3}x^3+C$   
     b. $\int 2x^3-\frac{3}{x^2} dx=\int 2x^3-3x^{-2} dx=\frac{1}{2}x^4+3x^{-1}+C$  
     c. $\int(2x-2)(x+3)dx=\int2x^2+4x-6dx=\frac{2}{3}x^3+2x^2-6x+C$  
     d. $\int \frac{2}{x} dx=2\int \frac{1}{x} dx=2ln|x|+C$    
@@ -997,7 +997,7 @@ A one sample T-test for a sample mean is generally used when sample size is smal
 Example:   
 Based on a national survey, US adults get an average of 6.8 hours of sleep per night. Suppose that we collect a sample of 25 NYU students and find that they got an average of 6.4 hours of sleep per night (sd=1). Is there sufficient evidence to suggest that NYU students are getting less sleep than the national average?  
 
-We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score, which is similar to a Z-score) comparing our observed mean with the national average: $T=\frac{6.8-6.4}{0.2}=2$. Then, we calculate a one-tailed p-value using a t distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used 1-pt(2,df=24) in R to calculate this). At a significance level of $0.05$ we reject the null in favor of the alternative.    
+We estimate the standard error of the mean: SE=$\frac{1}{\sqrt{25}}=0.2$. Then, we construct a test statistic (in this case, a T-score, which is similar to a Z-score) comparing our observed mean with the national average: $T=\frac{6.4-6.8}{0.2}=-2$. Then, we calculate a one-tailed p-value using a t distribution with $n-1=25-1=24$ degrees of freedom and get 0.028 (I used pt(-2,df=24) in R to calculate this). At a significance level of $0.05$ we reject the null in favor of the alternative.    
   
 ##### T-test for Paired Data  
 Suppose we want to compare the prices of common coffee drinks at Starbucks and Dunkin' Donuts. For every drink (i.e., small hot coffee, small iced coffee, etc.) we have the price at Starbucks and the price at Dunkin' Donuts. A mock-up of some data (note: this is completely made up) is shown below.     
