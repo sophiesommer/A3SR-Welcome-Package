@@ -1,0 +1,234 @@
+---
+title: "Dplyr workshop"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require("openintro")
+require(dplyr)
+data(acs12)
+```
+  
+## Converting to tibbles   
+Converting a data frame to a tibble is very simple. Just use as_tibble()!  
+```{r}
+as_tibble(acs12)
+```
+
+## Select   
+Let's start with the acs12 dataset from the openintro package, which has data from the 2012 US census.   
+Suppose that we want to subset the acs12 to only include four variables: income, gender, edu, and age. Suppose that we also only want to keep complete cases of those variables.  
+```{r}
+#before, we might have done this by using square brackets and na.omit separately
+newdata1 = acs12[,c("income","gender","edu", "age")]
+newdata2 = na.omit(newdata1)
+
+#now, we can use select (and pipe) to simplify and make this easier to read
+newdata = acs12 %>% select(income, gender, edu, age) %>% na.omit()
+```
+  
+## Mutate  
+Next, we can use mutate() to create new variables that are functions of old variables. For example, suppose that we want to record income in thousands of dollars (instead of in dollars). We can create a new variable called income_thousands using the mutate() function:  
+```{r}
+newdata = newdata %>% mutate(income_thousands = income/1000)
+```
+   
+## Filter    
+The filter function works in much the same way as subset, except we can reference variable names directly, which makes it look much cleaner. For example, suppose that we want to filter our dataset to only include females who make more than 50 thousand dollars per year.  
+```{r}
+#calculate the number of people who are female with income less than $50,000
+newdata %>% filter(income_thousands<50 & gender=="female") %>% nrow()
+
+#or, you can use filter() to create a new dataset with specific rows
+newdata %>% filter(income_thousands<50 & gender=="female") %>% as_tibble()
+```
+  
+## Summarise  
+The summarise() function does exactly what it sounds like: it allows you to summarize the data by reducing many values down to a single value. For example:  
+```{r}
+#calculate mean income in the dataset
+newdata %>% summarise(mean_salary = mean(income_thousands))
+```
+  
+This becomes more useful when combined with group_by, which allows you to calculate summary statistics for specific subgroups of the dataset:  
+```{r}
+#calculate mean income by gender dataset
+newdata %>% 
+  group_by(gender) %>% 
+  summarise(mean_salary = mean(income_thousands))  
+
+#calculate number of people in each gender x education level group with income>$50,000
+newdata %>% group_by(gender, edu) %>% 
+  filter(income_thousands>50) %>% 
+  summarise(Number = n())
+
+#calculate mean income by gender and education level  
+newdata %>% 
+  group_by(gender, edu) %>% 
+  summarise(mean_salary = mean(income_thousands)) 
+```
+  
+## Arrange  
+Finally, we can use the arrange function to arrange rows in a particular order. For example, we could arrange mean salaries by gender and education level in ascending or descending order with respect to a particular variable:    
+```{r}
+#ascending order
+newdata %>% 
+  group_by(gender, edu) %>% 
+  summarise(mean_salary = mean(income_thousands)) %>% 
+  arrange(mean_salary)
+
+#descending order
+newdata %>% 
+  group_by(gender, edu) %>% 
+  summarise(mean_salary = mean(income_thousands)) %>% 
+  arrange(desc(mean_salary))
+```
+   
+## Joins  
+Dplyr offers a number of different types of joins. There are many online resources to learn more about this, so for the purposes of this tutorial, we will look at one example. Here is one potential resource: https://www.guru99.com/r-dplyr-tutorial.html  
+
+Suppose that we want to create a new variable in our dataset called mean_income_agegrp. For each person in the data, this variable tells us the mean earnings of all people who are the same age (in the data). We can do this as follows:  
+```{r}
+#create a data frame with mean income by age
+newdata3 = newdata %>% 
+  mutate(agef = as.factor(age)) %>% 
+  group_by(agef) %>%
+  summarise(mean_income_agegrp=mean(income)) %>%
+  mutate(age=as.numeric(as.character(agef))) %>%
+  select(age, mean_income_agegrp)
+
+#look at the first few rows
+newdata3[1:3,]
+
+#now let's use a left join to join these values back onto the original dataset by age
+newdata = dplyr::left_join(newdata, newdata3, by = "age")
+
+#look at first few rows
+newdata[1:3,]
+```
+
+
+## Putting it all together  
+The dplyr functions are most useful in combination with each other. Here are some examples: Let's start with the original acs12 dataset and try to answer some questions:   
+
+It's first useful to look at the structure of the dataset:  
+```{r}
+#str(acs12)
+```
+
+
+1. What is the mean commute time of people who are at least 25 years old and employed, broken down by gender and race subcategories? Follow-up: report commute times in order from shortest to longest. (note: I'm selecting columns and using na.omit first, but you could also include an na.omit parameter in the mean() function and keep all the data):    
+```{r}
+acs12 %>% 
+  select(age, gender, race, employment, time_to_work) %>%
+  na.omit() %>%
+  filter(age >= 25 & employment=="employed") %>%
+  group_by(gender, race) %>% 
+  summarise(mean_time_to_work = mean(time_to_work)) %>% 
+  arrange(mean_time_to_work) 
+```    
+     
+2. What is the mean hourly wage of US citizens by gender (note: there are 52 weeks in a year)?    
+```{r}
+acs12 %>% 
+  select(gender, citizen, income, hrs_work) %>%
+  na.omit() %>%
+  filter(citizen == "yes") %>%
+  mutate(weekly_wage = income/52) %>%
+  mutate(hourly_wage = weekly_wage/hrs_work) %>%
+  group_by(gender) %>% 
+  summarise(mean_hourly_wage = mean(hourly_wage))
+```
+   
+\pagebreak  
+
+# Practice    
+We'll use the run10 dataset (sorry for those that have used this a bunch!) from the openintro package:  
+```{r}
+data("run10")
+```
+  
+1. Start by looking at the structure of the dataset (using str() and/or by typing ?run10 into the Console to get a sense of the available variables).   
+```{r}
+str(run10)
+```  
+  
+2. Create a new dataset called run10_2 which only includes the following variables: time, pace, age, gender, and state.   
+```{r}
+run10_2 = run10 %>% select(time, pace, age, gender, state) %>% na.omit()
+```
+  
+Use this new dataset for the rest of the questions below:  
+3. Create a new variable called fivek_split which gives each runner's approximate 5k time. Note that this race is 10 miles, and a 5k is 3.10686 miles.   
+```{r}
+run10_2 = run10_2 %>% mutate(fivek_split = pace * 3.10686)
+```
+  
+4. Now, calculate mean 5k split times for each gender group   
+```{r}
+run10_2 %>% group_by(gender) %>% summarise(Mean_5k_Split = mean(fivek_split)) 
+```
+  
+5. Create a new variable called decade which gives the decade of each person's age. For example, everyone in their 30s would have decade=3, everyone in their 40s would have decade=4, etc. Make this variable a factor variable. Hint: the floor() function might be helfpul to you.      
+```{r}
+run10_2 = run10_2 %>% mutate(decade = as.factor(floor(age/10))) 
+```
+
+6. Using this new variable, calculate mean pace for females from DC by decade. Which decades have the fastest and slowest mean paces?   
+```{r}
+run10_2 %>% 
+  filter(state=="DC" & gender=="F") %>% 
+  group_by(decade) %>% 
+  summarise(mean_pace = mean(pace)) %>% 
+  arrange(mean_pace)
+```
+
+7. List all of the state names in the dataset in order from fastest to slowest average finishing time     
+```{r}
+run10_2 %>% 
+  group_by(state) %>% 
+  summarise(mean_pace = mean(pace)) %>% 
+  arrange(mean_pace) %>% 
+  select(state)
+```
+
+8. What states are the top 10 male runners from? What states are the top 10 female runners from?   
+```{r}
+run10_2 %>% filter(gender=="F") %>% arrange(time) %>% select(state) %>% head(10) %>% unique()
+run10_2 %>% filter(gender=="M") %>% arrange(time) %>% select(state) %>% head(10)
+```
+
+9. Create a new variable called time_hrs, which gives finishing time in terms of hours. Then print median finishing times in hours for each decade group.   
+```{r}
+run10_2 %>% 
+  mutate(time_hours = time/60) %>% 
+  group_by(decade) %>% 
+  summarise(median_finish_time = median(time_hours))
+```
+
+10. Create a new dataset called state_data which just has the variable "state" and a new variable called number_from_state which counts the number of people from that state.  
+```{r}
+state_data = run10 %>% 
+  select(state) %>% 
+  group_by(state) %>% 
+  summarise(number_from_state=n())
+```  
+
+11. Now, use a join to append the n_from_state column onto the run10_2 dataset so that everyone in the run10_2 dataset now also has a value for n_from_state (which gives the number of people who ran the race who were from the same state as them)   
+```{r}
+run10_2 = left_join(run10_2, state_data, by = "state") 
+```
+  
+12. Filter this new dataset so that you only include people from states that have between 50-200 (inclusive) runners from that state. Use this new dataset to calculate mean finishing times (in minutes) for each state. Which of these states had the fastest and slowest finishing times on average?    
+```{r}
+run10_2 %>% filter(number_from_state>=50 & number_from_state<=200) %>% 
+  group_by(state) %>% 
+  summarise(mean_time = mean(time)) %>% 
+  arrange(mean_time)
+```  
+
+
+
