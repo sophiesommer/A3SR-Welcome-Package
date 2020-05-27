@@ -23,11 +23,11 @@ https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-kn
   * Choose the **base** (to download R for this first time), and finally **Download R 3.6.0 for Windows**
   * Click on Run
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Install_PC.png){width=75%}
+  ![](./Installation Images/R_Install_PC.png){width=75%}
   \newline
   * Installation is complete when you see the following image.
     \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Install_PC_Complete.png){width=75%}
+  ![](./Installation Images/R_Install_PC_Complete.png){width=75%}
   \newline
   
 \newpage
@@ -36,7 +36,7 @@ https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-kn
 #### Go to this link https://www.rstudio.com/products/rstudio/download/#download
   * Scroll down to the Installers for Supported Platforms and choose **RStudio 1.2.1335 - Windows 7+ (64-bit)**
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_PC.png){width=75%}
+  ![](./Installation Images/RStudio_Installation_PC.png){width=75%}
   
     
     
@@ -46,19 +46,19 @@ https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-kn
   + Choose the **Howto: Install MikTeX on your Windows computer**
   + Press the Download icon at the bottom and the file will immediately begin downloading
     \newline
-    ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC.png){width=75%}
+    ![](./Installation Images/LaTeX_PC.png){width=75%}
   \newline
   + Click on the file at the bottom of your web browser and start the installation by pressing **Run**
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_2.png){width=75%}
+  ![](./Installation Images/LaTeX_PC_2.png){width=75%}
   \newline
   + After following the on screen instructions, you will need to choose your settings. **Make sure to set Install missing packages on-the-fly to Yes** 
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_3.png){width=75%}
+  ![](./Installation Images/LaTeX_PC_3.png){width=75%}
   \newline
   + You will be redirected to this screen and make sure to continue to press **Next** and follow the on-screen directions until the installation procress finishes.
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_PC_4.png){width=75%}
+  ![](./Installation Images/LaTeX_PC_4.png){width=75%}
   \newline
 
 * If you need to uninstall MiKTeX, restart your compute, and go to uninstall programs

@@ -26,24 +26,24 @@ https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-kn
   * Choose the **R-3.6.0.pkg** and follow installation directions 
       - The following installation screen should appear. Press continue until the every end of the installation process. 
       
-      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_1.png){width=75%}
+      ![](./Installation Images/R_Installation_Mac_1.png){width=75%}
       - Installation is complete when you see the following image. You can remove installation files to Trash after this step. 
       
-      ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/R_Installation_Mac_2.png){width=75%}
+      ![](./Installation Images/R_Installation_Mac_2.png){width=75%}
 
 \newpage
 # 2. Download and Install RStudio
   * Go to https://www.rstudio.com/products/rstudio/download/#download in your web browser
   * Scroll past the comparison chart to the Installers for Supported Platforms section and choose **RStudio 1.2.1335 - Mac OS X 10.12+ (64-bit)**
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_Installation_MAC.png){width=75%}
+  ![](./Installation Images/RStudio_Installation_MAC.png){width=75%}
 \newline
 
 * After choosing this, you will see a .dmg file (disk image) download. Double click the .dmg file (likely named RStudio-1.2.1335.dmg)
 \newline
 * Drag the RStudio icon to your Applications folder 
 \newline
-![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/RStudio_mac.png){width=75%}
+![](./Installation Images/RStudio_mac.png){width=75%}
 \newline
 * Now you are ready to use RStudio! It is in your Applications folder. 
 \newline
@@ -57,7 +57,7 @@ https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-kn
 http://www.tug.org/mactex/mactex-download.html
   + Click on **MacTeX.pkg**
   \newline
-  ![](~/Desktop/Welcome_A3SR/A3SR-Welcome-Package/Software Installation/Installation Images/LaTeX_mac.png){width=75%}
+  ![](./Installation Images/LaTeX_mac.png){width=75%}
     \newline
     - This package is rather larger (~3.9 Gb) and will approximately 15 minutes (possibly longer) to download. 
     - It is recommended to have your computer charging when downloading large files from the internet. 
