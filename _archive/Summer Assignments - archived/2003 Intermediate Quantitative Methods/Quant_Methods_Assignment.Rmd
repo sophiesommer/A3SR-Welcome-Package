@@ -1,6 +1,6 @@
 ---
 title: "Quantitative Methods Assignment 1"
-author: "Firstname Lastname"
+author: "A3SR Welcome Package Team 2019"
 output: pdf_document
 ---
 
