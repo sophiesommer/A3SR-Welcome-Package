@@ -1,7 +1,21 @@
 ---
-title: "Probability Homework 1: Simulation"
+title: "APSTA-GE 2351 Practicum in Applied Probability"
+subtitle: "Summer Assignment: Simulation"
+author: "A3SR Welcome Packet Team"
+date: "`r format(Sys.time(), '%d %B %Y')`"
 output: pdf_document
 ---
+
+```{r setup, include=FALSE}
+# This code chunk sets the global options of how this script will be knitted.
+# For more info, please visit: https://yihui.org/knitr/options/
+
+knitr::opts_chunk$set(echo = TRUE) # Display the source code in the output doc.
+```
+
+#### Today's Date
+
+`r format(Sys.time(), '%d %B %Y')`
 
 # Simulation
 
